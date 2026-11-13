@@ -909,8 +909,10 @@ static void PlayerNotOnBikeMoving(enum Direction direction, u16 heldKeys)
     }
 
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER)
-     && (heldKeys & B_BUTTON)
-     && FlagGet(FLAG_SYS_B_DASH)
+     // Auto-run: run by default from the start of the game; holding B walks.
+     && !(heldKeys & B_BUTTON)
+     // Don't override DexNav's hold-A sneak.
+     && !(FlagGet(DN_FLAG_SEARCHING) && (heldKeys & A_BUTTON))
      && IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior) == 0
      && !FollowerNPCComingThroughDoor()
      && (I_ORAS_DOWSING_FLAG == 0 || (I_ORAS_DOWSING_FLAG != 0 && !FlagGet(I_ORAS_DOWSING_FLAG))))
