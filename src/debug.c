@@ -78,6 +78,7 @@
 #include "vs_seeker.h"
 #include "load_save.h"
 #include "battle_partner.h"
+#include "route_lock.h"
 
 enum FollowerNPCCreateDebugMenu
 {
@@ -291,6 +292,7 @@ static void DebugAction_Selection_NextStep(u8 taskId);
 static void DebugAction_Util_Fly(u8 taskId);
 static void DebugAction_Util_WatchCredits(u8 taskId);
 static void DebugAction_Util_CheatStart(u8 taskId);
+static void DebugAction_RouteLock(u8 taskId, const void *action);
 
 static void DebugAction_TimeMenu_ChangeTimeOfDay(u8 taskId);
 static void DebugAction_TimeMenu_ChangeWeekdays(u8 taskId);
@@ -604,6 +606,16 @@ static const struct DebugMenuOption sDebugMenu_Actions_FollowerNPCMenu[] =
     { NULL }
 };
 
+// L1: acts on the locked route on the current map.
+static const struct DebugMenuOption sDebugMenu_Actions_RouteLock[] =
+{
+    { COMPOUND_STRING("Reset route here"),  DebugAction_RouteLock, (const void *)ROUTE_LOCK_DEBUG_RESET },
+    { COMPOUND_STRING("Lock route here"),   DebugAction_RouteLock, (const void *)ROUTE_LOCK_DEBUG_LOCK },
+    { COMPOUND_STRING("Clear route here"),  DebugAction_RouteLock, (const void *)ROUTE_LOCK_DEBUG_CLEAR },
+    { COMPOUND_STRING("Reset all routes"),  DebugAction_RouteLock, (const void *)ROUTE_LOCK_DEBUG_RESET_ALL },
+    { NULL }
+};
+
 static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
 {
     { COMPOUND_STRING("Fly to map…"),               DebugAction_Util_Fly },
@@ -613,6 +625,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
     { COMPOUND_STRING("Time Functions…"),           DebugAction_OpenSubMenu, sDebugMenu_Actions_TimeMenu, },
     { COMPOUND_STRING("Watch credits…"),            DebugAction_Util_WatchCredits },
     { COMPOUND_STRING("Cheat start"),               DebugAction_Util_CheatStart },
+    { COMPOUND_STRING("Route lock…"),               DebugAction_OpenSubMenu, sDebugMenu_Actions_RouteLock },
     { COMPOUND_STRING("Berry Functions…"),          DebugAction_OpenSubMenu, sDebugMenu_Actions_BerryFunctions },
     { COMPOUND_STRING("EWRAM Counters…"),           DebugAction_ExecuteScript, Debug_EventScript_EWRAMCounters },
     { COMPOUND_STRING("Follower NPC…"),             DebugAction_OpenSubMenu, sDebugMenu_Actions_FollowerNPCMenu },
@@ -3669,6 +3682,12 @@ static void DebugAction_TimeMenu_SetMoonPhase(u8 taskId)
     SetMoonPhaseOverride(input); // MOON_PHASE_COUNT ("Use real date") clears it
     Debug_DestroyMenu_Full(taskId);
     SetMainCallback2(CB2_LoadMap); // reload so the night tint updates right away
+}
+
+static void DebugAction_RouteLock(u8 taskId, const void *action)
+{
+    RouteLock_DebugAction((enum RouteLockDebugAction)(uintptr_t)action);
+    Debug_DestroyMenu_Full_Script(taskId, RouteLock_EventScript_Message);
 }
 
 void DebugAction_TimeMenu_RedoDailyEvents(u8 taskId)

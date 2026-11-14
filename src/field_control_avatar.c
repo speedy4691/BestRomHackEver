@@ -44,6 +44,7 @@
 #include "constants/metatile_behaviors.h"
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
+#include "route_lock.h"
 
 static EWRAM_DATA u8 sWildEncounterImmunitySteps = 0;
 static EWRAM_DATA u16 sPrevMetatileBehavior = 0;
@@ -176,6 +177,12 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         return TRUE;
 
     if (TryRunOnFrameMapScript() == TRUE)
+        return TRUE;
+
+    // L1 route lock: lock/clear tiles, and no stepping back out of a locked route.
+    if (RouteLock_TryTriggerAtPlayer() == TRUE)
+        return TRUE;
+    if (input->dpadDirection != DIR_NONE && RouteLock_TryBlockStep(input->dpadDirection) == TRUE)
         return TRUE;
 
     if (input->pressedBButton && TrySetupDiveEmergeScript() == TRUE)
