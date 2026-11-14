@@ -189,6 +189,20 @@ EventSnippet_EndTrainerBattle::
 	releaseall
 	end
 
+@ Roadmap S2: rebattle a defeated trainer by talking to them. NO falls back to their normal post-battle script.
+EventSnippet_AskRebattle::
+	msgbox EventScript_Text_WantToBattleAgain, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, EventScript_NoNormalTrainerBattle
+	return
+
+@ Ends a rebattle without re-running the trainer's one-time "after first defeat" script (badges, TMs, match call).
+EventSnippet_EndRebattle::
+	releaseall
+	end
+
+EventScript_Text_WantToBattleAgain:
+	.string "Want to battle again?$"
+
 EventSnippet_NotEnoughMonsForDoubleBattle::
 	special ShowTrainerCantBattleSpeech
 	waitmessage

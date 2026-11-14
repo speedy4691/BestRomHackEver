@@ -55,6 +55,7 @@ typedef union PACKED TrainerBattleParameter
 extern const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES];
 
 extern TrainerBattleParameter gTrainerBattleParameter;
+extern bool8 gIsTrainerRebattle;
 extern u16 gPartnerTrainerId;
 
 #define TRAINER_BATTLE_PARAM gTrainerBattleParameter.params

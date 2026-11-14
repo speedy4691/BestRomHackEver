@@ -56,6 +56,8 @@ extern const u8 EventSnippet_DoTrainerBattle[];
 extern const u8 EventSnippet_DoRematchTrainerBattle[];
 extern const u8 EventSnippet_EndTrainerBattle[];
 extern const u8 EventSnippet_NotEnoughMonsForDoubleBattle[];
+extern const u8 EventSnippet_AskRebattle[];
+extern const u8 EventSnippet_EndRebattle[];
 
 extern const u8 BerryTreeScript[];
 
