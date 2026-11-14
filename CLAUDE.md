@@ -84,7 +84,7 @@ In this repo, these rules override ~/.claude/CLAUDE.md: use feature/ branch name
 
 - **Level caps:** hard cap (no EXP at the cap). Roxanne cap Lv 15; leader's strongest Pokémon = cap. Rare Candy and the Daycare respect the cap (the Daycare levels by steps, so it needs its own check). No on-screen cap display; the new cap is told in dialogue after the badge. The first cap (Lv 15) also needs an early dialogue line.
 - **Pokédex gates:** only caught Pokémon count; "seen" doesn't.
-- **No items for the player in trainer battles;** wild battles and held items unaffected; opposing trainers keep their items.
+- **No items in trainer battles** for either side: the player's Bag is blocked and opposing trainers never use items from their item list. Wild battles and held items (both sides) are unaffected.
 - **No switching after a KO** (Battle Style locked to Set).
 - **PC anywhere:** {PKMN} Box Link key item opens PC storage anywhere except the Elite Four, Battle Frontier and Trainer Hill. No portable healing (2.7 was de-scoped).
 - **Return to last Pokémon Center** from anywhere, blocked in gyms, Elite Four and scripted events.
@@ -92,7 +92,13 @@ In this repo, these rules override ~/.claude/CLAUDE.md: use feature/ branch name
 - **Key items given by an NPC in the early game** (who and when not decided yet), who explains each one: Teleport, {PKMN} Box Link, Mach and Acro Bike, and a toggleable **Infinite Repel**. Until then they're only obtainable via the debug menu (custom key items go first in the debug "Fill Pocket Key Items" list in `src/debug.c`).
 - **Modern mechanics on:** reusable TMs, physical/special split, Fairy type, modern learnsets, ability pop-ups.
 - **FireRed and Gold/Silver species** added in the same cadence as their original games (by badge count).
+- **National Pokédex from the start** (R2); Pokédex numbers shown are National.
+- **Day/night:** real-time clock (no fake RTC). Time-of-day encounter tables are on (`gRouteXXX_Night` etc. in `wild_encounters.json`; unsuffixed tables apply at all times). Evening tint is a warm orange sunset. Debug "Set time of day" works with the real clock.
+- **Moon phases** (`src/moon.c`): 8 phases from the console's real date. Night brightness follows the moon (new moon darkest, full moon lightest). Start menu shows time of day + phase. Full-moon night encounters come from a table in `moon.c` (empty until species are chosen). Debug "Set moon phase" override. Future: Mt. Moon full-moon area (Mirage Island style); moon evolutions parked as content.
+- **Rebattles:** talk to a defeated trainer → "Want to battle again?" Same team, EXP but no prize money, skips one-time after-defeat scripts. Not offered in gyms, Elite Four/Champion rooms or vs rivals. Rebattle teams will scale with content (badge tiers), not code yet. Route-lock interaction (e.g. rebattles only on cleared routes) is deliberately postponed until route lock exists.
+- **Match Call:** regular trainers (before Wally in `gRematchTable`) never register or call; gym leaders, Elite Four, Wally and story contacts keep vanilla Match Call and rematches.
+- **QoL:** text speed defaults to FAST; IVs/EVs on the Summary stats page (press A); B moves the battle cursor to Run in wild battles.
 
 ## Roadmap order (next steps)
 
-Done: 2.1–2.3, 2.6–2.8. Deferred: 2.4 (waits on 4.3), 2.5 (to review with Will and Chase). In progress: 2.9 Bikes and Infinite Repel. Next: the vertical slice (3.x). The Google Sheet's Roadmap tab is the source of truth; update its Status and Notes after each merged PR.
+Done: 1.x, 2.1–2.3, 2.6–2.9, R1, R2, S3, Q1–Q4 (off-roadmap: IV/EV display, moon phases, B-to-Run, no regular-trainer Match Call). S2 Rebattles: part 1 merged (talk-to-rebattle); badge-tiered teams come with content. Deferred: 2.4, 2.5 (to review with Will and Chase). Not started: R3 test-start upgrade, R4 key items from NPCs (+ Rydel's Cycles fix for owning both bikes), route lock pilot (L1/L2), caps and gate (G1–G4). Next steps are planned with Chase. The Google Sheet's Roadmap tab is the source of truth; update its Status and Notes after each merged PR (off-roadmap work gets a Q-row under an existing Phase).
