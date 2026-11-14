@@ -4,7 +4,7 @@
 Read-only: it parses the repo's data files and writes one CSV per sheet tab to tools/content_export/out/.
 Each CSV matches the tab's header row exactly; import it at A2 ("Replace data at selected cell").
 
-Run from the repo root:  python3 tools/content_export/export.py [--story all]
+Run from the repo root:  python3 tools/content_export/export.py [--story slice]
 """
 
 import argparse
@@ -307,8 +307,8 @@ def parse_mon_header(h):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--story", choices=["slice", "all"], default="slice",
-                    help="story dialogue for the slice maps only (default) or every map")
+    ap.add_argument("--story", choices=["slice", "all"], default="all",
+                    help="story dialogue for every map (default) or the slice maps only")
     opts = ap.parse_args()
     report = []
 

@@ -3,7 +3,7 @@ Trainer dialogue: 541 rows (one per trainer battled from a script; Rebattle line
 Encounters: 2001 rows (1975 wild slots, 0 full-moon, 26 static/gift); time-of-day tables: none yet (all Any); skipped 0 givemon with a species from a variable
 Items on maps: 362 rows (incl. 88 berry trees)
 NPCs: 1804 rows; not included: 59 boulder, 44 breakable rock, 33 cuttable tree, 588 trainer
-Story dialogue: 528 rows written (slice maps Littleroot to Rustboro); full set across all maps would be 3644 rows in 3064 scenes
+Story dialogue: 3644 rows written (all maps); full set across all maps would be 3644 rows in 3064 scenes
 Lists: 1572 species, 933 moves, 875 items, 518 maps, 116 trainer classes; species names guessed from constants: SPECIES_MINIOR_METEOR_RED, SPECIES_MINIOR_METEOR_ORANGE, SPECIES_MINIOR_METEOR_YELLOW, SPECIES_MINIOR_METEOR_GREEN, SPECIES_MINIOR_METEOR_BLUE, SPECIES_MINIOR_METEOR_INDIGO, SPECIES_MINIOR_METEOR_VIOLET, SPECIES_MINIOR_CORE_RED, SPECIES_MINIOR_CORE_ORANGE, SPECIES_MINIOR_CORE_YELLOW, SPECIES_MINIOR_CORE_GREEN, SPECIES_MINIOR_CORE_BLUE, SPECIES_MINIOR_CORE_INDIGO, SPECIES_MINIOR_CORE_VIOLET
 
 CSV files in tools/content_export/out
