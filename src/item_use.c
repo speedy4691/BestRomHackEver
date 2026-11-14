@@ -1296,7 +1296,7 @@ static u32 GetBallThrowableState(void)
         return BALL_THROW_UNABLE_SEMI_INVULNERABLE;
     else if (FlagGet(WE_FLAG_NO_CATCHING) || !IsAllowedToUseBag())
         return BALL_THROW_UNABLE_DISABLED_FLAG;
-    else if (!(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_CATCH_TUTORIAL))
+    else if (!(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_CATCH_TUTORIAL | BATTLE_TYPE_LEGENDARY))
           && gBattleMons[GetCatchingBattler()].level > GetCurrentCatchLevelCap())
         return BALL_THROW_UNABLE_ABOVE_CATCH_CAP; // G1: gift Pokémon are never thrown at, so they're exempt
 
