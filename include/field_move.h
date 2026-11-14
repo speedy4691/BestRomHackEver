@@ -62,4 +62,10 @@ static inline bool32 FieldMove_IsVisible(enum FieldMove fieldMove)
     return !gFieldMoveInfo[fieldMove].hideIfLocked || IsFieldMoveUnlocked(fieldMove);
 }
 
+struct Pokemon;
+// Core #21: HMs through badges. TRUE if the mon knows the move, or the player has the HM item and its
+// badge and the mon can learn the move.
+bool32 CanMonUseFieldMove(struct Pokemon *mon, enum FieldMove fieldMove);
+bool32 CanMonUseFieldMoveViaHM(struct Pokemon *mon, enum FieldMove fieldMove);
+
 #endif //GUARD_FIELD_MOVE_H

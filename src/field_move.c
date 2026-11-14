@@ -3,11 +3,43 @@
 #include "field_move.h"
 #include "fldeff.h"
 #include "fldeff_misc.h"
+#include "item.h"
 #include "party_menu.h"
+#include "pokemon.h"
 #include "strings.h"
 #include "constants/field_move.h"
+#include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
+
+// Core #21: the HM item that lets a compatible mon use each field move without knowing it.
+static const u16 sFieldMoveHMs[FIELD_MOVES_COUNT] =
+{
+    [FIELD_MOVE_CUT]        = ITEM_HM_CUT,
+    [FIELD_MOVE_FLY]        = ITEM_HM_FLY,
+    [FIELD_MOVE_SURF]       = ITEM_HM_SURF,
+    [FIELD_MOVE_STRENGTH]   = ITEM_HM_STRENGTH,
+    [FIELD_MOVE_FLASH]      = ITEM_HM_FLASH,
+    [FIELD_MOVE_ROCK_SMASH] = ITEM_HM_ROCK_SMASH,
+    [FIELD_MOVE_WATERFALL]  = ITEM_HM_WATERFALL,
+    [FIELD_MOVE_DIVE]       = ITEM_HM_DIVE,
+};
+
+bool32 CanMonUseFieldMoveViaHM(struct Pokemon *mon, enum FieldMove fieldMove)
+{
+    enum Species species = GetMonData(mon, MON_DATA_SPECIES);
+
+    if (sFieldMoveHMs[fieldMove] == ITEM_NONE || species == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG))
+        return FALSE;
+    return IsFieldMoveUnlocked(fieldMove)
+        && CheckBagHasItem(sFieldMoveHMs[fieldMove], 1)
+        && CanLearnTeachableMove(species, FieldMove_GetMoveId(fieldMove));
+}
+
+bool32 CanMonUseFieldMove(struct Pokemon *mon, enum FieldMove fieldMove)
+{
+    return MonKnowsMove(mon, FieldMove_GetMoveId(fieldMove)) || CanMonUseFieldMoveViaHM(mon, fieldMove);
+}
 
 static bool32 IsAlwaysFalse(enum FieldMove fieldMove)
 {
