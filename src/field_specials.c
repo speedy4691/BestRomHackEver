@@ -3,6 +3,7 @@
 #include "malloc.h"
 #include "battle.h"
 #include "battle_special.h"
+#include "battle_setup.h"
 #include "cable_club.h"
 #include "data.h"
 #include "daycare.h"
@@ -3683,6 +3684,10 @@ u32 GetMartEmployeeObjectEventId(void)
 bool32 IsTrainerRegistered(void)
 {
     int index = GetRematchIdxByTrainerIdx(gSpecialVar_0x8004);
+    // Regular Match Call trainers never register; reporting them as registered makes their
+    // scripts skip the "let's register" talk and show the normal post-battle line instead.
+    if (IsRegularMatchCallTrainer(gSpecialVar_0x8004))
+        return TRUE;
     if (index >= 0)
     {
         if (FlagGet(TRAINER_REGISTERED_FLAGS_START + index) == TRUE)
