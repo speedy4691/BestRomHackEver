@@ -247,6 +247,31 @@ void ItemUseOutOfBattle_Mail(u8 taskId)
 
 STATIC_ASSERT(I_EXP_SHARE_ITEM < GEN_6 || I_EXP_SHARE_FLAG > TEMP_FLAGS_END, YouNeedToSetAFlagToUseGen6ExpShare);
 
+// Roadmap 2.9: toggles a repel effect with no step limit (see IsWildLevelAllowedByRepel).
+void ItemUseOutOfBattle_InfiniteRepel(u8 taskId)
+{
+    static const u8 sText_InfiniteRepelOn[] = _("The Infinite Repel has been\nturned on.{PAUSE_UNTIL_PRESS}");
+    static const u8 sText_InfiniteRepelOff[] = _("The Infinite Repel has been\nturned off.{PAUSE_UNTIL_PRESS}");
+    const u8 *text;
+
+    FlagToggle(FLAG_INFINITE_REPEL);
+    if (FlagGet(FLAG_INFINITE_REPEL))
+    {
+        PlaySE(SE_REPEL);
+        text = sText_InfiniteRepelOn;
+    }
+    else
+    {
+        PlaySE(SE_PC_OFF);
+        text = sText_InfiniteRepelOff;
+    }
+
+    if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+        DisplayItemMessageOnField(taskId, text, Task_CloseCantUseKeyItemMessage);
+    else
+        DisplayItemMessage(taskId, FONT_NORMAL, text, CloseItemMessage);
+}
+
 void ItemUseOutOfBattle_ExpShare(u8 taskId)
 {
 #if I_EXP_SHARE_ITEM >= GEN_6

@@ -26,6 +26,7 @@ void ItemUseOutOfBattle_Repel(u8 taskId);
 void ItemUseOutOfBattle_Lure(u8 taskId);
 void ItemUseOutOfBattle_EscapeRope(u8 taskId);
 void ItemUseOutOfBattle_Teleport(u8 taskId);
+void ItemUseOutOfBattle_InfiniteRepel(u8 taskId);
 void ItemUseOutOfBattle_BlackWhiteFlute(u8 taskId);
 void ItemUseOutOfBattle_EvolutionStone(u8 taskId);
 void ItemUseOutOfBattle_Berry(u8 taskId);

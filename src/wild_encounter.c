@@ -1071,7 +1071,8 @@ bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 {
     u8 i;
 
-    if (!REPEL_STEP_COUNT)
+    // Infinite Repel (key item) works like a Repel with no step limit.
+    if (!REPEL_STEP_COUNT && !FlagGet(FLAG_INFINITE_REPEL))
         return TRUE;
 
     for (i = 0; i < PARTY_SIZE; i++)

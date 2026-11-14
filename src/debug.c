@@ -3757,7 +3757,10 @@ static void DebugAction_PCBag_Fill_PocketKeyItems(u8 taskId)
 
     // The pocket holds only BAG_KEYITEMS_COUNT items, so it fills up with vanilla items
     // before reaching our custom ones at the end of the list. Add those first.
-    static const enum Item sCustomKeyItems[] = { ITEM_TELEPORT, ITEM_POKEMON_BOX_LINK };
+    static const enum Item sCustomKeyItems[] =
+    {
+        ITEM_TELEPORT, ITEM_POKEMON_BOX_LINK, ITEM_MACH_BIKE, ITEM_ACRO_BIKE, ITEM_INFINITE_REPEL
+    };
     u32 i;
 
     for (i = 0; i < ARRAY_COUNT(sCustomKeyItems); i++)
