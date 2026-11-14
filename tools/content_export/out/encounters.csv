@@ -1,0 +1,2002 @@
+Map,Method,Time or condition,Slot #,Slot %,Species,Min level,Max level,Source game,Status,Notes
+MAP_ROUTE101,Grass,Any,1,20,Wurmple,2,2,Emerald,In game,
+MAP_ROUTE101,Grass,Any,2,20,Poochyena,2,2,Emerald,In game,
+MAP_ROUTE101,Grass,Any,3,10,Wurmple,2,2,Emerald,In game,
+MAP_ROUTE101,Grass,Any,4,10,Wurmple,3,3,Emerald,In game,
+MAP_ROUTE101,Grass,Any,5,10,Poochyena,3,3,Emerald,In game,
+MAP_ROUTE101,Grass,Any,6,10,Poochyena,3,3,Emerald,In game,
+MAP_ROUTE101,Grass,Any,7,5,Wurmple,3,3,Emerald,In game,
+MAP_ROUTE101,Grass,Any,8,5,Poochyena,3,3,Emerald,In game,
+MAP_ROUTE101,Grass,Any,9,4,Zigzagoon,2,2,Emerald,In game,
+MAP_ROUTE101,Grass,Any,10,4,Zigzagoon,2,2,Emerald,In game,
+MAP_ROUTE101,Grass,Any,11,1,Zigzagoon,3,3,Emerald,In game,
+MAP_ROUTE101,Grass,Any,12,1,Zigzagoon,3,3,Emerald,In game,
+MAP_ROUTE102,Grass,Any,1,20,Poochyena,3,3,Emerald,In game,
+MAP_ROUTE102,Grass,Any,2,20,Wurmple,3,3,Emerald,In game,
+MAP_ROUTE102,Grass,Any,3,10,Poochyena,4,4,Emerald,In game,
+MAP_ROUTE102,Grass,Any,4,10,Wurmple,4,4,Emerald,In game,
+MAP_ROUTE102,Grass,Any,5,10,Lotad,3,3,Emerald,In game,
+MAP_ROUTE102,Grass,Any,6,10,Lotad,4,4,Emerald,In game,
+MAP_ROUTE102,Grass,Any,7,5,Zigzagoon,3,3,Emerald,In game,
+MAP_ROUTE102,Grass,Any,8,5,Zigzagoon,3,3,Emerald,In game,
+MAP_ROUTE102,Grass,Any,9,4,Zigzagoon,4,4,Emerald,In game,
+MAP_ROUTE102,Grass,Any,10,4,Ralts,4,4,Emerald,In game,
+MAP_ROUTE102,Grass,Any,11,1,Zigzagoon,4,4,Emerald,In game,
+MAP_ROUTE102,Grass,Any,12,1,Seedot,3,3,Emerald,In game,
+MAP_ROUTE102,Water,Any,1,60,Marill,20,30,Emerald,In game,
+MAP_ROUTE102,Water,Any,2,30,Marill,10,20,Emerald,In game,
+MAP_ROUTE102,Water,Any,3,5,Marill,30,35,Emerald,In game,
+MAP_ROUTE102,Water,Any,4,4,Marill,5,10,Emerald,In game,
+MAP_ROUTE102,Water,Any,5,1,Goldeen,20,30,Emerald,In game,
+MAP_ROUTE102,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE102,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,
+MAP_ROUTE102,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE102,Good Rod,Any,2,20,Goldeen,10,30,Emerald,In game,
+MAP_ROUTE102,Good Rod,Any,3,20,Corphish,10,30,Emerald,In game,
+MAP_ROUTE102,Super Rod,Any,1,40,Corphish,25,30,Emerald,In game,
+MAP_ROUTE102,Super Rod,Any,2,40,Corphish,30,35,Emerald,In game,
+MAP_ROUTE102,Super Rod,Any,3,15,Corphish,20,25,Emerald,In game,
+MAP_ROUTE102,Super Rod,Any,4,4,Corphish,35,40,Emerald,In game,
+MAP_ROUTE102,Super Rod,Any,5,1,Corphish,40,45,Emerald,In game,
+MAP_ROUTE103,Grass,Any,1,20,Poochyena,2,2,Emerald,In game,
+MAP_ROUTE103,Grass,Any,2,20,Poochyena,3,3,Emerald,In game,
+MAP_ROUTE103,Grass,Any,3,10,Poochyena,3,3,Emerald,In game,
+MAP_ROUTE103,Grass,Any,4,10,Poochyena,4,4,Emerald,In game,
+MAP_ROUTE103,Grass,Any,5,10,Wingull,2,2,Emerald,In game,
+MAP_ROUTE103,Grass,Any,6,10,Zigzagoon,3,3,Emerald,In game,
+MAP_ROUTE103,Grass,Any,7,5,Zigzagoon,3,3,Emerald,In game,
+MAP_ROUTE103,Grass,Any,8,5,Zigzagoon,4,4,Emerald,In game,
+MAP_ROUTE103,Grass,Any,9,4,Wingull,3,3,Emerald,In game,
+MAP_ROUTE103,Grass,Any,10,4,Wingull,3,3,Emerald,In game,
+MAP_ROUTE103,Grass,Any,11,1,Wingull,2,2,Emerald,In game,
+MAP_ROUTE103,Grass,Any,12,1,Wingull,4,4,Emerald,In game,
+MAP_ROUTE103,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE103,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE103,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE103,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE103,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE103,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE103,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE103,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE103,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE103,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE103,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE103,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE103,Super Rod,Any,3,15,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE103,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE103,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE104,Grass,Any,1,20,Poochyena,4,4,Emerald,In game,
+MAP_ROUTE104,Grass,Any,2,20,Wurmple,4,4,Emerald,In game,
+MAP_ROUTE104,Grass,Any,3,10,Poochyena,5,5,Emerald,In game,
+MAP_ROUTE104,Grass,Any,4,10,Marill,5,5,Emerald,In game,
+MAP_ROUTE104,Grass,Any,5,10,Marill,4,4,Emerald,In game,
+MAP_ROUTE104,Grass,Any,6,10,Poochyena,5,5,Emerald,In game,
+MAP_ROUTE104,Grass,Any,7,5,Taillow,4,4,Emerald,In game,
+MAP_ROUTE104,Grass,Any,8,5,Taillow,5,5,Emerald,In game,
+MAP_ROUTE104,Grass,Any,9,4,Wingull,4,4,Emerald,In game,
+MAP_ROUTE104,Grass,Any,10,4,Wingull,4,4,Emerald,In game,
+MAP_ROUTE104,Grass,Any,11,1,Wingull,3,3,Emerald,In game,
+MAP_ROUTE104,Grass,Any,12,1,Wingull,5,5,Emerald,In game,
+MAP_ROUTE104,Water,Any,1,60,Wingull,10,30,Emerald,In game,
+MAP_ROUTE104,Water,Any,2,30,Wingull,15,25,Emerald,In game,
+MAP_ROUTE104,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE104,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE104,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE104,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE104,Old Rod,Any,2,30,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE104,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE104,Good Rod,Any,2,20,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE104,Good Rod,Any,3,20,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE104,Super Rod,Any,1,40,Magikarp,25,30,Emerald,In game,
+MAP_ROUTE104,Super Rod,Any,2,40,Magikarp,30,35,Emerald,In game,
+MAP_ROUTE104,Super Rod,Any,3,15,Magikarp,20,25,Emerald,In game,
+MAP_ROUTE104,Super Rod,Any,4,4,Magikarp,35,40,Emerald,In game,
+MAP_ROUTE104,Super Rod,Any,5,1,Magikarp,40,45,Emerald,In game,
+MAP_ROUTE105,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE105,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE105,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE105,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE105,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE105,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE105,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE105,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE105,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE105,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE105,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE105,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE105,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,
+MAP_ROUTE105,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE105,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE110,Grass,Any,1,20,Poochyena,12,12,Emerald,In game,
+MAP_ROUTE110,Grass,Any,2,20,Electrike,12,12,Emerald,In game,
+MAP_ROUTE110,Grass,Any,3,10,Gulpin,12,12,Emerald,In game,
+MAP_ROUTE110,Grass,Any,4,10,Electrike,13,13,Emerald,In game,
+MAP_ROUTE110,Grass,Any,5,10,Minun,13,13,Emerald,In game,
+MAP_ROUTE110,Grass,Any,6,10,Oddish,13,13,Emerald,In game,
+MAP_ROUTE110,Grass,Any,7,5,Minun,13,13,Emerald,In game,
+MAP_ROUTE110,Grass,Any,8,5,Gulpin,13,13,Emerald,In game,
+MAP_ROUTE110,Grass,Any,9,4,Wingull,12,12,Emerald,In game,
+MAP_ROUTE110,Grass,Any,10,4,Wingull,12,12,Emerald,In game,
+MAP_ROUTE110,Grass,Any,11,1,Plusle,12,12,Emerald,In game,
+MAP_ROUTE110,Grass,Any,12,1,Plusle,13,13,Emerald,In game,
+MAP_ROUTE110,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE110,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE110,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE110,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE110,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE110,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE110,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE110,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE110,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE110,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE110,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE110,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE110,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,
+MAP_ROUTE110,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE110,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE111,Grass,Any,1,20,Sandshrew,20,20,Emerald,In game,
+MAP_ROUTE111,Grass,Any,2,20,Trapinch,20,20,Emerald,In game,
+MAP_ROUTE111,Grass,Any,3,10,Sandshrew,21,21,Emerald,In game,
+MAP_ROUTE111,Grass,Any,4,10,Trapinch,21,21,Emerald,In game,
+MAP_ROUTE111,Grass,Any,5,10,Baltoy,19,19,Emerald,In game,
+MAP_ROUTE111,Grass,Any,6,10,Baltoy,21,21,Emerald,In game,
+MAP_ROUTE111,Grass,Any,7,5,Sandshrew,19,19,Emerald,In game,
+MAP_ROUTE111,Grass,Any,8,5,Trapinch,19,19,Emerald,In game,
+MAP_ROUTE111,Grass,Any,9,4,Baltoy,20,20,Emerald,In game,
+MAP_ROUTE111,Grass,Any,10,4,Cacnea,20,20,Emerald,In game,
+MAP_ROUTE111,Grass,Any,11,1,Cacnea,22,22,Emerald,In game,
+MAP_ROUTE111,Grass,Any,12,1,Cacnea,22,22,Emerald,In game,
+MAP_ROUTE111,Water,Any,1,60,Marill,20,30,Emerald,In game,
+MAP_ROUTE111,Water,Any,2,30,Marill,10,20,Emerald,In game,
+MAP_ROUTE111,Water,Any,3,5,Marill,30,35,Emerald,In game,
+MAP_ROUTE111,Water,Any,4,4,Marill,5,10,Emerald,In game,
+MAP_ROUTE111,Water,Any,5,1,Goldeen,20,30,Emerald,In game,
+MAP_ROUTE111,Rock Smash,Any,1,60,Geodude,10,15,Emerald,In game,
+MAP_ROUTE111,Rock Smash,Any,2,30,Geodude,5,10,Emerald,In game,
+MAP_ROUTE111,Rock Smash,Any,3,5,Geodude,15,20,Emerald,In game,
+MAP_ROUTE111,Rock Smash,Any,4,4,Geodude,15,20,Emerald,In game,
+MAP_ROUTE111,Rock Smash,Any,5,1,Geodude,15,20,Emerald,In game,
+MAP_ROUTE111,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE111,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,
+MAP_ROUTE111,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE111,Good Rod,Any,2,20,Goldeen,10,30,Emerald,In game,
+MAP_ROUTE111,Good Rod,Any,3,20,Barboach,10,30,Emerald,In game,
+MAP_ROUTE111,Super Rod,Any,1,40,Barboach,25,30,Emerald,In game,
+MAP_ROUTE111,Super Rod,Any,2,40,Barboach,30,35,Emerald,In game,
+MAP_ROUTE111,Super Rod,Any,3,15,Barboach,20,25,Emerald,In game,
+MAP_ROUTE111,Super Rod,Any,4,4,Barboach,35,40,Emerald,In game,
+MAP_ROUTE111,Super Rod,Any,5,1,Barboach,40,45,Emerald,In game,
+MAP_ROUTE112,Grass,Any,1,20,Numel,15,15,Emerald,In game,
+MAP_ROUTE112,Grass,Any,2,20,Numel,15,15,Emerald,In game,
+MAP_ROUTE112,Grass,Any,3,10,Marill,15,15,Emerald,In game,
+MAP_ROUTE112,Grass,Any,4,10,Numel,14,14,Emerald,In game,
+MAP_ROUTE112,Grass,Any,5,10,Numel,14,14,Emerald,In game,
+MAP_ROUTE112,Grass,Any,6,10,Marill,14,14,Emerald,In game,
+MAP_ROUTE112,Grass,Any,7,5,Numel,16,16,Emerald,In game,
+MAP_ROUTE112,Grass,Any,8,5,Marill,16,16,Emerald,In game,
+MAP_ROUTE112,Grass,Any,9,4,Numel,16,16,Emerald,In game,
+MAP_ROUTE112,Grass,Any,10,4,Numel,16,16,Emerald,In game,
+MAP_ROUTE112,Grass,Any,11,1,Numel,16,16,Emerald,In game,
+MAP_ROUTE112,Grass,Any,12,1,Numel,16,16,Emerald,In game,
+MAP_ROUTE113,Grass,Any,1,20,Spinda,15,15,Emerald,In game,
+MAP_ROUTE113,Grass,Any,2,20,Spinda,15,15,Emerald,In game,
+MAP_ROUTE113,Grass,Any,3,10,Slugma,15,15,Emerald,In game,
+MAP_ROUTE113,Grass,Any,4,10,Spinda,14,14,Emerald,In game,
+MAP_ROUTE113,Grass,Any,5,10,Spinda,14,14,Emerald,In game,
+MAP_ROUTE113,Grass,Any,6,10,Slugma,14,14,Emerald,In game,
+MAP_ROUTE113,Grass,Any,7,5,Spinda,16,16,Emerald,In game,
+MAP_ROUTE113,Grass,Any,8,5,Slugma,16,16,Emerald,In game,
+MAP_ROUTE113,Grass,Any,9,4,Spinda,16,16,Emerald,In game,
+MAP_ROUTE113,Grass,Any,10,4,Skarmory,16,16,Emerald,In game,
+MAP_ROUTE113,Grass,Any,11,1,Spinda,16,16,Emerald,In game,
+MAP_ROUTE113,Grass,Any,12,1,Skarmory,16,16,Emerald,In game,
+MAP_ROUTE114,Grass,Any,1,20,Swablu,16,16,Emerald,In game,
+MAP_ROUTE114,Grass,Any,2,20,Lotad,16,16,Emerald,In game,
+MAP_ROUTE114,Grass,Any,3,10,Swablu,17,17,Emerald,In game,
+MAP_ROUTE114,Grass,Any,4,10,Swablu,15,15,Emerald,In game,
+MAP_ROUTE114,Grass,Any,5,10,Lotad,15,15,Emerald,In game,
+MAP_ROUTE114,Grass,Any,6,10,Lombre,16,16,Emerald,In game,
+MAP_ROUTE114,Grass,Any,7,5,Lombre,16,16,Emerald,In game,
+MAP_ROUTE114,Grass,Any,8,5,Lombre,18,18,Emerald,In game,
+MAP_ROUTE114,Grass,Any,9,4,Seviper,17,17,Emerald,In game,
+MAP_ROUTE114,Grass,Any,10,4,Seviper,15,15,Emerald,In game,
+MAP_ROUTE114,Grass,Any,11,1,Seviper,17,17,Emerald,In game,
+MAP_ROUTE114,Grass,Any,12,1,Nuzleaf,15,15,Emerald,In game,
+MAP_ROUTE114,Water,Any,1,60,Marill,20,30,Emerald,In game,
+MAP_ROUTE114,Water,Any,2,30,Marill,10,20,Emerald,In game,
+MAP_ROUTE114,Water,Any,3,5,Marill,30,35,Emerald,In game,
+MAP_ROUTE114,Water,Any,4,4,Marill,5,10,Emerald,In game,
+MAP_ROUTE114,Water,Any,5,1,Goldeen,20,30,Emerald,In game,
+MAP_ROUTE114,Rock Smash,Any,1,60,Geodude,10,15,Emerald,In game,
+MAP_ROUTE114,Rock Smash,Any,2,30,Geodude,5,10,Emerald,In game,
+MAP_ROUTE114,Rock Smash,Any,3,5,Geodude,15,20,Emerald,In game,
+MAP_ROUTE114,Rock Smash,Any,4,4,Geodude,15,20,Emerald,In game,
+MAP_ROUTE114,Rock Smash,Any,5,1,Geodude,15,20,Emerald,In game,
+MAP_ROUTE114,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE114,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,
+MAP_ROUTE114,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE114,Good Rod,Any,2,20,Goldeen,10,30,Emerald,In game,
+MAP_ROUTE114,Good Rod,Any,3,20,Barboach,10,30,Emerald,In game,
+MAP_ROUTE114,Super Rod,Any,1,40,Barboach,25,30,Emerald,In game,
+MAP_ROUTE114,Super Rod,Any,2,40,Barboach,30,35,Emerald,In game,
+MAP_ROUTE114,Super Rod,Any,3,15,Barboach,20,25,Emerald,In game,
+MAP_ROUTE114,Super Rod,Any,4,4,Barboach,35,40,Emerald,In game,
+MAP_ROUTE114,Super Rod,Any,5,1,Barboach,40,45,Emerald,In game,
+MAP_ROUTE116,Grass,Any,1,20,Poochyena,6,6,Emerald,In game,
+MAP_ROUTE116,Grass,Any,2,20,Whismur,6,6,Emerald,In game,
+MAP_ROUTE116,Grass,Any,3,10,Nincada,6,6,Emerald,In game,
+MAP_ROUTE116,Grass,Any,4,10,Abra,7,7,Emerald,In game,
+MAP_ROUTE116,Grass,Any,5,10,Nincada,7,7,Emerald,In game,
+MAP_ROUTE116,Grass,Any,6,10,Taillow,6,6,Emerald,In game,
+MAP_ROUTE116,Grass,Any,7,5,Taillow,7,7,Emerald,In game,
+MAP_ROUTE116,Grass,Any,8,5,Taillow,8,8,Emerald,In game,
+MAP_ROUTE116,Grass,Any,9,4,Poochyena,7,7,Emerald,In game,
+MAP_ROUTE116,Grass,Any,10,4,Poochyena,8,8,Emerald,In game,
+MAP_ROUTE116,Grass,Any,11,1,Skitty,7,7,Emerald,In game,
+MAP_ROUTE116,Grass,Any,12,1,Skitty,8,8,Emerald,In game,
+MAP_ROUTE117,Grass,Any,1,20,Poochyena,13,13,Emerald,In game,
+MAP_ROUTE117,Grass,Any,2,20,Oddish,13,13,Emerald,In game,
+MAP_ROUTE117,Grass,Any,3,10,Poochyena,14,14,Emerald,In game,
+MAP_ROUTE117,Grass,Any,4,10,Oddish,14,14,Emerald,In game,
+MAP_ROUTE117,Grass,Any,5,10,Marill,13,13,Emerald,In game,
+MAP_ROUTE117,Grass,Any,6,10,Oddish,13,13,Emerald,In game,
+MAP_ROUTE117,Grass,Any,7,5,Illumise,13,13,Emerald,In game,
+MAP_ROUTE117,Grass,Any,8,5,Illumise,13,13,Emerald,In game,
+MAP_ROUTE117,Grass,Any,9,4,Illumise,14,14,Emerald,In game,
+MAP_ROUTE117,Grass,Any,10,4,Illumise,14,14,Emerald,In game,
+MAP_ROUTE117,Grass,Any,11,1,Volbeat,13,13,Emerald,In game,
+MAP_ROUTE117,Grass,Any,12,1,Seedot,13,13,Emerald,In game,
+MAP_ROUTE117,Water,Any,1,60,Marill,20,30,Emerald,In game,
+MAP_ROUTE117,Water,Any,2,30,Marill,10,20,Emerald,In game,
+MAP_ROUTE117,Water,Any,3,5,Marill,30,35,Emerald,In game,
+MAP_ROUTE117,Water,Any,4,4,Marill,5,10,Emerald,In game,
+MAP_ROUTE117,Water,Any,5,1,Goldeen,20,30,Emerald,In game,
+MAP_ROUTE117,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE117,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,
+MAP_ROUTE117,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE117,Good Rod,Any,2,20,Goldeen,10,30,Emerald,In game,
+MAP_ROUTE117,Good Rod,Any,3,20,Corphish,10,30,Emerald,In game,
+MAP_ROUTE117,Super Rod,Any,1,40,Corphish,25,30,Emerald,In game,
+MAP_ROUTE117,Super Rod,Any,2,40,Corphish,30,35,Emerald,In game,
+MAP_ROUTE117,Super Rod,Any,3,15,Corphish,20,25,Emerald,In game,
+MAP_ROUTE117,Super Rod,Any,4,4,Corphish,35,40,Emerald,In game,
+MAP_ROUTE117,Super Rod,Any,5,1,Corphish,40,45,Emerald,In game,
+MAP_ROUTE118,Grass,Any,1,20,Zigzagoon,24,24,Emerald,In game,
+MAP_ROUTE118,Grass,Any,2,20,Electrike,24,24,Emerald,In game,
+MAP_ROUTE118,Grass,Any,3,10,Zigzagoon,26,26,Emerald,In game,
+MAP_ROUTE118,Grass,Any,4,10,Electrike,26,26,Emerald,In game,
+MAP_ROUTE118,Grass,Any,5,10,Linoone,26,26,Emerald,In game,
+MAP_ROUTE118,Grass,Any,6,10,Manectric,26,26,Emerald,In game,
+MAP_ROUTE118,Grass,Any,7,5,Wingull,25,25,Emerald,In game,
+MAP_ROUTE118,Grass,Any,8,5,Wingull,25,25,Emerald,In game,
+MAP_ROUTE118,Grass,Any,9,4,Wingull,26,26,Emerald,In game,
+MAP_ROUTE118,Grass,Any,10,4,Wingull,26,26,Emerald,In game,
+MAP_ROUTE118,Grass,Any,11,1,Wingull,27,27,Emerald,In game,
+MAP_ROUTE118,Grass,Any,12,1,Kecleon,25,25,Emerald,In game,
+MAP_ROUTE118,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE118,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE118,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE118,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE118,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE118,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE118,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE118,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE118,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE118,Good Rod,Any,3,20,Carvanha,10,30,Emerald,In game,
+MAP_ROUTE118,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE118,Super Rod,Any,2,40,Carvanha,30,35,Emerald,In game,
+MAP_ROUTE118,Super Rod,Any,3,15,Carvanha,20,25,Emerald,In game,
+MAP_ROUTE118,Super Rod,Any,4,4,Carvanha,35,40,Emerald,In game,
+MAP_ROUTE118,Super Rod,Any,5,1,Carvanha,40,45,Emerald,In game,
+MAP_ROUTE124,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE124,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE124,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE124,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE124,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE124,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE124,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE124,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE124,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE124,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE124,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE124,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE124,Super Rod,Any,3,15,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE124,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE124,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,1,20,Poochyena,5,5,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,2,20,Wurmple,5,5,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,3,10,Shroomish,5,5,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,4,10,Poochyena,6,6,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,5,10,Silcoon,5,5,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,6,10,Cascoon,5,5,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,7,5,Wurmple,6,6,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,8,5,Shroomish,6,6,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,9,4,Taillow,5,5,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,10,4,Slakoth,5,5,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,11,1,Taillow,6,6,Emerald,In game,
+MAP_PETALBURG_WOODS,Grass,Any,12,1,Slakoth,6,6,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,1,20,Whismur,6,6,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,2,20,Whismur,7,7,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,3,10,Whismur,6,6,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,4,10,Whismur,6,6,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,5,10,Whismur,7,7,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,6,10,Whismur,7,7,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,7,5,Whismur,5,5,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,8,5,Whismur,8,8,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,9,4,Whismur,5,5,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,10,4,Whismur,8,8,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,11,1,Whismur,5,5,Emerald,In game,
+MAP_RUSTURF_TUNNEL,Grass,Any,12,1,Whismur,8,8,Emerald,In game,
+MAP_GRANITE_CAVE_1F,Grass,Any,1,20,Zubat,7,7,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_1F,Grass,Any,2,20,Makuhita,8,8,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_1F,Grass,Any,3,10,Makuhita,7,7,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_1F,Grass,Any,4,10,Zubat,8,8,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_1F,Grass,Any,5,10,Makuhita,9,9,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_1F,Grass,Any,6,10,Abra,8,8,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_1F,Grass,Any,7,5,Makuhita,10,10,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_1F,Grass,Any,8,5,Makuhita,6,6,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_1F,Grass,Any,9,4,Geodude,7,7,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_1F,Grass,Any,10,4,Geodude,8,8,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_1F,Grass,Any,11,1,Geodude,6,6,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_1F,Grass,Any,12,1,Geodude,9,9,Emerald,In game,table gGraniteCave_1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,1,20,Zubat,9,9,Emerald,In game,table gGraniteCave_B1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,2,20,Aron,10,10,Emerald,In game,table gGraniteCave_B1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,3,10,Aron,9,9,Emerald,In game,table gGraniteCave_B1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,4,10,Aron,11,11,Emerald,In game,table gGraniteCave_B1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,5,10,Zubat,10,10,Emerald,In game,table gGraniteCave_B1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,6,10,Abra,9,9,Emerald,In game,table gGraniteCave_B1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,7,5,Makuhita,10,10,Emerald,In game,table gGraniteCave_B1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,8,5,Makuhita,11,11,Emerald,In game,table gGraniteCave_B1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,9,4,Sableye,10,10,Emerald,In game,table gGraniteCave_B1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,10,4,Sableye,10,10,Emerald,In game,table gGraniteCave_B1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,11,1,Sableye,9,9,Emerald,In game,table gGraniteCave_B1F
+MAP_GRANITE_CAVE_B1F,Grass,Any,12,1,Sableye,11,11,Emerald,In game,table gGraniteCave_B1F
+MAP_MT_PYRE_1F,Grass,Any,1,20,Shuppet,27,27,Emerald,In game,table gMtPyre_1F
+MAP_MT_PYRE_1F,Grass,Any,2,20,Shuppet,28,28,Emerald,In game,table gMtPyre_1F
+MAP_MT_PYRE_1F,Grass,Any,3,10,Shuppet,26,26,Emerald,In game,table gMtPyre_1F
+MAP_MT_PYRE_1F,Grass,Any,4,10,Shuppet,25,25,Emerald,In game,table gMtPyre_1F
+MAP_MT_PYRE_1F,Grass,Any,5,10,Shuppet,29,29,Emerald,In game,table gMtPyre_1F
+MAP_MT_PYRE_1F,Grass,Any,6,10,Shuppet,24,24,Emerald,In game,table gMtPyre_1F
+MAP_MT_PYRE_1F,Grass,Any,7,5,Shuppet,23,23,Emerald,In game,table gMtPyre_1F
+MAP_MT_PYRE_1F,Grass,Any,8,5,Shuppet,22,22,Emerald,In game,table gMtPyre_1F
+MAP_MT_PYRE_1F,Grass,Any,9,4,Shuppet,29,29,Emerald,In game,table gMtPyre_1F
+MAP_MT_PYRE_1F,Grass,Any,10,4,Shuppet,24,24,Emerald,In game,table gMtPyre_1F
+MAP_MT_PYRE_1F,Grass,Any,11,1,Shuppet,29,29,Emerald,In game,table gMtPyre_1F
+MAP_MT_PYRE_1F,Grass,Any,12,1,Shuppet,24,24,Emerald,In game,table gMtPyre_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,1,20,Golbat,40,40,Emerald,In game,table gVictoryRoad_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,2,20,Hariyama,40,40,Emerald,In game,table gVictoryRoad_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,3,10,Lairon,40,40,Emerald,In game,table gVictoryRoad_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,4,10,Loudred,40,40,Emerald,In game,table gVictoryRoad_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,5,10,Zubat,36,36,Emerald,In game,table gVictoryRoad_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,6,10,Makuhita,36,36,Emerald,In game,table gVictoryRoad_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,7,5,Golbat,38,38,Emerald,In game,table gVictoryRoad_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,8,5,Hariyama,38,38,Emerald,In game,table gVictoryRoad_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,9,4,Aron,36,36,Emerald,In game,table gVictoryRoad_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,10,4,Whismur,36,36,Emerald,In game,table gVictoryRoad_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,11,1,Aron,36,36,Emerald,In game,table gVictoryRoad_1F
+MAP_VICTORY_ROAD_1F,Grass,Any,12,1,Whismur,36,36,Emerald,In game,table gVictoryRoad_1F
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,1,20,Oddish,25,25,Emerald,In game,table gSafariZone_South
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,2,20,Oddish,27,27,Emerald,In game,table gSafariZone_South
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,3,10,Girafarig,25,25,Emerald,In game,table gSafariZone_South
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,4,10,Girafarig,27,27,Emerald,In game,table gSafariZone_South
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,5,10,Natu,25,25,Emerald,In game,table gSafariZone_South
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,6,10,Doduo,25,25,Emerald,In game,table gSafariZone_South
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,7,5,Gloom,25,25,Emerald,In game,table gSafariZone_South
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,8,5,Wobbuffet,27,27,Emerald,In game,table gSafariZone_South
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,9,4,Pikachu,25,25,Emerald,In game,table gSafariZone_South
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,10,4,Wobbuffet,27,27,Emerald,In game,table gSafariZone_South
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,11,1,Pikachu,27,27,Emerald,In game,table gSafariZone_South
+MAP_SAFARI_ZONE_SOUTH,Grass,Any,12,1,Wobbuffet,29,29,Emerald,In game,table gSafariZone_South
+MAP_UNDERWATER_ROUTE126,Water,Any,1,60,Clamperl,20,30,Emerald,In game,table gUnderwater_Route126
+MAP_UNDERWATER_ROUTE126,Water,Any,2,30,Chinchou,20,30,Emerald,In game,table gUnderwater_Route126
+MAP_UNDERWATER_ROUTE126,Water,Any,3,5,Clamperl,30,35,Emerald,In game,table gUnderwater_Route126
+MAP_UNDERWATER_ROUTE126,Water,Any,4,4,Relicanth,30,35,Emerald,In game,table gUnderwater_Route126
+MAP_UNDERWATER_ROUTE126,Water,Any,5,1,Relicanth,30,35,Emerald,In game,table gUnderwater_Route126
+MAP_ABANDONED_SHIP_ROOMS_B1F,Water,Any,1,60,Tentacool,5,35,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Water,Any,2,30,Tentacool,5,35,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Water,Any,3,5,Tentacool,5,35,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Water,Any,4,4,Tentacool,5,35,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Water,Any,5,1,Tentacruel,30,35,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Good Rod,Any,3,20,Tentacool,10,30,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Super Rod,Any,1,40,Tentacool,25,30,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Super Rod,Any,2,40,Tentacool,30,35,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Super Rod,Any,3,15,Tentacruel,30,35,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Super Rod,Any,4,4,Tentacruel,25,30,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_ABANDONED_SHIP_ROOMS_B1F,Super Rod,Any,5,1,Tentacruel,20,25,Emerald,In game,table gAbandonedShip_Rooms_B1F
+MAP_GRANITE_CAVE_B2F,Grass,Any,1,20,Zubat,10,10,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Grass,Any,2,20,Aron,11,11,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Grass,Any,3,10,Aron,10,10,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Grass,Any,4,10,Zubat,11,11,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Grass,Any,5,10,Aron,12,12,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Grass,Any,6,10,Abra,10,10,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Grass,Any,7,5,Sableye,10,10,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Grass,Any,8,5,Sableye,11,11,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Grass,Any,9,4,Sableye,12,12,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Grass,Any,10,4,Sableye,10,10,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Grass,Any,11,1,Sableye,12,12,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Grass,Any,12,1,Sableye,10,10,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Rock Smash,Any,1,60,Geodude,10,15,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Rock Smash,Any,2,30,Nosepass,10,20,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Rock Smash,Any,3,5,Geodude,5,10,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Rock Smash,Any,4,4,Geodude,15,20,Emerald,In game,table gGraniteCave_B2F
+MAP_GRANITE_CAVE_B2F,Rock Smash,Any,5,1,Geodude,15,20,Emerald,In game,table gGraniteCave_B2F
+MAP_FIERY_PATH,Grass,Any,1,20,Numel,15,15,Emerald,In game,
+MAP_FIERY_PATH,Grass,Any,2,20,Koffing,15,15,Emerald,In game,
+MAP_FIERY_PATH,Grass,Any,3,10,Numel,16,16,Emerald,In game,
+MAP_FIERY_PATH,Grass,Any,4,10,Machop,15,15,Emerald,In game,
+MAP_FIERY_PATH,Grass,Any,5,10,Torkoal,15,15,Emerald,In game,
+MAP_FIERY_PATH,Grass,Any,6,10,Slugma,15,15,Emerald,In game,
+MAP_FIERY_PATH,Grass,Any,7,5,Koffing,16,16,Emerald,In game,
+MAP_FIERY_PATH,Grass,Any,8,5,Machop,16,16,Emerald,In game,
+MAP_FIERY_PATH,Grass,Any,9,4,Torkoal,14,14,Emerald,In game,
+MAP_FIERY_PATH,Grass,Any,10,4,Torkoal,16,16,Emerald,In game,
+MAP_FIERY_PATH,Grass,Any,11,1,Grimer,14,14,Emerald,In game,
+MAP_FIERY_PATH,Grass,Any,12,1,Grimer,14,14,Emerald,In game,
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,1,20,Golbat,33,33,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,2,20,Golbat,35,35,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,3,10,Bagon,30,30,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,4,10,Solrock,35,35,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,5,10,Bagon,35,35,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,6,10,Solrock,37,37,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,7,5,Bagon,25,25,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,8,5,Solrock,39,39,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,9,4,Golbat,38,38,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,10,4,Golbat,40,40,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,11,1,Golbat,38,38,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Grass,Any,12,1,Golbat,40,40,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Water,Any,1,60,Golbat,30,35,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Water,Any,2,30,Golbat,30,35,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Water,Any,3,5,Solrock,25,35,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Water,Any,4,4,Solrock,15,25,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Water,Any,5,1,Solrock,5,15,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Good Rod,Any,2,20,Goldeen,10,30,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Good Rod,Any,3,20,Barboach,10,30,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Super Rod,Any,1,40,Barboach,25,30,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Super Rod,Any,2,40,Barboach,30,35,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Super Rod,Any,3,15,Whiscash,30,35,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Super Rod,Any,4,4,Whiscash,35,40,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_METEOR_FALLS_B1F_2R,Super Rod,Any,5,1,Whiscash,40,45,Emerald,In game,table gMeteorFalls_B1F_2R
+MAP_JAGGED_PASS,Grass,Any,1,20,Numel,21,21,Emerald,In game,
+MAP_JAGGED_PASS,Grass,Any,2,20,Numel,21,21,Emerald,In game,
+MAP_JAGGED_PASS,Grass,Any,3,10,Machop,21,21,Emerald,In game,
+MAP_JAGGED_PASS,Grass,Any,4,10,Numel,20,20,Emerald,In game,
+MAP_JAGGED_PASS,Grass,Any,5,10,Spoink,20,20,Emerald,In game,
+MAP_JAGGED_PASS,Grass,Any,6,10,Machop,20,20,Emerald,In game,
+MAP_JAGGED_PASS,Grass,Any,7,5,Spoink,21,21,Emerald,In game,
+MAP_JAGGED_PASS,Grass,Any,8,5,Machop,22,22,Emerald,In game,
+MAP_JAGGED_PASS,Grass,Any,9,4,Numel,22,22,Emerald,In game,
+MAP_JAGGED_PASS,Grass,Any,10,4,Spoink,22,22,Emerald,In game,
+MAP_JAGGED_PASS,Grass,Any,11,1,Numel,22,22,Emerald,In game,
+MAP_JAGGED_PASS,Grass,Any,12,1,Spoink,22,22,Emerald,In game,
+MAP_ROUTE106,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE106,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE106,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE106,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE106,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE106,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE106,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE106,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE106,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE106,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE106,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE106,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE106,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,
+MAP_ROUTE106,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE106,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE107,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE107,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE107,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE107,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE107,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE107,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE107,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE107,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE107,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE107,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE107,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE107,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE107,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,
+MAP_ROUTE107,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE107,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE108,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE108,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE108,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE108,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE108,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE108,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE108,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE108,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE108,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE108,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE108,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE108,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE108,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,
+MAP_ROUTE108,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE108,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE109,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE109,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE109,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE109,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE109,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE109,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE109,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE109,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE109,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE109,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE109,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE109,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE109,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,
+MAP_ROUTE109,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE109,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE115,Grass,Any,1,20,Swablu,23,23,Emerald,In game,
+MAP_ROUTE115,Grass,Any,2,20,Taillow,23,23,Emerald,In game,
+MAP_ROUTE115,Grass,Any,3,10,Swablu,25,25,Emerald,In game,
+MAP_ROUTE115,Grass,Any,4,10,Taillow,24,24,Emerald,In game,
+MAP_ROUTE115,Grass,Any,5,10,Taillow,25,25,Emerald,In game,
+MAP_ROUTE115,Grass,Any,6,10,Swellow,25,25,Emerald,In game,
+MAP_ROUTE115,Grass,Any,7,5,Jigglypuff,24,24,Emerald,In game,
+MAP_ROUTE115,Grass,Any,8,5,Jigglypuff,25,25,Emerald,In game,
+MAP_ROUTE115,Grass,Any,9,4,Wingull,24,24,Emerald,In game,
+MAP_ROUTE115,Grass,Any,10,4,Wingull,24,24,Emerald,In game,
+MAP_ROUTE115,Grass,Any,11,1,Wingull,26,26,Emerald,In game,
+MAP_ROUTE115,Grass,Any,12,1,Wingull,25,25,Emerald,In game,
+MAP_ROUTE115,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE115,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE115,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE115,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE115,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE115,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE115,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE115,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE115,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE115,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE115,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE115,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE115,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,
+MAP_ROUTE115,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE115,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,1,20,Voltorb,24,24,Emerald,In game,table gNewMauville_Inside
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,2,20,Magnemite,24,24,Emerald,In game,table gNewMauville_Inside
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,3,10,Voltorb,25,25,Emerald,In game,table gNewMauville_Inside
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,4,10,Magnemite,25,25,Emerald,In game,table gNewMauville_Inside
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,5,10,Voltorb,23,23,Emerald,In game,table gNewMauville_Inside
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,6,10,Magnemite,23,23,Emerald,In game,table gNewMauville_Inside
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,7,5,Voltorb,26,26,Emerald,In game,table gNewMauville_Inside
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,8,5,Magnemite,26,26,Emerald,In game,table gNewMauville_Inside
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,9,4,Voltorb,22,22,Emerald,In game,table gNewMauville_Inside
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,10,4,Magnemite,22,22,Emerald,In game,table gNewMauville_Inside
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,11,1,Electrode,26,26,Emerald,In game,table gNewMauville_Inside
+MAP_NEW_MAUVILLE_INSIDE,Grass,Any,12,1,Magneton,26,26,Emerald,In game,table gNewMauville_Inside
+MAP_ROUTE119,Grass,Any,1,20,Zigzagoon,25,25,Emerald,In game,
+MAP_ROUTE119,Grass,Any,2,20,Linoone,25,25,Emerald,In game,
+MAP_ROUTE119,Grass,Any,3,10,Zigzagoon,27,27,Emerald,In game,
+MAP_ROUTE119,Grass,Any,4,10,Oddish,25,25,Emerald,In game,
+MAP_ROUTE119,Grass,Any,5,10,Linoone,27,27,Emerald,In game,
+MAP_ROUTE119,Grass,Any,6,10,Oddish,26,26,Emerald,In game,
+MAP_ROUTE119,Grass,Any,7,5,Oddish,27,27,Emerald,In game,
+MAP_ROUTE119,Grass,Any,8,5,Oddish,24,24,Emerald,In game,
+MAP_ROUTE119,Grass,Any,9,4,Tropius,25,25,Emerald,In game,
+MAP_ROUTE119,Grass,Any,10,4,Tropius,26,26,Emerald,In game,
+MAP_ROUTE119,Grass,Any,11,1,Tropius,27,27,Emerald,In game,
+MAP_ROUTE119,Grass,Any,12,1,Kecleon,25,25,Emerald,In game,
+MAP_ROUTE119,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE119,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE119,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE119,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE119,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE119,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE119,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE119,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE119,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE119,Good Rod,Any,3,20,Carvanha,10,30,Emerald,In game,
+MAP_ROUTE119,Super Rod,Any,1,40,Carvanha,25,30,Emerald,In game,
+MAP_ROUTE119,Super Rod,Any,2,40,Carvanha,30,35,Emerald,In game,
+MAP_ROUTE119,Super Rod,Any,3,15,Carvanha,20,25,Emerald,In game,
+MAP_ROUTE119,Super Rod,Any,4,4,Carvanha,35,40,Emerald,In game,
+MAP_ROUTE119,Super Rod,Any,5,1,Carvanha,40,45,Emerald,In game,
+MAP_ROUTE120,Grass,Any,1,20,Poochyena,25,25,Emerald,In game,
+MAP_ROUTE120,Grass,Any,2,20,Mightyena,25,25,Emerald,In game,
+MAP_ROUTE120,Grass,Any,3,10,Mightyena,27,27,Emerald,In game,
+MAP_ROUTE120,Grass,Any,4,10,Oddish,25,25,Emerald,In game,
+MAP_ROUTE120,Grass,Any,5,10,Marill,25,25,Emerald,In game,
+MAP_ROUTE120,Grass,Any,6,10,Oddish,26,26,Emerald,In game,
+MAP_ROUTE120,Grass,Any,7,5,Oddish,27,27,Emerald,In game,
+MAP_ROUTE120,Grass,Any,8,5,Marill,27,27,Emerald,In game,
+MAP_ROUTE120,Grass,Any,9,4,Absol,25,25,Emerald,In game,
+MAP_ROUTE120,Grass,Any,10,4,Absol,27,27,Emerald,In game,
+MAP_ROUTE120,Grass,Any,11,1,Kecleon,25,25,Emerald,In game,
+MAP_ROUTE120,Grass,Any,12,1,Seedot,25,25,Emerald,In game,
+MAP_ROUTE120,Water,Any,1,60,Marill,20,30,Emerald,In game,
+MAP_ROUTE120,Water,Any,2,30,Marill,10,20,Emerald,In game,
+MAP_ROUTE120,Water,Any,3,5,Marill,30,35,Emerald,In game,
+MAP_ROUTE120,Water,Any,4,4,Marill,5,10,Emerald,In game,
+MAP_ROUTE120,Water,Any,5,1,Goldeen,20,30,Emerald,In game,
+MAP_ROUTE120,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE120,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,
+MAP_ROUTE120,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE120,Good Rod,Any,2,20,Goldeen,10,30,Emerald,In game,
+MAP_ROUTE120,Good Rod,Any,3,20,Barboach,10,30,Emerald,In game,
+MAP_ROUTE120,Super Rod,Any,1,40,Barboach,25,30,Emerald,In game,
+MAP_ROUTE120,Super Rod,Any,2,40,Barboach,30,35,Emerald,In game,
+MAP_ROUTE120,Super Rod,Any,3,15,Barboach,20,25,Emerald,In game,
+MAP_ROUTE120,Super Rod,Any,4,4,Barboach,35,40,Emerald,In game,
+MAP_ROUTE120,Super Rod,Any,5,1,Barboach,40,45,Emerald,In game,
+MAP_ROUTE121,Grass,Any,1,20,Poochyena,26,26,Emerald,In game,
+MAP_ROUTE121,Grass,Any,2,20,Shuppet,26,26,Emerald,In game,
+MAP_ROUTE121,Grass,Any,3,10,Mightyena,26,26,Emerald,In game,
+MAP_ROUTE121,Grass,Any,4,10,Shuppet,28,28,Emerald,In game,
+MAP_ROUTE121,Grass,Any,5,10,Mightyena,28,28,Emerald,In game,
+MAP_ROUTE121,Grass,Any,6,10,Oddish,26,26,Emerald,In game,
+MAP_ROUTE121,Grass,Any,7,5,Oddish,28,28,Emerald,In game,
+MAP_ROUTE121,Grass,Any,8,5,Gloom,28,28,Emerald,In game,
+MAP_ROUTE121,Grass,Any,9,4,Wingull,26,26,Emerald,In game,
+MAP_ROUTE121,Grass,Any,10,4,Wingull,27,27,Emerald,In game,
+MAP_ROUTE121,Grass,Any,11,1,Wingull,28,28,Emerald,In game,
+MAP_ROUTE121,Grass,Any,12,1,Kecleon,25,25,Emerald,In game,
+MAP_ROUTE121,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE121,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE121,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE121,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE121,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE121,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE121,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE121,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE121,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE121,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE121,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE121,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE121,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,
+MAP_ROUTE121,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE121,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE122,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE122,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE122,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE122,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE122,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE122,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE122,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE122,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE122,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE122,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE122,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE122,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE122,Super Rod,Any,3,15,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE122,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE122,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE123,Grass,Any,1,20,Poochyena,26,26,Emerald,In game,
+MAP_ROUTE123,Grass,Any,2,20,Shuppet,26,26,Emerald,In game,
+MAP_ROUTE123,Grass,Any,3,10,Mightyena,26,26,Emerald,In game,
+MAP_ROUTE123,Grass,Any,4,10,Shuppet,28,28,Emerald,In game,
+MAP_ROUTE123,Grass,Any,5,10,Mightyena,28,28,Emerald,In game,
+MAP_ROUTE123,Grass,Any,6,10,Oddish,26,26,Emerald,In game,
+MAP_ROUTE123,Grass,Any,7,5,Oddish,28,28,Emerald,In game,
+MAP_ROUTE123,Grass,Any,8,5,Gloom,28,28,Emerald,In game,
+MAP_ROUTE123,Grass,Any,9,4,Wingull,26,26,Emerald,In game,
+MAP_ROUTE123,Grass,Any,10,4,Wingull,27,27,Emerald,In game,
+MAP_ROUTE123,Grass,Any,11,1,Wingull,28,28,Emerald,In game,
+MAP_ROUTE123,Grass,Any,12,1,Kecleon,25,25,Emerald,In game,
+MAP_ROUTE123,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE123,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE123,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE123,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE123,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE123,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE123,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE123,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE123,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE123,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE123,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE123,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE123,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,
+MAP_ROUTE123,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE123,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_MT_PYRE_2F,Grass,Any,1,20,Shuppet,27,27,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_2F,Grass,Any,2,20,Shuppet,28,28,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_2F,Grass,Any,3,10,Shuppet,26,26,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_2F,Grass,Any,4,10,Shuppet,25,25,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_2F,Grass,Any,5,10,Shuppet,29,29,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_2F,Grass,Any,6,10,Shuppet,24,24,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_2F,Grass,Any,7,5,Shuppet,23,23,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_2F,Grass,Any,8,5,Shuppet,22,22,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_2F,Grass,Any,9,4,Shuppet,29,29,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_2F,Grass,Any,10,4,Shuppet,24,24,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_2F,Grass,Any,11,1,Shuppet,29,29,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_2F,Grass,Any,12,1,Shuppet,24,24,Emerald,In game,table gMtPyre_2F
+MAP_MT_PYRE_3F,Grass,Any,1,20,Shuppet,27,27,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_3F,Grass,Any,2,20,Shuppet,28,28,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_3F,Grass,Any,3,10,Shuppet,26,26,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_3F,Grass,Any,4,10,Shuppet,25,25,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_3F,Grass,Any,5,10,Shuppet,29,29,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_3F,Grass,Any,6,10,Shuppet,24,24,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_3F,Grass,Any,7,5,Shuppet,23,23,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_3F,Grass,Any,8,5,Shuppet,22,22,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_3F,Grass,Any,9,4,Shuppet,29,29,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_3F,Grass,Any,10,4,Shuppet,24,24,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_3F,Grass,Any,11,1,Shuppet,29,29,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_3F,Grass,Any,12,1,Shuppet,24,24,Emerald,In game,table gMtPyre_3F
+MAP_MT_PYRE_4F,Grass,Any,1,20,Shuppet,27,27,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_4F,Grass,Any,2,20,Shuppet,28,28,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_4F,Grass,Any,3,10,Shuppet,26,26,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_4F,Grass,Any,4,10,Shuppet,25,25,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_4F,Grass,Any,5,10,Shuppet,29,29,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_4F,Grass,Any,6,10,Shuppet,24,24,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_4F,Grass,Any,7,5,Shuppet,23,23,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_4F,Grass,Any,8,5,Shuppet,22,22,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_4F,Grass,Any,9,4,Duskull,27,27,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_4F,Grass,Any,10,4,Duskull,27,27,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_4F,Grass,Any,11,1,Duskull,25,25,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_4F,Grass,Any,12,1,Duskull,29,29,Emerald,In game,table gMtPyre_4F
+MAP_MT_PYRE_5F,Grass,Any,1,20,Shuppet,27,27,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_5F,Grass,Any,2,20,Shuppet,28,28,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_5F,Grass,Any,3,10,Shuppet,26,26,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_5F,Grass,Any,4,10,Shuppet,25,25,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_5F,Grass,Any,5,10,Shuppet,29,29,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_5F,Grass,Any,6,10,Shuppet,24,24,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_5F,Grass,Any,7,5,Shuppet,23,23,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_5F,Grass,Any,8,5,Shuppet,22,22,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_5F,Grass,Any,9,4,Duskull,27,27,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_5F,Grass,Any,10,4,Duskull,27,27,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_5F,Grass,Any,11,1,Duskull,25,25,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_5F,Grass,Any,12,1,Duskull,29,29,Emerald,In game,table gMtPyre_5F
+MAP_MT_PYRE_6F,Grass,Any,1,20,Shuppet,27,27,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_6F,Grass,Any,2,20,Shuppet,28,28,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_6F,Grass,Any,3,10,Shuppet,26,26,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_6F,Grass,Any,4,10,Shuppet,25,25,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_6F,Grass,Any,5,10,Shuppet,29,29,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_6F,Grass,Any,6,10,Shuppet,24,24,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_6F,Grass,Any,7,5,Shuppet,23,23,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_6F,Grass,Any,8,5,Shuppet,22,22,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_6F,Grass,Any,9,4,Duskull,27,27,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_6F,Grass,Any,10,4,Duskull,27,27,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_6F,Grass,Any,11,1,Duskull,25,25,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_6F,Grass,Any,12,1,Duskull,29,29,Emerald,In game,table gMtPyre_6F
+MAP_MT_PYRE_EXTERIOR,Grass,Any,1,20,Shuppet,27,27,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_EXTERIOR,Grass,Any,2,20,Shuppet,27,27,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_EXTERIOR,Grass,Any,3,10,Shuppet,28,28,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_EXTERIOR,Grass,Any,4,10,Shuppet,29,29,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_EXTERIOR,Grass,Any,5,10,Vulpix,29,29,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_EXTERIOR,Grass,Any,6,10,Vulpix,27,27,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_EXTERIOR,Grass,Any,7,5,Vulpix,29,29,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_EXTERIOR,Grass,Any,8,5,Vulpix,25,25,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_EXTERIOR,Grass,Any,9,4,Wingull,27,27,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_EXTERIOR,Grass,Any,10,4,Wingull,27,27,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_EXTERIOR,Grass,Any,11,1,Wingull,26,26,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_EXTERIOR,Grass,Any,12,1,Wingull,28,28,Emerald,In game,table gMtPyre_Exterior
+MAP_MT_PYRE_SUMMIT,Grass,Any,1,20,Shuppet,28,28,Emerald,In game,table gMtPyre_Summit
+MAP_MT_PYRE_SUMMIT,Grass,Any,2,20,Shuppet,29,29,Emerald,In game,table gMtPyre_Summit
+MAP_MT_PYRE_SUMMIT,Grass,Any,3,10,Shuppet,27,27,Emerald,In game,table gMtPyre_Summit
+MAP_MT_PYRE_SUMMIT,Grass,Any,4,10,Shuppet,26,26,Emerald,In game,table gMtPyre_Summit
+MAP_MT_PYRE_SUMMIT,Grass,Any,5,10,Shuppet,30,30,Emerald,In game,table gMtPyre_Summit
+MAP_MT_PYRE_SUMMIT,Grass,Any,6,10,Shuppet,25,25,Emerald,In game,table gMtPyre_Summit
+MAP_MT_PYRE_SUMMIT,Grass,Any,7,5,Shuppet,24,24,Emerald,In game,table gMtPyre_Summit
+MAP_MT_PYRE_SUMMIT,Grass,Any,8,5,Duskull,28,28,Emerald,In game,table gMtPyre_Summit
+MAP_MT_PYRE_SUMMIT,Grass,Any,9,4,Duskull,26,26,Emerald,In game,table gMtPyre_Summit
+MAP_MT_PYRE_SUMMIT,Grass,Any,10,4,Duskull,30,30,Emerald,In game,table gMtPyre_Summit
+MAP_MT_PYRE_SUMMIT,Grass,Any,11,1,Chimecho,28,28,Emerald,In game,table gMtPyre_Summit
+MAP_MT_PYRE_SUMMIT,Grass,Any,12,1,Chimecho,28,28,Emerald,In game,table gMtPyre_Summit
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,1,20,Zubat,7,7,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,2,20,Makuhita,8,8,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,3,10,Makuhita,7,7,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,4,10,Zubat,8,8,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,5,10,Makuhita,9,9,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,6,10,Abra,8,8,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,7,5,Makuhita,10,10,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,8,5,Makuhita,6,6,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,9,4,Aron,7,7,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,10,4,Aron,8,8,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,11,1,Aron,7,7,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_GRANITE_CAVE_STEVENS_ROOM,Grass,Any,12,1,Aron,8,8,Emerald,In game,table gGraniteCave_StevensRoom
+MAP_ROUTE125,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE125,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE125,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE125,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE125,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE125,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE125,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE125,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE125,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE125,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE125,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE125,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE125,Super Rod,Any,3,15,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE125,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE125,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE126,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE126,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE126,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE126,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE126,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE126,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE126,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE126,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE126,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE126,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE126,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE126,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE126,Super Rod,Any,3,15,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE126,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE126,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE127,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE127,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE127,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE127,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE127,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE127,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE127,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE127,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE127,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE127,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE127,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE127,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE127,Super Rod,Any,3,15,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE127,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE127,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE128,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE128,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE128,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE128,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE128,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE128,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE128,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE128,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE128,Good Rod,Any,2,20,Luvdisc,10,30,Emerald,In game,
+MAP_ROUTE128,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE128,Super Rod,Any,1,40,Luvdisc,30,35,Emerald,In game,
+MAP_ROUTE128,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE128,Super Rod,Any,3,15,Corsola,30,35,Emerald,In game,
+MAP_ROUTE128,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE128,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE129,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE129,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE129,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE129,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE129,Water,Any,5,1,Wailord,25,30,Emerald,In game,
+MAP_ROUTE129,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE129,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE129,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE129,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE129,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE129,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE129,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE129,Super Rod,Any,3,15,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE129,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE129,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE130,Grass,Any,1,20,Wynaut,30,30,Emerald,In game,
+MAP_ROUTE130,Grass,Any,2,20,Wynaut,35,35,Emerald,In game,
+MAP_ROUTE130,Grass,Any,3,10,Wynaut,25,25,Emerald,In game,
+MAP_ROUTE130,Grass,Any,4,10,Wynaut,40,40,Emerald,In game,
+MAP_ROUTE130,Grass,Any,5,10,Wynaut,20,20,Emerald,In game,
+MAP_ROUTE130,Grass,Any,6,10,Wynaut,45,45,Emerald,In game,
+MAP_ROUTE130,Grass,Any,7,5,Wynaut,15,15,Emerald,In game,
+MAP_ROUTE130,Grass,Any,8,5,Wynaut,50,50,Emerald,In game,
+MAP_ROUTE130,Grass,Any,9,4,Wynaut,10,10,Emerald,In game,
+MAP_ROUTE130,Grass,Any,10,4,Wynaut,5,5,Emerald,In game,
+MAP_ROUTE130,Grass,Any,11,1,Wynaut,10,10,Emerald,In game,
+MAP_ROUTE130,Grass,Any,12,1,Wynaut,5,5,Emerald,In game,
+MAP_ROUTE130,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE130,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE130,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE130,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE130,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE130,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE130,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE130,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE130,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE130,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE130,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE130,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE130,Super Rod,Any,3,15,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE130,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE130,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE131,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE131,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE131,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE131,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE131,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE131,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE131,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE131,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE131,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE131,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE131,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE131,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE131,Super Rod,Any,3,15,Wailmer,25,30,Emerald,In game,
+MAP_ROUTE131,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE131,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE132,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE132,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE132,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE132,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE132,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE132,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE132,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE132,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE132,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE132,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE132,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE132,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE132,Super Rod,Any,3,15,Horsea,25,30,Emerald,In game,
+MAP_ROUTE132,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE132,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE133,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE133,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE133,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE133,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE133,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE133,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE133,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE133,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE133,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE133,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE133,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE133,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE133,Super Rod,Any,3,15,Horsea,25,30,Emerald,In game,
+MAP_ROUTE133,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE133,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ROUTE134,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_ROUTE134,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_ROUTE134,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_ROUTE134,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE134,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_ROUTE134,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_ROUTE134,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_ROUTE134,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_ROUTE134,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_ROUTE134,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_ROUTE134,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_ROUTE134,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_ROUTE134,Super Rod,Any,3,15,Horsea,25,30,Emerald,In game,
+MAP_ROUTE134,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_ROUTE134,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Water,Any,1,60,Tentacool,5,35,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Water,Any,2,30,Tentacool,5,35,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Water,Any,3,5,Tentacool,5,35,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Water,Any,4,4,Tentacool,5,35,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Water,Any,5,1,Tentacruel,30,35,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Good Rod,Any,3,20,Tentacool,10,30,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Super Rod,Any,1,40,Tentacool,25,30,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Super Rod,Any,2,40,Tentacool,30,35,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Super Rod,Any,3,15,Tentacruel,30,35,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Super Rod,Any,4,4,Tentacruel,25,30,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS,Super Rod,Any,5,1,Tentacruel,20,25,Emerald,In game,table gAbandonedShip_HiddenFloorCorridors
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,4,10,Zubat,33,33,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,5,10,Zubat,28,28,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,6,10,Zubat,29,29,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,7,5,Zubat,34,34,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,8,5,Zubat,35,35,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM1,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gSeafloorCavern_Room1
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,4,10,Zubat,33,33,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,5,10,Zubat,28,28,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,6,10,Zubat,29,29,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,7,5,Zubat,34,34,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,8,5,Zubat,35,35,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM2,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gSeafloorCavern_Room2
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,4,10,Zubat,33,33,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,5,10,Zubat,28,28,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,6,10,Zubat,29,29,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,7,5,Zubat,34,34,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,8,5,Zubat,35,35,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM3,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gSeafloorCavern_Room3
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,4,10,Zubat,33,33,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,5,10,Zubat,28,28,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,6,10,Zubat,29,29,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,7,5,Zubat,34,34,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,8,5,Zubat,35,35,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM4,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gSeafloorCavern_Room4
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,4,10,Zubat,33,33,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,5,10,Zubat,28,28,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,6,10,Zubat,29,29,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,7,5,Zubat,34,34,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,8,5,Zubat,35,35,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM5,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gSeafloorCavern_Room5
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,4,10,Zubat,33,33,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,5,10,Zubat,28,28,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,6,10,Zubat,29,29,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,7,5,Zubat,34,34,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,8,5,Zubat,35,35,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Water,Any,1,60,Tentacool,5,35,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Water,Any,2,30,Zubat,5,35,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Water,Any,3,5,Zubat,30,35,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Water,Any,4,4,Golbat,30,35,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Water,Any,5,1,Golbat,30,35,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM6,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,table gSeafloorCavern_Room6
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,4,10,Zubat,33,33,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,5,10,Zubat,28,28,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,6,10,Zubat,29,29,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,7,5,Zubat,34,34,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,8,5,Zubat,35,35,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Water,Any,1,60,Tentacool,5,35,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Water,Any,2,30,Zubat,5,35,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Water,Any,3,5,Zubat,30,35,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Water,Any,4,4,Golbat,30,35,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Water,Any,5,1,Golbat,30,35,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM7,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,table gSeafloorCavern_Room7
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,4,10,Zubat,33,33,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,5,10,Zubat,28,28,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,6,10,Zubat,29,29,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,7,5,Zubat,34,34,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,8,5,Zubat,35,35,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ROOM8,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gSeafloorCavern_Room8
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Water,Any,1,60,Tentacool,5,35,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Water,Any,2,30,Zubat,5,35,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Water,Any,3,5,Zubat,30,35,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Water,Any,4,4,Golbat,30,35,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Water,Any,5,1,Golbat,30,35,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_SEAFLOOR_CAVERN_ENTRANCE,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,table gSeafloorCavern_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,4,10,Zubat,33,33,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,5,10,Zubat,28,28,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,6,10,Zubat,29,29,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,7,5,Zubat,34,34,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,8,5,Zubat,35,35,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_ENTRANCE,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gCaveOfOrigin_Entrance
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,4,10,Sableye,30,30,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,5,10,Sableye,32,32,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,6,10,Sableye,34,34,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,7,5,Zubat,33,33,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,8,5,Zubat,34,34,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_1F,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gCaveOfOrigin_1F
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,4,10,Sableye,30,30,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,5,10,Sableye,32,32,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,6,10,Sableye,34,34,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,7,5,Zubat,33,33,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,8,5,Zubat,34,34,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap1
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,4,10,Sableye,30,30,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,5,10,Sableye,32,32,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,6,10,Sableye,34,34,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,7,5,Zubat,33,33,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,8,5,Zubat,34,34,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap2
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,1,20,Zubat,30,30,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,2,20,Zubat,31,31,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,3,10,Zubat,32,32,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,4,10,Sableye,30,30,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,5,10,Sableye,32,32,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,6,10,Sableye,34,34,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,7,5,Zubat,33,33,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,8,5,Zubat,34,34,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,9,4,Golbat,34,34,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,10,4,Golbat,35,35,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,11,1,Golbat,33,33,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3,Grass,Any,12,1,Golbat,36,36,Emerald,In game,table gCaveOfOrigin_UnusedRubySapphireMap3
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,1,20,Voltorb,24,24,Emerald,In game,table gNewMauville_Entrance
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,2,20,Magnemite,24,24,Emerald,In game,table gNewMauville_Entrance
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,3,10,Voltorb,25,25,Emerald,In game,table gNewMauville_Entrance
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,4,10,Magnemite,25,25,Emerald,In game,table gNewMauville_Entrance
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,5,10,Voltorb,23,23,Emerald,In game,table gNewMauville_Entrance
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,6,10,Magnemite,23,23,Emerald,In game,table gNewMauville_Entrance
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,7,5,Voltorb,26,26,Emerald,In game,table gNewMauville_Entrance
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,8,5,Magnemite,26,26,Emerald,In game,table gNewMauville_Entrance
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,9,4,Voltorb,22,22,Emerald,In game,table gNewMauville_Entrance
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,10,4,Magnemite,22,22,Emerald,In game,table gNewMauville_Entrance
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,11,1,Voltorb,22,22,Emerald,In game,table gNewMauville_Entrance
+MAP_NEW_MAUVILLE_ENTRANCE,Grass,Any,12,1,Magnemite,22,22,Emerald,In game,table gNewMauville_Entrance
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,1,20,Oddish,25,25,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,2,20,Oddish,27,27,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,3,10,Girafarig,25,25,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,4,10,Girafarig,27,27,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,5,10,Natu,25,25,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,6,10,Doduo,27,27,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,7,5,Gloom,25,25,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,8,5,Wobbuffet,27,27,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,9,4,Pikachu,25,25,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,10,4,Wobbuffet,27,27,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,11,1,Pikachu,27,27,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Grass,Any,12,1,Wobbuffet,29,29,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Water,Any,1,60,Psyduck,20,30,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Water,Any,2,30,Psyduck,20,30,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Water,Any,3,5,Psyduck,30,35,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Water,Any,4,4,Psyduck,30,35,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Water,Any,5,1,Psyduck,30,35,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Good Rod,Any,2,20,Goldeen,10,25,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Good Rod,Any,3,20,Goldeen,10,30,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Super Rod,Any,1,40,Goldeen,25,30,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Super Rod,Any,2,40,Goldeen,30,35,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Super Rod,Any,3,15,Seaking,30,35,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Super Rod,Any,4,4,Seaking,35,40,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_SOUTHWEST,Super Rod,Any,5,1,Seaking,25,30,Emerald,In game,table gSafariZone_Southwest
+MAP_SAFARI_ZONE_NORTH,Grass,Any,1,20,Phanpy,27,27,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Grass,Any,2,20,Oddish,27,27,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Grass,Any,3,10,Phanpy,29,29,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Grass,Any,4,10,Oddish,29,29,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Grass,Any,5,10,Natu,27,27,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Grass,Any,6,10,Gloom,29,29,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Grass,Any,7,5,Gloom,31,31,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Grass,Any,8,5,Natu,29,29,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Grass,Any,9,4,Xatu,29,29,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Grass,Any,10,4,Heracross,27,27,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Grass,Any,11,1,Xatu,31,31,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Grass,Any,12,1,Heracross,29,29,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Rock Smash,Any,1,60,Geodude,10,15,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Rock Smash,Any,2,30,Geodude,5,10,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Rock Smash,Any,3,5,Geodude,15,20,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Rock Smash,Any,4,4,Geodude,20,25,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTH,Rock Smash,Any,5,1,Geodude,25,30,Emerald,In game,table gSafariZone_North
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,1,20,Rhyhorn,27,27,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,2,20,Oddish,27,27,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,3,10,Rhyhorn,29,29,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,4,10,Oddish,29,29,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,5,10,Doduo,27,27,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,6,10,Gloom,29,29,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,7,5,Gloom,31,31,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,8,5,Doduo,29,29,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,9,4,Dodrio,29,29,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,10,4,Pinsir,27,27,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,11,1,Dodrio,31,31,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Grass,Any,12,1,Pinsir,29,29,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Water,Any,1,60,Psyduck,20,30,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Water,Any,2,30,Psyduck,20,30,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Water,Any,3,5,Psyduck,30,35,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Water,Any,4,4,Golduck,30,35,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Water,Any,5,1,Golduck,25,40,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Good Rod,Any,2,20,Goldeen,10,25,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Good Rod,Any,3,20,Goldeen,10,30,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Super Rod,Any,1,40,Goldeen,25,30,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Super Rod,Any,2,40,Goldeen,30,35,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Super Rod,Any,3,15,Seaking,30,35,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Super Rod,Any,4,4,Seaking,35,40,Emerald,In game,table gSafariZone_Northwest
+MAP_SAFARI_ZONE_NORTHWEST,Super Rod,Any,5,1,Seaking,25,30,Emerald,In game,table gSafariZone_Northwest
+MAP_VICTORY_ROAD_B1F,Grass,Any,1,20,Golbat,40,40,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Grass,Any,2,20,Hariyama,40,40,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Grass,Any,3,10,Lairon,40,40,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Grass,Any,4,10,Lairon,40,40,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Grass,Any,5,10,Golbat,38,38,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Grass,Any,6,10,Hariyama,38,38,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Grass,Any,7,5,Golbat,42,42,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Grass,Any,8,5,Hariyama,42,42,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Grass,Any,9,4,Lairon,42,42,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Grass,Any,10,4,Mawile,38,38,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Grass,Any,11,1,Lairon,42,42,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Grass,Any,12,1,Mawile,38,38,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Rock Smash,Any,1,60,Graveler,30,40,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Rock Smash,Any,2,30,Geodude,30,40,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Rock Smash,Any,3,5,Graveler,35,40,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Rock Smash,Any,4,4,Graveler,35,40,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B1F,Rock Smash,Any,5,1,Graveler,35,40,Emerald,In game,table gVictoryRoad_B1F
+MAP_VICTORY_ROAD_B2F,Grass,Any,1,20,Golbat,40,40,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Grass,Any,2,20,Sableye,40,40,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Grass,Any,3,10,Lairon,40,40,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Grass,Any,4,10,Lairon,40,40,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Grass,Any,5,10,Golbat,42,42,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Grass,Any,6,10,Sableye,42,42,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Grass,Any,7,5,Golbat,44,44,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Grass,Any,8,5,Sableye,44,44,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Grass,Any,9,4,Lairon,42,42,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Grass,Any,10,4,Mawile,42,42,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Grass,Any,11,1,Lairon,44,44,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Grass,Any,12,1,Mawile,44,44,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Water,Any,1,60,Golbat,30,35,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Water,Any,2,30,Golbat,25,30,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Water,Any,3,5,Golbat,35,40,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Water,Any,4,4,Golbat,35,40,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Water,Any,5,1,Golbat,35,40,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Good Rod,Any,2,20,Goldeen,10,30,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Good Rod,Any,3,20,Barboach,10,30,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Super Rod,Any,1,40,Barboach,25,30,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Super Rod,Any,2,40,Barboach,30,35,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Super Rod,Any,3,15,Whiscash,30,35,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Super Rod,Any,4,4,Whiscash,35,40,Emerald,In game,table gVictoryRoad_B2F
+MAP_VICTORY_ROAD_B2F,Super Rod,Any,5,1,Whiscash,40,45,Emerald,In game,table gVictoryRoad_B2F
+MAP_METEOR_FALLS_1F_1R,Grass,Any,1,20,Zubat,16,16,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Grass,Any,2,20,Zubat,17,17,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Grass,Any,3,10,Zubat,18,18,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Grass,Any,4,10,Zubat,15,15,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Grass,Any,5,10,Zubat,14,14,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Grass,Any,6,10,Solrock,16,16,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Grass,Any,7,5,Solrock,18,18,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Grass,Any,8,5,Solrock,14,14,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Grass,Any,9,4,Zubat,19,19,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Grass,Any,10,4,Zubat,20,20,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Grass,Any,11,1,Zubat,19,19,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Grass,Any,12,1,Zubat,20,20,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Water,Any,1,60,Zubat,5,35,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Water,Any,2,30,Zubat,30,35,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Water,Any,3,5,Solrock,25,35,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Water,Any,4,4,Solrock,15,25,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Water,Any,5,1,Solrock,5,15,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Good Rod,Any,2,20,Goldeen,10,30,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Good Rod,Any,3,20,Barboach,10,30,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Super Rod,Any,1,40,Barboach,25,30,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Super Rod,Any,2,40,Barboach,30,35,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Super Rod,Any,3,15,Barboach,20,25,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Super Rod,Any,4,4,Barboach,35,40,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_1R,Super Rod,Any,5,1,Barboach,40,45,Emerald,In game,table gMeteorFalls_1F_1R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,1,20,Golbat,33,33,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,2,20,Golbat,35,35,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,3,10,Golbat,33,33,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,4,10,Solrock,35,35,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,5,10,Solrock,33,33,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,6,10,Solrock,37,37,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,7,5,Golbat,35,35,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,8,5,Solrock,39,39,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,9,4,Golbat,38,38,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,10,4,Golbat,40,40,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,11,1,Golbat,38,38,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Grass,Any,12,1,Golbat,40,40,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Water,Any,1,60,Golbat,30,35,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Water,Any,2,30,Golbat,30,35,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Water,Any,3,5,Solrock,25,35,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Water,Any,4,4,Solrock,15,25,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Water,Any,5,1,Solrock,5,15,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Good Rod,Any,2,20,Goldeen,10,30,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Good Rod,Any,3,20,Barboach,10,30,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Super Rod,Any,1,40,Barboach,25,30,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Super Rod,Any,2,40,Barboach,30,35,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Super Rod,Any,3,15,Whiscash,30,35,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Super Rod,Any,4,4,Whiscash,35,40,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_1F_2R,Super Rod,Any,5,1,Whiscash,40,45,Emerald,In game,table gMeteorFalls_1F_2R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,1,20,Golbat,33,33,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,2,20,Golbat,35,35,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,3,10,Golbat,33,33,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,4,10,Solrock,35,35,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,5,10,Solrock,33,33,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,6,10,Solrock,37,37,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,7,5,Golbat,35,35,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,8,5,Solrock,39,39,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,9,4,Golbat,38,38,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,10,4,Golbat,40,40,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,11,1,Golbat,38,38,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Grass,Any,12,1,Golbat,40,40,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Water,Any,1,60,Golbat,30,35,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Water,Any,2,30,Golbat,30,35,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Water,Any,3,5,Solrock,25,35,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Water,Any,4,4,Solrock,15,25,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Water,Any,5,1,Solrock,5,15,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Good Rod,Any,2,20,Goldeen,10,30,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Good Rod,Any,3,20,Barboach,10,30,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Super Rod,Any,1,40,Barboach,25,30,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Super Rod,Any,2,40,Barboach,30,35,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Super Rod,Any,3,15,Whiscash,30,35,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Super Rod,Any,4,4,Whiscash,35,40,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_METEOR_FALLS_B1F_1R,Super Rod,Any,5,1,Whiscash,40,45,Emerald,In game,table gMeteorFalls_B1F_1R
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,1,20,Zubat,26,26,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,2,20,Spheal,26,26,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,3,10,Zubat,28,28,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,4,10,Spheal,28,28,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,5,10,Zubat,30,30,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,6,10,Spheal,30,30,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,7,5,Zubat,32,32,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,8,5,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,9,4,Golbat,32,32,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,10,4,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,11,1,Golbat,32,32,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM,Grass,Any,12,1,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideStairsRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,1,20,Zubat,26,26,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,2,20,Spheal,26,26,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,3,10,Zubat,28,28,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,4,10,Spheal,28,28,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,5,10,Zubat,30,30,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,6,10,Spheal,30,30,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,7,5,Zubat,32,32,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,8,5,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,9,4,Golbat,32,32,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,10,4,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,11,1,Golbat,32,32,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM,Grass,Any,12,1,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideLowerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,1,20,Zubat,26,26,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,2,20,Spheal,26,26,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,3,10,Zubat,28,28,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,4,10,Spheal,28,28,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,5,10,Zubat,30,30,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,6,10,Spheal,30,30,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,7,5,Zubat,32,32,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,8,5,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,9,4,Golbat,32,32,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,10,4,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,11,1,Golbat,32,32,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Grass,Any,12,1,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Water,Any,1,60,Tentacool,5,35,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Water,Any,2,30,Zubat,5,35,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Water,Any,3,5,Spheal,25,30,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Water,Any,4,4,Spheal,25,30,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Water,Any,5,1,Spheal,25,35,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,table gShoalCave_LowTideInnerRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,1,20,Zubat,26,26,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,2,20,Spheal,26,26,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,3,10,Zubat,28,28,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,4,10,Spheal,28,28,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,5,10,Zubat,30,30,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,6,10,Spheal,30,30,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,7,5,Zubat,32,32,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,8,5,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,9,4,Golbat,32,32,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,10,4,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,11,1,Golbat,32,32,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Grass,Any,12,1,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Water,Any,1,60,Tentacool,5,35,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Water,Any,2,30,Zubat,5,35,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Water,Any,3,5,Spheal,25,30,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Water,Any,4,4,Spheal,25,30,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Water,Any,5,1,Spheal,25,35,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,table gShoalCave_LowTideEntranceRoom
+MAP_LILYCOVE_CITY,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_LILYCOVE_CITY,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_LILYCOVE_CITY,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_LILYCOVE_CITY,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_LILYCOVE_CITY,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_LILYCOVE_CITY,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_LILYCOVE_CITY,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_LILYCOVE_CITY,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_LILYCOVE_CITY,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_LILYCOVE_CITY,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_LILYCOVE_CITY,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_LILYCOVE_CITY,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_LILYCOVE_CITY,Super Rod,Any,3,15,Staryu,25,30,Emerald,In game,
+MAP_LILYCOVE_CITY,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_LILYCOVE_CITY,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_DEWFORD_TOWN,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_DEWFORD_TOWN,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_DEWFORD_TOWN,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_DEWFORD_TOWN,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_DEWFORD_TOWN,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_DEWFORD_TOWN,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_DEWFORD_TOWN,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_DEWFORD_TOWN,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_DEWFORD_TOWN,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_DEWFORD_TOWN,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_DEWFORD_TOWN,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_DEWFORD_TOWN,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_DEWFORD_TOWN,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,
+MAP_DEWFORD_TOWN,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_DEWFORD_TOWN,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_SLATEPORT_CITY,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_SLATEPORT_CITY,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_SLATEPORT_CITY,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_SLATEPORT_CITY,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_SLATEPORT_CITY,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_SLATEPORT_CITY,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_SLATEPORT_CITY,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_SLATEPORT_CITY,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_SLATEPORT_CITY,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_SLATEPORT_CITY,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_SLATEPORT_CITY,Super Rod,Any,1,40,Wailmer,25,30,Emerald,In game,
+MAP_SLATEPORT_CITY,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_SLATEPORT_CITY,Super Rod,Any,3,15,Wailmer,20,25,Emerald,In game,
+MAP_SLATEPORT_CITY,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_SLATEPORT_CITY,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_MOSSDEEP_CITY,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_MOSSDEEP_CITY,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_MOSSDEEP_CITY,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_MOSSDEEP_CITY,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_MOSSDEEP_CITY,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_MOSSDEEP_CITY,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_MOSSDEEP_CITY,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_MOSSDEEP_CITY,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_MOSSDEEP_CITY,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_MOSSDEEP_CITY,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_MOSSDEEP_CITY,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_MOSSDEEP_CITY,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_MOSSDEEP_CITY,Super Rod,Any,3,15,Wailmer,25,30,Emerald,In game,
+MAP_MOSSDEEP_CITY,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_MOSSDEEP_CITY,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Good Rod,Any,2,20,Tentacool,10,30,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Super Rod,Any,1,40,Sharpedo,30,35,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Super Rod,Any,3,15,Wailmer,25,30,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_PACIFIDLOG_TOWN,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Water,Any,1,60,Tentacool,5,35,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Water,Any,2,30,Wingull,10,30,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Water,Any,3,5,Wingull,15,25,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Water,Any,4,4,Pelipper,25,30,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Water,Any,5,1,Pelipper,25,30,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Good Rod,Any,2,20,Luvdisc,10,30,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Good Rod,Any,3,20,Wailmer,10,30,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Super Rod,Any,1,40,Luvdisc,30,35,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Super Rod,Any,2,40,Wailmer,30,35,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Super Rod,Any,3,15,Corsola,30,35,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Super Rod,Any,4,4,Wailmer,35,40,Emerald,In game,
+MAP_EVER_GRANDE_CITY,Super Rod,Any,5,1,Wailmer,40,45,Emerald,In game,
+MAP_PETALBURG_CITY,Water,Any,1,60,Marill,20,30,Emerald,In game,
+MAP_PETALBURG_CITY,Water,Any,2,30,Marill,10,20,Emerald,In game,
+MAP_PETALBURG_CITY,Water,Any,3,5,Marill,30,35,Emerald,In game,
+MAP_PETALBURG_CITY,Water,Any,4,4,Marill,5,10,Emerald,In game,
+MAP_PETALBURG_CITY,Water,Any,5,1,Marill,5,10,Emerald,In game,
+MAP_PETALBURG_CITY,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_PETALBURG_CITY,Old Rod,Any,2,30,Goldeen,5,10,Emerald,In game,
+MAP_PETALBURG_CITY,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_PETALBURG_CITY,Good Rod,Any,2,20,Goldeen,10,30,Emerald,In game,
+MAP_PETALBURG_CITY,Good Rod,Any,3,20,Corphish,10,30,Emerald,In game,
+MAP_PETALBURG_CITY,Super Rod,Any,1,40,Corphish,25,30,Emerald,In game,
+MAP_PETALBURG_CITY,Super Rod,Any,2,40,Corphish,30,35,Emerald,In game,
+MAP_PETALBURG_CITY,Super Rod,Any,3,15,Corphish,20,25,Emerald,In game,
+MAP_PETALBURG_CITY,Super Rod,Any,4,4,Corphish,35,40,Emerald,In game,
+MAP_PETALBURG_CITY,Super Rod,Any,5,1,Corphish,40,45,Emerald,In game,
+MAP_UNDERWATER_ROUTE124,Water,Any,1,60,Clamperl,20,30,Emerald,In game,table gUnderwater_Route124
+MAP_UNDERWATER_ROUTE124,Water,Any,2,30,Chinchou,20,30,Emerald,In game,table gUnderwater_Route124
+MAP_UNDERWATER_ROUTE124,Water,Any,3,5,Clamperl,30,35,Emerald,In game,table gUnderwater_Route124
+MAP_UNDERWATER_ROUTE124,Water,Any,4,4,Relicanth,30,35,Emerald,In game,table gUnderwater_Route124
+MAP_UNDERWATER_ROUTE124,Water,Any,5,1,Relicanth,30,35,Emerald,In game,table gUnderwater_Route124
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,1,20,Zubat,26,26,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,2,20,Spheal,26,26,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,3,10,Zubat,28,28,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,4,10,Spheal,28,28,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,5,10,Zubat,30,30,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,6,10,Spheal,30,30,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,7,5,Snorunt,26,26,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,8,5,Spheal,32,32,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,9,4,Golbat,30,30,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,10,4,Snorunt,28,28,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,11,1,Golbat,32,32,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM,Grass,Any,12,1,Snorunt,30,30,Emerald,In game,table gShoalCave_LowTideIceRoom
+MAP_SKY_PILLAR_1F,Grass,Any,1,20,Sableye,33,33,Emerald,In game,table gSkyPillar_1F
+MAP_SKY_PILLAR_1F,Grass,Any,2,20,Golbat,34,34,Emerald,In game,table gSkyPillar_1F
+MAP_SKY_PILLAR_1F,Grass,Any,3,10,Golbat,35,35,Emerald,In game,table gSkyPillar_1F
+MAP_SKY_PILLAR_1F,Grass,Any,4,10,Sableye,34,34,Emerald,In game,table gSkyPillar_1F
+MAP_SKY_PILLAR_1F,Grass,Any,5,10,Claydol,36,36,Emerald,In game,table gSkyPillar_1F
+MAP_SKY_PILLAR_1F,Grass,Any,6,10,Banette,37,37,Emerald,In game,table gSkyPillar_1F
+MAP_SKY_PILLAR_1F,Grass,Any,7,5,Banette,38,38,Emerald,In game,table gSkyPillar_1F
+MAP_SKY_PILLAR_1F,Grass,Any,8,5,Claydol,36,36,Emerald,In game,table gSkyPillar_1F
+MAP_SKY_PILLAR_1F,Grass,Any,9,4,Claydol,37,37,Emerald,In game,table gSkyPillar_1F
+MAP_SKY_PILLAR_1F,Grass,Any,10,4,Claydol,38,38,Emerald,In game,table gSkyPillar_1F
+MAP_SKY_PILLAR_1F,Grass,Any,11,1,Claydol,37,37,Emerald,In game,table gSkyPillar_1F
+MAP_SKY_PILLAR_1F,Grass,Any,12,1,Claydol,38,38,Emerald,In game,table gSkyPillar_1F
+MAP_SOOTOPOLIS_CITY,Water,Any,1,60,Magikarp,5,35,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Water,Any,2,30,Magikarp,10,30,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Water,Any,3,5,Magikarp,15,25,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Water,Any,4,4,Magikarp,25,30,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Water,Any,5,1,Magikarp,25,30,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Old Rod,Any,1,70,Magikarp,5,10,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Old Rod,Any,2,30,Tentacool,5,10,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Good Rod,Any,1,60,Magikarp,10,30,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Good Rod,Any,2,20,Magikarp,10,30,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Good Rod,Any,3,20,Magikarp,10,30,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Super Rod,Any,1,40,Magikarp,30,35,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Super Rod,Any,2,40,Magikarp,30,35,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Super Rod,Any,3,15,Gyarados,35,40,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Super Rod,Any,4,4,Gyarados,35,45,Emerald,In game,
+MAP_SOOTOPOLIS_CITY,Super Rod,Any,5,1,Gyarados,5,45,Emerald,In game,
+MAP_SKY_PILLAR_3F,Grass,Any,1,20,Sableye,33,33,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_3F,Grass,Any,2,20,Golbat,34,34,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_3F,Grass,Any,3,10,Golbat,35,35,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_3F,Grass,Any,4,10,Sableye,34,34,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_3F,Grass,Any,5,10,Claydol,36,36,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_3F,Grass,Any,6,10,Banette,37,37,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_3F,Grass,Any,7,5,Banette,38,38,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_3F,Grass,Any,8,5,Claydol,36,36,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_3F,Grass,Any,9,4,Claydol,37,37,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_3F,Grass,Any,10,4,Claydol,38,38,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_3F,Grass,Any,11,1,Claydol,37,37,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_3F,Grass,Any,12,1,Claydol,38,38,Emerald,In game,table gSkyPillar_3F
+MAP_SKY_PILLAR_5F,Grass,Any,1,20,Sableye,33,33,Emerald,In game,table gSkyPillar_5F
+MAP_SKY_PILLAR_5F,Grass,Any,2,20,Golbat,34,34,Emerald,In game,table gSkyPillar_5F
+MAP_SKY_PILLAR_5F,Grass,Any,3,10,Golbat,35,35,Emerald,In game,table gSkyPillar_5F
+MAP_SKY_PILLAR_5F,Grass,Any,4,10,Sableye,34,34,Emerald,In game,table gSkyPillar_5F
+MAP_SKY_PILLAR_5F,Grass,Any,5,10,Claydol,36,36,Emerald,In game,table gSkyPillar_5F
+MAP_SKY_PILLAR_5F,Grass,Any,6,10,Banette,37,37,Emerald,In game,table gSkyPillar_5F
+MAP_SKY_PILLAR_5F,Grass,Any,7,5,Banette,38,38,Emerald,In game,table gSkyPillar_5F
+MAP_SKY_PILLAR_5F,Grass,Any,8,5,Claydol,36,36,Emerald,In game,table gSkyPillar_5F
+MAP_SKY_PILLAR_5F,Grass,Any,9,4,Claydol,37,37,Emerald,In game,table gSkyPillar_5F
+MAP_SKY_PILLAR_5F,Grass,Any,10,4,Altaria,38,38,Emerald,In game,table gSkyPillar_5F
+MAP_SKY_PILLAR_5F,Grass,Any,11,1,Altaria,39,39,Emerald,In game,table gSkyPillar_5F
+MAP_SKY_PILLAR_5F,Grass,Any,12,1,Altaria,39,39,Emerald,In game,table gSkyPillar_5F
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,1,20,Sunkern,33,33,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,2,20,Mareep,34,34,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,3,10,Sunkern,35,35,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,4,10,Mareep,36,36,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,5,10,Aipom,34,34,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,6,10,Spinarak,33,33,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,7,5,Hoothoot,35,35,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,8,5,Snubbull,34,34,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,9,4,Stantler,36,36,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,10,4,Gligar,37,37,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,11,1,Stantler,39,39,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Grass,Any,12,1,Gligar,40,40,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Water,Any,1,60,Wooper,25,30,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Water,Any,2,30,Marill,25,30,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Water,Any,3,5,Marill,25,30,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Water,Any,4,4,Marill,30,35,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Water,Any,5,1,Quagsire,35,40,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Old Rod,Any,1,70,Magikarp,25,30,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Old Rod,Any,2,30,Goldeen,25,30,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Good Rod,Any,1,60,Magikarp,25,30,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Good Rod,Any,2,20,Goldeen,25,30,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Good Rod,Any,3,20,Remoraid,30,35,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Super Rod,Any,1,40,Goldeen,25,30,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Super Rod,Any,2,40,Remoraid,25,30,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Super Rod,Any,3,15,Remoraid,30,35,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Super Rod,Any,4,4,Remoraid,30,35,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_SOUTHEAST,Super Rod,Any,5,1,Octillery,35,40,Emerald,In game,table gSafariZone_Southeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,1,20,Aipom,33,33,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,2,20,Teddiursa,34,34,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,3,10,Aipom,35,35,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,4,10,Teddiursa,36,36,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,5,10,Sunkern,34,34,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,6,10,Ledyba,33,33,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,7,5,Hoothoot,35,35,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,8,5,Pineco,34,34,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,9,4,Houndour,36,36,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,10,4,Miltank,37,37,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,11,1,Houndour,39,39,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Grass,Any,12,1,Miltank,40,40,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Rock Smash,Any,1,60,Shuckle,25,30,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Rock Smash,Any,2,30,Shuckle,20,25,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Rock Smash,Any,3,5,Shuckle,30,35,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Rock Smash,Any,4,4,Shuckle,30,35,Emerald,In game,table gSafariZone_Northeast
+MAP_SAFARI_ZONE_NORTHEAST,Rock Smash,Any,5,1,Shuckle,35,40,Emerald,In game,table gSafariZone_Northeast
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,1,20,Geodude,27,27,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,2,20,Torkoal,28,28,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,3,10,Geodude,28,28,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,4,10,Torkoal,30,30,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,5,10,Geodude,29,29,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,6,10,Geodude,30,30,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,7,5,Geodude,30,30,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,8,5,Graveler,30,30,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,9,4,Graveler,30,30,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,10,4,Graveler,31,31,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,11,1,Graveler,32,32,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_1F,Grass,Any,12,1,Graveler,33,33,Emerald,In game,table gMagmaHideout_1F
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,1,20,Geodude,27,27,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,2,20,Torkoal,28,28,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,3,10,Geodude,28,28,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,4,10,Torkoal,30,30,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,5,10,Geodude,29,29,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,6,10,Geodude,30,30,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,7,5,Geodude,30,30,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,8,5,Graveler,30,30,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,9,4,Graveler,30,30,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,10,4,Graveler,31,31,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,11,1,Graveler,32,32,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_1R,Grass,Any,12,1,Graveler,33,33,Emerald,In game,table gMagmaHideout_2F_1R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,1,20,Geodude,27,27,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,2,20,Torkoal,28,28,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,3,10,Geodude,28,28,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,4,10,Torkoal,30,30,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,5,10,Geodude,29,29,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,6,10,Geodude,30,30,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,7,5,Geodude,30,30,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,8,5,Graveler,30,30,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,9,4,Graveler,30,30,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,10,4,Graveler,31,31,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,11,1,Graveler,32,32,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_2F_2R,Grass,Any,12,1,Graveler,33,33,Emerald,In game,table gMagmaHideout_2F_2R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,1,20,Geodude,27,27,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,2,20,Torkoal,28,28,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,3,10,Geodude,28,28,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,4,10,Torkoal,30,30,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,5,10,Geodude,29,29,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,6,10,Geodude,30,30,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,7,5,Geodude,30,30,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,8,5,Graveler,30,30,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,9,4,Graveler,30,30,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,10,4,Graveler,31,31,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,11,1,Graveler,32,32,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_1R,Grass,Any,12,1,Graveler,33,33,Emerald,In game,table gMagmaHideout_3F_1R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,1,20,Geodude,27,27,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,2,20,Torkoal,28,28,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,3,10,Geodude,28,28,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,4,10,Torkoal,30,30,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,5,10,Geodude,29,29,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,6,10,Geodude,30,30,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,7,5,Geodude,30,30,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,8,5,Graveler,30,30,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,9,4,Graveler,30,30,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,10,4,Graveler,31,31,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,11,1,Graveler,32,32,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_3F_2R,Grass,Any,12,1,Graveler,33,33,Emerald,In game,table gMagmaHideout_3F_2R
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,1,20,Geodude,27,27,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,2,20,Torkoal,28,28,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,3,10,Geodude,28,28,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,4,10,Torkoal,30,30,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,5,10,Geodude,29,29,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,6,10,Geodude,30,30,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,7,5,Geodude,30,30,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,8,5,Graveler,30,30,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,9,4,Graveler,30,30,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,10,4,Graveler,31,31,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,11,1,Graveler,32,32,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_4F,Grass,Any,12,1,Graveler,33,33,Emerald,In game,table gMagmaHideout_4F
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,1,20,Geodude,27,27,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,2,20,Torkoal,28,28,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,3,10,Geodude,28,28,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,4,10,Torkoal,30,30,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,5,10,Geodude,29,29,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,6,10,Geodude,30,30,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,7,5,Geodude,30,30,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,8,5,Graveler,30,30,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,9,4,Graveler,30,30,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,10,4,Graveler,31,31,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,11,1,Graveler,32,32,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_3F_3R,Grass,Any,12,1,Graveler,33,33,Emerald,In game,table gMagmaHideout_3F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,1,20,Geodude,27,27,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,2,20,Torkoal,28,28,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,3,10,Geodude,28,28,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,4,10,Torkoal,30,30,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,5,10,Geodude,29,29,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,6,10,Geodude,30,30,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,7,5,Geodude,30,30,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,8,5,Graveler,30,30,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,9,4,Graveler,30,30,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,10,4,Graveler,31,31,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,11,1,Graveler,32,32,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MAGMA_HIDEOUT_2F_3R,Grass,Any,12,1,Graveler,33,33,Emerald,In game,table gMagmaHideout_2F_3R
+MAP_MIRAGE_TOWER_1F,Grass,Any,1,20,Sandshrew,21,21,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_1F,Grass,Any,2,20,Trapinch,21,21,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_1F,Grass,Any,3,10,Sandshrew,20,20,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_1F,Grass,Any,4,10,Trapinch,20,20,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_1F,Grass,Any,5,10,Sandshrew,20,20,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_1F,Grass,Any,6,10,Trapinch,20,20,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_1F,Grass,Any,7,5,Sandshrew,22,22,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_1F,Grass,Any,8,5,Trapinch,22,22,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_1F,Grass,Any,9,4,Sandshrew,23,23,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_1F,Grass,Any,10,4,Trapinch,23,23,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_1F,Grass,Any,11,1,Sandshrew,24,24,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_1F,Grass,Any,12,1,Trapinch,24,24,Emerald,In game,table gMirageTower_1F
+MAP_MIRAGE_TOWER_2F,Grass,Any,1,20,Sandshrew,21,21,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_2F,Grass,Any,2,20,Trapinch,21,21,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_2F,Grass,Any,3,10,Sandshrew,20,20,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_2F,Grass,Any,4,10,Trapinch,20,20,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_2F,Grass,Any,5,10,Sandshrew,20,20,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_2F,Grass,Any,6,10,Trapinch,20,20,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_2F,Grass,Any,7,5,Sandshrew,22,22,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_2F,Grass,Any,8,5,Trapinch,22,22,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_2F,Grass,Any,9,4,Sandshrew,23,23,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_2F,Grass,Any,10,4,Trapinch,23,23,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_2F,Grass,Any,11,1,Sandshrew,24,24,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_2F,Grass,Any,12,1,Trapinch,24,24,Emerald,In game,table gMirageTower_2F
+MAP_MIRAGE_TOWER_3F,Grass,Any,1,20,Sandshrew,21,21,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_3F,Grass,Any,2,20,Trapinch,21,21,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_3F,Grass,Any,3,10,Sandshrew,20,20,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_3F,Grass,Any,4,10,Trapinch,20,20,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_3F,Grass,Any,5,10,Sandshrew,20,20,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_3F,Grass,Any,6,10,Trapinch,20,20,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_3F,Grass,Any,7,5,Sandshrew,22,22,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_3F,Grass,Any,8,5,Trapinch,22,22,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_3F,Grass,Any,9,4,Sandshrew,23,23,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_3F,Grass,Any,10,4,Trapinch,23,23,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_3F,Grass,Any,11,1,Sandshrew,24,24,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_3F,Grass,Any,12,1,Trapinch,24,24,Emerald,In game,table gMirageTower_3F
+MAP_MIRAGE_TOWER_4F,Grass,Any,1,20,Sandshrew,21,21,Emerald,In game,table gMirageTower_4F
+MAP_MIRAGE_TOWER_4F,Grass,Any,2,20,Trapinch,21,21,Emerald,In game,table gMirageTower_4F
+MAP_MIRAGE_TOWER_4F,Grass,Any,3,10,Sandshrew,20,20,Emerald,In game,table gMirageTower_4F
+MAP_MIRAGE_TOWER_4F,Grass,Any,4,10,Trapinch,20,20,Emerald,In game,table gMirageTower_4F
+MAP_MIRAGE_TOWER_4F,Grass,Any,5,10,Sandshrew,20,20,Emerald,In game,table gMirageTower_4F
+MAP_MIRAGE_TOWER_4F,Grass,Any,6,10,Trapinch,20,20,Emerald,In game,table gMirageTower_4F
+MAP_MIRAGE_TOWER_4F,Grass,Any,7,5,Sandshrew,22,22,Emerald,In game,table gMirageTower_4F
+MAP_MIRAGE_TOWER_4F,Grass,Any,8,5,Trapinch,22,22,Emerald,In game,table gMirageTower_4F
+MAP_MIRAGE_TOWER_4F,Grass,Any,9,4,Sandshrew,23,23,Emerald,In game,table gMirageTower_4F
+MAP_MIRAGE_TOWER_4F,Grass,Any,10,4,Trapinch,23,23,Emerald,In game,table gMirageTower_4F
+MAP_MIRAGE_TOWER_4F,Grass,Any,11,1,Sandshrew,24,24,Emerald,In game,table gMirageTower_4F
+MAP_MIRAGE_TOWER_4F,Grass,Any,12,1,Trapinch,24,24,Emerald,In game,table gMirageTower_4F
+MAP_DESERT_UNDERPASS,Grass,Any,1,20,Ditto,38,38,Emerald,In game,
+MAP_DESERT_UNDERPASS,Grass,Any,2,20,Whismur,35,35,Emerald,In game,
+MAP_DESERT_UNDERPASS,Grass,Any,3,10,Ditto,40,40,Emerald,In game,
+MAP_DESERT_UNDERPASS,Grass,Any,4,10,Loudred,40,40,Emerald,In game,
+MAP_DESERT_UNDERPASS,Grass,Any,5,10,Ditto,41,41,Emerald,In game,
+MAP_DESERT_UNDERPASS,Grass,Any,6,10,Whismur,36,36,Emerald,In game,
+MAP_DESERT_UNDERPASS,Grass,Any,7,5,Loudred,38,38,Emerald,In game,
+MAP_DESERT_UNDERPASS,Grass,Any,8,5,Ditto,42,42,Emerald,In game,
+MAP_DESERT_UNDERPASS,Grass,Any,9,4,Whismur,38,38,Emerald,In game,
+MAP_DESERT_UNDERPASS,Grass,Any,10,4,Ditto,43,43,Emerald,In game,
+MAP_DESERT_UNDERPASS,Grass,Any,11,1,Loudred,44,44,Emerald,In game,
+MAP_DESERT_UNDERPASS,Grass,Any,12,1,Ditto,45,45,Emerald,In game,
+MAP_ARTISAN_CAVE_B1F,Grass,Any,1,20,Smeargle,40,40,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_B1F,Grass,Any,2,20,Smeargle,41,41,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_B1F,Grass,Any,3,10,Smeargle,42,42,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_B1F,Grass,Any,4,10,Smeargle,43,43,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_B1F,Grass,Any,5,10,Smeargle,44,44,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_B1F,Grass,Any,6,10,Smeargle,45,45,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_B1F,Grass,Any,7,5,Smeargle,46,46,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_B1F,Grass,Any,8,5,Smeargle,47,47,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_B1F,Grass,Any,9,4,Smeargle,48,48,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_B1F,Grass,Any,10,4,Smeargle,49,49,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_B1F,Grass,Any,11,1,Smeargle,50,50,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_B1F,Grass,Any,12,1,Smeargle,50,50,Emerald,In game,table gArtisanCave_B1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,1,20,Smeargle,40,40,Emerald,In game,table gArtisanCave_1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,2,20,Smeargle,41,41,Emerald,In game,table gArtisanCave_1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,3,10,Smeargle,42,42,Emerald,In game,table gArtisanCave_1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,4,10,Smeargle,43,43,Emerald,In game,table gArtisanCave_1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,5,10,Smeargle,44,44,Emerald,In game,table gArtisanCave_1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,6,10,Smeargle,45,45,Emerald,In game,table gArtisanCave_1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,7,5,Smeargle,46,46,Emerald,In game,table gArtisanCave_1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,8,5,Smeargle,47,47,Emerald,In game,table gArtisanCave_1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,9,4,Smeargle,48,48,Emerald,In game,table gArtisanCave_1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,10,4,Smeargle,49,49,Emerald,In game,table gArtisanCave_1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,11,1,Smeargle,50,50,Emerald,In game,table gArtisanCave_1F
+MAP_ARTISAN_CAVE_1F,Grass,Any,12,1,Smeargle,50,50,Emerald,In game,table gArtisanCave_1F
+MAP_ALTERING_CAVE,Grass,Any,1,20,Zubat,10,10,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,2,20,Zubat,12,12,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,3,10,Zubat,8,8,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,4,10,Zubat,14,14,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,5,10,Zubat,10,10,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,6,10,Zubat,12,12,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,7,5,Zubat,16,16,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,8,5,Zubat,6,6,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,9,4,Zubat,8,8,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,10,4,Zubat,14,14,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,11,1,Zubat,8,8,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,12,1,Zubat,14,14,Emerald,In game,table gAlteringCave1
+MAP_ALTERING_CAVE,Grass,Any,1,20,Mareep,7,7,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,2,20,Mareep,9,9,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,3,10,Mareep,5,5,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,4,10,Mareep,11,11,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,5,10,Mareep,7,7,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,6,10,Mareep,9,9,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,7,5,Mareep,13,13,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,8,5,Mareep,3,3,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,9,4,Mareep,5,5,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,10,4,Mareep,11,11,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,11,1,Mareep,5,5,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,12,1,Mareep,11,11,Emerald,In game,table gAlteringCave2
+MAP_ALTERING_CAVE,Grass,Any,1,20,Pineco,23,23,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,2,20,Pineco,25,25,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,3,10,Pineco,22,22,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,4,10,Pineco,27,27,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,5,10,Pineco,23,23,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,6,10,Pineco,25,25,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,7,5,Pineco,29,29,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,8,5,Pineco,19,19,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,9,4,Pineco,21,21,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,10,4,Pineco,27,27,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,11,1,Pineco,21,21,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,12,1,Pineco,27,27,Emerald,In game,table gAlteringCave3
+MAP_ALTERING_CAVE,Grass,Any,1,20,Houndour,16,16,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,2,20,Houndour,18,18,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,3,10,Houndour,14,14,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,4,10,Houndour,20,20,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,5,10,Houndour,16,16,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,6,10,Houndour,18,18,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,7,5,Houndour,22,22,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,8,5,Houndour,12,12,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,9,4,Houndour,14,14,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,10,4,Houndour,20,20,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,11,1,Houndour,14,14,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,12,1,Houndour,20,20,Emerald,In game,table gAlteringCave4
+MAP_ALTERING_CAVE,Grass,Any,1,20,Teddiursa,10,10,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,2,20,Teddiursa,12,12,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,3,10,Teddiursa,8,8,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,4,10,Teddiursa,14,14,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,5,10,Teddiursa,10,10,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,6,10,Teddiursa,12,12,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,7,5,Teddiursa,16,16,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,8,5,Teddiursa,6,6,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,9,4,Teddiursa,8,8,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,10,4,Teddiursa,14,14,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,11,1,Teddiursa,8,8,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,12,1,Teddiursa,14,14,Emerald,In game,table gAlteringCave5
+MAP_ALTERING_CAVE,Grass,Any,1,20,Aipom,22,22,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,2,20,Aipom,24,24,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,3,10,Aipom,20,20,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,4,10,Aipom,26,26,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,5,10,Aipom,22,22,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,6,10,Aipom,24,24,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,7,5,Aipom,28,28,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,8,5,Aipom,18,18,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,9,4,Aipom,20,20,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,10,4,Aipom,26,26,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,11,1,Aipom,20,20,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,12,1,Aipom,26,26,Emerald,In game,table gAlteringCave6
+MAP_ALTERING_CAVE,Grass,Any,1,20,Shuckle,22,22,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,2,20,Shuckle,24,24,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,3,10,Shuckle,20,20,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,4,10,Shuckle,26,26,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,5,10,Shuckle,22,22,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,6,10,Shuckle,24,24,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,7,5,Shuckle,28,28,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,8,5,Shuckle,18,18,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,9,4,Shuckle,20,20,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,10,4,Shuckle,26,26,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,11,1,Shuckle,20,20,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,12,1,Shuckle,26,26,Emerald,In game,table gAlteringCave7
+MAP_ALTERING_CAVE,Grass,Any,1,20,Stantler,22,22,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,2,20,Stantler,24,24,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,3,10,Stantler,20,20,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,4,10,Stantler,26,26,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,5,10,Stantler,22,22,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,6,10,Stantler,24,24,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,7,5,Stantler,28,28,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,8,5,Stantler,18,18,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,9,4,Stantler,20,20,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,10,4,Stantler,26,26,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,11,1,Stantler,20,20,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,12,1,Stantler,26,26,Emerald,In game,table gAlteringCave8
+MAP_ALTERING_CAVE,Grass,Any,1,20,Smeargle,22,22,Emerald,In game,table gAlteringCave9
+MAP_ALTERING_CAVE,Grass,Any,2,20,Smeargle,24,24,Emerald,In game,table gAlteringCave9
+MAP_ALTERING_CAVE,Grass,Any,3,10,Smeargle,20,20,Emerald,In game,table gAlteringCave9
+MAP_ALTERING_CAVE,Grass,Any,4,10,Smeargle,26,26,Emerald,In game,table gAlteringCave9
+MAP_ALTERING_CAVE,Grass,Any,5,10,Smeargle,22,22,Emerald,In game,table gAlteringCave9
+MAP_ALTERING_CAVE,Grass,Any,6,10,Smeargle,24,24,Emerald,In game,table gAlteringCave9
+MAP_ALTERING_CAVE,Grass,Any,7,5,Smeargle,28,28,Emerald,In game,table gAlteringCave9
+MAP_ALTERING_CAVE,Grass,Any,8,5,Smeargle,18,18,Emerald,In game,table gAlteringCave9
+MAP_ALTERING_CAVE,Grass,Any,9,4,Smeargle,20,20,Emerald,In game,table gAlteringCave9
+MAP_ALTERING_CAVE,Grass,Any,10,4,Smeargle,26,26,Emerald,In game,table gAlteringCave9
+MAP_ALTERING_CAVE,Grass,Any,11,1,Smeargle,20,20,Emerald,In game,table gAlteringCave9
+MAP_ALTERING_CAVE,Grass,Any,12,1,Smeargle,26,26,Emerald,In game,table gAlteringCave9
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,1,20,Golbat,33,33,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,2,20,Golbat,35,35,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,3,10,Golbat,33,33,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,4,10,Solrock,35,35,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,5,10,Solrock,33,33,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,6,10,Solrock,37,37,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,7,5,Golbat,35,35,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,8,5,Solrock,39,39,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,9,4,Golbat,38,38,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,10,4,Golbat,40,40,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,11,1,Golbat,38,38,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_METEOR_FALLS_STEVENS_CAVE,Grass,Any,12,1,Golbat,40,40,Emerald,In game,table gMeteorFalls_StevensCave
+MAP_ROUTE101,Gift,Any,1,,Treecko,5,5,Emerald,In game,"Starter chosen from Birch's bag (src/starter_choose.c, level from src/battle_setup.c)"
+MAP_ROUTE101,Gift,Any,2,,Torchic,5,5,Emerald,In game,"Starter chosen from Birch's bag (src/starter_choose.c, level from src/battle_setup.c)"
+MAP_ROUTE101,Gift,Any,3,,Mudkip,5,5,Emerald,In game,"Starter chosen from Birch's bag (src/starter_choose.c, level from src/battle_setup.c)"
+,Static,Any,,,Kecleon,30,30,Emerald,In game,script EventScript_BattleKecleon; shared script data/scripts/kecleon.inc
+,Gift,Any,,,Pichu,,,Emerald,In game,script SurfPichu_GiveEgg; shared script data/scripts/gift_pichu.inc; Egg
+MAP_ROUTE119_WEATHER_INSTITUTE_2F,Gift,Any,,,Castform,25,25,Emerald,In game,script Route119_WeatherInstitute_2F_EventScript_ReceiveCastform; extra: ITEM_MYSTIC_WATER
+MAP_TERRA_CAVE_END,Static,Any,,,Groudon,70,70,Emerald,In game,script TerraCave_End_EventScript_Groudon
+MAP_NEW_MAUVILLE_INSIDE,Static,Any,,,Voltorb,25,25,Emerald,In game,script NewMauville_Inside_EventScript_Voltorb1
+MAP_NEW_MAUVILLE_INSIDE,Static,Any,,,Voltorb,25,25,Emerald,In game,script NewMauville_Inside_EventScript_Voltorb2
+MAP_NEW_MAUVILLE_INSIDE,Static,Any,,,Voltorb,25,25,Emerald,In game,script NewMauville_Inside_EventScript_Voltorb3
+MAP_DESERT_RUINS,Static,Any,,,Regirock,40,40,Emerald,In game,script DesertRuins_EventScript_Regirock
+MAP_ISLAND_CAVE,Static,Any,,,Regice,40,40,Emerald,In game,script IslandCave_EventScript_Regice
+MAP_AQUA_HIDEOUT_B1F,Static,Any,,,Electrode,30,30,Emerald,In game,script AquaHideout_B1F_EventScript_Electrode1
+MAP_AQUA_HIDEOUT_B1F,Static,Any,,,Electrode,30,30,Emerald,In game,script AquaHideout_B1F_EventScript_Electrode2
+MAP_ANCIENT_TOMB,Static,Any,,,Registeel,40,40,Emerald,In game,script AncientTomb_EventScript_Registeel
+MAP_ROUTE120,Static,Any,,,Kecleon,30,30,Emerald,In game,script Route120_EventScript_StevenBattleKecleon
+MAP_RUSTBORO_CITY_DEVON_CORP_2F,Gift,Any,,,Lileep,20,20,Emerald,In game,script RustboroCity_DevonCorp_2F_EventScript_ReceiveLileep
+MAP_RUSTBORO_CITY_DEVON_CORP_2F,Gift,Any,,,Anorith,20,20,Emerald,In game,script RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorith
+MAP_MARINE_CAVE_END,Static,Any,,,Kyogre,70,70,Emerald,In game,script MarineCave_End_EventScript_Kyogre
+MAP_LAVARIDGE_TOWN,Gift,Any,,,Wynaut,,,Emerald,In game,script LavaridgeTown_EventScript_EggWoman; Egg
+MAP_BATTLE_FRONTIER_OUTSIDE_EAST,Static,Any,,,Sudowoodo,40,40,Emerald,In game,script BattleFrontier_OutsideEast_EventScript_WaterSudowoodo
+MAP_SKY_PILLAR_TOP,Static,Any,,,Rayquaza,70,70,Emerald,In game,script SkyPillar_Top_EventScript_Rayquaza
+MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB,Gift,Any,,,Cyndaquil,5,5,Emerald,In game,script LittlerootTown_ProfessorBirchsLab_EventScript_GiveCyndaquil
+MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB,Gift,Any,,,Totodile,5,5,Emerald,In game,script LittlerootTown_ProfessorBirchsLab_EventScript_GiveTotodile
+MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB,Gift,Any,,,Chikorita,5,5,Emerald,In game,script LittlerootTown_ProfessorBirchsLab_EventScript_GiveChikorita
+MAP_MOSSDEEP_CITY_STEVENS_HOUSE,Gift,Any,,,Beldum,5,5,Emerald,In game,script MossdeepCity_StevensHouse_EventScript_GiveBeldum
