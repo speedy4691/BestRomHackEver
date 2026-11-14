@@ -14485,6 +14485,23 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_DevonScope,
     },
 
+    [ITEM_TELEPORT] =
+    {
+        .name = ITEM_NAME("Teleport"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Warps you back to\n"
+            "the last Pokémon\n"
+            "Center you visited."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Teleport,
+        // Placeholder icon until custom art exists.
+        .iconPic = gItemIcon_TwistedSpoon,
+        .iconPalette = gItemIconPalette_TwistedSpoon,
+    },
+
     [ITEM_BASEMENT_KEY] =
     {
         .name = ITEM_NAME("Basement Key"),

@@ -1113,6 +1113,86 @@ void ItemUseOutOfBattle_EscapeRope(u8 taskId)
     }
 }
 
+// TELEPORT key item (roadmap 2.6): warps to the last Pokémon Center, like the Teleport field move,
+// but usable indoors too. Blocked in gyms, the Elite Four and challenge areas.
+static bool32 IsTeleportItemBlockedOnCurMap(void)
+{
+    static const u16 sBlockedMaps[] =
+    {
+        MAP_RUSTBORO_CITY_GYM,
+        MAP_DEWFORD_TOWN_GYM,
+        MAP_MAUVILLE_CITY_GYM,
+        MAP_LAVARIDGE_TOWN_GYM_1F,
+        MAP_LAVARIDGE_TOWN_GYM_B1F,
+        MAP_PETALBURG_CITY_GYM,
+        MAP_FORTREE_CITY_GYM,
+        MAP_MOSSDEEP_CITY_GYM,
+        MAP_SOOTOPOLIS_CITY_GYM_1F,
+        MAP_SOOTOPOLIS_CITY_GYM_B1F,
+        MAP_EVER_GRANDE_CITY_SIDNEYS_ROOM,
+        MAP_EVER_GRANDE_CITY_PHOEBES_ROOM,
+        MAP_EVER_GRANDE_CITY_GLACIAS_ROOM,
+        MAP_EVER_GRANDE_CITY_DRAKES_ROOM,
+        MAP_EVER_GRANDE_CITY_CHAMPIONS_ROOM,
+        MAP_EVER_GRANDE_CITY_HALL1,
+        MAP_EVER_GRANDE_CITY_HALL2,
+        MAP_EVER_GRANDE_CITY_HALL3,
+        MAP_EVER_GRANDE_CITY_HALL4,
+        MAP_EVER_GRANDE_CITY_HALL5,
+        MAP_EVER_GRANDE_CITY_HALL_OF_FAME,
+    };
+    u16 curMap = gSaveBlock1Ptr->location.mapNum | (gSaveBlock1Ptr->location.mapGroup << 8);
+    u32 i;
+
+    if (!CheckFollowerNPCFlag(FOLLOWER_NPC_FLAG_CAN_LEAVE_ROUTE))
+        return TRUE;
+
+    switch (gMapHeader.regionMapSectionId)
+    {
+    case MAPSEC_SAFARI_ZONE:
+    case MAPSEC_BATTLE_FRONTIER:
+    case MAPSEC_TRAINER_HILL:
+        return TRUE;
+    default:
+        break;
+    }
+
+    for (i = 0; i < ARRAY_COUNT(sBlockedMaps); i++)
+    {
+        if (curMap == sBlockedMaps[i])
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static void Task_UseTeleportItemOnField(u8 taskId)
+{
+    HideFollowerForFieldEffect();
+    FldEff_TeleportWarpOut();
+    DestroyTask(taskId);
+}
+
+static void ItemUseOnFieldCB_Teleport(u8 taskId)
+{
+    Overworld_ResetStateAfterTeleport();
+    CopyItemName(gSpecialVar_ItemId, gStringVar2);
+    StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
+    DisplayItemMessageOnField(taskId, gStringVar4, Task_UseTeleportItemOnField);
+}
+
+void ItemUseOutOfBattle_Teleport(u8 taskId)
+{
+    if (!IsTeleportItemBlockedOnCurMap())
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Teleport;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
 void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 {
     gItemUseCB = ItemUseCB_EvolutionStone;
