@@ -32,6 +32,7 @@
 #include "mass_outbreak.h"
 #include "menu.h"
 #include "money.h"
+#include "moon.h"
 #include "naming_screen.h"
 #include "new_game.h"
 #include "overworld.h"
@@ -293,6 +294,7 @@ static void DebugAction_Util_CheatStart(u8 taskId);
 
 static void DebugAction_TimeMenu_ChangeTimeOfDay(u8 taskId);
 static void DebugAction_TimeMenu_ChangeWeekdays(u8 taskId);
+static void DebugAction_TimeMenu_SetMoonPhase(u8 taskId);
 static void DebugAction_TimeMenu_RedoDailyEvents(u8 taskId);
 
 static void DebugAction_CreateFollowerNPC(u8 taskId);
@@ -545,6 +547,21 @@ static const struct DebugMenuOption sDebugMenu_Actions_TimeMenu_Weekdays[] =
     { NULL }
 };
 
+// Q2: indices match enum MoonPhase; the last entry clears the override.
+static const struct DebugMenuOption sDebugMenu_Actions_TimeMenu_MoonPhases[] =
+{
+    [MOON_NEW]             = { COMPOUND_STRING("New Moon"),        DebugAction_TimeMenu_SetMoonPhase },
+    [MOON_WAXING_CRESCENT] = { COMPOUND_STRING("Waxing Crescent"), DebugAction_TimeMenu_SetMoonPhase },
+    [MOON_FIRST_QUARTER]   = { COMPOUND_STRING("First Quarter"),   DebugAction_TimeMenu_SetMoonPhase },
+    [MOON_WAXING_GIBBOUS]  = { COMPOUND_STRING("Waxing Gibbous"),  DebugAction_TimeMenu_SetMoonPhase },
+    [MOON_FULL]            = { COMPOUND_STRING("Full Moon"),       DebugAction_TimeMenu_SetMoonPhase },
+    [MOON_WANING_GIBBOUS]  = { COMPOUND_STRING("Waning Gibbous"),  DebugAction_TimeMenu_SetMoonPhase },
+    [MOON_LAST_QUARTER]    = { COMPOUND_STRING("Last Quarter"),    DebugAction_TimeMenu_SetMoonPhase },
+    [MOON_WANING_CRESCENT] = { COMPOUND_STRING("Waning Crescent"), DebugAction_TimeMenu_SetMoonPhase },
+    [MOON_PHASE_COUNT]     = { COMPOUND_STRING("Use real date"),   DebugAction_TimeMenu_SetMoonPhase },
+    { NULL }
+};
+
 static const struct DebugMenuOption sDebugMenu_Actions_FollowerNPCMenu_Create[] =
 {
     [DEBUG_FNPC_BRENDAN] = { gFollowerNPCStringsTable[DEBUG_FNPC_BRENDAN], DebugAction_CreateFollowerNPC },
@@ -563,6 +580,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_TimeMenu[] =
     // Also works with the real clock: ChangeTimeOfDay shifts the save's clock offset instead.
     { COMPOUND_STRING("Set time of day…"),  DebugAction_OpenSubMenu,        sDebugMenu_Actions_TimeMenu_TimesOfDay },
     { COMPOUND_STRING("Set weekday…"),      DebugAction_OpenSubMenuFakeRTC, sDebugMenu_Actions_TimeMenu_Weekdays },
+    { COMPOUND_STRING("Set moon phase…"),   DebugAction_OpenSubMenu,        sDebugMenu_Actions_TimeMenu_MoonPhases },
     { COMPOUND_STRING("Redo daily events"), DebugAction_TimeMenu_RedoDailyEvents },
     { COMPOUND_STRING("Check wall clock…"), DebugAction_ExecuteScript, PlayersHouse_2F_EventScript_CheckWallClock },
     { COMPOUND_STRING("Set wall clock…"),   DebugAction_ExecuteScript, PlayersHouse_2F_EventScript_SetWallClock },
@@ -3641,6 +3659,16 @@ static void DebugAction_TimeMenu_ChangeWeekdays(u8 taskId)
     FakeRtc_AdvanceTimeBy(daysToAdd, 0, 0, 0);
     Debug_DestroyMenu_Full(taskId);
     SetMainCallback2(CB2_LoadMap);
+}
+
+static void DebugAction_TimeMenu_SetMoonPhase(u8 taskId)
+{
+    u32 input = ListMenu_ProcessInput(gTasks[taskId].tMenuTaskId);
+
+    DebugAction_DestroyExtraWindow(taskId);
+    SetMoonPhaseOverride(input); // MOON_PHASE_COUNT ("Use real date") clears it
+    Debug_DestroyMenu_Full(taskId);
+    SetMainCallback2(CB2_LoadMap); // reload so the night tint updates right away
 }
 
 void DebugAction_TimeMenu_RedoDailyEvents(u8 taskId)

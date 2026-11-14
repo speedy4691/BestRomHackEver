@@ -46,6 +46,7 @@
 #include "metatile_behavior.h"
 #include "mirage_tower.h"
 #include "money.h"
+#include "moon.h"
 #include "new_game.h"
 #include "oras_dowse.h"
 #include "palette.h"
@@ -1703,6 +1704,9 @@ const struct BlendSettings gTimeOfDayBlend[] =
 void UpdateTimeOfDay(bool32 updateBlend)
 {
     s32 hours, minutes;
+    // Q2: night brightness follows the moon phase (lighter at full moon, darker at new moon).
+    struct BlendSettings nightBlend = gTimeOfDayBlend[TIME_NIGHT];
+    nightBlend.blendColor = GetMoonlitNightTint();
     RtcCalcLocalTime();
     hours = sHoursOverride ? sHoursOverride : gLocalTime.hours;
     minutes = sHoursOverride ? 0 : gLocalTime.minutes;
@@ -1711,7 +1715,7 @@ void UpdateTimeOfDay(bool32 updateBlend)
     {
         if (updateBlend)
         {
-            gTimeBlend.startBlend = gTimeOfDayBlend[TIME_NIGHT];
+            gTimeBlend.startBlend = nightBlend;
             gTimeBlend.endBlend = gTimeOfDayBlend[TIME_MORNING];
             gTimeBlend.weight = TIME_BLEND_WEIGHT(MORNING_HOUR_BEGIN, MORNING_HOUR_MIDDLE);
             gTimeBlend.altWeight = (DEFAULT_WEIGHT - gTimeBlend.weight) / 2;
@@ -1745,7 +1749,7 @@ void UpdateTimeOfDay(bool32 updateBlend)
         if (updateBlend)
         {
             gTimeBlend.startBlend = gTimeOfDayBlend[TIME_EVENING];
-            gTimeBlend.endBlend = gTimeOfDayBlend[TIME_NIGHT];
+            gTimeBlend.endBlend = nightBlend;
             gTimeBlend.weight = TIME_BLEND_WEIGHT(NIGHT_HOUR_BEGIN, NIGHT_HOUR_BEGIN + 1);
             gTimeBlend.altWeight = gTimeBlend.weight / 2;
         }
@@ -1757,7 +1761,7 @@ void UpdateTimeOfDay(bool32 updateBlend)
         {
             gTimeBlend.weight = DEFAULT_WEIGHT;
             gTimeBlend.altWeight = 0;
-            gTimeBlend.startBlend = gTimeBlend.endBlend = gTimeOfDayBlend[TIME_NIGHT];
+            gTimeBlend.startBlend = gTimeBlend.endBlend = nightBlend;
         }
         gTimeOfDay = TIME_NIGHT;
     }
