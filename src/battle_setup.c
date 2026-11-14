@@ -98,6 +98,8 @@ static void DoTrainerBattle(void);
 EWRAM_DATA TrainerBattleParameter gTrainerBattleParameter = {0};
 EWRAM_DATA u16 gPartnerTrainerId = 0;
 EWRAM_DATA static u8 *sTrainerBattleEndScript = NULL;
+// Roadmap S2: TRUE while rebattling a defeated trainer. Read by the battle script to skip prize money.
+EWRAM_DATA bool8 gIsTrainerRebattle = FALSE;
 EWRAM_DATA static bool8 sShouldCheckTrainerBScript = FALSE;
 EWRAM_DATA static u8 sNoOfPossibleTrainerRetScripts = 0;
 
@@ -1089,6 +1091,7 @@ void InitTrainerBattleParameter(void)
 {
     memset(gTrainerBattleParameter.data, 0, sizeof(TrainerBattleParameter));
     sTrainerBattleEndScript = NULL;
+    gIsTrainerRebattle = FALSE;
 }
 
 void TrainerBattleLoadArgs(const u8 *data)
@@ -1216,6 +1219,52 @@ static void BattleSetup_ConfigureApproachingTrainerBattle(TrainerBattleParameter
     return;
 }
 
+// Roadmap S2: no rebattles inside gyms (leaders and gym trainers), the Elite Four / Champion rooms,
+// or against rivals.
+static bool32 CanRebattleTrainer(const TrainerBattleParameter *battleParams)
+{
+    static const u16 sNoRebattleMaps[] =
+    {
+        MAP_EVER_GRANDE_CITY_SIDNEYS_ROOM,
+        MAP_EVER_GRANDE_CITY_PHOEBES_ROOM,
+        MAP_EVER_GRANDE_CITY_GLACIAS_ROOM,
+        MAP_EVER_GRANDE_CITY_DRAKES_ROOM,
+        MAP_EVER_GRANDE_CITY_CHAMPIONS_ROOM,
+        MAP_RUSTBORO_CITY_GYM,
+        MAP_DEWFORD_TOWN_GYM,
+        MAP_MAUVILLE_CITY_GYM,
+        MAP_LAVARIDGE_TOWN_GYM_1F,
+        MAP_LAVARIDGE_TOWN_GYM_B1F,
+        MAP_PETALBURG_CITY_GYM,
+        MAP_FORTREE_CITY_GYM,
+        MAP_MOSSDEEP_CITY_GYM,
+        MAP_SOOTOPOLIS_CITY_GYM_1F,
+        MAP_SOOTOPOLIS_CITY_GYM_B1F,
+    };
+    u16 curMap = (gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum;
+    u32 i;
+
+    if (battleParams->params.earlyRival)
+        return FALSE;
+
+    switch (GetTrainerClassFromId(battleParams->params.opponentA))
+    {
+    case TRAINER_CLASS_RIVAL:
+    case TRAINER_CLASS_RIVAL_EARLY_FRLG:
+    case TRAINER_CLASS_RIVAL_LATE_FRLG:
+        return FALSE;
+    default:
+        break;
+    }
+
+    for (i = 0; i < ARRAY_COUNT(sNoRebattleMaps); i++)
+    {
+        if (sNoRebattleMaps[i] == curMap)
+            return FALSE;
+    }
+    return TRUE;
+}
+
 static void BattleSetup_ConfigureTrainerBattle(TrainerBattleParameter *battleParams, struct ScriptStack *scrStack)
 {
     SetMapVarsToTrainerA();
@@ -1225,8 +1274,16 @@ static void BattleSetup_ConfigureTrainerBattle(TrainerBattleParameter *battlePar
     PUSH       (EventSnippet_RevealTrainer)
 
     bool32 isTrainerDefeated = !battleParams->params.skipFlagCheck && GetTrainerFlag();
+    // Roadmap S2: any defeated trainer can be rebattled by talking to them (same team).
+    // Gyms and rivals are excluded; vanilla Match Call rematches (isRematch) are unchanged.
+    bool32 isRebattle = isTrainerDefeated && !battleParams->params.isRematch && CanRebattleTrainer(battleParams);
 
-    if ((isTrainerDefeated && !battleParams->params.isRematch)
+    gIsTrainerRebattle = isRebattle; // cleared at the next trainer battle setup or battle end
+    if (isRebattle)
+    {
+        PUSH(EventSnippet_AskRebattle) // NO jumps to the normal post-battle script
+    }
+    else if ((isTrainerDefeated && !battleParams->params.isRematch)
     || (!IsTrainerReadyForRematch() && battleParams->params.isRematch)) {
         PUSH(EventSnippet_GotoPostBattleScript)
         return;
@@ -1254,7 +1311,14 @@ static void BattleSetup_ConfigureTrainerBattle(TrainerBattleParameter *battlePar
     PUSH_IF_SET(EventSnippet_SetTrainerFacingDirection, battleParams->params.facePlayer);
     PUSH_IF_SET(EventSnippet_ShowTrainerIntroMsg, battleParams->params.introTextA)
     PUSH_IF_ELSE(EventSnippet_DoRematchTrainerBattle, EventSnippet_DoTrainerBattle, battleParams->params.isRematch)
-    PUSH_IF_ELSE(EventSnippet_GotoPostBattleScript, EventSnippet_EndTrainerBattle, battleParams->params.continueScript)
+    if (isRebattle)
+    {
+        PUSH(EventSnippet_EndRebattle)
+    }
+    else
+    {
+        PUSH_IF_ELSE(EventSnippet_GotoPostBattleScript, EventSnippet_EndTrainerBattle, battleParams->params.continueScript)
+    }
 
     return;
 }
@@ -1574,6 +1638,7 @@ static void CB2_EndTrainerBattle(void)
     HandleBattleVariantEndParty();
 
     gIsDebugBattle = FALSE;
+    gIsTrainerRebattle = FALSE;
     if (FollowerNPCIsBattlePartner())
     {
         RestorePartyAfterFollowerNPCBattle();

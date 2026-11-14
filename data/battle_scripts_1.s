@@ -2870,6 +2870,8 @@ BattleScript_LocalBattleWonLoseTexts::
 	waitstate
 	printstring STRINGID_TRAINER2LOSETEXT
 BattleScript_LocalBattleWonReward::
+	@ Roadmap S2: rebattles pay no prize money (and skip the "got ¥X" message)
+	jumpifbyte CMP_NOT_EQUAL, gIsTrainerRebattle, FALSE, BattleScript_PayDayMoneyAndPickUpItems
 	getmoneyreward
 	printstring STRINGID_PLAYERGOTMONEY
 	waitmessage B_WAIT_TIME_LONG
