@@ -1684,12 +1684,14 @@ void CB1_Overworld(void)
 }
 
 #define TINT_NIGHT Q_8_8(0.456) | Q_8_8(0.456) << 8 | Q_8_8(0.615) << 16
+// Warm orange sunset: keep red, cut green and blue. Red is 0xFF, not Q_8_8(1.0), because each channel is one byte.
+#define TINT_SUNSET 0xFF | Q_8_8(0.60) << 8 | Q_8_8(0.38) << 16
 
 const struct BlendSettings gTimeOfDayBlend[] =
 {
     [TIME_MORNING] = {.coeff = 4,  .blendColor = 0xA8B0E0,   .isTint = TRUE},
     [TIME_DAY]     = {.coeff = 0,  .blendColor = 0,          .isTint = FALSE},
-    [TIME_EVENING] = {.coeff = 4,  .blendColor = 0xA8B0E0,   .isTint = TRUE},
+    [TIME_EVENING] = {.coeff = 4,  .blendColor = TINT_SUNSET, .isTint = TRUE},
     [TIME_NIGHT]   = {.coeff = 10, .blendColor = TINT_NIGHT, .isTint = TRUE},
 };
 
