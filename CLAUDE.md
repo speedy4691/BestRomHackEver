@@ -48,7 +48,7 @@ Useful make vars: `UNUSED_ERROR=1 DEPRECATED_ERROR=1` (what CI uses), `KEEP_TEMP
 
 - Functions/structs `PascalCase`; variables/fields `camelCase`; globals `g` prefix, statics `s` prefix; macros/constants `CAPS_WITH_UNDERSCORES`.
 - Comments explain *why*, not what. Prefer config toggles over hard-coded behavior changes when touching expansion systems, to keep future `RHH` merges clean.
-- Memory is tight (EWRAM/IWRAM ~93% used); the link step prints usage — watch it when adding globals or save data.
+- Memory is tight (EWRAM/IWRAM ~86% used); the link step prints usage — watch it when adding globals or save data.
 
 ## Project overview
 
@@ -86,13 +86,13 @@ In this repo, these rules override ~/.claude/CLAUDE.md: use feature/ branch name
 - **Pokédex gates:** only caught Pokémon count; "seen" doesn't.
 - **No items for the player in trainer battles;** wild battles and held items unaffected; opposing trainers keep their items.
 - **No switching after a KO** (Battle Style locked to Set).
-- **Pokécenter item:** heals only in towns and cities; PC storage anywhere.
+- **PC anywhere:** {PKMN} Box Link key item opens PC storage anywhere except the Elite Four, Battle Frontier and Trainer Hill. No portable healing (2.7 was de-scoped).
 - **Return to last Pokémon Center** from anywhere, blocked in gyms, Elite Four and scripted events.
 - **HMs** can be forgotten AND field moves work through badges, but a compatible Pokémon (one that can learn the move) must be in the party.
-- **Bikes** (Mach and Acro) and a toggleable **Infinite Repel** from the start.
+- **Key items given by an NPC in the early game** (who and when not decided yet), who explains each one: Teleport, {PKMN} Box Link, Mach and Acro Bike, and a toggleable **Infinite Repel**. Until then they're only obtainable via the debug menu (custom key items go first in the debug "Fill Pocket Key Items" list in `src/debug.c`).
 - **Modern mechanics on:** reusable TMs, physical/special split, Fairy type, modern learnsets, ability pop-ups.
 - **FireRed and Gold/Silver species** added in the same cadence as their original games (by badge count).
 
 ## Roadmap order (next steps)
 
-2.1 Running shoes as default → 2.2 No switching after a KO → 2.3 HMs can be overwritten → 2.5 No items in trainer battles → 2.6 Return to last Pokémon Center → 2.7 Pokécenter item → 2.8 Modern mechanics config batch → 2.9 Bikes and Infinite Repel from the start → then the vertical slice (3.x).
+Done: 2.1–2.3, 2.6–2.8. Deferred: 2.4 (waits on 4.3), 2.5 (to review with Will and Chase). In progress: 2.9 Bikes and Infinite Repel. Next: the vertical slice (3.x). The Google Sheet's Roadmap tab is the source of truth; update its Status and Notes after each merged PR.
