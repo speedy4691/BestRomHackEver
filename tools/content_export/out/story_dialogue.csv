@@ -1,4 +1,4 @@
-Scene ID,Map,Trigger,Speaker,Line #,Text,Requires flag,Sets flag,Status,Notes
+﻿Scene ID,Map,Trigger,Speaker,Line #,Text,Requires flag,Sets flag,Status,Notes
 OldaleTown_EventScript_TownSign,MAP_OLDALE_TOWN,On interact (sign/object),,1,OLDALE TOWN “Where things start off scarce.”,,,In game,text OldaleTown_Text_TownSign
 OldaleTown_EventScript_Girl,MAP_OLDALE_TOWN,On talk (NPC),Girl,1,"I want to take a rest, so I'm saving my progress.",,,In game,text OldaleTown_Text_SavingMyProgress
 OldaleTown_EventScript_MartEmployee,MAP_OLDALE_TOWN,On talk (NPC),Mart Employee,1,Hi! I work at a POKéMON MART. / Can I get you to come with me?,"FLAG_RECEIVED_POTION_OLDALE, FLAG_TEMP_1",FLAG_TEMP_1,In game,text OldaleTown_Text_IWorkAtPokemonMart

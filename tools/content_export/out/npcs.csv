@@ -1,4 +1,4 @@
-NPC ID,Map,X,Y,Sprite,Role or purpose,Dialogue or script reference,Status,Notes
+﻿NPC ID,Map,X,Y,Sprite,Role or purpose,Dialogue or script reference,Status,Notes
 MAP_PETALBURG_CITY:1,MAP_PETALBURG_CITY,16,18,WOMAN_4,Wallys Mom,PetalburgCity_EventScript_WallysMom,In game,hidden by FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM
 MAP_PETALBURG_CITY:LOCALID_PETALBURG_WALLY,MAP_PETALBURG_CITY,15,10,WALLY,Wally,,In game,no talk script (scripted actor); hidden by FLAG_HIDE_PETALBURG_CITY_WALLY
 MAP_PETALBURG_CITY:LOCALID_PETALBURG_BOY,MAP_PETALBURG_CITY,8,22,BOY_1,Boy,PetalburgCity_EventScript_Boy,In game,

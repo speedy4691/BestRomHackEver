@@ -1,4 +1,4 @@
-Map,X,Y,Item,Visible or hidden,Quantity,Location description,Status,Notes
+﻿Map,X,Y,Item,Visible or hidden,Quantity,Location description,Status,Notes
 MAP_PETALBURG_CITY,19,2,Max Revive,Visible,1,,In game,flag FLAG_ITEM_PETALBURG_CITY_MAX_REVIVE
 MAP_PETALBURG_CITY,3,28,Ether,Visible,1,,In game,flag FLAG_ITEM_PETALBURG_CITY_ETHER
 MAP_PETALBURG_CITY,11,29,Rare Candy,Hidden,1,,In game,flag FLAG_HIDDEN_ITEM_PETALBURG_CITY_RARE_CANDY

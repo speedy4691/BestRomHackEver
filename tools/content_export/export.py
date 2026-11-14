@@ -50,7 +50,8 @@ def read(path):
 def write_csv(name, rows):
     os.makedirs(OUT, exist_ok=True)
     path = os.path.join(OUT, name + ".csv")
-    with open(path, "w", encoding="utf-8", newline="") as f:
+    # utf-8-sig adds a BOM so Google Sheets File > Import reads the file as UTF-8 (without it, … became â€¦).
+    with open(path, "w", encoding="utf-8-sig", newline="") as f:
         w = csv.writer(f)
         w.writerow(HEADERS[name])
         for r in rows:
