@@ -5,29 +5,52 @@
 #include "pokemon.h"
 
 
-u32 GetCurrentLevelCap(void)
+// G1: caps until each badge is won, from the "Level caps and gates" tab of the content sheet.
+// partyCap: no EXP at or above it. catchCap: wild Pokémon above it can't be caught.
+// Only badge 1 is decided; the rest are expansion's placeholder values until the sheet is filled in.
+static const struct
 {
-    static const u32 sLevelCapFlagMap[][2] =
-    {
-        {FLAG_BADGE01_GET, 15},
-        {FLAG_BADGE02_GET, 19},
-        {FLAG_BADGE03_GET, 24},
-        {FLAG_BADGE04_GET, 29},
-        {FLAG_BADGE05_GET, 31},
-        {FLAG_BADGE06_GET, 33},
-        {FLAG_BADGE07_GET, 42},
-        {FLAG_BADGE08_GET, 46},
-        {FLAG_IS_CHAMPION, 58},
-    };
+    u16 flag;
+    u8 partyCap;
+    u8 catchCap;
+} sLevelCaps[] =
+{
+    {FLAG_BADGE01_GET, 15, 15}, // Roxanne
+    {FLAG_BADGE02_GET, 19, 19}, // placeholder
+    {FLAG_BADGE03_GET, 24, 24}, // placeholder
+    {FLAG_BADGE04_GET, 29, 29}, // placeholder
+    {FLAG_BADGE05_GET, 31, 31}, // placeholder
+    {FLAG_BADGE06_GET, 33, 33}, // placeholder
+    {FLAG_BADGE07_GET, 42, 42}, // placeholder
+    {FLAG_BADGE08_GET, 46, 46}, // placeholder
+    {FLAG_IS_CHAMPION, 58, 58}, // placeholder (Elite Four)
+};
 
+u32 GetCurrentCatchLevelCap(void)
+{
     u32 i;
 
     if (B_LEVEL_CAP_TYPE == LEVEL_CAP_FLAG_LIST)
     {
-        for (i = 0; i < ARRAY_COUNT(sLevelCapFlagMap); i++)
+        for (i = 0; i < ARRAY_COUNT(sLevelCaps); i++)
         {
-            if (!FlagGet(sLevelCapFlagMap[i][0]))
-                return sLevelCapFlagMap[i][1];
+            if (!FlagGet(sLevelCaps[i].flag))
+                return sLevelCaps[i].catchCap;
+        }
+    }
+    return MAX_LEVEL;
+}
+
+u32 GetCurrentLevelCap(void)
+{
+    u32 i;
+
+    if (B_LEVEL_CAP_TYPE == LEVEL_CAP_FLAG_LIST)
+    {
+        for (i = 0; i < ARRAY_COUNT(sLevelCaps); i++)
+        {
+            if (!FlagGet(sLevelCaps[i].flag))
+                return sLevelCaps[i].partyCap;
         }
     }
     else if (B_LEVEL_CAP_TYPE == LEVEL_CAP_VARIABLE)
