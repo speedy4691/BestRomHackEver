@@ -3755,6 +3755,17 @@ static void DebugAction_PCBag_Fill_PocketKeyItems(u8 taskId)
 {
     enum Item itemId;
 
+    // The pocket holds only BAG_KEYITEMS_COUNT items, so it fills up with vanilla items
+    // before reaching our custom ones at the end of the list. Add those first.
+    static const enum Item sCustomKeyItems[] = { ITEM_TELEPORT };
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sCustomKeyItems); i++)
+    {
+        if (CheckBagHasSpace(sCustomKeyItems[i], 1))
+            AddBagItem(sCustomKeyItems[i], 1);
+    }
+
     for (itemId = 1; itemId < ITEMS_COUNT; itemId++)
     {
         if (GetItemPocket(itemId) == POCKET_KEY_ITEMS && CheckBagHasSpace(itemId, 1))
