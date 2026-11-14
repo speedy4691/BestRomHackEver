@@ -234,6 +234,8 @@ void NewGameInitData(void)
     ResetItemFlags();
     ResetDexNav();
     ClearFollowerNPCData();
+    // Roadmap R2: National Pokédex from the start so non-Hoenn species are listed and counted.
+    EnableNationalPokedex();
 }
 
 static void ResetMiniGamesRecords(void)
