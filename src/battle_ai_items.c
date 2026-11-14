@@ -30,6 +30,9 @@ bool32 ShouldUseItem(enum BattlerId battler)
     bool32 shouldUse = FALSE;
     u32 healAmount = 0;
 
+    // Roadmap 2.5: opposing trainers never use items from their item list. Held items still work.
+    return FALSE;
+
     if (IsAiVsAiBattle())
         return FALSE;
 
