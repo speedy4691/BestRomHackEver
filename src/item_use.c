@@ -8,6 +8,7 @@
 #include "berry.h"
 #include "berry_powder.h"
 #include "bike.h"
+#include "caps.h"
 #include "coins.h"
 #include "data.h"
 #include "event_data.h"
@@ -1295,6 +1296,9 @@ static u32 GetBallThrowableState(void)
         return BALL_THROW_UNABLE_SEMI_INVULNERABLE;
     else if (FlagGet(WE_FLAG_NO_CATCHING) || !IsAllowedToUseBag())
         return BALL_THROW_UNABLE_DISABLED_FLAG;
+    else if (!(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_CATCH_TUTORIAL | BATTLE_TYPE_LEGENDARY))
+          && gBattleMons[GetCatchingBattler()].level > GetCurrentCatchLevelCap())
+        return BALL_THROW_UNABLE_ABOVE_CATCH_CAP; // G1: gift Pokémon are never thrown at, so they're exempt
 
     return BALL_THROW_ABLE;
 }
@@ -1307,6 +1311,7 @@ bool32 CanThrowBall(void)
 static const u8 sText_CantThrowPokeBall_TwoMons[] = _("Cannot throw a ball!\nThere are two Pokémon out there!\p");
 static const u8 sText_CantThrowPokeBall_SemiInvulnerable[] = _("Cannot throw a ball!\nThere's no Pokémon in sight!\p");
 static const u8 sText_CantThrowPokeBall_Disabled[] = _("POKé BALLS cannot be used\nright now!\p");
+static const u8 sText_CantThrowPokeBall_AboveCatchCap[] = _("This POKéMON is too strong\nto catch yet!\pThe catch cap is Lv. {STR_VAR_1}.\p");
 
 static void ItemUseInBattle_ShowPartyMenu(u8 taskId)
 {
@@ -1419,6 +1424,11 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
             break;
         case BALL_THROW_UNABLE_DISABLED_FLAG:
             failStr = sText_CantThrowPokeBall_Disabled;
+            cannotUse = TRUE;
+            break;
+        case BALL_THROW_UNABLE_ABOVE_CATCH_CAP:
+            ConvertIntToDecimalStringN(gStringVar1, GetCurrentCatchLevelCap(), STR_CONV_MODE_LEFT_ALIGN, 3);
+            failStr = sText_CantThrowPokeBall_AboveCatchCap;
             cannotUse = TRUE;
             break;
         }
