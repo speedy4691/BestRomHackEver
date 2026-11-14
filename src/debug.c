@@ -560,7 +560,8 @@ static const struct DebugMenuOption sDebugMenu_Actions_TimeMenu[] =
 {
     { COMPOUND_STRING("Get time…"),         DebugAction_ExecuteScript, Debug_EventScript_TellTheTime },
     { COMPOUND_STRING("Get time of day…"),  DebugAction_ExecuteScript, Debug_EventScript_PrintTimeOfDay },
-    { COMPOUND_STRING("Set time of day…"),  DebugAction_OpenSubMenuFakeRTC, sDebugMenu_Actions_TimeMenu_TimesOfDay },
+    // Also works with the real clock: ChangeTimeOfDay shifts the save's clock offset instead.
+    { COMPOUND_STRING("Set time of day…"),  DebugAction_OpenSubMenu,        sDebugMenu_Actions_TimeMenu_TimesOfDay },
     { COMPOUND_STRING("Set weekday…"),      DebugAction_OpenSubMenuFakeRTC, sDebugMenu_Actions_TimeMenu_Weekdays },
     { COMPOUND_STRING("Redo daily events"), DebugAction_TimeMenu_RedoDailyEvents },
     { COMPOUND_STRING("Check wall clock…"), DebugAction_ExecuteScript, PlayersHouse_2F_EventScript_CheckWallClock },
@@ -3581,6 +3582,35 @@ static void DebugAction_TimeMenu_ChangeTimeOfDay(u8 taskId)
     u32 input = ListMenu_ProcessInput(gTasks[taskId].tMenuTaskId);
 
     DebugAction_DestroyExtraWindow(taskId);
+    if (!OW_USE_FAKE_RTC)
+    {
+        // Real clock: jump the in-game time by rewriting the save's clock offset.
+        // Land in the middle of the period, not its start: each period's first hours
+        // cross-fade from the previous period's tint (see UpdateTimeOfDay).
+        // Keep the current day count so daily events don't fire again.
+        static const u8 sHours[][2] =
+        {
+            [TIME_MORNING] = { MORNING_HOUR_BEGIN, MORNING_HOUR_END },
+            [TIME_DAY]     = { DAY_HOUR_BEGIN,     DAY_HOUR_END },
+            [TIME_EVENING] = { EVENING_HOUR_BEGIN, EVENING_HOUR_END },
+            [TIME_NIGHT]   = { NIGHT_HOUR_BEGIN,   NIGHT_HOUR_END },
+        };
+        if (input < ARRAY_COUNT(sHours))
+        {
+            u32 begin = sHours[input][0];
+            u32 length = (sHours[input][1] + HOURS_PER_DAY - begin) % HOURS_PER_DAY; // night wraps past midnight
+            u32 midMinutes = (begin * MINUTES_PER_HOUR + length * MINUTES_PER_HOUR / 2) % (HOURS_PER_DAY * MINUTES_PER_HOUR);
+            // Evening is one hour that fades in from day the whole time; land 15 min before
+            // it ends so the sunset is mostly visible and evening encounters stay testable.
+            if (input == TIME_EVENING)
+                midMinutes = EVENING_HOUR_END * MINUTES_PER_HOUR - 15;
+            RtcCalcLocalTime();
+            RtcCalcLocalTimeOffset(gLocalTime.days, midMinutes / MINUTES_PER_HOUR, midMinutes % MINUTES_PER_HOUR, 0);
+        }
+        Debug_DestroyMenu_Full(taskId);
+        SetMainCallback2(CB2_LoadMap);
+        return;
+    }
     switch (input)
     {
     case TIME_MORNING:
