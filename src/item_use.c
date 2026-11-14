@@ -48,6 +48,7 @@
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/songs.h"
+#include "route_lock.h"
 
 static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
@@ -207,6 +208,15 @@ void DisplayDadsAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKey
     DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, gText_DadsAdvice);
 }
 
+// L1: items that leave or skip a locked route are refused until it is cleared.
+static bool32 TryRefuseItemOnLockedRoute(u8 taskId)
+{
+    if (!RouteLock_IsLocked())
+        return FALSE;
+    DisplayCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem, RouteLock_GetCantUseText());
+    return TRUE;
+}
+
 static void DisplayCannotDismountBikeMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
 {
     DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, sText_CantDismountBike);
@@ -254,6 +264,8 @@ void ItemUseOutOfBattle_InfiniteRepel(u8 taskId)
     static const u8 sText_InfiniteRepelOff[] = _("The Infinite Repel has been\nturned off.{PAUSE_UNTIL_PRESS}");
     const u8 *text;
 
+    if (!FlagGet(FLAG_INFINITE_REPEL) && TryRefuseItemOnLockedRoute(taskId))
+        return;
     FlagToggle(FLAG_INFINITE_REPEL);
     if (FlagGet(FLAG_INFINITE_REPEL))
     {
@@ -811,6 +823,8 @@ static bool32 IsCurMapPartyLockedChallengeArea(void)
 
 void ItemUseOutOfBattle_PokemonBoxLink(u8 taskId)
 {
+    if (TryRefuseItemOnLockedRoute(taskId))
+        return;
     if (IsCurMapPartyLockedChallengeArea())
     {
         DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
@@ -1045,6 +1059,8 @@ static void RemoveUsedItem(void)
 
 void ItemUseOutOfBattle_Repel(u8 taskId)
 {
+    if (TryRefuseItemOnLockedRoute(taskId))
+        return;
     if (REPEL_STEP_COUNT == 0)
         gTasks[taskId].func = Task_StartUseRepel;
     else if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
@@ -1182,6 +1198,8 @@ bool8 CanUseDigOrEscapeRopeOnCurMap(void)
 
 void ItemUseOutOfBattle_EscapeRope(u8 taskId)
 {
+    if (TryRefuseItemOnLockedRoute(taskId))
+        return;
     if (CanUseDigOrEscapeRopeOnCurMap() == TRUE)
     {
         sItemUseOnFieldCB = ItemUseOnFieldCB_EscapeRope;
@@ -1247,6 +1265,8 @@ static void ItemUseOnFieldCB_Teleport(u8 taskId)
 
 void ItemUseOutOfBattle_Teleport(u8 taskId)
 {
+    if (TryRefuseItemOnLockedRoute(taskId))
+        return;
     if (!IsTeleportItemBlockedOnCurMap())
     {
         sItemUseOnFieldCB = ItemUseOnFieldCB_Teleport;

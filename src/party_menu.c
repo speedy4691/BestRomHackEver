@@ -80,6 +80,7 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "route_lock.h"
 
 enum {
     MENU_SUMMARY,
@@ -4121,6 +4122,12 @@ static void CursorCb_FieldMove(u8 taskId)
     if (!IsFieldMoveUnlocked(fieldMove))
     {
         DisplayPartyMenuMessage(FieldMove_GetLockedMessage(fieldMove), TRUE);
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+    }
+    // L1: travel moves can't leave a locked route; route-clearing moves (Cut, Surf...) still work.
+    else if (RouteLock_IsLocked() && (fieldMove == FIELD_MOVE_FLY || fieldMove == FIELD_MOVE_DIG || fieldMove == FIELD_MOVE_TELEPORT))
+    {
+        DisplayPartyMenuMessage(RouteLock_GetCantUseText(), TRUE);
         gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
     }
     else if (SetUpFieldMove(fieldMove) == TRUE)
