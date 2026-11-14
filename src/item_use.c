@@ -734,8 +734,63 @@ static void Task_OpenRegisteredPokeblockCase(u8 taskId)
     }
 }
 
+static bool32 IsCurMapInList(const u16 *maps, u32 count)
+{
+    u16 curMap = gSaveBlock1Ptr->location.mapNum | (gSaveBlock1Ptr->location.mapGroup << 8);
+    u32 i;
+
+    for (i = 0; i < count; i++)
+    {
+        if (curMap == maps[i])
+            return TRUE;
+    }
+    return FALSE;
+}
+
+// Elite Four and Champion rooms, the halls between them, and the Hall of Fame.
+static bool32 IsCurMapEliteFour(void)
+{
+    static const u16 sEliteFourMaps[] =
+    {
+        MAP_EVER_GRANDE_CITY_SIDNEYS_ROOM,
+        MAP_EVER_GRANDE_CITY_PHOEBES_ROOM,
+        MAP_EVER_GRANDE_CITY_GLACIAS_ROOM,
+        MAP_EVER_GRANDE_CITY_DRAKES_ROOM,
+        MAP_EVER_GRANDE_CITY_CHAMPIONS_ROOM,
+        MAP_EVER_GRANDE_CITY_HALL1,
+        MAP_EVER_GRANDE_CITY_HALL2,
+        MAP_EVER_GRANDE_CITY_HALL3,
+        MAP_EVER_GRANDE_CITY_HALL4,
+        MAP_EVER_GRANDE_CITY_HALL5,
+        MAP_EVER_GRANDE_CITY_HALL_OF_FAME,
+    };
+    return IsCurMapInList(sEliteFourMaps, ARRAY_COUNT(sEliteFourMaps));
+}
+
+// Roadmap 2.7: PC storage anywhere, except the Elite Four and challenge areas where
+// swapping the party mid-challenge could break things (e.g. Battle Factory rentals).
+static bool32 IsCurMapPartyLockedChallengeArea(void)
+{
+    if (IsCurMapEliteFour())
+        return TRUE;
+
+    switch (gMapHeader.regionMapSectionId)
+    {
+    case MAPSEC_BATTLE_FRONTIER:
+    case MAPSEC_TRAINER_HILL:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 void ItemUseOutOfBattle_PokemonBoxLink(u8 taskId)
 {
+    if (IsCurMapPartyLockedChallengeArea())
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        return;
+    }
     sItemUseOnFieldCB = Task_AccessPokemonBoxLink;
     SetUpItemUseOnFieldCallback(taskId);
 }
@@ -1129,22 +1184,12 @@ static bool32 IsTeleportItemBlockedOnCurMap(void)
         MAP_MOSSDEEP_CITY_GYM,
         MAP_SOOTOPOLIS_CITY_GYM_1F,
         MAP_SOOTOPOLIS_CITY_GYM_B1F,
-        MAP_EVER_GRANDE_CITY_SIDNEYS_ROOM,
-        MAP_EVER_GRANDE_CITY_PHOEBES_ROOM,
-        MAP_EVER_GRANDE_CITY_GLACIAS_ROOM,
-        MAP_EVER_GRANDE_CITY_DRAKES_ROOM,
-        MAP_EVER_GRANDE_CITY_CHAMPIONS_ROOM,
-        MAP_EVER_GRANDE_CITY_HALL1,
-        MAP_EVER_GRANDE_CITY_HALL2,
-        MAP_EVER_GRANDE_CITY_HALL3,
-        MAP_EVER_GRANDE_CITY_HALL4,
-        MAP_EVER_GRANDE_CITY_HALL5,
-        MAP_EVER_GRANDE_CITY_HALL_OF_FAME,
     };
-    u16 curMap = gSaveBlock1Ptr->location.mapNum | (gSaveBlock1Ptr->location.mapGroup << 8);
-    u32 i;
 
     if (!CheckFollowerNPCFlag(FOLLOWER_NPC_FLAG_CAN_LEAVE_ROUTE))
+        return TRUE;
+
+    if (IsCurMapEliteFour())
         return TRUE;
 
     switch (gMapHeader.regionMapSectionId)
@@ -1157,12 +1202,7 @@ static bool32 IsTeleportItemBlockedOnCurMap(void)
         break;
     }
 
-    for (i = 0; i < ARRAY_COUNT(sBlockedMaps); i++)
-    {
-        if (curMap == sBlockedMaps[i])
-            return TRUE;
-    }
-    return FALSE;
+    return IsCurMapInList(sBlockedMaps, ARRAY_COUNT(sBlockedMaps));
 }
 
 static void Task_UseTeleportItemOnField(u8 taskId)
