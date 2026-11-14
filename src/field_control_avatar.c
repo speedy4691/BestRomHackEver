@@ -45,6 +45,7 @@
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 #include "route_lock.h"
+#include "gym_gate.h"
 
 static EWRAM_DATA u8 sWildEncounterImmunitySteps = 0;
 static EWRAM_DATA u16 sPrevMetatileBehavior = 0;
@@ -1124,6 +1125,11 @@ static bool8 TryDoorWarp(struct MapPosition *position, u16 metatileBehavior, enu
             warpEventId = GetWarpEventAtMapPosition(&gMapHeader, position);
             if (warpEventId != WARP_ID_NONE && IsWarpMetatileBehavior(metatileBehavior) == TRUE)
             {
+                const struct WarpEvent *warp = &gMapHeader.events->warps[warpEventId];
+
+                // G2: gym doors stay shut until enough species are caught.
+                if (GymGate_TryBlockWarp(warp->mapGroup, warp->mapNum))
+                    return TRUE;
                 StoreInitialPlayerAvatarState();
                 SetupWarp(&gMapHeader, warpEventId, position);
                 DoDoorWarp();
