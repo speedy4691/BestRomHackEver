@@ -1,4 +1,4 @@
-Trainer ID,Trainer name,Class,Map,Battle type,Slot,Species,Level,Move 1,Move 2,Move 3,Move 4,Held item,Ability,Nature,IVs,EVs,AI level,Status,Notes
+﻿Trainer ID,Trainer name,Class,Map,Battle type,Slot,Species,Level,Move 1,Move 2,Move 3,Move 4,Held item,Ability,Nature,IVs,EVs,AI level,Status,Notes
 TRAINER_SAWYER_1,SAWYER,Hiker,MAP_MT_CHIMNEY,Single,1,Geodude,21,,,,,,,,0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe,,Basic Trainer,In game,Pic: Hiker; Gender: Male; Music: Hiker
 TRAINER_GRUNT_AQUA_HIDEOUT_1,GRUNT,Team Aqua,MAP_AQUA_HIDEOUT_1F,Single,1,Poochyena,32,,,,,,,,0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe,,Check Bad Move,In game,Pic: Aqua Grunt M; Gender: Male; Music: Aqua
 TRAINER_GRUNT_AQUA_HIDEOUT_2,GRUNT,Team Aqua,MAP_AQUA_HIDEOUT_B1F,Single,1,Zubat,31,,,,,,,,0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe,,Check Bad Move,In game,Pic: Aqua Grunt M; Gender: Male; Music: Aqua
