@@ -23,6 +23,7 @@ struct RouteLock
     const u8 *lockText;
     const u8 *retreatText;
     const u8 *clearText;
+    bool8 noRunning; // while locked, the player can't run from wild battles
 };
 
 enum RouteLockDebugAction
@@ -31,6 +32,7 @@ enum RouteLockDebugAction
     ROUTE_LOCK_DEBUG_LOCK,
     ROUTE_LOCK_DEBUG_CLEAR,
     ROUTE_LOCK_DEBUG_RESET_ALL,
+    ROUTE_LOCK_DEBUG_TOGGLE_NO_RUNNING,
 };
 
 bool32 RouteLock_IsLocked(void);

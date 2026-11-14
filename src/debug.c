@@ -613,6 +613,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_RouteLock[] =
     { COMPOUND_STRING("Lock route here"),   DebugAction_RouteLock, (const void *)ROUTE_LOCK_DEBUG_LOCK },
     { COMPOUND_STRING("Clear route here"),  DebugAction_RouteLock, (const void *)ROUTE_LOCK_DEBUG_CLEAR },
     { COMPOUND_STRING("Reset all routes"),  DebugAction_RouteLock, (const void *)ROUTE_LOCK_DEBUG_RESET_ALL },
+    { COMPOUND_STRING("Toggle no running"), DebugAction_RouteLock, (const void *)ROUTE_LOCK_DEBUG_TOGGLE_NO_RUNNING },
     { NULL }
 };
 

@@ -35,6 +35,7 @@ static const struct RouteLock sRouteLocks[] =
         .lockText = COMPOUND_STRING("No turning back until you reach\nRUSTBORO CITY!"),
         .retreatText = COMPOUND_STRING("You can't turn back until you\nreach RUSTBORO CITY!"),
         .clearText = COMPOUND_STRING("ROUTE 104 cleared!"),
+        .noRunning = FALSE, // pilot: running from wild battles allowed
     },
 };
 
@@ -102,9 +103,17 @@ static void RunTextScript(const u8 *script, const u8 *text)
     ScriptContext_SetupScript(script);
 }
 
+static void UnlockRoute(void)
+{
+    VarSet(VAR_ROUTE_LOCK_ACTIVE, 0);
+    FlagClear(FLAG_ROUTE_LOCK_NO_RUNNING);
+}
+
 static void LockRoute(u32 routeId)
 {
     VarSet(VAR_ROUTE_LOCK_ACTIVE, routeId + 1);
+    if (sRouteLocks[routeId].noRunning)
+        FlagSet(FLAG_ROUTE_LOCK_NO_RUNNING);
     // Repels are blocked while locked, so switch off any that are running.
     FlagClear(FLAG_INFINITE_REPEL);
     VarSet(VAR_REPEL_STEP_COUNT, 0);
@@ -150,7 +159,7 @@ bool32 RouteLock_TryTriggerAtPlayer(void)
 
         if (route->map != map || !IsOnTile(route->clearTiles, route->clearTileCount, x, y))
             return FALSE;
-        VarSet(VAR_ROUTE_LOCK_ACTIVE, 0);
+        UnlockRoute();
         SetRouteCleared(lockedId, TRUE);
         RunTextScript(RouteLock_EventScript_Cleared, route->clearText);
         return TRUE;
@@ -204,7 +213,7 @@ void RouteLock_OnWhiteOut(void)
     if (lockedId < 0)
         return;
     ResetRouteTrainers(&sRouteLocks[lockedId]);
-    VarSet(VAR_ROUTE_LOCK_ACTIVE, 0);
+    UnlockRoute();
 }
 
 const u8 *RouteLock_GetCantUseText(void)
@@ -239,6 +248,15 @@ void RouteLock_DebugAction(enum RouteLockDebugAction action)
     s32 routeId;
     u32 i;
 
+    if (action == ROUTE_LOCK_DEBUG_TOGGLE_NO_RUNNING)
+    {
+        FlagToggle(FLAG_ROUTE_LOCK_NO_RUNNING);
+        StringCopy(gStringVar4, FlagGet(FLAG_ROUTE_LOCK_NO_RUNNING)
+                                ? COMPOUND_STRING("No running from wild\nbattles: ON.")
+                                : COMPOUND_STRING("No running from wild\nbattles: OFF."));
+        return;
+    }
+
     if (action == ROUTE_LOCK_DEBUG_RESET_ALL)
     {
         for (i = 0; i < ARRAY_COUNT(sRouteLocks); i++)
@@ -246,7 +264,7 @@ void RouteLock_DebugAction(enum RouteLockDebugAction action)
             SetRouteCleared(i, FALSE);
             ResetRouteTrainers(&sRouteLocks[i]);
         }
-        VarSet(VAR_ROUTE_LOCK_ACTIVE, 0);
+        UnlockRoute();
         StringCopy(gStringVar4, COMPOUND_STRING("All locked routes reset."));
         return;
     }
@@ -270,14 +288,14 @@ void RouteLock_DebugAction(enum RouteLockDebugAction action)
     case ROUTE_LOCK_DEBUG_CLEAR:
         SetRouteCleared(routeId, TRUE);
         if (GetLockedRouteId() == routeId)
-            VarSet(VAR_ROUTE_LOCK_ACTIVE, 0);
+            UnlockRoute();
         text = COMPOUND_STRING("{STR_VAR_1}: cleared.");
         break;
     case ROUTE_LOCK_DEBUG_RESET:
     default:
         SetRouteCleared(routeId, FALSE);
         if (GetLockedRouteId() == routeId)
-            VarSet(VAR_ROUTE_LOCK_ACTIVE, 0);
+            UnlockRoute();
         ResetRouteTrainers(&sRouteLocks[routeId]);
         text = COMPOUND_STRING("{STR_VAR_1}: reset (not locked,\nnot cleared, trainers back).");
         break;
