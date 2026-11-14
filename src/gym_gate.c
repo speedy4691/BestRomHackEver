@@ -64,3 +64,20 @@ bool32 GymGate_TryBlockWarp(u8 destMapGroup, u8 destMapNum)
     ScriptContext_SetupScript(GymGate_EventScript_Refuse);
     return TRUE;
 }
+
+// V1 special: puts the species count needed for the next gym not yet beaten in {STR_VAR_2} (Mom's send-off).
+void BufferNextGymGateSpecies(void)
+{
+    u32 i;
+    u32 needed = 0;
+
+    for (i = 0; i < ARRAY_COUNT(sGymGates); i++)
+    {
+        if (!FlagGet(sGymGates[i].badgeFlag))
+        {
+            needed = sGymGates[i].speciesNeeded;
+            break;
+        }
+    }
+    ConvertIntToDecimalStringN(gStringVar2, needed, STR_CONV_MODE_LEFT_ALIGN, 4);
+}

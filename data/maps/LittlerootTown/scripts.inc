@@ -892,14 +892,25 @@ LittlerootTown_EventScript_SetReceivedRunningShoes::
 	release
 	end
 
+@ V1: Mom's send-off (content sheet, Necessary Interactions K1-K6, N1, N3). Replaces the Running Shoes
+@ scene; running is on by default, so no shoes. Plays once: VAR_LITTLEROOT_TOWN_STATE goes 3 -> 4 after it.
+@ The only place the player gets these key items.
 LittlerootTown_EventScript_GiveRunningShoes::
-	msgbox LittlerootTown_Text_WearTheseRunningShoes, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_ITEM
-	message LittlerootTown_Text_SwitchShoesWithRunningShoes
-	waitfanfare
-	setflag FLAG_RECEIVED_RUNNING_SHOES
-	msgbox LittlerootTown_Text_ExplainRunningShoes, MSGBOX_DEFAULT
-	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_MomTeleporter, MSGBOX_DEFAULT
+	giveitem ITEM_TELEPORT
+	msgbox LittlerootTown_Text_MomBoxLink, MSGBOX_DEFAULT
+	giveitem ITEM_POKEMON_BOX_LINK
+	msgbox LittlerootTown_Text_MomBikes, MSGBOX_DEFAULT
+	giveitem ITEM_MACH_BIKE
+	giveitem ITEM_ACRO_BIKE
+	msgbox LittlerootTown_Text_MomInfiniteRepel, MSGBOX_DEFAULT
+	giveitem ITEM_INFINITE_REPEL
+	@ The numbers come from the cap table (src/caps.c) and the gym gate table (src/gym_gate.c).
+	special BufferCurrentLevelCap
+	msgbox LittlerootTown_Text_MomLevelCap, MSGBOX_DEFAULT
+	special BufferNextGymGateSpecies
+	msgbox LittlerootTown_Text_MomGymGate, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_MomTakeCare, MSGBOX_DEFAULT
 	closemessage
 	delay 30
 	return
@@ -917,40 +928,54 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "Let's go inside.$"
 
 LittlerootTown_Text_WaitPlayer:
-	.string "MOM: Wait, {PLAYER}!$"
+	.string "MOM: Wait, {PLAYER}!\n"
+	.string "Before you go, take these.\p"
+	.string "You'll need them out there.$"
 
-LittlerootTown_Text_WearTheseRunningShoes:
-	.string "MOM: {PLAYER}! {PLAYER}! Did you\n"
-	.string "introduce yourself to PROF. BIRCH?\p"
-	.string "Oh! What an adorable POKéMON!\n"
-	.string "You got it from PROF. BIRCH. How nice!\p"
-	.string "You're your father's child, all right.\n"
-	.string "You look good together with POKéMON!\p"
-	.string "Here, honey! If you're going out on an\n"
-	.string "adventure, wear these RUNNING SHOES.\p"
-	.string "They'll put a zip in your step!$"
+LittlerootTown_Text_MomTeleporter:
+	.string "MOM: This TELEPORTER takes you back\n"
+	.string "to the last POKéMON CENTER\l"
+	.string "you visited.\p"
+	.string "It won't work in GYMS, or on a route\n"
+	.string "you haven't made it through.$"
 
-LittlerootTown_Text_SwitchShoesWithRunningShoes:
-	.string "{PLAYER} switched shoes with the\n"
-	.string "RUNNING SHOES.$"
+LittlerootTown_Text_MomBoxLink:
+	.string "MOM: With this BOX LINK you can reach\n"
+	.string "your PC boxes anywhere and swap\l"
+	.string "POKéMON.\p"
+	.string "It can't heal them, though!$"
 
-LittlerootTown_Text_ExplainRunningShoes:
-	.string "MOM: {PLAYER}, those shoes came with\n"
-	.string "instructions.\p"
-	.string "“Press the B Button while wearing these\n"
-	.string "RUNNING SHOES to run extra-fast!\p"
-	.string "“Slip on these RUNNING SHOES and race\n"
-	.string "in the great outdoors!”$"
+LittlerootTown_Text_MomBikes:
+	.string "MOM: Your father wanted you to have\n"
+	.string "both BIKES.\p"
+	.string "The MACH BIKE is fast;\n"
+	.string "the ACRO BIKE does tricks.\p"
+	.string "Swap them from your BAG.$"
 
-LittlerootTown_Text_ComeHomeIfAnythingHappens:
-	.string "… … … … … … … …\n"
-	.string "… … … … … … … …\p"
-	.string "To think that you have your very own\n"
-	.string "POKéMON now…\l"
-	.string "Your father will be overjoyed.\p"
-	.string "…But please be careful.\n"
-	.string "If anything happens, you can come home.\p"
-	.string "Go on, go get them, honey!$"
+LittlerootTown_Text_MomInfiniteRepel:
+	.string "MOM: And this INFINITE REPEL keeps\n"
+	.string "wild POKéMON away whenever you\l"
+	.string "switch it on.$"
+
+@ {STR_VAR_1} = current level cap (src/caps.c).
+LittlerootTown_Text_MomLevelCap:
+	.string "MOM: One more thing: your POKéMON\n"
+	.string "won't grow past Lv. {STR_VAR_1} until you\l"
+	.string "beat ROXANNE in RUSTBORO.\p"
+	.string "Wild POKéMON stronger than that won't\n"
+	.string "let you catch them yet, either!$"
+
+@ {STR_VAR_2} = species needed for the next gym (src/gym_gate.c).
+LittlerootTown_Text_MomGymGate:
+	.string "MOM: And GYM LEADERS only accept\n"
+	.string "trainers who've done their research.\p"
+	.string "Catch at least {STR_VAR_2} different kinds\n"
+	.string "of POKéMON before you visit\l"
+	.string "ROXANNE's GYM!$"
+
+LittlerootTown_Text_MomTakeCare:
+	.string "MOM: Take care of yourself, and come\n"
+	.string "home sometimes!$"
 
 LittlerootTown_Text_CanUsePCToStoreItems:
 	.string "If you use a PC, you can store items\n"
