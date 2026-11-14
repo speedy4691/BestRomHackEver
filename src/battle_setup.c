@@ -1763,10 +1763,12 @@ const u8 *BattleSetup_GetScriptAddrAfterBattle(void)
 
 const u8 *BattleSetup_GetTrainerPostBattleScript(void)
 {
+    // Regular Match Call trainers' after-battle scripts only ask to register in the PokéNav; skip them.
     if (sShouldCheckTrainerBScript)
     {
         sShouldCheckTrainerBScript = FALSE;
-        if (TRAINER_BATTLE_PARAM.battleScriptRetAddrB != NULL)
+        if (TRAINER_BATTLE_PARAM.battleScriptRetAddrB != NULL
+         && !IsRegularMatchCallTrainer(TRAINER_BATTLE_PARAM.opponentB))
         {
             gWhichTrainerToFaceAfterBattle = 1;
             return TRAINER_BATTLE_PARAM.battleScriptRetAddrB;
@@ -1774,7 +1776,8 @@ const u8 *BattleSetup_GetTrainerPostBattleScript(void)
     }
     else
     {
-        if (TRAINER_BATTLE_PARAM.battleScriptRetAddrA != NULL)
+        if (TRAINER_BATTLE_PARAM.battleScriptRetAddrA != NULL
+         && !IsRegularMatchCallTrainer(TRAINER_BATTLE_PARAM.opponentA))
         {
             gWhichTrainerToFaceAfterBattle = 0;
             return TRAINER_BATTLE_PARAM.battleScriptRetAddrA;
@@ -1872,6 +1875,14 @@ s32 FirstBattleTrainerIdToRematchTableId(const struct RematchTrainer *table, u16
     }
 
     return -1;
+}
+
+// Regular trainers in the vanilla Match Call rematch table (everyone before Wally: not gym leaders,
+// Elite Four or story characters). They no longer ask to register in the PokéNav, so they never call.
+bool32 IsRegularMatchCallTrainer(u16 trainerId)
+{
+    s32 index = FirstBattleTrainerIdToRematchTableId(gRematchTable, trainerId);
+    return index >= 0 && index < REMATCH_SPECIAL_TRAINER_START;
 }
 
 s32 TrainerIdToRematchTableId(const struct RematchTrainer *table, u16 trainerId)
@@ -2081,7 +2092,7 @@ static u32 GetTrainerMatchCallFlag(u32 trainerId)
 
 static void RegisterTrainerInMatchCall(void)
 {
-    if (FlagGet(FLAG_HAS_MATCH_CALL))
+    if (FlagGet(FLAG_HAS_MATCH_CALL) && !IsRegularMatchCallTrainer(TRAINER_BATTLE_PARAM.opponentA))
     {
         u32 matchCallFlagId = GetTrainerMatchCallFlag(TRAINER_BATTLE_PARAM.opponentA);
         if (matchCallFlagId != 0xFFFF)
