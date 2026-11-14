@@ -10888,6 +10888,11 @@ bool32 IsBattlerInvalidForSpreadMove(enum BattlerId battlerAtk, enum BattlerId b
 
 bool32 IsAllowedToUseBag(void)
 {
+    // Roadmap 2.5: no Bag in trainer battles, always (not tied to B_VAR_NO_BAG_USE,
+    // which resets after a whiteout). Wild battles follow the var as normal.
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        return FALSE;
+
     switch (VarGet(B_VAR_NO_BAG_USE))
     {
     case NO_BAG_RESTRICTION:

@@ -579,6 +579,11 @@ void RunTextPrinters(void)
 
                     if (!currentPrinter->active)
                         break;
+
+                    // Count {PAUSE} down once per frame, not once per repeat, so pauses keep
+                    // their real length when a speed modifier makes text print many times per frame.
+                    if (currentPrinter->state == RENDER_STATE_PAUSE)
+                        break;
                 }
             }
             else
