@@ -2970,6 +2970,21 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         }
     }
 
+    // Core #21: Fly and Flash can only be used from this menu, so offer them to compatible mons that
+    // don't know them when the player has the HM and badge. Other HMs trigger from the overworld.
+    // Keep 3 slots free for Switch/Item/Cancel.
+    {
+        static const u8 sMenuOnlyHMFieldMoves[] = { FIELD_MOVE_FLY, FIELD_MOVE_FLASH };
+        for (i = 0; i < ARRAY_COUNT(sMenuOnlyHMFieldMoves); i++)
+        {
+            j = sMenuOnlyHMFieldMoves[i];
+            if (sPartyMenuInternal->numActions < ARRAY_COUNT(sPartyMenuInternal->actions) - 3
+             && !MonKnowsMove(&mons[slotId], FieldMove_GetMoveId(j))
+             && CanMonUseFieldMoveViaHM(&mons[slotId], j))
+                AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
+        }
+    }
+
     if (!InBattlePike())
     {
         if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
