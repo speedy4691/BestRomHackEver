@@ -24,7 +24,9 @@
 #include "load_save.h"
 #include "main.h"
 #include "menu.h"
+#include "moon.h"
 #include "new_game.h"
+#include "rtc.h"
 #include "option_menu.h"
 #include "overworld.h"
 #include "palette.h"
@@ -86,6 +88,7 @@ COMMON_DATA bool8 (*gMenuCallback)(void) = NULL;
 // EWRAM
 EWRAM_DATA static u8 sSafariBallsWindowId = 0;
 EWRAM_DATA static u8 sBattlePyramidFloorWindowId = 0;
+EWRAM_DATA static u8 sMoonWindowId = 0; // set to WINDOW_NONE or a window when the start menu opens
 EWRAM_DATA static u8 sStartMenuCursorPos = 0;
 EWRAM_DATA static u8 sNumStartMenuActions = 0;
 EWRAM_DATA static u8 sCurrentStartMenuActions[9] = {0};
@@ -153,6 +156,26 @@ static const struct WindowTemplate sWindowTemplate_SafariBalls = {
     .height = 4,
     .paletteNum = 15,
     .baseBlock = 0x8
+};
+
+// Q2: top-left box with the time of day and moon phase (same spot as the Safari Ball box,
+// which takes priority; they are never shown together).
+static const struct WindowTemplate sWindowTemplate_Moon = {
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 12,
+    .height = 4,
+    .paletteNum = 15,
+    .baseBlock = 0x8
+};
+
+static const u8 *const sTimeOfDayNames[TIMES_OF_DAY_COUNT] =
+{
+    [TIME_MORNING] = COMPOUND_STRING("Morning"),
+    [TIME_DAY]     = COMPOUND_STRING("Day"),
+    [TIME_EVENING] = COMPOUND_STRING("Evening"),
+    [TIME_NIGHT]   = COMPOUND_STRING("Night"),
 };
 
 static const u8 *const sPyramidFloorNames[FRONTIER_STAGES_PER_CHALLENGE + 1] =
@@ -465,8 +488,32 @@ static void ShowPyramidFloorWindow(void)
     CopyWindowToVram(sBattlePyramidFloorWindowId, COPYWIN_GFX);
 }
 
+static void ShowMoonWindow(void)
+{
+    enum TimeOfDay timeOfDay = GetTimeOfDay();
+
+    sMoonWindowId = AddWindow(&sWindowTemplate_Moon);
+    PutWindowTilemap(sMoonWindowId);
+    DrawStdWindowFrame(sMoonWindowId, FALSE);
+    if (timeOfDay < TIMES_OF_DAY_COUNT)
+        AddTextPrinterParameterized(sMoonWindowId, FONT_NORMAL, sTimeOfDayNames[timeOfDay], 0, 1, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(sMoonWindowId, FONT_NORMAL, gMoonPhaseNames[GetMoonPhase()], 0, 17, TEXT_SKIP_DRAW, NULL);
+    CopyWindowToVram(sMoonWindowId, COPYWIN_GFX);
+}
+
+static void RemoveMoonWindow(void)
+{
+    if (sMoonWindowId == WINDOW_NONE)
+        return;
+    ClearStdWindowAndFrameToTransparent(sMoonWindowId, FALSE);
+    CopyWindowToVram(sMoonWindowId, COPYWIN_GFX);
+    RemoveWindow(sMoonWindowId);
+    sMoonWindowId = WINDOW_NONE;
+}
+
 static void RemoveExtraStartMenuWindows(void)
 {
+    RemoveMoonWindow();
     if (GetSafariZoneFlag())
     {
         ClearStdWindowAndFrameToTransparent(sSafariBallsWindowId, FALSE);
@@ -535,6 +582,9 @@ static bool32 InitStartMenuStep(void)
             ShowSafariBallsWindow();
         if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
             ShowPyramidFloorWindow();
+        sMoonWindowId = WINDOW_NONE;
+        if (!GetSafariZoneFlag() && CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
+            ShowMoonWindow();
         sInitStartMenuData[0]++;
         break;
     case 4:
@@ -760,6 +810,7 @@ static bool8 StartMenuSaveCallback(void)
 {
     if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
         RemoveExtraStartMenuWindows();
+    RemoveMoonWindow(); // the save info box uses the same top-left spot
 
     gMenuCallback = SaveStartCallback; // Display save menu
 
