@@ -1,0 +1,13 @@
+{
+  "areas": [
+    {"name": "Littleroot Town", "map": "MAP_LITTLEROOT_TOWN", "notion_page": "41b02f54749581849b17f5c1ddf05464"},
+    {"name": "Route 101", "map": "MAP_ROUTE101", "notion_page": "41b02f547495818d9710dc718d0db95d"},
+    {"name": "Oldale Town", "map": "MAP_OLDALE_TOWN", "notion_page": "41b02f54749581fbb97aed4d666777a1"},
+    {"name": "Route 103", "map": "MAP_ROUTE103", "notion_page": "41b02f54749581daa1dac290102b331e"},
+    {"name": "Route 102", "map": "MAP_ROUTE102", "notion_page": "41b02f547495814c9decd9aa0a0a55e3"},
+    {"name": "Petalburg City", "map": "MAP_PETALBURG_CITY", "notion_page": "41b02f5474958143b813f31ad2d43464"},
+    {"name": "Route 104", "map": "MAP_ROUTE104", "notion_page": "41b02f5474958188bd29c5ac5b15a729"},
+    {"name": "Petalburg Woods", "map": "MAP_PETALBURG_WOODS", "notion_page": "41b02f54749581639125f2679f0f8827"},
+    {"name": "Rustboro City", "map": "MAP_RUSTBORO_CITY", "notion_page": "41b02f5474958144a12acb67cc881192"}
+  ]
+}
