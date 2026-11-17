@@ -28,7 +28,7 @@ make clean-generated         # wipe auto-generated headers (see below) if they g
 make tidy                    # remove build outputs, keep tools
 ```
 
-Useful make vars: `UNUSED_ERROR=1 DEPRECATED_ERROR=1` (what CI uses), `KEEP_TEMPS=1` (keep `.i`/`.s` intermediates), `ANALYZE=1`. CI (`.github/workflows/build.yml`) builds Emerald + FRLG and runs `make check`.
+Useful make vars: `UNUSED_ERROR=1 DEPRECATED_ERROR=1` (what CI uses), `KEEP_TEMPS=1` (keep `.i`/`.s` intermediates), `ANALYZE=1`. CI (`.github/workflows/build.yml`) builds Emerald only (FRLG jobs removed; this hack is Emerald-only) and runs `make check`.
 
 ## Architecture
 
