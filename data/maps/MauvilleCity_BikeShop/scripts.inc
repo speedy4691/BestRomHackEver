@@ -17,7 +17,7 @@ MauvilleCity_BikeShop_EventScript_SkipGreeting::
 	goto MauvilleCity_BikeShop_EventScript_ChooseBike
 	end
 
-@ V1: Rydel gives no bike (Mom gives both); he only explains them, then later talks use the repeat line.
+@ V1: Rydel gives no bike (Mom gives both, bought by Dad); he only explains them, then later talks use the repeat line.
 MauvilleCity_BikeShop_EventScript_ChooseBike::
 	msgbox MauvilleCity_BikeShop_Text_ExplainBikesChooseWhichOne, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_BIKE
@@ -122,8 +122,9 @@ MauvilleCity_BikeShop_Text_DidYouComeFromFarAway:
 	.string "of my BIKES in your BAG!$"
 
 MauvilleCity_BikeShop_Text_ExplainBikesChooseWhichOne:
-	.string "RYDEL: Your mom bought both the\n"
-	.string "MACH BIKE and the ACRO BIKE from me!\p"
+	.string "RYDEL: Your dad bought both the\n"
+	.string "MACH BIKE and the ACRO BIKE from me\l"
+	.string "for you!\p"
 	.string "The MACH BIKE is for cyclists who want\n"
 	.string "to feel the wind with their bodies!\p"
 	.string "And the ACRO BIKE is for those who\n"
