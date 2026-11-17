@@ -35,7 +35,7 @@ static const struct RouteLock sRouteLocks[] =
         .lockText = COMPOUND_STRING("No turning back until you reach\nRUSTBORO CITY!"),
         .retreatText = COMPOUND_STRING("You can't turn back until you\nreach RUSTBORO CITY!"),
         .clearText = COMPOUND_STRING("ROUTE 104 cleared!"),
-        .noRunning = FALSE, // pilot: running from wild battles allowed
+        .noRunning = TRUE, // no running from wild battles while locked (the route's Trainer Tips sign says so)
     },
 };
 
