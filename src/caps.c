@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "event_data.h"
 #include "caps.h"
+#include "string_util.h"
 #include "pokemon.h"
 
 
@@ -138,4 +139,10 @@ u32 GetCurrentEVCap(void)
     }
 
     return MAX_TOTAL_EVS;
+}
+
+// V1 special: puts the current party level cap in {STR_VAR_1} for dialogue (Mom's send-off).
+void BufferCurrentLevelCap(void)
+{
+    ConvertIntToDecimalStringN(gStringVar1, GetCurrentLevelCap(), STR_CONV_MODE_LEFT_ALIGN, 3);
 }
