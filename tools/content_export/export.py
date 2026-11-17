@@ -25,7 +25,8 @@ SLICE_MAP_PREFIXES = ("LittlerootTown", "Route101", "OldaleTown", "Route102", "R
                       "PetalburgCity", "Route104", "PetalburgWoods", "RustboroCity")
 
 HEADERS = {
-    "trainers": ["Trainer ID", "Trainer name", "Class", "Map", "Battle type", "Slot", "Species", "Level",
+    "trainers": ["Trainer ID", "Trainer name", "Class", "Map", "X", "Y", "Facing (movement type)", "Sight range",
+                 "Is rematch", "Battle type", "Slot", "Species", "Level",
                  "Move 1", "Move 2", "Move 3", "Move 4", "Held item", "Ability", "Nature", "IVs", "EVs",
                  "AI level", "Status", "Notes"],
     "trainer_dialogue": ["Trainer ID", "Trainer name", "Map", "Intro line", "Defeat line", "Post-battle line",
@@ -34,8 +35,8 @@ HEADERS = {
                    "Source game", "Status", "Notes"],
     "items_on_maps": ["Map", "X", "Y", "Item", "Visible or hidden", "Quantity", "Location description", "Status",
                       "Notes"],
-    "npcs": ["NPC ID", "Map", "X", "Y", "Sprite", "Role or purpose", "Dialogue or script reference", "Status",
-             "Notes"],
+    "npcs": ["NPC ID", "Map", "X", "Y", "Facing (movement type)", "Sprite", "Role or purpose",
+             "Dialogue or script reference", "Status", "Notes"],
     "story_dialogue": ["Scene ID", "Map", "Trigger", "Speaker", "Line #", "Text", "Requires flag", "Sets flag",
                        "Status", "Notes"],
     "lists": ["Species", "Moves", "Items", "Maps", "Trainer classes"],
@@ -73,6 +74,25 @@ def title_from_const(c, prefix):
 
 
 # ---------------------------------------------------------------- names (species, moves, items, classes)
+
+def movement_name(const):
+    """MOVEMENT_TYPE_FACE_DOWN -> "Face down" (reversible: upper-case, spaces to _, add the prefix)."""
+    if not const:
+        return ""
+    return const.replace("MOVEMENT_TYPE_", "").replace("_", " ").capitalize()
+
+
+def load_rematch_table():
+    """gRematchTable (src/battle_setup.c): trainer -> (first trainer of its row, position 1-5)."""
+    table = {}
+    for m in re.finditer(r"REMATCH\(([^)]*)\)", read("src/battle_setup.c")):
+        a = [x.strip() for x in m.group(1).split(",")]
+        if len(a) != 6 or not a[5].startswith("MAP_"):
+            continue
+        for pos, t in enumerate(a[:5], 1):
+            table.setdefault(t, (a[0], pos))
+    return table
+
 
 def load_species():
     """SPECIES_X -> unique readable name (forms get "-Form", e.g. Venusaur-Mega)."""
@@ -396,6 +416,39 @@ def main():
             for t in a[:5]:
                 trainer_map.setdefault(t, a[5])
 
+    # trainer -> objects (map, object event) whose talk/sight script starts the battle
+    label_objects = defaultdict(list)
+    for d, m in maps.items():
+        for o in m.get("object_events", []):
+            if o.get("script"):
+                label_objects[o["script"]].append(o)
+    rematches = load_rematch_table()
+
+    def trainer_position(t):
+        """X, Y, Facing, Sight range for trainer t; rematch versions use the first trainer's object."""
+        b = battles.get(t)
+        objs = label_objects.get(b["label"], []) if b else []
+        if not objs and t in rematches and rematches[t][1] > 1:
+            # Rematches are fought at the first trainer's object, if it's on the same map as this row's Map.
+            first_id = rematches[t][0]
+            first = battles.get(first_id)
+            if first and trainer_map.get(first_id) == trainer_map.get(t):
+                objs = label_objects.get(first["label"], [])
+        if not objs:
+            return ["", "", "", ""]
+        # Several objects can share one battle script (rare); list each value, in object order.
+        def col(f):
+            vals = [str(f(o)) for o in objs]
+            return vals[0] if len(set(vals)) == 1 else " / ".join(vals)
+        return [col(lambda o: o["x"]), col(lambda o: o["y"]), col(lambda o: movement_name(o.get("movement_type", ""))),
+                col(lambda o: o.get("trainer_sight_or_berry_tree_id", ""))]
+
+    def is_rematch(t):
+        if t not in rematches:
+            return "No"
+        first, pos = rematches[t]
+        return "No (has rematches)" if pos == 1 else "Yes (rematch %d of %s)" % (pos - 1, first)
+
     def text_of(label, notes):
         if not label:
             return ""
@@ -438,7 +491,8 @@ def main():
                 if cls_note:
                     notes.append(cls_note)
                 notes = extra + notes
-            rows.append([tr["id"], f.get("Name", ""), cls, trainer_map.get(tr["id"], ""), btype, slot, sp,
+            rows.append([tr["id"], f.get("Name", ""), cls, trainer_map.get(tr["id"], ""),
+                         *trainer_position(tr["id"]), is_rematch(tr["id"]), btype, slot, sp,
                          mf.get("Level", ""), *mv, held, mf.get("Ability", ""), mf.get("Nature", ""),
                          mf.get("IVs", ""), mf.get("EVs", ""), f.get("AI", ""), STATUS, "; ".join(notes)])
     counts = {"trainers": len(rows)}
@@ -566,7 +620,8 @@ def main():
                 ref, note = s, ""
             if o.get("flag") not in (None, "0"):
                 note = "; ".join(x for x in (note, "hidden by " + o["flag"]) if x)
-            npc_rows.append([mid + ":" + lid, mid, o["x"], o["y"], gfx.replace("OBJ_EVENT_GFX_", ""), role, ref, STATUS, note])
+            npc_rows.append([mid + ":" + lid, mid, o["x"], o["y"], movement_name(o.get("movement_type", "")),
+                             gfx.replace("OBJ_EVENT_GFX_", ""), role, ref, STATUS, note])
         for b in m.get("bg_events", []):
             if b.get("type") == "hidden_item":
                 it, n = it_lookup(b.get("item", ""))
