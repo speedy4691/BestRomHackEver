@@ -245,6 +245,7 @@ class Content:
                     text = self.texts[args[0]]
                     for token, ch in (("UP", "↑"), ("DOWN", "↓"), ("LEFT", "←"), ("RIGHT", "→")):
                         text = text.replace("{%s_ARROW}" % token, ch)
+                    text = text.replace("{PKMN}", "POKé")  # the game's single "POKé" glyph
                     return text
                 if cmd in ("goto", "call") and args and len(seen) < 3:
                     todo.append(args[0])
