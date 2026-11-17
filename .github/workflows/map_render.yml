@@ -1,0 +1,46 @@
+name: Map render (Notion)
+
+# Re-renders the area maps and updates their Notion pages whenever map data changes on main.
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/maps/**"
+      - "data/layouts/**"
+      - "data/tilesets/**"
+      - "src/data/trainers.party"
+      - "tools/map_render/**"
+  workflow_dispatch:
+
+# Two quick pushes shouldn't edit the same Notion pages at the same time.
+concurrency:
+  group: map-render
+  cancel-in-progress: false
+
+jobs:
+  render:
+    if: github.repository == 'speedy4691/BestRomHackEver'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Pillow
+        run: pip install -r tools/map_render/requirements.txt
+
+      - name: Render maps and upload to Notion
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: python tools/map_render/render.py --upload
+
+      - name: Keep the PNGs as a build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: area-maps
+          path: build/maps/*.png

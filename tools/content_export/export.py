@@ -225,7 +225,9 @@ def parse_inc_files():
                 texts[cur] = clean_text("".join(cur_strings))
             elif cur_lines and cur not in blocks:
                 blocks[cur] = (rel, cur_lines)
-        for line in open(path, encoding="utf-8"):
+        with open(path, encoding="utf-8") as f:
+            lines = f.readlines()
+        for line in lines:
             line = line.rstrip("\n")
             m = LABEL_RE.match(line)
             if m:

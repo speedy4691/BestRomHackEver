@@ -66,3 +66,8 @@ tools/aif2pcm/aif2pcm
 *.smolTM
 __pycache__
 .map_version
+
+# Local secrets (e.g. NOTION_TOKEN for tools/map_render)
+.env
+.env.*
+!.env.example
