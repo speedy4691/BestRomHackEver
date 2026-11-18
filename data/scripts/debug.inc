@@ -359,6 +359,14 @@ Debug_EventScript_Steven_Multi::
 	release
 	end
 
+@ Red-eyed aura prototype: wild Lv 25 Mewtwo with the red-eyed bit set.
+Debug_EventScript_RedEyedMewtwo::
+	setwildbattle SPECIES_MEWTWO, 25
+	callnative RedEyed_SetWildLeadRedEyed
+	dowildbattle
+	release
+	end
+
 Debug_EventScript_WallyTutorial::
 	special SavePlayerParty
 	special LoadWallyZigzagoon
