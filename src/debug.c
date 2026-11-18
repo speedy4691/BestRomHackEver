@@ -409,6 +409,7 @@ extern const u8 Debug_Follower_NPC_Not_Enabled[];
 extern const u8 Debug_EventScript_Steven_Multi[];
 extern const u8 Debug_EventScript_WallyTutorial[];
 extern const u8 Debug_EventScript_ChooseStarterAgain[];
+extern const u8 Debug_EventScript_RedEyedMewtwo[];
 extern const u8 Debug_EventScript_PrintTimeOfDay[];
 extern const u8 Debug_EventScript_TellTheTime[];
 extern const u8 Debug_EventScript_FakeRTCNotEnabled[];
@@ -629,6 +630,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
     { COMPOUND_STRING("Cheat start"),               DebugAction_Util_CheatStart },
     { COMPOUND_STRING("Route lock…"),               DebugAction_OpenSubMenu, sDebugMenu_Actions_RouteLock },
     { COMPOUND_STRING("Choose starter again"),      DebugAction_ExecuteScript, Debug_EventScript_ChooseStarterAgain },
+    { COMPOUND_STRING("Red-eyed Mewtwo battle"),    DebugAction_ExecuteScript, Debug_EventScript_RedEyedMewtwo },
     { COMPOUND_STRING("Berry Functions…"),          DebugAction_OpenSubMenu, sDebugMenu_Actions_BerryFunctions },
     { COMPOUND_STRING("EWRAM Counters…"),           DebugAction_ExecuteScript, Debug_EventScript_EWRAMCounters },
     { COMPOUND_STRING("Follower NPC…"),             DebugAction_OpenSubMenu, sDebugMenu_Actions_FollowerNPCMenu },

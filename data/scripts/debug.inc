@@ -370,6 +370,14 @@ Debug_Text_StarterChoice:
 	.string "{STR_VAR_1}: you chose {STR_VAR_2}.\n"
 	.string "Your rival gets {STR_VAR_3}.$"
 
+@ Red-eyed aura prototype: wild Lv 25 Mewtwo with the red-eyed bit set.
+Debug_EventScript_RedEyedMewtwo::
+	setwildbattle SPECIES_MEWTWO, 25
+	callnative RedEyed_SetWildLeadRedEyed
+	dowildbattle
+	release
+	end
+
 Debug_EventScript_WallyTutorial::
 	special SavePlayerParty
 	special LoadWallyZigzagoon
