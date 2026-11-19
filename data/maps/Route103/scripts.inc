@@ -19,6 +19,26 @@ Route103_EventScript_OpenAlteringCave::
 
 @ Opening 09: the vanilla Route 103 rival battle was removed; the rival battles at the Littleroot exit.
 
+@ Opening 10 (placeholder until the CAMERA is designed): with the CAMERA, interacting "photographs" the
+@ red-eyed WURMPLE, sets FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE (opens the Oldale gate) and hides it.
+Route103_EventScript_RedEyedWurmple::
+	lock
+	faceplayer
+	playmoncry SPECIES_WURMPLE, CRY_MODE_NORMAL
+	waitmoncry
+	goto_if_unset FLAG_RECEIVED_CAMERA, Route103_EventScript_RedEyedWurmpleNoCamera
+	msgbox Route103_Text_RedEyedWurmplePhoto, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE
+	removeobject LOCALID_ROUTE103_RED_EYED_MON
+	release
+	end
+
+Route103_EventScript_RedEyedWurmpleNoCamera::
+	msgbox Route103_Text_RedEyedWurmpleNoCamera, MSGBOX_DEFAULT
+	release
+	end
+
 Route103_Movement_RivalExitFacingNorth1:
 	walk_left
 	walk_down
@@ -222,3 +242,14 @@ Route103_Text_RouteSign:
 	.string "ROUTE 103\n"
 	.string "{DOWN_ARROW} OLDALE TOWN$"
 
+
+Route103_Text_RedEyedWurmplePhoto:
+	.string "A red-glowing WURMPLE!\p"
+	.string "{PLAYER} took a picture with the\n"
+	.string "CAMERA!\p"
+	.string "(TBD: the CAMERA is still being\n"
+	.string "designed.)$"
+
+Route103_Text_RedEyedWurmpleNoCamera:
+	.string "A red-glowing WURMPLE…\p"
+	.string "It doesn't seem to notice you.$"

@@ -40,6 +40,20 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_ROUTE103_RED_EYED_MON",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(WURMPLE)",
+      "x": 10,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_RED_EYED",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route103_EventScript_RedEyedWurmple",
+      "flag": "FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE"
+    },
+    {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
       "x": 71,
       "y": 11,
