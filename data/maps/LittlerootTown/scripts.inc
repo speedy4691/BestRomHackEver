@@ -973,6 +973,7 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	msgbox LittlerootTown_Text_MomLevelCap, MSGBOX_DEFAULT
 	special BufferNextGymGateSpecies
 	msgbox LittlerootTown_Text_MomGymGate, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_DadHealBeforeYouGo, MSGBOX_DEFAULT
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal
 	setflag FLAG_DAD_SENDOFF_DONE
@@ -1004,9 +1005,12 @@ LittlerootTown_Text_MomTeleporter:
 	.string "you haven't made it through.$"
 
 LittlerootTown_Text_MomBoxLink:
-	.string "DAD: With this BOX LINK you can reach\n"
-	.string "your PC boxes anywhere and swap\l"
-	.string "POKéMON.\p"
+	.string "DAD: This BOX LINK is your mom's own\n"
+	.string "creation.\p"
+	.string "She built it as a prototype while she\n"
+	.string "was working on BILL's PC.\p"
+	.string "With it you can reach your PC boxes\n"
+	.string "anywhere and swap POKéMON.\p"
 	.string "It can't heal them, though!$"
 
 LittlerootTown_Text_MomBikes:
@@ -1036,6 +1040,10 @@ LittlerootTown_Text_MomGymGate:
 	.string "Catch at least {STR_VAR_2} different kinds\n"
 	.string "of POKéMON before you visit\l"
 	.string "ROXANNE's GYM!$"
+
+LittlerootTown_Text_DadHealBeforeYouGo:
+	.string "DAD: Let me heal you before you set\n"
+	.string "out.$"
 
 LittlerootTown_Text_MomTakeCare:
 	.string "DAD: Take care of yourself, and come\n"
