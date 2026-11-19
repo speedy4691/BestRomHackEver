@@ -113,13 +113,22 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent::
 	waitfanfare
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter
-	goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
+	goto LittlerootTown_ProfessorBirchsLab_EventScript_StartErrand
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter::
 	setvar VAR_0x8004, 0
 	call Common_EventScript_NameReceivedPartyMon
-	goto LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
+	goto LittlerootTown_ProfessorBirchsLab_EventScript_StartErrand
+	end
+
+@ Opening 05: Birch gives 2 ULTRA BALLS and sends the player to STEVE in OLDALE TOWN.
+LittlerootTown_ProfessorBirchsLab_EventScript_StartErrand::
+	giveitem ITEM_ULTRA_BALL, 2
+	setflag FLAG_OPENING_ERRAND_STARTED
+	clearflag FLAG_HIDE_ROUTE_101_BOY
+	setvar VAR_BIRCH_LAB_STATE, 3
+	releaseall
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival::
@@ -485,6 +494,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_TryRatePokedexOrRegister::
 	goto_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3, ProfBirch_EventScript_RatePokedexOrRegister
 	goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, ProfBirch_EventScript_RatePokedexOrRegister
 	goto_if_eq VAR_BIRCH_LAB_STATE, 5, LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait
+	goto_if_set FLAG_OPENING_ERRAND_STARTED, LittlerootTown_ProfessorBirchsLab_EventScript_ErrandReminder
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome, MSGBOX_DEFAULT
 	release
 	end
@@ -548,6 +558,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex::
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	return
+
+LittlerootTown_ProfessorBirchsLab_EventScript_ErrandReminder::
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ErrandReminder, MSGBOX_DEFAULT
+	release
+	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait, MSGBOX_DEFAULT
@@ -682,18 +697,21 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 	.string "There's a lot of love there.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon:
-	.string "PROF. BIRCH: So, {PLAYER}{KUN}.\p"
-	.string "I've heard so much about you from\n"
-	.string "your father.\p"
-	.string "I've heard that you don't have your\n"
-	.string "own POKéMON yet.\p"
-	.string "But the way you battled earlier,\n"
-	.string "you pulled it off with aplomb!\p"
-	.string "I guess you have your father's blood\n"
-	.string "in your veins after all!\p"
-	.string "Oh, yes. As thanks for rescuing me,\n"
-	.string "I'd like you to have the POKéMON you\l"
-	.string "used earlier.\p"
+	.string "PROF. BIRCH: Thanks for the help,\n"
+	.string "{PLAYER}{KUN}.\p"
+	.string "I went out without POKéMON since the\n"
+	.string "ULTRA BALL never fails to catch\l"
+	.string "POKéMON on ROUTE 101.\p"
+	.string "But I've never seen a POKéMON acting\n"
+	.string "like this before…\p"
+	.string "It couldn't be caught!\p"
+	.string "I need to get to the bottom of this.\p"
+	.string "{PLAYER}{KUN}, can you do a favor for me?\p"
+	.string "I need you to run to OLDALE TOWN and\n"
+	.string "pick up something for me from SAFARI\l"
+	.string "GUIDE STEVE.\p"
+	.string "Please take the POKéMON you used in\n"
+	.string "battle along with 2 ULTRA BALLS.\p"
 	.string "{PLAYER} received the {STR_VAR_1}!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon:
@@ -718,6 +736,11 @@ LittlerootTown_ProfessorBirchsLab_Text_GetRivalToTeachYou:
 LittlerootTown_ProfessorBirchsLab_Text_DontBeThatWay:
 	.string "PROF. BIRCH: Oh, don't be that way.\n"
 	.string "You should go meet my kid.$"
+
+LittlerootTown_ProfessorBirchsLab_Text_ErrandReminder:
+	.string "PROF. BIRCH: I need you to run to\n"
+	.string "OLDALE TOWN and pick up something for\l"
+	.string "me from SAFARI GUIDE STEVE.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome:
 	.string "PROF. BIRCH: {RIVAL}?\n"
