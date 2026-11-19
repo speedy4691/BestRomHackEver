@@ -29,6 +29,7 @@ const u8 *GetStarterRegionName(u32 region);
 u32 GetRivalStarterSlot(u32 playerSlot);
 u16 GetRivalStarterPokemon(void);
 void SwapRivalStarterLineForRegion(struct Pokemon *party, u32 monsCount);
+void SetMonToRivalStarter(struct Pokemon *mon);
 void CB2_ChooseStarter(void);
 void Debug_ChooseStarterAgain(struct ScriptContext *ctx);
 

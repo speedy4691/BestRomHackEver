@@ -467,6 +467,17 @@ void SwapRivalStarterLineForRegion(struct Pokemon *party, u32 monsCount)
     }
 }
 
+// Opening 09: the Littleroot rival's first Pokémon is the rival's starter (counter to the player's,
+// same region), whatever trainers.party lists in that slot.
+void SetMonToRivalStarter(struct Pokemon *mon)
+{
+    u16 species = GetRivalStarterPokemon();
+    SetMonData(mon, MON_DATA_SPECIES, &species);
+    SetMonData(mon, MON_DATA_NICKNAME, GetSpeciesName(species));
+    CalculateMonStats(mon);
+    GiveMonInitialMoveset(mon);
+}
+
 // Debug: re-run the starter screen without the Route 101 scene or battle, then report the result
 // (region, player's starter, rival's starter) in gStringVar1-3. The Pokémon is not given.
 static void CB2_DebugStarterChosen(void)
