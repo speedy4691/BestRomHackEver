@@ -993,8 +993,7 @@ LittlerootTown_Text_DadHealBeforeYouGo:
 	.string "out.$"
 
 LittlerootTown_Text_MomTakeCare:
-	.string "DAD: Take care of yourself, and come\n"
-	.string "home sometimes!$"
+	.string "DAD: Take care, {PLAYER}!$"
 
 LittlerootTown_Text_CanUsePCToStoreItems:
 	.string "If you use a PC, you can store items\n"
