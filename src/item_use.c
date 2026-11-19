@@ -1244,6 +1244,10 @@ static bool32 IsTeleportItemBlockedOnCurMap(void)
     if (!CheckFollowerNPCFlag(FOLLOWER_NPC_FLAG_CAN_LEAVE_ROUTE))
         return TRUE;
 
+    // Necessary Interactions K1: locked until the Route 101 rival battle, so it can't be skipped.
+    if (!FlagGet(FLAG_DEFEATED_RIVAL_LITTLEROOT))
+        return TRUE;
+
     if (IsCurMapEliteFour())
         return TRUE;
 
