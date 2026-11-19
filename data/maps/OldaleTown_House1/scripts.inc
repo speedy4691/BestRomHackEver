@@ -7,6 +7,9 @@ OldaleTown_House1_EventScript_Steve::
 	faceplayer
 	goto_if_set FLAG_RECEIVED_PACKAGE_FROM_STEVE, OldaleTown_House1_EventScript_SteveEnd
 	goto_if_unset FLAG_OPENING_ERRAND_STARTED, OldaleTown_House1_EventScript_SteveEnd
+	@ Birch's ULTRA BALLS have to be used up first (any ULTRA BALL left in the BAG counts).
+	checkitem ITEM_ULTRA_BALL
+	goto_if_eq VAR_RESULT, TRUE, OldaleTown_House1_EventScript_SteveNotYet
 	msgbox OldaleTown_House1_Text_SteveGivesPackage, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_ITEM
 	message OldaleTown_House1_Text_ReceivedPackage
@@ -17,6 +20,11 @@ OldaleTown_House1_EventScript_Steve::
 	waitbuttonpress
 	closemessage
 OldaleTown_House1_EventScript_SteveEnd::
+	release
+	end
+
+OldaleTown_House1_EventScript_SteveNotYet::
+	msgbox OldaleTown_House1_Text_SteveNotYet, MSGBOX_DEFAULT
 	release
 	end
 
@@ -32,7 +40,7 @@ OldaleTown_House1_Text_LeftPokemonGoesOutFirst:
 OldaleTown_House1_Text_SteveGivesPackage:
 	.string "Hi there, {PLAYER}!\p"
 	.string "Oh, I see, PROF. BIRCH sent you.\p"
-	.string "Yes, him and I explored TARANGIRE\n"
+	.string "Yes, he and I explored TARANGIRE\n"
 	.string "NATIONAL PARK together many years\l"
 	.string "ago.\p"
 	.string "Here, give this to him and tell him to\n"
@@ -40,3 +48,11 @@ OldaleTown_House1_Text_SteveGivesPackage:
 
 OldaleTown_House1_Text_ReceivedPackage:
 	.string "{PLAYER} received the PACKAGE!$"
+
+OldaleTown_House1_Text_SteveNotYet:
+	.string "Hi there, {PLAYER}!\p"
+	.string "Oh, PROF. BIRCH sent you?\p"
+	.string "You've still got some ULTRA BALLS\n"
+	.string "there.\p"
+	.string "Go put them to use on some wild\n"
+	.string "POKéMON first, then come see me.$"

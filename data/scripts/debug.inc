@@ -897,6 +897,7 @@ Debug_Opening_AfterLabTalk:
 Debug_Opening_AfterSteve:
 	call Debug_Opening_AfterLabTalk
 	setflag FLAG_VISITED_OLDALE_TOWN
+	removeitem ITEM_ULTRA_BALL, 2
 	additem ITEM_PACKAGE
 	setflag FLAG_RECEIVED_PACKAGE_FROM_STEVE
 	return
