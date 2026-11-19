@@ -14541,7 +14541,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .description = COMPOUND_STRING(
             "Takes pictures of\n"
-            "red-glowing Pokémon\n"
+            "glowing Pokémon\n"
             "for Prof. Birch."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
