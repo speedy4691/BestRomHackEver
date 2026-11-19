@@ -250,6 +250,10 @@ BattleScript_RedEyedBallBounce::
 BattleScript_RedEyedBallBounceEnd:
 	finishaction
 
+BattleScript_FirstBattleUseBallPrompt::
+	printselectionstring STRINGID_FIRSTBATTLEUSEBALLPROMPT
+	endselectionscript
+
 BattleScript_RunByUsingItem::
 	playse SE_FLEE
 	setbyte gBattleOutcome, B_OUTCOME_RAN
