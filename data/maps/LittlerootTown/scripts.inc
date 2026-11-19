@@ -916,16 +916,14 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	return
 
 LittlerootTown_Text_OurNewHomeLetsGoInside:
-	.string "MOM: {PLAYER}, we're here, honey!\p"
-	.string "It must be tiring riding with our things\n"
-	.string "in the moving truck.\p"
-	.string "Well, this is LITTLEROOT TOWN.\p"
-	.string "How do you like it?\n"
-	.string "This is our new home!\p"
-	.string "It has a quaint feel, but it seems to be\n"
-	.string "an easy place to live, don't you think?\p"
-	.string "And, you get your own room, {PLAYER}!\n"
-	.string "Let's go inside.$"
+	.string "DAD: Well, looks like we're almost set\n"
+	.string "up here.\p"
+	.string "I'm going to miss RUSTBORO, but your\n"
+	.string "mom felt passionate about getting us\l"
+	.string "out of the city.\p"
+	.string "Once she finishes up her work, she'll\n"
+	.string "come meet us here and we can get fully\l"
+	.string "settled.$"
 
 LittlerootTown_Text_WaitPlayer:
 	.string "MOM: Wait, {PLAYER}!\n"
