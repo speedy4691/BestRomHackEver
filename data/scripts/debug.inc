@@ -932,6 +932,7 @@ Debug_Opening_AfterSendoff:
 	setflag FLAG_DAD_SENDOFF_DONE
 	setflag FLAG_SYS_B_DASH
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	setvar VAR_ROUTE101_STATE, 4
 	return
 
 Debug_Opening_AfterRival:
@@ -939,7 +940,7 @@ Debug_Opening_AfterRival:
 	additem ITEM_POKE_BALL, 25
 	setflag FLAG_DEFEATED_RIVAL_LITTLEROOT
 	setflag FLAG_DEFEATED_RIVAL_ROUTE103
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
+	setvar VAR_ROUTE101_STATE, 5
 	return
 
 @ OPENING_04: Littleroot, just below the exit. Walk north into Route 101.
@@ -970,16 +971,9 @@ Debug_EventScript_Opening08::
 	waitstate
 	end
 
-@ OPENING_09: the rival battle starts right away. It has to run on the Littleroot map, so outside
-@ Littleroot this warps there first; pick the option again once you're in town.
+@ OPENING_09: Littleroot, just below the exit, after Dad's send-off. Walk north onto Route 101.
 Debug_EventScript_Opening09::
-	callnative Debug_IsPlayerInLittleroot
-	goto_if_eq VAR_RESULT, FALSE, Debug_EventScript_Opening09_WarpFirst
 	call Debug_Opening_AfterSendoff
-	goto LittlerootTown_EventScript_RivalBattle
-	end
-
-Debug_EventScript_Opening09_WarpFirst:
 	warp MAP_LITTLEROOT_TOWN, 11, 3
 	waitstate
 	end
