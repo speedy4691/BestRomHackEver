@@ -343,11 +343,8 @@ PlayersHouse_1F_Text_BillTVSpecialOver:
 	.string "TV.$"
 
 PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor:
-	.string "Oh, yes.\n"
-	.string "One of my friends lives in town.\p"
-	.string "PROF. BIRCH is his name.\p"
-	.string "He lives right next door, so you should\n"
-	.string "go over and introduce yourself.$"
+	.string "DAD: One of mom's friends is next door,\n"
+	.string "PROF. BIRCH.$"
 
 PlayersHouse_1F_Text_SeeYouHoney:
 	.string "DAD: See you, honey!$"
