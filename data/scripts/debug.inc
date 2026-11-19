@@ -359,6 +359,17 @@ Debug_EventScript_Steven_Multi::
 	release
 	end
 
+@ Starter regions: reset the starter choice and re-open Birch's bag (no battle, no Pokémon given).
+Debug_EventScript_ChooseStarterAgain::
+	callnative Debug_ChooseStarterAgain, waitstate=1
+	msgbox Debug_Text_StarterChoice, MSGBOX_DEFAULT
+	release
+	end
+
+Debug_Text_StarterChoice:
+	.string "{STR_VAR_1}: you chose {STR_VAR_2}.\n"
+	.string "Your rival gets {STR_VAR_3}.$"
+
 Debug_EventScript_WallyTutorial::
 	special SavePlayerParty
 	special LoadWallyZigzagoon
