@@ -203,6 +203,7 @@ static bool8 AnimateSpriteInFigure8(struct Sprite *);
 enum Direction GetDirectionToFace(s16 x1, s16 y1, s16 x2, s16 y2);
 static u32 LoadDynamicFollowerPalette(enum Species species, bool32 shiny, bool32 female);
 static u32 LoadObjectEventMonPalette(struct ObjectEvent *objectEvent);
+static void Task_RedEyedObjectPulse(u8 taskId);
 static void FollowerSetGraphics(struct ObjectEvent *objEvent, enum Species species, bool32 shiny, bool32 female);
 static void ObjectEventSetGraphics(struct ObjectEvent *, const struct ObjectEventGraphicsInfo *);
 static void SpriteCB_VirtualObject(struct Sprite *);
@@ -2248,12 +2249,65 @@ static u32 LoadObjectEventMonPalette(struct ObjectEvent *objectEvent)
         {
             if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL)
                 UpdateSpritePaletteWithWeather(paletteNum, FALSE);
+            if (FindTaskIdByFunc(Task_RedEyedObjectPulse) == TASK_NONE)
+                gTasks[CreateTask(Task_RedEyedObjectPulse, 80)].data[1] = 0xFF;
             return paletteNum;
         }
     }
 #endif
     return LoadDynamicFollowerPalette(species, OW_SHINY(objectEvent), OW_FEMALE(objectEvent));
 }
+
+// Pulses the red tint of red-eyed overworld POKeMON, like the battle aura. Each red-eyed species has its own
+// palette slot (tag RED_EYED_OBJ_PAL_TAG_BASE + species), so nothing else is touched. The pulse is written to
+// the unfaded (base) palette, then weather and the day/night blend are re-applied on top, as for any sprite
+// palette. Paused during screen fades so it doesn't fight them. Ends when no red-eyed object is left.
+#define tPulseTimer data[0]
+#define tLastCoeff  data[1]
+static void Task_RedEyedObjectPulse(u8 taskId)
+{
+    u32 i, phase, half = RED_EYED_OBJ_PULSE_FRAMES / 2;
+    s16 coeff;
+    bool32 any = FALSE;
+
+    if (gMain.callback2 != CB2_Overworld || gPaletteFade.active
+     || gWeatherPtr->palProcessingState == WEATHER_PAL_STATE_SCREEN_FADING_IN
+     || gWeatherPtr->palProcessingState == WEATHER_PAL_STATE_SCREEN_FADING_OUT)
+        return;
+
+    phase = (u16)gTasks[taskId].tPulseTimer++ % RED_EYED_OBJ_PULSE_FRAMES;
+    if (phase >= half)
+        phase = RED_EYED_OBJ_PULSE_FRAMES - phase;
+    coeff = RED_EYED_OBJ_BASE_COEFF + (phase * RED_EYED_OBJ_PULSE_COEFF) / half;
+    if (coeff == gTasks[taskId].tLastCoeff)
+        return;
+    gTasks[taskId].tLastCoeff = coeff;
+
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        struct ObjectEvent *objectEvent = &gObjectEvents[i];
+        enum Species species;
+        u32 paletteNum;
+
+        if (!objectEvent->active || objectEvent->trainerType != TRAINER_TYPE_RED_EYED)
+            continue;
+        species = OW_SPECIES(objectEvent);
+        if (gSpeciesInfo[species].overworldPalette == NULL)
+            continue;
+        paletteNum = IndexOfSpritePaletteTag(RED_EYED_OBJ_PAL_TAG_BASE + species);
+        if (paletteNum >= 16)
+            continue;
+        any = TRUE;
+        RedEyed_TintColorsCoeff(gSpeciesInfo[species].overworldPalette, &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], 16, coeff);
+        CpuCopy16(&gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], &gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)], PLTT_SIZEOF(16));
+        UpdateSpritePaletteWithWeather(paletteNum, FALSE);
+    }
+
+    if (!any)
+        DestroyTask(taskId);
+}
+#undef tPulseTimer
+#undef tLastCoeff
 
 // Set graphics & sprite for a follower object event by species & shininess.
 static void FollowerSetGraphics(struct ObjectEvent *objEvent, enum Species species, bool32 shiny, bool32 female)
