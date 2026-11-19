@@ -10,6 +10,7 @@ Debug_ShowFieldMessageStringVar4::
 
 Debug_CheatStart::
 	setflag FLAG_SYS_POKEMON_GET
+	setflag FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE
 	setflag FLAG_RESCUED_BIRCH
 	setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
 	setflag FLAG_ADVENTURE_STARTED
@@ -848,3 +849,143 @@ Debug_EventScript_TellTheTime_Text_0:
 
 DebugEventScript_PrintWeekday_Text_0:
 	.string "Time of day: {STR_VAR_1}$"
+
+@ ---------------------------------------------------------------------------------------------
+@ Opening test starts (Utilities > Start at opening…). Use on a new game. Each start sets
+@ everything the earlier opening scenes would have set, gives a Hoenn Treecko (Lv 5) as the
+@ starter, then warps to where the scene starts. Each Debug_Opening_After* sets the state right
+@ after that scene and calls the one before it.
+Debug_Opening_AfterIntro:
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
+	setflag FLAG_SET_WALL_CLOCK
+	setflag FLAG_SEEN_BILL_TV_SPECIAL
+	setflag FLAG_SYS_TV_HOME
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
+	clearflag FLAG_HIDE_MAP_NAME_POPUP
+	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
+	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2
+	setvar VAR_LITTLEROOT_RIVAL_STATE, 3
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL
+	setvar VAR_LITTLEROOT_TOWN_STATE, 2
+	return
+
+Debug_Opening_AfterLabTalk:
+	call Debug_Opening_AfterIntro
+	setflag FLAG_SYS_POKEMON_GET
+	setflag FLAG_RESCUED_BIRCH
+	setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
+	setflag FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
+	setvar VAR_ROUTE101_STATE, 3
+	setvar VAR_STARTER_REGION, 0 @ Hoenn
+	setvar VAR_STARTER_MON, 0
+	givemon SPECIES_TREECKO, 5
+	additem ITEM_ULTRA_BALL, 2
+	setflag FLAG_OPENING_ERRAND_STARTED
+	clearflag FLAG_HIDE_ROUTE_101_BOY
+	setvar VAR_BIRCH_LAB_STATE, 3
+	return
+
+Debug_Opening_AfterSteve:
+	call Debug_Opening_AfterLabTalk
+	setflag FLAG_VISITED_OLDALE_TOWN
+	additem ITEM_PACKAGE
+	setflag FLAG_RECEIVED_PACKAGE_FROM_STEVE
+	return
+
+Debug_Opening_AfterLabReturn:
+	call Debug_Opening_AfterSteve
+	removeitem ITEM_PACKAGE
+	additem ITEM_CAMERA
+	setflag FLAG_RECEIVED_CAMERA
+	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_RECEIVED_POKENAV
+	setflag FLAG_HAS_MATCH_CALL
+	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
+	setvar VAR_REGISTER_BIRCH_STATE, 2
+	setflag FLAG_SYS_POKEDEX_GET
+	special SetUnlockedPokedexFlags
+	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
+	setvar VAR_BIRCH_LAB_STATE, 5
+	setflag FLAG_ADVENTURE_STARTED
+	setvar VAR_LITTLEROOT_RIVAL_STATE, 4
+	setvar VAR_LITTLEROOT_TOWN_STATE, 3
+	return
+
+Debug_Opening_AfterSendoff:
+	call Debug_Opening_AfterLabReturn
+	additem ITEM_TELEPORT
+	additem ITEM_POKEMON_BOX_LINK
+	additem ITEM_MACH_BIKE
+	additem ITEM_ACRO_BIKE
+	additem ITEM_INFINITE_REPEL
+	setflag FLAG_DAD_SENDOFF_DONE
+	setflag FLAG_SYS_B_DASH
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	return
+
+Debug_Opening_AfterRival:
+	call Debug_Opening_AfterSendoff
+	additem ITEM_POKE_BALL, 25
+	setflag FLAG_DEFEATED_RIVAL_LITTLEROOT
+	setflag FLAG_DEFEATED_RIVAL_ROUTE103
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
+	return
+
+@ OPENING_04: Littleroot, just below the exit. Walk north into Route 101.
+Debug_EventScript_Opening04::
+	call Debug_Opening_AfterIntro
+	warp MAP_LITTLEROOT_TOWN, 11, 3
+	waitstate
+	end
+
+@ OPENING_06: inside Oldale House 1. Talk to STEVE.
+Debug_EventScript_Opening06::
+	call Debug_Opening_AfterLabTalk
+	warp MAP_OLDALE_TOWN_HOUSE1, 0
+	waitstate
+	end
+
+@ OPENING_07: in Birch's lab, below Birch. Talk to him.
+Debug_EventScript_Opening07::
+	call Debug_Opening_AfterSteve
+	warp MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 5
+	waitstate
+	end
+
+@ OPENING_08: outside the lab door. Walk to the town exit.
+Debug_EventScript_Opening08::
+	call Debug_Opening_AfterLabReturn
+	warp MAP_LITTLEROOT_TOWN, 2
+	waitstate
+	end
+
+@ OPENING_09: the rival battle starts right away. It has to run on the Littleroot map, so outside
+@ Littleroot this warps there first; pick the option again once you're in town.
+Debug_EventScript_Opening09::
+	callnative Debug_IsPlayerInLittleroot
+	goto_if_eq VAR_RESULT, FALSE, Debug_EventScript_Opening09_WarpFirst
+	call Debug_Opening_AfterSendoff
+	goto LittlerootTown_EventScript_RivalBattle
+	end
+
+Debug_EventScript_Opening09_WarpFirst:
+	warp MAP_LITTLEROOT_TOWN, 11, 3
+	waitstate
+	end
+
+@ OPENING_10: Route 103, just below the red-eyed WURMPLE.
+Debug_EventScript_Opening10::
+	call Debug_Opening_AfterRival
+	warp MAP_ROUTE103, 10, 4
+	waitstate
+	end
