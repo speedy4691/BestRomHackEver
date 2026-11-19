@@ -8440,7 +8440,11 @@ static void Cmd_trysetcaughtmondexflags(void)
     else
     {
         HandleSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_CAUGHT, personality);
-        gBattlescriptCurrInstr = cmd->nextInstr;
+        // Opening: no POKeDEX registration screen until Birch has given the POKeDEX.
+        if (!FlagGet(FLAG_SYS_POKEDEX_GET))
+            gBattlescriptCurrInstr = cmd->failInstr;
+        else
+            gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
 

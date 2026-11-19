@@ -892,6 +892,10 @@ Debug_Opening_AfterLabTalk:
 	setflag FLAG_OPENING_ERRAND_STARTED
 	clearflag FLAG_HIDE_ROUTE_101_BOY
 	setvar VAR_BIRCH_LAB_STATE, 3
+	setflag FLAG_SYS_POKEDEX_GET
+	special SetUnlockedPokedexFlags
+	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	return
 
 Debug_Opening_AfterSteve:
@@ -912,10 +916,6 @@ Debug_Opening_AfterLabReturn:
 	setflag FLAG_HAS_MATCH_CALL
 	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
 	setvar VAR_REGISTER_BIRCH_STATE, 2
-	setflag FLAG_SYS_POKEDEX_GET
-	special SetUnlockedPokedexFlags
-	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
-	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	setvar VAR_BIRCH_LAB_STATE, 5
 	setflag FLAG_ADVENTURE_STARTED
 	setvar VAR_LITTLEROOT_RIVAL_STATE, 4

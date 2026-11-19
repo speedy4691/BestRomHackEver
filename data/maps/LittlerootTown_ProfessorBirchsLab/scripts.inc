@@ -124,6 +124,16 @@ LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter::
 @ Opening 05: Birch gives 2 ULTRA BALLS and sends the player to STEVE in OLDALE TOWN.
 LittlerootTown_ProfessorBirchsLab_EventScript_StartErrand::
 	giveitem ITEM_ULTRA_BALL, 2
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ErrandPokedex, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	message LittlerootTown_ProfessorBirchsLab_Text_LabReturnReceivedPokedex
+	waitmessage
+	waitfanfare
+	setflag FLAG_SYS_POKEDEX_GET
+	special SetUnlockedPokedexFlags
+	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ErrandPokedexExplain, MSGBOX_DEFAULT
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_TryCatchingSome, MSGBOX_DEFAULT
 	setflag FLAG_OPENING_ERRAND_STARTED
 	clearflag FLAG_HIDE_ROUTE_101_BOY
@@ -511,17 +521,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_LabReturn::
 	delay 30
 	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
 	setvar VAR_REGISTER_BIRCH_STATE, 2
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_LabReturnPokedex, MSGBOX_DEFAULT
-	goto_if_set FLAG_SYS_POKEDEX_GET, LittlerootTown_ProfessorBirchsLab_EventScript_LabReturnAlreadyHasPokedex
-	playfanfare MUS_OBTAIN_ITEM
-	message LittlerootTown_ProfessorBirchsLab_Text_LabReturnReceivedPokedex
-	waitmessage
-	waitfanfare
-	setflag FLAG_SYS_POKEDEX_GET
-	special SetUnlockedPokedexFlags
-LittlerootTown_ProfessorBirchsLab_EventScript_LabReturnAlreadyHasPokedex::
-	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
-	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_LabReturnCountingOnYou, MSGBOX_DEFAULT
 	setvar VAR_BIRCH_LAB_STATE, 5
 	setflag FLAG_ADVENTURE_STARTED
@@ -1101,20 +1100,22 @@ LittlerootTown_ProfessorBirchsLab_Text_LabReturnRegisteredBirch:
 	.string "Registered PROF. BIRCH in the\n"
 	.string "POKéNAV.$"
 
-LittlerootTown_ProfessorBirchsLab_Text_LabReturnPokedex:
-	.string "Oh, and one more thing. I ordered this\n"
-	.string "for my research, but I think you\l"
-	.string "should have this POKéDEX.$"
+LittlerootTown_ProfessorBirchsLab_Text_ErrandPokedex:
+	.string "Oh, and I ordered this for my research,\n"
+	.string "but I think you should have this\l"
+	.string "POKéDEX.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_LabReturnReceivedPokedex:
 	.string "{PLAYER} received the POKéDEX!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_LabReturnCountingOnYou:
-	.string "The POKéDEX is a high-tech tool that\n"
-	.string "automatically makes a record of any\l"
-	.string "POKéMON you meet or catch.\p"
 	.string "Now go on out there. I'm counting on\n"
 	.string "you, {PLAYER}{KUN}!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_TryCatchingSome:
 	.string "Try catching some POKéMON on the way!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_ErrandPokedexExplain:
+	.string "The POKéDEX is a high-tech tool that\n"
+	.string "automatically makes a record of any\l"
+	.string "POKéMON you meet or catch.$"
