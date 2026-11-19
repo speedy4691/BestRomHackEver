@@ -3841,7 +3841,8 @@ static void DebugAction_PCBag_Fill_PocketKeyItems(u8 taskId)
     // before reaching our custom ones at the end of the list. Add those first.
     static const enum Item sCustomKeyItems[] =
     {
-        ITEM_TELEPORT, ITEM_POKEMON_BOX_LINK, ITEM_MACH_BIKE, ITEM_ACRO_BIKE, ITEM_INFINITE_REPEL
+        ITEM_TELEPORT, ITEM_POKEMON_BOX_LINK, ITEM_MACH_BIKE, ITEM_ACRO_BIKE, ITEM_INFINITE_REPEL,
+        ITEM_PACKAGE, ITEM_CAMERA
     };
     u32 i;
 

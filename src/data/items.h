@@ -14518,6 +14518,39 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_MaxRepel,
     },
 
+    // Opening 06-07. Placeholder icons (Devon Parts / Devon Scope).
+    [ITEM_PACKAGE] =
+    {
+        .name = ITEM_NAME("Package"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A package from\n"
+            "Safari Guide Steve\n"
+            "for Prof. Birch."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_DevonParts,
+        .iconPalette = gItemIconPalette_DevonParts,
+    },
+
+    [ITEM_CAMERA] =
+    {
+        .name = ITEM_NAME("Camera"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Takes pictures of\n"
+            "red-glowing Pokémon\n"
+            "for Prof. Birch."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Camera,
+        .iconPic = gItemIcon_DevonScope,
+        .iconPalette = gItemIconPalette_DevonScope,
+    },
+
     [ITEM_BASEMENT_KEY] =
     {
         .name = ITEM_NAME("Basement Key"),

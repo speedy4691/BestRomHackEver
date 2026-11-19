@@ -1055,6 +1055,8 @@ enum __attribute__((packed)) Item
     // BestRomHackEver custom items (keep appended so saved item IDs never shift)
     ITEM_TELEPORT = 874,
     ITEM_INFINITE_REPEL = 875,
+    ITEM_PACKAGE = 876,
+    ITEM_CAMERA = 877,
 
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,

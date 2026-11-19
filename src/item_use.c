@@ -259,6 +259,17 @@ void ItemUseOutOfBattle_Mail(u8 taskId)
 STATIC_ASSERT(I_EXP_SHARE_ITEM < GEN_6 || I_EXP_SHARE_FLAG > TEMP_FLAGS_END, YouNeedToSetAFlagToUseGen6ExpShare);
 
 // Roadmap 2.9: toggles a repel effect with no step limit (see IsWildLevelAllowedByRepel).
+// Opening 07: placeholder until the Camera is designed.
+void ItemUseOutOfBattle_Camera(u8 taskId)
+{
+    static const u8 sText_CameraPlaceholder[] = _("The CAMERA isn't ready yet.\n(Placeholder.){PAUSE_UNTIL_PRESS}");
+
+    if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+        DisplayItemMessageOnField(taskId, sText_CameraPlaceholder, Task_CloseCantUseKeyItemMessage);
+    else
+        DisplayItemMessage(taskId, FONT_NORMAL, sText_CameraPlaceholder, CloseItemMessage);
+}
+
 void ItemUseOutOfBattle_InfiniteRepel(u8 taskId)
 {
     static const u8 sText_InfiniteRepelOn[] = _("The Infinite Repel has been\nturned on.{PAUSE_UNTIL_PRESS}");
