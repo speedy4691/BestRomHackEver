@@ -5,6 +5,7 @@ OldaleTown_House1_MapScripts::
 OldaleTown_House1_EventScript_Steve::
 	lock
 	faceplayer
+	goto_if_set FLAG_RECEIVED_CAMERA, OldaleTown_House1_EventScript_SteveCameraTips
 	goto_if_set FLAG_RECEIVED_PACKAGE_FROM_STEVE, OldaleTown_House1_EventScript_SteveEnd
 	goto_if_unset FLAG_OPENING_ERRAND_STARTED, OldaleTown_House1_EventScript_SteveEnd
 	@ Birch's ULTRA BALLS have to be used up first (any ULTRA BALL left in the BAG counts).
@@ -20,6 +21,11 @@ OldaleTown_House1_EventScript_Steve::
 	waitbuttonpress
 	closemessage
 OldaleTown_House1_EventScript_SteveEnd::
+	release
+	end
+
+OldaleTown_House1_EventScript_SteveCameraTips::
+	msgbox OldaleTown_House1_Text_SteveCameraTips, MSGBOX_DEFAULT
 	release
 	end
 
@@ -56,3 +62,10 @@ OldaleTown_House1_Text_SteveNotYet:
 	.string "there.\p"
 	.string "Go put them to use on some wild\n"
 	.string "POKéMON first, then come see me.$"
+
+OldaleTown_House1_Text_SteveCameraTips:
+	.string "Ah, I see BIRCH BOI gave you the\n"
+	.string "CAMERA.\p"
+	.string "Let me know if you need any tips on\n"
+	.string "how to use it.\p"
+	.string "(CAMERA instructions TBC)$"
