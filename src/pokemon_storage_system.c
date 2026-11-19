@@ -6447,10 +6447,27 @@ static void SetMovingMonData(u8 boxId, u8 position)
     sMovingMonOrigBoxPos = position;
 }
 
+// Core #38: a party POKeMON deposited through BILL's PC loses its EXP toward the next level.
+static void DrainDepositedMonExp(struct Pokemon *mon)
+{
+    u32 species, level, exp;
+
+    if (GetMonData(mon, MON_DATA_IS_EGG))
+        return;
+    species = GetMonData(mon, MON_DATA_SPECIES);
+    level = GetMonData(mon, MON_DATA_LEVEL);
+    exp = gExperienceTables[gSpeciesInfo[species].growthRate][level];
+    SetMonData(mon, MON_DATA_EXP, &exp);
+}
+
 static void SetPlacedMonData(u8 boxId, u8 position)
 {
     if (OW_PC_HEAL <= GEN_7)
         HealPokemon(&sStorage->movingMon);
+
+    // Only party -> box counts as a deposit; withdrawing and box-to-box moves keep their EXP.
+    if (boxId != TOTAL_BOXES_COUNT && sMovingMonOrigBoxId == TOTAL_BOXES_COUNT && FlagGet(FLAG_PC_EXP_DRAIN))
+        DrainDepositedMonExp(&sStorage->movingMon);
 
     if (boxId == TOTAL_BOXES_COUNT)
     {
