@@ -84,8 +84,31 @@ void RedEyed_StartEntryFlash(enum BattlerId battler)
 // callnative: marks the wild mon made by setwildbattle as red-eyed.
 void RedEyed_SetWildLeadRedEyed(struct ScriptContext *ctx)
 {
+    RedEyed_SetMonRedEyed(&gParties[B_TRAINER_OPPONENT_A][0]);
+}
+
+void RedEyed_SetMonRedEyed(struct Pokemon *mon)
+{
     bool8 isRedEyed = TRUE;
-    SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_IS_RED_EYED, &isRedEyed);
+    SetMonData(mon, MON_DATA_IS_RED_EYED, &isRedEyed);
+}
+
+// Overworld version of the tint: blend each colour toward red (index 0 is transparent).
+#define RED_EYED_OBJ_COEFF  6
+void RedEyed_TintColors(const u16 *src, u16 *dst, u32 count)
+{
+    u32 i;
+    s32 targetR = GET_R(RED_EYED_COLOR), targetG = GET_G(RED_EYED_COLOR), targetB = GET_B(RED_EYED_COLOR);
+
+    dst[0] = src[0];
+    for (i = 1; i < count; i++)
+    {
+        s32 r = GET_R(src[i]), g = GET_G(src[i]), b = GET_B(src[i]);
+        r += ((targetR - r) * RED_EYED_OBJ_COEFF) >> 4;
+        g += ((targetG - g) * RED_EYED_OBJ_COEFF) >> 4;
+        b += ((targetB - b) * RED_EYED_OBJ_COEFF) >> 4;
+        dst[i] = RGB(r, g, b);
+    }
 }
 
 static bool32 IsPaletteFree(enum BattlerId battler)

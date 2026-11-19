@@ -36,6 +36,7 @@ Route101_EventScript_StartBirchRescue::
 	applymovement LOCALID_ROUTE101_BIRCH, Route101_Movement_BirchFaceZigzagoon
 	waitmovement 0
 	msgbox Route101_Text_PleaseHelp, MSGBOX_DEFAULT
+	giveitem ITEM_ULTRA_BALL
 	closemessage
 	setvar VAR_ROUTE101_STATE, 2
 	releaseall
@@ -260,10 +261,10 @@ Route101_Text_HelpMe:
 	.string "H-help me!$"
 
 Route101_Text_PleaseHelp:
-	.string "Hello! You over there!\n"
-	.string "Please! Help!\p"
-	.string "In my BAG!\n"
-	.string "There's a POKé BALL!$"
+	.string "Hello! You over there! Please! Help!\p"
+	.string "In my BAG! Take a POKéMON from it!\p"
+	.string "And take this ULTRA BALL! Try to\n"
+	.string "catch the POKéMON attacking me!$"
 
 Route101_Text_DontLeaveMe:
 	.string "Wh-Where are you going?!\n"

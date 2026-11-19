@@ -10,6 +10,7 @@
 #include "decompress.h"
 #include "event_data.h"
 #include "event_object_movement.h"
+#include "red_eyed.h"
 #include "event_scripts.h"
 #include "faraway_island.h"
 #include "field_camera.h"
@@ -201,6 +202,7 @@ static void InitSpriteForFigure8Anim(struct Sprite *);
 static bool8 AnimateSpriteInFigure8(struct Sprite *);
 enum Direction GetDirectionToFace(s16 x1, s16 y1, s16 x2, s16 y2);
 static u32 LoadDynamicFollowerPalette(enum Species species, bool32 shiny, bool32 female);
+static u32 LoadObjectEventMonPalette(struct ObjectEvent *objectEvent);
 static void FollowerSetGraphics(struct ObjectEvent *objEvent, enum Species species, bool32 shiny, bool32 female);
 static void ObjectEventSetGraphics(struct ObjectEvent *, const struct ObjectEventGraphicsInfo *);
 static void SpriteCB_VirtualObject(struct Sprite *);
@@ -1863,7 +1865,7 @@ static u8 TrySetupObjectEventSprite(const struct ObjectEventTemplate *objectEven
     sprite = &gSprites[spriteId];
     // Use palette from species palette table
     if (spriteTemplate->paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC)
-        sprite->oam.paletteNum = LoadDynamicFollowerPalette(OW_SPECIES(objectEvent), OW_SHINY(objectEvent), OW_FEMALE(objectEvent));
+        sprite->oam.paletteNum = LoadObjectEventMonPalette(objectEvent);
     if (OW_GFX_COMPRESS && sprite->usingSheet)
         sprite->sheetSpan = GetSpanPerImage(sprite->oam.shape, sprite->oam.size);
     GetMapCoordsFromSpritePos(objectEvent->currentCoords.x + cameraX, objectEvent->currentCoords.y + cameraY, &sprite->x, &sprite->y);
@@ -2223,6 +2225,34 @@ static u32 LoadDynamicFollowerPalette(enum Species species, bool32 shiny, bool32
     if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL) // don't want to weather blend in fog
         UpdateSpritePaletteWithWeather(paletteNum, FALSE);
     return paletteNum;
+}
+
+// Red-eyed Pokémon on the overworld (object trainer type TRAINER_TYPE_RED_EYED, set in map.json)
+// get a red-tinted copy of their species palette. Other objects use the normal palette.
+static u32 LoadObjectEventMonPalette(struct ObjectEvent *objectEvent)
+{
+    enum Species species = OW_SPECIES(objectEvent);
+#if OW_POKEMON_OBJECT_EVENTS == TRUE
+    if (objectEvent->trainerType == TRAINER_TYPE_RED_EYED && gSpeciesInfo[species].overworldPalette != NULL)
+    {
+        u16 tag = RED_EYED_OBJ_PAL_TAG_BASE + species;
+        u32 paletteNum = IndexOfSpritePaletteTag(tag);
+        if (paletteNum >= 16)
+        {
+            u16 colors[16];
+            struct SpritePalette spritePalette = {colors, tag};
+            RedEyed_TintColors(gSpeciesInfo[species].overworldPalette, colors, 16);
+            paletteNum = LoadSpritePalette(&spritePalette);
+        }
+        if (paletteNum < 16)
+        {
+            if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL)
+                UpdateSpritePaletteWithWeather(paletteNum, FALSE);
+            return paletteNum;
+        }
+    }
+#endif
+    return LoadDynamicFollowerPalette(species, OW_SHINY(objectEvent), OW_FEMALE(objectEvent));
 }
 
 // Set graphics & sprite for a follower object event by species & shininess.
@@ -3005,7 +3035,7 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
 
     if (spriteTemplate.paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC)
     {
-        u32 paletteNum = LoadDynamicFollowerPalette(OW_SPECIES(objectEvent), OW_SHINY(objectEvent), OW_FEMALE(objectEvent));
+        u32 paletteNum = LoadObjectEventMonPalette(objectEvent);
         spriteTemplate.paletteTag = GetSpritePaletteTagByPaletteNum(paletteNum);
     }
     else if (spriteTemplate.paletteTag != TAG_NONE)

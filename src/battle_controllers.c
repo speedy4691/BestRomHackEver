@@ -5,6 +5,7 @@
 #include "battle_anim.h"
 #include "battle_arena.h"
 #include "battle_controllers.h"
+#include "red_eyed.h"
 #include "battle_gfx_sfx_util.h"
 #include "battle_interface.h"
 #include "battle_message.h"
@@ -160,7 +161,11 @@ void SetUpBattleVarsAndBirchZigzagoon(void)
     BattleAI_SetupFlags();
 
     if (!IS_FRLG && gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
-        CreateWildMon(SPECIES_ZIGZAGOON, 2);
+    {
+        // Opening 04: Birch is attacked by a red-eyed POOCHYENA, which can't be caught.
+        CreateWildMon(SPECIES_POOCHYENA, 2);
+        RedEyed_SetMonRedEyed(&gParties[B_TRAINER_OPPONENT_A][0]);
+    }
 }
 
 void InitBattleControllers(void)
