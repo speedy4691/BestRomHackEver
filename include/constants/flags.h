@@ -57,7 +57,7 @@
 #define FLAG_OPENING_ERRAND_STARTED  0x23 // Opening 05: Birch asked the player to see STEVE in OLDALE
 #define FLAG_RECEIVED_PACKAGE_FROM_STEVE 0x24 // Opening 06: STEVE gave the PACKAGE
 #define FLAG_RECEIVED_CAMERA         0x25 // Opening 07: Birch gave the CAMERA
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
+#define FLAG_DAD_SENDOFF_DONE        0x26 // Opening 08: Dad's send-off at the Littleroot exit is done
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
 #define FLAG_UNUSED_0x028    0x28 // Unused Flag
 #define FLAG_UNUSED_0x029    0x29 // Unused Flag

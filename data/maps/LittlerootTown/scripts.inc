@@ -892,9 +892,9 @@ LittlerootTown_EventScript_SetReceivedRunningShoes::
 	release
 	end
 
-@ V1: Mom's send-off (content sheet, Necessary Interactions K1-K6, N1, N3). Replaces the Running Shoes
-@ scene; running is on by default, so no shoes. Plays once: VAR_LITTLEROOT_TOWN_STATE goes 3 -> 4 after it.
-@ The only place the player gets these key items.
+@ Opening 08: Dad's send-off (content sheet, Necessary Interactions K1-K6, N1, N3). Replaces the Running
+@ Shoes scene; running is on by default, so no shoes. Plays once: VAR_LITTLEROOT_TOWN_STATE goes 3 -> 4 after it.
+@ The only place the player gets these key items. Dad heals the party before his closing line (K6).
 LittlerootTown_EventScript_GiveRunningShoes::
 	msgbox LittlerootTown_Text_MomTeleporter, MSGBOX_DEFAULT
 	giveitem ITEM_TELEPORT
@@ -910,6 +910,9 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	msgbox LittlerootTown_Text_MomLevelCap, MSGBOX_DEFAULT
 	special BufferNextGymGateSpecies
 	msgbox LittlerootTown_Text_MomGymGate, MSGBOX_DEFAULT
+	closemessage
+	call Common_EventScript_OutOfCenterPartyHeal
+	setflag FLAG_DAD_SENDOFF_DONE
 	msgbox LittlerootTown_Text_MomTakeCare, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -926,38 +929,38 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "settled.$"
 
 LittlerootTown_Text_WaitPlayer:
-	.string "MOM: Wait, {PLAYER}!\n"
+	.string "DAD: Wait, {PLAYER}!\n"
 	.string "Before you go, take these.\p"
 	.string "You'll need them out there.$"
 
 LittlerootTown_Text_MomTeleporter:
-	.string "MOM: This TELEPORTER takes you back\n"
+	.string "DAD: This TELEPORTER takes you back\n"
 	.string "to the last POKéMON CENTER\l"
 	.string "you visited.\p"
 	.string "It won't work in GYMS, or on a route\n"
 	.string "you haven't made it through.$"
 
 LittlerootTown_Text_MomBoxLink:
-	.string "MOM: With this BOX LINK you can reach\n"
+	.string "DAD: With this BOX LINK you can reach\n"
 	.string "your PC boxes anywhere and swap\l"
 	.string "POKéMON.\p"
 	.string "It can't heal them, though!$"
 
 LittlerootTown_Text_MomBikes:
-	.string "MOM: Your father wanted you to have\n"
+	.string "DAD: Your mother wanted you to have\n"
 	.string "both BIKES.\p"
-	.string "The MACH BIKE is fast;\n"
-	.string "the ACRO BIKE does tricks.\p"
+	.string "The MACH BIKE is fast; the ACRO BIKE\n"
+	.string "does tricks.\p"
 	.string "Swap them from your BAG.$"
 
 LittlerootTown_Text_MomInfiniteRepel:
-	.string "MOM: And this INFINITE REPEL keeps\n"
+	.string "DAD: And this INFINITE REPEL keeps\n"
 	.string "wild POKéMON away whenever you\l"
 	.string "switch it on.$"
 
 @ {STR_VAR_1} = current level cap (src/caps.c).
 LittlerootTown_Text_MomLevelCap:
-	.string "MOM: One more thing: your POKéMON\n"
+	.string "DAD: One more thing: your POKéMON\n"
 	.string "won't grow past Lv. {STR_VAR_1} until you\l"
 	.string "beat ROXANNE in RUSTBORO.\p"
 	.string "Wild POKéMON stronger than that won't\n"
@@ -965,14 +968,14 @@ LittlerootTown_Text_MomLevelCap:
 
 @ {STR_VAR_2} = species needed for the next gym (src/gym_gate.c).
 LittlerootTown_Text_MomGymGate:
-	.string "MOM: And GYM LEADERS only accept\n"
+	.string "DAD: And GYM LEADERS only accept\n"
 	.string "trainers who've done their research.\p"
 	.string "Catch at least {STR_VAR_2} different kinds\n"
 	.string "of POKéMON before you visit\l"
 	.string "ROXANNE's GYM!$"
 
 LittlerootTown_Text_MomTakeCare:
-	.string "MOM: Take care of yourself, and come\n"
+	.string "DAD: Take care of yourself, and come\n"
 	.string "home sometimes!$"
 
 LittlerootTown_Text_CanUsePCToStoreItems:
