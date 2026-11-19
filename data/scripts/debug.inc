@@ -911,6 +911,7 @@ Debug_Opening_AfterLabReturn:
 	removeitem ITEM_PACKAGE
 	additem ITEM_CAMERA
 	setflag FLAG_RECEIVED_CAMERA
+	clearflag FLAG_HIDE_ROUTE_103_RED_EYED_WURMPLE
 	setflag FLAG_SYS_POKENAV_GET
 	setflag FLAG_RECEIVED_POKENAV
 	setflag FLAG_HAS_MATCH_CALL

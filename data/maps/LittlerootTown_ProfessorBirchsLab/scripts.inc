@@ -503,6 +503,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_LabReturn::
 	waitfanfare
 	additem ITEM_CAMERA
 	setflag FLAG_RECEIVED_CAMERA
+	clearflag FLAG_HIDE_ROUTE_103_RED_EYED_WURMPLE
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_LabReturnStayInTouch, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_ITEM
 	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokenav
