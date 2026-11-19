@@ -2289,6 +2289,9 @@ void CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Traine
         GenerateMonFromTrainerMon(&party[i], &trainer->party[monIndex], trainerGen);
     }
     Free(trainerGen);
+
+    if (trainer->trainerClass == TRAINER_CLASS_RIVAL)
+        SwapRivalStarterLineForRegion(party, monsCount);
 }
 
 static void CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
