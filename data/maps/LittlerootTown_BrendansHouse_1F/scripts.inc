@@ -49,7 +49,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor::
 LittlerootTown_BrendansHouse_1F_OnFrame:
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock
-	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport
+	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_BillTVSpecial
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 1, LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
 	.2byte 0
@@ -77,11 +77,11 @@ LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn::
 	goto PlayersHouse_1F_EventScript_EnterHouseMovingIn
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport::
+LittlerootTown_BrendansHouse_1F_EventScript_BillTVSpecial::
 	lockall
 	setvar VAR_0x8004, MALE
 	setvar VAR_0x8005, LOCALID_PLAYERS_HOUSE_1F_MOM
-	goto PlayersHouse_1F_EventScript_PetalburgGymReportMale
+	goto PlayersHouse_1F_EventScript_BillTVSpecialMale
 	end
 
 LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor::
@@ -318,6 +318,29 @@ PlayersHouse_1F_Text_ItsOverWeMissedHim:
 	.string "MOM: Oh… It's over.\p"
 	.string "I think DAD was on, but we missed him.\n"
 	.string "Too bad.$"
+
+PlayersHouse_1F_Text_BillTVSpecialComeQuick:
+	.string "DAD: {PLAYER}! Come quick, there's a\n"
+	.string "special about BILL on TV!$"
+
+PlayersHouse_1F_Text_BillTVSpecial:
+	.string "…and that's why BILL is the most loved\n"
+	.string "inventor in HOENN.\p"
+	.string "Thanks to BILL's PC, every TRAINER\n"
+	.string "can store POKéMON for free.\p"
+	.string "The only cost is that stored POKéMON\n"
+	.string "lose the EXP they've built up toward\l"
+	.string "their next level.\p"
+	.string "DEVON CORP turns that EXP into RARE\n"
+	.string "CANDIES, sold at POKéMON MARTS all\l"
+	.string "over HOENN.\p"
+	.string "That's all for tonight's special!$"
+
+PlayersHouse_1F_Text_BillTVSpecialOver:
+	.string "DAD: Oh, it's over.\p"
+	.string "Your mom helped build that PC system,\n"
+	.string "you know. She'd be proud to see it on\l"
+	.string "TV.$"
 
 PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor:
 	.string "Oh, yes.\n"

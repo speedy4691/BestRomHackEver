@@ -53,7 +53,7 @@
 
 #define FLAG_INFINITE_REPEL  0x20 // BestRomHackEver: Infinite Repel key item is switched on
 #define FLAG_ROUTE_LOCK_NO_RUNNING 0x21 // BestRomHackEver L1: no running from wild battles on the locked route (WE_FLAG_NO_RUNNING)
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
+#define FLAG_SEEN_BILL_TV_SPECIAL    0x22 // Opening 02: watched the BILL TV special
 #define FLAG_UNUSED_0x023    0x23 // Unused Flag
 #define FLAG_UNUSED_0x024    0x24 // Unused Flag
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
