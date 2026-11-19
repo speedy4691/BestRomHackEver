@@ -511,6 +511,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_LabReturn::
 	setflag FLAG_SYS_POKENAV_GET
 	setflag FLAG_RECEIVED_POKENAV
 	setflag FLAG_HAS_MATCH_CALL
+	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_LabReturnExplainPokenav, MSGBOX_DEFAULT
 	closemessage
 	delay 30
