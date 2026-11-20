@@ -940,9 +940,15 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "settled.$"
 
 LittlerootTown_Text_WaitPlayer:
-	.string "DAD: Wait, {PLAYER}!\n"
-	.string "Before you go, take these.\p"
-	.string "You'll need them out there.$"
+	.string "DAD: {PLAYER}, leaving home can be\n"
+	.string "scary, but we must do so to have our\l"
+	.string "own adventure.\p"
+	.string "Besides, you're ten now and oh so wise.\p"
+	.string "With POKéMON out there acting\n"
+	.string "strange, it may be dangerous, so I\l"
+	.string "went through some of the boxes to get\l"
+	.string "your mother's old items out.\p"
+	.string "I want you prepared out there.$"
 
 LittlerootTown_Text_MomTeleporter:
 	.string "DAD: This TELEPORTER takes you back\n"

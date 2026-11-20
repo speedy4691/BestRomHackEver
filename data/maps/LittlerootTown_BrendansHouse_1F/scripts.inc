@@ -359,7 +359,7 @@ PlayersHouse_1F_Text_YouShouldRestABit:
 	.string "I think you should rest a bit.$"
 
 PlayersHouse_1F_Text_TakeCareHoney:
-	.string "DAD: Take care, honey!$"
+	.string "DAD: Take care, {PLAYER}!$"
 
 PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom:
 	.string "MOM: Oh? Did DAD give you that BADGE?\p"
