@@ -304,15 +304,6 @@ static void HandleInputChooseAction(enum BattlerId battler)
 
     if (JOY_NEW(A_BUTTON))
     {
-        // Opening 04: until Birch's ULTRA BALL is thrown, the BAG is the only choice in his rescue battle.
-        // FIGHT unlocks once the ball has bounced off (it is used up, so the BAG no longer has one).
-        if (!IS_FRLG && (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
-         && gActionSelectionCursor[battler] != 1 && CheckBagHasItem(ITEM_ULTRA_BALL, 1))
-        {
-            PlaySE(SE_FAILURE);
-            return;
-        }
-
         PlaySE(SE_SELECT);
         TryHideLastUsedBall();
 

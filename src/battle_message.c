@@ -88,6 +88,7 @@ static const u8 sText_TwoWildFled[] = _("{PLAY_SE SE_FLEE}{B_LINK_OPPONENT1_NAME
 static const u8 sText_PlayerDefeatedLinkTrainerTrainer1[] = _("You defeated {B_TRAINER1_NAME_WITH_CLASS}!\p");
 static const u8 sText_OpponentMon1Appeared[] = _("{B_OPPONENT_MON1_NAME} appeared!\p");
 static const u8 sText_WildPkmnAppeared[] = _("You encountered a wild {B_OPPONENT_MON1_NAME}!\p");
+static const u8 sText_RedEyedWildPkmnAppeared[] = _("You encountered a wild {B_OPPONENT_MON1_NAME}…\pIt seems to be pulsing bright red!\p");
 static const u8 sText_LegendaryPkmnAppeared[] = _("You encountered a wild {B_OPPONENT_MON1_NAME}!\p");
 static const u8 sText_WildPkmnAppearedPause[] = _("You encountered a wild {B_OPPONENT_MON1_NAME}!{PAUSE 127}");
 static const u8 sText_TwoWildPkmnAppeared[] = _("Oh! A wild {B_OPPONENT_MON1_NAME} and {B_OPPONENT_MON2_NAME} appeared!\p");
@@ -419,6 +420,7 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_TRAINERBLOCKEDBALL]                   = COMPOUND_STRING("The Trainer blocked your Poké Ball!"),
     [STRINGID_REDEYEDBALLBOUNCED]                   = COMPOUND_STRING("The {B_LAST_ITEM} bounced off!\pIt can't be caught!"),
     [STRINGID_FIRSTBATTLEAFTERBALLBOUNCE]           = COMPOUND_STRING("PROF. BIRCH: It can't be caught?!\p{B_PLAYER_NAME}, attack it instead!"),
+    [STRINGID_FIRSTBATTLEUSEBALLPROMPT]             = COMPOUND_STRING("Try to catch the POKéMON with the ULTRA BALL!"),
     [STRINGID_DONTBEATHIEF]                         = COMPOUND_STRING("Don't be a thief!"),
     [STRINGID_ITDODGEDBALL]                         = COMPOUND_STRING("It dodged your thrown Poké Ball! This Pokémon can't be caught!"),
     [STRINGID_PKMNBROKEFREE]                        = COMPOUND_STRING("Oh no! The Pokémon broke free!"),
@@ -2510,6 +2512,9 @@ void BufferStringBattle(enum StringID stringID, enum BattlerId battler)
                 stringPtr = sText_GhostAppearedCantId;
             else if (gBattleTypeFlags & BATTLE_TYPE_GHOST)
                 stringPtr = sText_TheGhostAppeared;
+            // Battle_RedEyedWildIntro: every wild battle against a red-eyed POKeMON.
+            else if (GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_IS_RED_EYED))
+                stringPtr = sText_RedEyedWildPkmnAppeared;
             else if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
                 stringPtr = sText_LegendaryPkmnAppeared;
             else if (IsDoubleBattle() && IsValidForBattle(GetBattlerMon(GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT))))

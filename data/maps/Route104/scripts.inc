@@ -368,13 +368,9 @@ Route104_EventScript_SailToDewfordDadCalls::
 	waitmovement 0
 	pokenavcall Route104_Text_DadPokenavCall
 	waitmessage
-	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox Route104_Text_RegisteredDadInPokenav, MSGBOX_DEFAULT
-	waitfanfare
+	@ Opening: Norman isn't the player's dad, so he isn't registered here (Story dialogue row 3459).
 	closemessage
 	delay 30
-	setflag FLAG_ENABLE_NORMAN_MATCH_CALL
 	applymovement LOCALID_PLAYER, Route104_Movement_SailToDewfordAfterDadCalls
 	applymovement LOCALID_ROUTE104_BOAT, Route104_Movement_SailToDewfordAfterDadCalls, MAP_ROUTE104
 	waitmovement LOCALID_ROUTE104_BOAT, MAP_ROUTE104

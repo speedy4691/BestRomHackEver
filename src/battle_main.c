@@ -3863,6 +3863,22 @@ static void HandleTurnActionSelectionState(void)
                 RecordedBattle_SetBattlerAction(battler, gBattleResources->bufferB[battler][1]);
                 gChosenActionByBattler[battler] = gBattleResources->bufferB[battler][1];
 
+                // Opening 04: until Birch's ULTRA BALL is thrown, only the BAG works in his rescue battle. FIGHT,
+                // POKeMON and RUN show Battle_FirstBattleUseBallPrompt and go back to the action menu. The ball is
+                // used up when it bounces off, so this ends once the BAG has no ULTRA BALL left.
+                if (!IS_FRLG && (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE) && IsOnPlayerSide(battler)
+                 && gBattleResources->bufferB[battler][1] != B_ACTION_USE_ITEM
+                 && gBattleResources->bufferB[battler][1] != B_ACTION_THROW_BALL
+                 && CheckBagHasItem(ITEM_ULTRA_BALL, 1))
+                {
+                    RecordedBattle_ClearBattlerAction(battler, 1);
+                    gSelectionBattleScripts[battler] = BattleScript_FirstBattleUseBallPrompt;
+                    gBattleCommunication[battler] = STATE_SELECTION_SCRIPT;
+                    gBattleStruct->battlerState[battler].selectionScriptFinished = FALSE;
+                    gBattleStruct->stateIdAfterSelScript[battler] = STATE_BEFORE_ACTION_CHOSEN;
+                    return;
+                }
+
                 switch (gBattleResources->bufferB[battler][1])
                 {
                 case B_ACTION_USE_MOVE:

@@ -30,6 +30,7 @@ Route103_EventScript_RedEyedWurmple::
 	msgbox Route103_Text_RedEyedWurmplePhoto, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE
+	setflag FLAG_HIDE_ROUTE_103_RED_EYED_WURMPLE
 	removeobject LOCALID_ROUTE103_RED_EYED_MON
 	release
 	end
