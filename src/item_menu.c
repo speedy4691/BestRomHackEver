@@ -1623,7 +1623,7 @@ static void OpenContextMenu(u8 taskId)
     case ITEMMENULOCATION_BATTLE:
     case ITEMMENULOCATION_WALLY:
     case ITEMMENULOCATION_RAIDEND:
-        if (GetItemBattleUsage(gSpecialVar_ItemId))
+        if (GetItemBattleUsage(gSpecialVar_ItemId) || gSpecialVar_ItemId == ITEM_CAMERA) // BestRomHackEver: CAMERA photos
         {
             gBagMenu->contextMenuItemsPtr = sContextMenuItems_BattleUse;
             gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BattleUse);
@@ -2105,6 +2105,12 @@ static void ItemMenu_UseInBattle(u8 taskId)
 {
     // Safety check
     enum ItemType type = GetItemType(gSpecialVar_ItemId);
+    if (gSpecialVar_ItemId == ITEM_CAMERA) // BestRomHackEver Photography: opens the viewfinder, uses no turn.
+    {
+        RemoveContextWindow();
+        ItemUseInBattle_Camera(taskId);
+        return;
+    }
     if (!GetItemBattleUsage(gSpecialVar_ItemId))
         return;
 

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "photography.h"
 #include "battle.h"
 #include "battle_setup.h"
 #include "berry.h"
@@ -444,6 +445,10 @@ static const struct DebugSelection sSimplePokemonSelection;
 static const struct DebugSelection sComplexPokemonSelection;
 static const struct DebugSelection sEggPokemonSelection;
 static const struct DebugSelection sGiveDecorationSelection;
+static const struct DebugSelection sPhotoViewfinderSelection;
+static const struct DebugSelection sPhotoSetGradeSelection;
+static const struct DebugSelection sPhotoClearGradeSelection;
+static void DebugAction_Photo_ClearAll(u8 taskId);
 static const struct DebugSelection sTrainerFromMapSelection;
 static const struct DebugSelection sTrainer1Selection;
 static const struct DebugSelection sTrainer2Selection;
@@ -637,6 +642,16 @@ static const struct DebugMenuOption sDebugMenu_Actions_RouteLock[] =
     { NULL }
 };
 
+// BestRomHackEver Photography prototype (src/photography.c).
+static const struct DebugMenuOption sDebugMenu_Actions_Photography[] =
+{
+    { COMPOUND_STRING("Viewfinder test…"),   DebugAction_Selection_Init, &sPhotoViewfinderSelection },
+    { COMPOUND_STRING("Set photo grade…"),   DebugAction_Selection_Init, &sPhotoSetGradeSelection },
+    { COMPOUND_STRING("Clear photo grade…"), DebugAction_Selection_Init, &sPhotoClearGradeSelection },
+    { COMPOUND_STRING("Clear all grades"),   DebugAction_Photo_ClearAll },
+    { NULL }
+};
+
 static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
 {
     { COMPOUND_STRING("Fly to map…"),               DebugAction_Util_Fly },
@@ -650,6 +665,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
     { COMPOUND_STRING("Choose starter again"),      DebugAction_ExecuteScript, Debug_EventScript_ChooseStarterAgain },
     { COMPOUND_STRING("Start at opening…"),         DebugAction_OpenSubMenu, sDebugMenu_Actions_OpeningStart },
     { COMPOUND_STRING("Red-eyed Mewtwo battle"),    DebugAction_ExecuteScript, Debug_EventScript_RedEyedMewtwo },
+    { COMPOUND_STRING("Photography…"),              DebugAction_OpenSubMenu, sDebugMenu_Actions_Photography },
     { COMPOUND_STRING("Berry Functions…"),          DebugAction_OpenSubMenu, sDebugMenu_Actions_BerryFunctions },
     { COMPOUND_STRING("EWRAM Counters…"),           DebugAction_ExecuteScript, Debug_EventScript_EWRAMCounters },
     { COMPOUND_STRING("Follower NPC…"),             DebugAction_OpenSubMenu, sDebugMenu_Actions_FollowerNPCMenu },
@@ -3266,6 +3282,88 @@ static const struct DebugSelection sSimplePokemonSelection = {
         &sLevelSelectionStep,
     },
     .maxSteps = 2,
+};
+
+// Photography
+static void DebugSelectionStep_ReturnToPhotoMenu(u8 taskId)
+{
+    Debug_RemoveCallbackMenu();
+    DebugAction_OpenSubMenu(taskId, sDebugMenu_Actions_Photography);
+}
+
+static void Task_DebugPhoto_OpenViewfinder(u8 taskId)
+{
+    Debug_DestroyMenu_Full(taskId);
+    OpenPhotoViewfinder_Debug(gSpecialVar_0x8004, CB2_ReturnToField);
+}
+
+static bool32 DebugSelection_PhotoViewfinder_OnComplete(u8 taskId)
+{
+    gSpecialVar_0x8004 = DebugSelection_GetData(taskId, 0);
+    gTasks[taskId].func = Task_DebugPhoto_OpenViewfinder;
+    return TRUE;
+}
+
+static bool32 DebugSelection_PhotoSetGrade_OnComplete(u8 taskId)
+{
+    SetPhotoGrade(DebugSelection_GetData(taskId, 0), DebugSelection_GetData(taskId, 1));
+    DebugSelectionStep_ReturnToPhotoMenu(taskId);
+    PlaySE(SE_SUCCESS);
+    return TRUE;
+}
+
+static bool32 DebugSelection_PhotoClearGrade_OnComplete(u8 taskId)
+{
+    SetPhotoGrade(DebugSelection_GetData(taskId, 0), PHOTO_GRADE_NONE);
+    DebugSelectionStep_ReturnToPhotoMenu(taskId);
+    PlaySE(SE_SUCCESS);
+    return TRUE;
+}
+
+static void DebugAction_Photo_ClearAll(u8 taskId)
+{
+    ClearAllPhotoGrades();
+    PlaySE(SE_SUCCESS);
+}
+
+static void DebugSelectionStep_UpdatePhotoGrade(u8 taskId, u8 digits, u32 min, u32 max)
+{
+    StringCopy(gStringVar1, COMPOUND_STRING("Photo grade:"));
+    StringCopy(gStringVar2, GetPhotoGradeName(gTasks[taskId].tInput));
+    StringCopy(gStringVar3, COMPOUND_STRING(""));
+    DebugNativeStep_PrintWindowSelection(taskId);
+}
+
+static const struct DebugSelectionStep sPhotoGradeSelectionStep = {
+    .stepUpdate = DebugSelectionStep_UpdatePhotoGrade,
+    .stepConfirm = DebugSelectionStep_GenericInputConfirm,
+    .minValue = PHOTO_GRADE_NONE,
+    .maxValue = PHOTO_GRADE_AMAZING,
+    .digits = 1,
+};
+
+static const struct DebugSelection sPhotoViewfinderSelection = {
+    .onInit = Debug_CreateInputDisplayWindow,
+    .onCancel = DebugSelectionStep_ReturnToPhotoMenu,
+    .onComplete = DebugSelection_PhotoViewfinder_OnComplete,
+    .steps = {&sSpeciesSelectionStep},
+    .maxSteps = 1,
+};
+
+static const struct DebugSelection sPhotoSetGradeSelection = {
+    .onInit = Debug_CreateInputDisplayWindow,
+    .onCancel = DebugSelectionStep_ReturnToPhotoMenu,
+    .onComplete = DebugSelection_PhotoSetGrade_OnComplete,
+    .steps = {&sSpeciesSelectionStep, &sPhotoGradeSelectionStep},
+    .maxSteps = 2,
+};
+
+static const struct DebugSelection sPhotoClearGradeSelection = {
+    .onInit = Debug_CreateInputDisplayWindow,
+    .onCancel = DebugSelectionStep_ReturnToPhotoMenu,
+    .onComplete = DebugSelection_PhotoClearGrade_OnComplete,
+    .steps = {&sSpeciesSelectionStep},
+    .maxSteps = 1,
 };
 
 static void DebugSelectionStep_UpdateGender(u8 taskId, u8 digits, u32 min, u32 max)
