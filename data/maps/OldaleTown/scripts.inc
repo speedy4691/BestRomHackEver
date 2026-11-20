@@ -5,10 +5,11 @@ OldaleTown_MapScripts::
 OldaleTown_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	setflag FLAG_VISITED_OLDALE_TOWN
-	@ Opening 10 (Access gates row 2): the gate opens once the red-eyed WURMPLE on Route 103 is photographed.
-	call_if_unset FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE, OldaleTown_EventScript_BlockWestEntrance
+	@ Access gates row 2: VINNY blocks the west exit until he's beaten; he only battles once the red-eyed
+	@ WURMPLE on Route 103 is photographed (before that: his vanilla lines).
+	call_if_unset FLAG_DEFEATED_OLDALE_FOOTPRINTS_MAN, OldaleTown_EventScript_BlockWestEntrance
 	call_if_unset FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_MoveMartEmployee
-	call_if_set FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE, OldaleTown_EventScript_SetOldaleState
+	call_if_set FLAG_DEFEATED_OLDALE_FOOTPRINTS_MAN, OldaleTown_EventScript_SetOldaleState
 	end
 
 @ VAR_OLDALE_TOWN_STATE 0 arms the blocked-path trigger at the west exit; 1 turns it off.
@@ -191,7 +192,8 @@ OldaleTown_Movement_Unknown2:
 OldaleTown_EventScript_FootprintsMan::
 	lock
 	faceplayer
-	goto_if_set FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE, OldaleTown_EventScript_NotBlockingPath
+	goto_if_set FLAG_DEFEATED_OLDALE_FOOTPRINTS_MAN, OldaleTown_EventScript_NotBlockingPath
+	goto_if_set FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE, OldaleTown_EventScript_BattleVinny
 	msgbox OldaleTown_Text_DiscoveredFootprints, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_FOOTPRINTS_MAN, Common_Movement_FaceOriginalDirection
@@ -204,10 +206,27 @@ OldaleTown_EventScript_BlockedPath::
 	applymovement LOCALID_PLAYER, OldaleTown_Movement_PlayerStepBack
 	applymovement LOCALID_FOOTPRINTS_MAN, OldaleTown_Movement_BackUp
 	waitmovement 0
+	goto_if_set FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE, OldaleTown_EventScript_BattleVinny
 	msgbox OldaleTown_Text_WaitDontComeInHere, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_FOOTPRINTS_MAN, OldaleTown_Movement_ReturnToOriginalPosition
 	waitmovement 0
+	releaseall
+	end
+
+@ ARTIST VINNY (Trainers row 1830): stops the player at the exit, or when talked to. Losing is a normal
+@ whiteout and he blocks again next time. Winning: he moves to his usual spot and the exit opens.
+OldaleTown_EventScript_BattleVinny::
+	msgbox OldaleTown_Text_VinnyIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_OLDALE_FOOTPRINTS_MAN, OldaleTown_Text_VinnyDefeat
+	setflag FLAG_DEFEATED_OLDALE_FOOTPRINTS_MAN
+	setvar VAR_OLDALE_TOWN_STATE, 1
+	fadescreen FADE_TO_BLACK
+	setobjectxyperm LOCALID_FOOTPRINTS_MAN, 8, 9
+	setobjectmovementtype LOCALID_FOOTPRINTS_MAN, MOVEMENT_TYPE_FACE_RIGHT
+	setobjectxy LOCALID_FOOTPRINTS_MAN, 8, 9
+	turnobject LOCALID_FOOTPRINTS_MAN, DIR_EAST
+	fadescreen FADE_FROM_BLACK
 	releaseall
 	end
 
@@ -396,3 +415,13 @@ OldaleTown_Text_TownSign:
 	.string "OLDALE TOWN\n"
 	.string "“Where things start off scarce.”$"
 
+
+OldaleTown_Text_VinnyIntro:
+	.string "Hey buddy, good art takes time, so why\n"
+	.string "don't you just buzz off…\p"
+	.string "Ah, you know what… screw it, we are\n"
+	.string "battling!$"
+
+OldaleTown_Text_VinnyDefeat:
+	.string "Maybe I should go into finance\n"
+	.string "instead…$"
