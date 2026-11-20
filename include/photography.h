@@ -17,7 +17,7 @@ void SetPhotoGrade(enum Species species, enum PhotoGrade grade);
 bool32 TryUpgradePhotoGrade(enum Species species, enum PhotoGrade grade);
 void ClearAllPhotoGrades(void);
 const u8 *GetPhotoGradeName(enum PhotoGrade grade);
-const u8 *GetPhotoGradeDexText(enum Species species);
+void GetPhotoGradeDexText(u8 *dest, enum Species species);
 
 // Viewfinder (prototype). Debug: any species, no shot limit. Battle: opened via the CAMERA in the Bag.
 void OpenPhotoViewfinder_Debug(enum Species species, MainCallback returnCallback);

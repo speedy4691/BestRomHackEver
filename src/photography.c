@@ -75,16 +75,37 @@ const u8 *GetPhotoGradeName(enum PhotoGrade grade)
     }
 }
 
-// Pokédex entry line.
-const u8 *GetPhotoGradeDexText(enum Species species)
+// Pokédex entry line, e.g. "Photo: Good (60-84)". Only the grade is saved (2 bits per species), so the
+// line shows the grade's score range, taken from the thresholds in include/config/photography.h.
+void GetPhotoGradeDexText(u8 *dest, enum Species species)
 {
+    u32 low, high;
+
     switch (GetPhotoGrade(species))
     {
-    case PHOTO_GRADE_PHOTOGRAPHED: return COMPOUND_STRING("Photo: Taken");
-    case PHOTO_GRADE_GOOD:         return COMPOUND_STRING("Photo: Good");
-    case PHOTO_GRADE_AMAZING:      return COMPOUND_STRING("Photo: Amazing");
-    default:                       return COMPOUND_STRING("Photo: ---");
+    case PHOTO_GRADE_PHOTOGRAPHED:
+        dest = StringCopy(dest, COMPOUND_STRING("Photo: Taken ("));
+        low = 0;
+        high = PHOTO_GOOD_SCORE - 1;
+        break;
+    case PHOTO_GRADE_GOOD:
+        dest = StringCopy(dest, COMPOUND_STRING("Photo: Good ("));
+        low = PHOTO_GOOD_SCORE;
+        high = PHOTO_AMAZING_SCORE - 1;
+        break;
+    case PHOTO_GRADE_AMAZING:
+        dest = StringCopy(dest, COMPOUND_STRING("Photo: Amazing ("));
+        low = PHOTO_AMAZING_SCORE;
+        high = 100;
+        break;
+    default:
+        StringCopy(dest, COMPOUND_STRING("Photo: ---"));
+        return;
     }
+    dest = ConvertIntToDecimalStringN(dest, low, STR_CONV_MODE_LEFT_ALIGN, 3);
+    dest = StringCopy(dest, COMPOUND_STRING("-"));
+    dest = ConvertIntToDecimalStringN(dest, high, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringCopy(dest, COMPOUND_STRING(")"));
 }
 
 // ---------------------------------------------------------------------------

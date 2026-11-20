@@ -1779,7 +1779,11 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     PrintMonMeasurements(species,owned);
     // BestRomHackEver Photography: best photo grade, top-left above the picture (the right side is full).
     if (species)
-        PrintInfoScreenTextSmall(GetPhotoGradeDexText(species), FONT_SMALL, 4, 17);
+    {
+        u8 photoText[32];
+        GetPhotoGradeDexText(photoText, species);
+        PrintInfoScreenTextSmall(photoText, FONT_SMALL, 4, 17);
+    }
     if (owned)
         description = GetSpeciesPokedexDescription(species);
     else
