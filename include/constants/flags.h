@@ -63,7 +63,7 @@
 #define FLAG_HIDE_ROUTE_101_RIVAL 0x29 // Opening 09: the rival object on Route 101 (shown only during the battle scene)
 #define FLAG_PC_EXP_DRAIN    0x2A // Core #38: set when storage is opened from BILL's PC (deposits drain EXP), cleared by the BOX LINK
 #define FLAG_HIDE_ROUTE_103_RED_EYED_WURMPLE 0x2B // Opening 10: hides the red-eyed WURMPLE until the CAMERA, and after its photo
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
+#define FLAG_DEFEATED_OLDALE_FOOTPRINTS_MAN 0x2C // Beat ARTIST VINNY; opens the Oldale west exit (Access gates row 2)
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag

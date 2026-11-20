@@ -24,6 +24,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual::
 	return
 
 LittlerootTown_BrendansHouse_1F_OnTransition:
+	call PlayersHouse_EventScript_SetFamilyFlags
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToStairs
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToTV
@@ -347,19 +348,18 @@ PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor:
 	.string "PROF. BIRCH.$"
 
 PlayersHouse_1F_Text_SeeYouHoney:
-	.string "DAD: See you, honey!$"
+	.string "DAD: See you, {PLAYER}!$"
 
 PlayersHouse_1F_Text_DidYouMeetProfBirch:
 	.string "DAD: Did you introduce yourself to\n"
 	.string "PROF. BIRCH?$"
 
 PlayersHouse_1F_Text_YouShouldRestABit:
-	.string "DAD: How are you doing, {PLAYER}?\n"
-	.string "You look a little tired.\p"
-	.string "I think you should rest a bit.$"
+	.string "DAD: {PLAYER}, you look tired.\p"
+	.string "Take a quick rest.$"
 
 PlayersHouse_1F_Text_TakeCareHoney:
-	.string "DAD: Take care, honey!$"
+	.string "DAD: Take care, {PLAYER}!$"
 
 PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom:
 	.string "MOM: Oh? Did DAD give you that BADGE?\p"

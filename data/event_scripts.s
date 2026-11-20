@@ -1083,14 +1083,15 @@ EventScript_AfterWhiteOutHealMsg::
 	msgbox gText_MonsHealed
 	return
 
+@ Whiteout at home: DAD heals (Story dialogue PlayersHouse_1F_Dad_Heal; replaces Mom's vanilla lines).
 EventScript_AfterWhiteOutMomHeal::
 	lockall
-	textcolor NPC_TEXT_COLOR_FEMALE
+	textcolor NPC_TEXT_COLOR_MALE
 	applymovement LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
-	msgbox gText_HadQuiteAnExperienceTakeRest
+	msgbox PlayersHouse_1F_Text_YouShouldRestABit
 	call Common_EventScript_OutOfCenterPartyHeal
-	msgbox gText_MomExplainHPGetPotions
+	msgbox PlayersHouse_1F_Text_TakeCareHoney
 	fadedefaultbgm
 	releaseall
 	end
