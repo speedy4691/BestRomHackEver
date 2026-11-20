@@ -492,6 +492,8 @@ static void DoBattlePikeWildBattle(void)
 static void DoTrainerBattle(void)
 {
     CreateNPCTrainerParty(&gParties[B_TRAINER_OPPONENT_A][0], TRAINER_BATTLE_PARAM.opponentA);
+    if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_RIVAL_LITTLEROOT || TRAINER_BATTLE_PARAM.opponentA == TRAINER_RIVAL_LITTLEROOT_BRENDAN)
+        SetMonToRivalStarter(&gParties[B_TRAINER_OPPONENT_A][0]);
     if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && !BATTLE_TWO_VS_ONE_OPPONENT)
         CreateNPCTrainerParty(&gParties[B_TRAINER_OPPONENT_B][0], TRAINER_BATTLE_PARAM.opponentB);
     CreateBattleStartTask(GetTrainerBattleTransition(), 0);
@@ -2289,6 +2291,9 @@ void CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Traine
         GenerateMonFromTrainerMon(&party[i], &trainer->party[monIndex], trainerGen);
     }
     Free(trainerGen);
+
+    if (trainer->trainerClass == TRAINER_CLASS_RIVAL)
+        SwapRivalStarterLineForRegion(party, monsCount);
 }
 
 static void CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)

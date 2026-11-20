@@ -6,6 +6,9 @@
 #include "gpu_regs.h"
 #include "international_string_util.h"
 #include "main.h"
+#include "overworld.h"
+#include "script.h"
+#include "string_util.h"
 #include "menu.h"
 #include "palette.h"
 #include "pokedex.h"
@@ -24,7 +27,7 @@
 #include "constants/songs.h"
 #include "constants/rgb.h"
 
-#define STARTER_MON_COUNT   3
+
 
 // Position of the sprite of the selected starter Pokémon
 #define STARTER_PKMN_POS_X (DISPLAY_WIDTH / 2)
@@ -43,7 +46,10 @@ static void Task_HandleConfirmStarterInput(u8 taskId);
 static void Task_DeclineStarter(u8 taskId);
 static void Task_MoveStarterChooseCursor(u8 taskId);
 static void Task_CreateStarterLabel(u8 taskId);
-static void CreateStarterPokemonLabel(u8 selection);
+static void CreateStarterPokemonLabel(u8 region, u8 selection);
+static void Task_ShowRegionMenu(u8 taskId);
+static void Task_HandleRegionMenuInput(u8 taskId);
+static void SetBallSpritesVisible(u8 taskId, bool32 visible);
 static u8 CreatePokemonFrontSprite(enum Species species, u8 x, u8 y);
 static void SpriteCB_SelectionHand(struct Sprite *sprite);
 static void SpriteCB_Pokeball(struct Sprite *sprite);
@@ -110,15 +116,55 @@ static const u8 sStarterLabelCoords[STARTER_MON_COUNT][2] =
     {8, 4},
 };
 
-#define GRASS_STARTER (IS_FRLG ? SPECIES_BULBASAUR  : SPECIES_TREECKO)
-#define FIRE_STARTER  (IS_FRLG ? SPECIES_CHARMANDER : SPECIES_TORCHIC)
-#define WATER_STARTER (IS_FRLG ? SPECIES_SQUIRTLE   : SPECIES_MUDKIP )
-
-static const u16 sStarterMon[STARTER_MON_COUNT] =
+// Starter regions. To add a region: add a STARTER_REGION_* constant (starter_choose.h) and a row here.
+// Each region lists its starters in slot order Grass, Fire, Water (the slot is saved in VAR_STARTER_MON),
+// with each line's evolution stages so rival teams can swap in the matching stage.
+struct StarterRegion
 {
-    GRASS_STARTER,
-    FIRE_STARTER,
-    WATER_STARTER,
+    const u8 *name;
+    u16 lines[STARTER_MON_COUNT][STARTER_LINE_STAGES];
+};
+
+static const struct StarterRegion sStarterRegions[STARTER_REGION_COUNT] =
+{
+    [STARTER_REGION_HOENN] =
+    {
+        .name = COMPOUND_STRING("HOENN"),
+        .lines = {
+            { SPECIES_TREECKO, SPECIES_GROVYLE,   SPECIES_SCEPTILE },
+            { SPECIES_TORCHIC, SPECIES_COMBUSKEN, SPECIES_BLAZIKEN },
+            { SPECIES_MUDKIP,  SPECIES_MARSHTOMP, SPECIES_SWAMPERT },
+        },
+    },
+    [STARTER_REGION_KANTO] =
+    {
+        .name = COMPOUND_STRING("KANTO"),
+        .lines = {
+            { SPECIES_BULBASAUR,  SPECIES_IVYSAUR,    SPECIES_VENUSAUR  },
+            { SPECIES_CHARMANDER, SPECIES_CHARMELEON, SPECIES_CHARIZARD },
+            { SPECIES_SQUIRTLE,   SPECIES_WARTORTLE,  SPECIES_BLASTOISE },
+        },
+    },
+    [STARTER_REGION_JOHTO] =
+    {
+        .name = COMPOUND_STRING("JOHTO"),
+        .lines = {
+            { SPECIES_CHIKORITA, SPECIES_BAYLEEF,  SPECIES_MEGANIUM   },
+            { SPECIES_CYNDAQUIL, SPECIES_QUILAVA,  SPECIES_TYPHLOSION },
+            { SPECIES_TOTODILE,  SPECIES_CROCONAW, SPECIES_FERALIGATR },
+        },
+    },
+};
+
+static const struct WindowTemplate sWindowTemplate_Region =
+{
+    .bg = 0,
+    .tilemapLeft = 22,
+    .tilemapTop = 7,
+    .width = 7,
+    .height = STARTER_REGION_COUNT * 2,
+    .paletteNum = 14,
+    .baseBlock = 0x02B4 // after the frame tiles at 0x2A8
 };
 
 static const struct BgTemplate sBgTemplates[3] =
@@ -347,11 +393,108 @@ static const struct SpriteTemplate sSpriteTemplate_StarterCircle =
 };
 
 // .text
+static u32 SanitizeRegion(u32 region)
+{
+    return (region < STARTER_REGION_COUNT) ? region : STARTER_REGION_HOENN;
+}
+
+u16 GetRegionStarterPokemon(u32 region, u32 slot)
+{
+    if (slot >= STARTER_MON_COUNT)
+        slot = 0;
+    return sStarterRegions[SanitizeRegion(region)].lines[slot][0];
+}
+
+u32 GetStarterRegion(void)
+{
+    if (IS_FRLG)
+        return STARTER_REGION_KANTO;
+    return SanitizeRegion(VarGet(VAR_STARTER_REGION));
+}
+
+// The player's starter, from the saved region and slot.
 u16 GetStarterPokemon(u16 chosenStarterId)
 {
-    if (chosenStarterId > STARTER_MON_COUNT)
-        chosenStarterId = 0;
-    return sStarterMon[chosenStarterId];
+    return GetRegionStarterPokemon(GetStarterRegion(), chosenStarterId);
+}
+
+const u8 *GetStarterRegionName(u32 region)
+{
+    return sStarterRegions[SanitizeRegion(region)].name;
+}
+
+// Rival's slot: the type that beats the player's (Grass -> Fire -> Water -> Grass).
+u32 GetRivalStarterSlot(u32 playerSlot)
+{
+    return (playerSlot + 1) % STARTER_MON_COUNT;
+}
+
+u16 GetRivalStarterPokemon(void)
+{
+    return GetRegionStarterPokemon(GetStarterRegion(), GetRivalStarterSlot(VarGet(VAR_STARTER_MON)));
+}
+
+// Rival teams in trainers.party are written with the Hoenn starter lines. If the player picked
+// another region, swap each Hoenn starter-line mon for the same slot and stage of that region.
+// The rest of the team is unchanged.
+void SwapRivalStarterLineForRegion(struct Pokemon *party, u32 monsCount)
+{
+    u32 region = GetStarterRegion();
+    u32 i, slot, stage;
+
+    if (region == STARTER_REGION_HOENN)
+        return;
+
+    for (i = 0; i < monsCount; i++)
+    {
+        enum Species species = GetMonData(&party[i], MON_DATA_SPECIES);
+        for (slot = 0; slot < STARTER_MON_COUNT; slot++)
+        {
+            for (stage = 0; stage < STARTER_LINE_STAGES; stage++)
+            {
+                if (sStarterRegions[STARTER_REGION_HOENN].lines[slot][stage] == species)
+                {
+                    u16 newSpecies = sStarterRegions[region].lines[slot][stage];
+                    SetMonData(&party[i], MON_DATA_SPECIES, &newSpecies);
+                    SetMonData(&party[i], MON_DATA_NICKNAME, GetSpeciesName(newSpecies));
+                    CalculateMonStats(&party[i]);
+                    GiveMonInitialMoveset(&party[i]); // rival teams use default level-up moves
+                    slot = STARTER_MON_COUNT; // done with this mon
+                    break;
+                }
+            }
+        }
+    }
+}
+
+// Opening 09: the Littleroot rival's first Pokémon is the rival's starter (counter to the player's,
+// same region), whatever trainers.party lists in that slot.
+void SetMonToRivalStarter(struct Pokemon *mon)
+{
+    u16 species = GetRivalStarterPokemon();
+    SetMonData(mon, MON_DATA_SPECIES, &species);
+    SetMonData(mon, MON_DATA_NICKNAME, GetSpeciesName(species));
+    CalculateMonStats(mon);
+    GiveMonInitialMoveset(mon);
+}
+
+// Debug: re-run the starter screen without the Route 101 scene or battle, then report the result
+// (region, player's starter, rival's starter) in gStringVar1-3. The Pokémon is not given.
+static void CB2_DebugStarterChosen(void)
+{
+    VarSet(VAR_STARTER_MON, gSpecialVar_Result); // the screen already saved VAR_STARTER_REGION
+    StringCopy(gStringVar1, GetStarterRegionName(GetStarterRegion()));
+    StringCopy(gStringVar2, GetSpeciesName(GetStarterPokemon(gSpecialVar_Result)));
+    StringCopy(gStringVar3, GetSpeciesName(GetRivalStarterPokemon()));
+    SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+}
+
+void Debug_ChooseStarterAgain(struct ScriptContext *ctx)
+{
+    VarSet(VAR_STARTER_REGION, STARTER_REGION_HOENN);
+    VarSet(VAR_STARTER_MON, 0);
+    SetMainCallback2(CB2_ChooseStarter);
+    gMain.savedCallback = CB2_DebugStarterChosen;
 }
 
 static void VblankCB_StarterChoose(void)
@@ -365,6 +508,10 @@ static void VblankCB_StarterChoose(void)
 #define tStarterSelection   data[0]
 #define tPkmnSpriteId       data[1]
 #define tCircleSpriteId     data[2]
+#define tRegion             data[3]
+#define tRegionWindowId     data[4]
+#define tHandSpriteId       data[5]
+#define tBallSpriteId(i)    data[6 + (i)]
 
 // Data for sSpriteTemplate_Pokeball
 #define sTaskId data[0]
@@ -438,25 +585,26 @@ void CB2_ChooseStarter(void)
     ShowBg(2);
     ShowBg(3);
 
-    taskId = CreateTask(Task_StarterChoose, 0);
+    // Starts on the region menu; the balls appear once a region is chosen.
+    taskId = CreateTask(Task_ShowRegionMenu, 0);
     gTasks[taskId].tStarterSelection = 1;
+    gTasks[taskId].tRegion = STARTER_REGION_HOENN;
+    gTasks[taskId].tRegionWindowId = WINDOW_NONE;
 
     // Create hand sprite
     spriteId = CreateSprite(&sSpriteTemplate_Hand, 120, 56, 2);
     gSprites[spriteId].data[0] = taskId;
+    gTasks[taskId].tHandSpriteId = spriteId;
 
     // Create three Poké Ball sprites
-    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[0][0], sPokeballCoords[0][1], 2);
-    gSprites[spriteId].sTaskId = taskId;
-    gSprites[spriteId].sBallId = 0;
-
-    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[1][0], sPokeballCoords[1][1], 2);
-    gSprites[spriteId].sTaskId = taskId;
-    gSprites[spriteId].sBallId = 1;
-
-    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[2][0], sPokeballCoords[2][1], 2);
-    gSprites[spriteId].sTaskId = taskId;
-    gSprites[spriteId].sBallId = 2;
+    for (u32 i = 0; i < STARTER_MON_COUNT; i++)
+    {
+        spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[i][0], sPokeballCoords[i][1], 2);
+        gSprites[spriteId].sTaskId = taskId;
+        gSprites[spriteId].sBallId = i;
+        gTasks[taskId].tBallSpriteId(i) = spriteId;
+    }
+    SetBallSpritesVisible(taskId, FALSE);
 
     sStarterLabelWindowId = WINDOW_NONE;
 }
@@ -470,9 +618,58 @@ static void CB2_StarterChoose(void)
     UpdatePaletteFade();
 }
 
+static void SetBallSpritesVisible(u8 taskId, bool32 visible)
+{
+    gSprites[gTasks[taskId].tHandSpriteId].invisible = !visible;
+    for (u32 i = 0; i < STARTER_MON_COUNT; i++)
+        gSprites[gTasks[taskId].tBallSpriteId(i)].invisible = !visible;
+}
+
+static void Task_ShowRegionMenu(u8 taskId)
+{
+    u8 windowId;
+
+    SetBallSpritesVisible(taskId, FALSE);
+
+    DrawStdFrameWithCustomTileAndPalette(0, FALSE, 0x2A8, 0xD);
+    AddTextPrinterParameterized(0, FONT_NORMAL, COMPOUND_STRING("PROF. BIRCH is in trouble!\nPick a region's POKéMON!"), 0, 1, 0, NULL);
+    PutWindowTilemap(0);
+
+    windowId = AddWindow(&sWindowTemplate_Region);
+    gTasks[taskId].tRegionWindowId = windowId;
+    DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x2A8, 0xD);
+    for (u32 i = 0; i < STARTER_REGION_COUNT; i++)
+        AddTextPrinterParameterized(windowId, FONT_NORMAL, sStarterRegions[i].name, 8, i * 16 + 1, TEXT_SKIP_DRAW, NULL);
+    InitMenuInUpperLeftCornerNormal(windowId, STARTER_REGION_COUNT, gTasks[taskId].tRegion);
+    CopyWindowToVram(windowId, COPYWIN_FULL);
+    ScheduleBgCopyTilemapToVram(0);
+    gTasks[taskId].func = Task_HandleRegionMenuInput;
+}
+
+static void Task_HandleRegionMenuInput(u8 taskId)
+{
+    s8 input;
+
+    if (JOY_NEW(B_BUTTON)) // B does nothing on the region menu
+        return;
+
+    input = Menu_ProcessInputNoWrap();
+    if (input < 0)
+        return;
+
+    PlaySE(SE_SELECT);
+    gTasks[taskId].tRegion = input;
+    ClearStdWindowAndFrameToTransparent(gTasks[taskId].tRegionWindowId, TRUE);
+    RemoveWindow(gTasks[taskId].tRegionWindowId);
+    gTasks[taskId].tRegionWindowId = WINDOW_NONE;
+    SetBallSpritesVisible(taskId, TRUE);
+    gTasks[taskId].func = Task_StarterChoose;
+}
+
 static void Task_StarterChoose(u8 taskId)
 {
-    CreateStarterPokemonLabel(gTasks[taskId].tStarterSelection);
+    CreateStarterPokemonLabel(gTasks[taskId].tRegion, gTasks[taskId].tStarterSelection);
+    FillWindowPixelBuffer(0, PIXEL_FILL(1));
     DrawStdFrameWithCustomTileAndPalette(0, FALSE, 0x2A8, 0xD);
     AddTextPrinterParameterized(0, FONT_NORMAL, gText_BirchInTrouble, 0, 1, 0, NULL);
     PutWindowTilemap(0);
@@ -495,7 +692,7 @@ static void Task_HandleStarterChooseInput(u8 taskId)
         gTasks[taskId].tCircleSpriteId = spriteId;
 
         // Create Pokémon sprite
-        spriteId = CreatePokemonFrontSprite(GetStarterPokemon(gTasks[taskId].tStarterSelection), sPokeballCoords[selection][0], sPokeballCoords[selection][1]);
+        spriteId = CreatePokemonFrontSprite(GetRegionStarterPokemon(gTasks[taskId].tRegion, selection), sPokeballCoords[selection][0], sPokeballCoords[selection][1]);
         gSprites[spriteId].affineAnims = &sAffineAnims_StarterPokemon;
         gSprites[spriteId].callback = SpriteCB_StarterPokemon;
 
@@ -512,6 +709,12 @@ static void Task_HandleStarterChooseInput(u8 taskId)
         gTasks[taskId].tStarterSelection++;
         gTasks[taskId].func = Task_MoveStarterChooseCursor;
     }
+    else if (JOY_NEW(B_BUTTON)) // back to the region menu, cursor on the last region
+    {
+        PlaySE(SE_SELECT);
+        ClearStarterLabel();
+        gTasks[taskId].func = Task_ShowRegionMenu;
+    }
 }
 
 static void Task_WaitForStarterSprite(u8 taskId)
@@ -526,7 +729,7 @@ static void Task_WaitForStarterSprite(u8 taskId)
 
 static void Task_AskConfirmStarter(u8 taskId)
 {
-    PlayCry_Normal(GetStarterPokemon(gTasks[taskId].tStarterSelection), 0);
+    PlayCry_Normal(GetRegionStarterPokemon(gTasks[taskId].tRegion, gTasks[taskId].tStarterSelection), 0);
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized(0, FONT_NORMAL, gText_ConfirmStarterChoice, 0, 1, 0, NULL);
     ScheduleBgCopyTilemapToVram(0);
@@ -543,6 +746,7 @@ static void Task_HandleConfirmStarterInput(u8 taskId)
     case 0:  // YES
         // Return the starter choice and exit.
         gSpecialVar_Result = gTasks[taskId].tStarterSelection;
+        VarSet(VAR_STARTER_REGION, gTasks[taskId].tRegion);
         ResetAllPicSprites();
         SetMainCallback2(gMain.savedCallback);
         break;
@@ -566,7 +770,7 @@ static void Task_DeclineStarter(u8 taskId)
     gTasks[taskId].func = Task_StarterChoose;
 }
 
-static void CreateStarterPokemonLabel(u8 selection)
+static void CreateStarterPokemonLabel(u8 region, u8 selection)
 {
     u8 categoryText[32];
     struct WindowTemplate winTemplate;
@@ -574,7 +778,7 @@ static void CreateStarterPokemonLabel(u8 selection)
     s32 width;
     u8 labelLeft, labelRight, labelTop, labelBottom;
 
-    enum Species species = GetStarterPokemon(selection);
+    enum Species species = GetRegionStarterPokemon(region, selection);
     CopyMonCategoryText(species, categoryText);
     speciesName = GetSpeciesName(species);
 
@@ -621,7 +825,7 @@ static void Task_MoveStarterChooseCursor(u8 taskId)
 
 static void Task_CreateStarterLabel(u8 taskId)
 {
-    CreateStarterPokemonLabel(gTasks[taskId].tStarterSelection);
+    CreateStarterPokemonLabel(gTasks[taskId].tRegion, gTasks[taskId].tStarterSelection);
     gTasks[taskId].func = Task_HandleStarterChooseInput;
 }
 

@@ -408,6 +408,14 @@ extern const u8 Debug_Follower_NPC_Event_Script[];
 extern const u8 Debug_Follower_NPC_Not_Enabled[];
 extern const u8 Debug_EventScript_Steven_Multi[];
 extern const u8 Debug_EventScript_WallyTutorial[];
+extern const u8 Debug_EventScript_ChooseStarterAgain[];
+extern const u8 Debug_EventScript_Opening04[];
+extern const u8 Debug_EventScript_Opening06[];
+extern const u8 Debug_EventScript_Opening07[];
+extern const u8 Debug_EventScript_Opening08[];
+extern const u8 Debug_EventScript_Opening09[];
+extern const u8 Debug_EventScript_Opening10[];
+extern const u8 Debug_EventScript_RedEyedMewtwo[];
 extern const u8 Debug_EventScript_PrintTimeOfDay[];
 extern const u8 Debug_EventScript_TellTheTime[];
 extern const u8 Debug_EventScript_FakeRTCNotEnabled[];
@@ -607,6 +615,18 @@ static const struct DebugMenuOption sDebugMenu_Actions_FollowerNPCMenu[] =
 };
 
 // L1: acts on the locked route on the current map.
+// Opening test starts (scenes OPENING_04 to OPENING_10). Use on a new game.
+static const struct DebugMenuOption sDebugMenu_Actions_OpeningStart[] =
+{
+    { COMPOUND_STRING("04 Birch rescue"),  DebugAction_ExecuteScript, Debug_EventScript_Opening04 },
+    { COMPOUND_STRING("06 Steve"),         DebugAction_ExecuteScript, Debug_EventScript_Opening06 },
+    { COMPOUND_STRING("07 Lab return"),    DebugAction_ExecuteScript, Debug_EventScript_Opening07 },
+    { COMPOUND_STRING("08 Dad send-off"),  DebugAction_ExecuteScript, Debug_EventScript_Opening08 },
+    { COMPOUND_STRING("09 Rival battle"),  DebugAction_ExecuteScript, Debug_EventScript_Opening09 },
+    { COMPOUND_STRING("10 Wurmple photo"), DebugAction_ExecuteScript, Debug_EventScript_Opening10 },
+    { NULL }
+};
+
 static const struct DebugMenuOption sDebugMenu_Actions_RouteLock[] =
 {
     { COMPOUND_STRING("Reset route here"),  DebugAction_RouteLock, (const void *)ROUTE_LOCK_DEBUG_RESET },
@@ -627,6 +647,9 @@ static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
     { COMPOUND_STRING("Watch credits…"),            DebugAction_Util_WatchCredits },
     { COMPOUND_STRING("Cheat start"),               DebugAction_Util_CheatStart },
     { COMPOUND_STRING("Route lock…"),               DebugAction_OpenSubMenu, sDebugMenu_Actions_RouteLock },
+    { COMPOUND_STRING("Choose starter again"),      DebugAction_ExecuteScript, Debug_EventScript_ChooseStarterAgain },
+    { COMPOUND_STRING("Start at opening…"),         DebugAction_OpenSubMenu, sDebugMenu_Actions_OpeningStart },
+    { COMPOUND_STRING("Red-eyed Mewtwo battle"),    DebugAction_ExecuteScript, Debug_EventScript_RedEyedMewtwo },
     { COMPOUND_STRING("Berry Functions…"),          DebugAction_OpenSubMenu, sDebugMenu_Actions_BerryFunctions },
     { COMPOUND_STRING("EWRAM Counters…"),           DebugAction_ExecuteScript, Debug_EventScript_EWRAMCounters },
     { COMPOUND_STRING("Follower NPC…"),             DebugAction_OpenSubMenu, sDebugMenu_Actions_FollowerNPCMenu },
@@ -2038,6 +2061,14 @@ static void DebugAction_Util_CheatStart(u8 taskId)
         Debug_DestroyMenu_Full_Script(taskId, Debug_CheatStartFrlg);
     else
         Debug_DestroyMenu_Full_Script(taskId, Debug_CheatStart);
+}
+
+// Opening test starts: OPENING_09 has to run on the Littleroot map (it uses Littleroot's rival object).
+void Debug_IsPlayerInLittleroot(struct ScriptContext *ctx);
+void Debug_IsPlayerInLittleroot(struct ScriptContext *ctx)
+{
+    gSpecialVar_Result = (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_LITTLEROOT_TOWN)
+                       && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_LITTLEROOT_TOWN));
 }
 
 void BufferExpansionVersion(struct ScriptContext *ctx)
@@ -3837,7 +3868,8 @@ static void DebugAction_PCBag_Fill_PocketKeyItems(u8 taskId)
     // before reaching our custom ones at the end of the list. Add those first.
     static const enum Item sCustomKeyItems[] =
     {
-        ITEM_TELEPORT, ITEM_POKEMON_BOX_LINK, ITEM_MACH_BIKE, ITEM_ACRO_BIKE, ITEM_INFINITE_REPEL
+        ITEM_TELEPORT, ITEM_POKEMON_BOX_LINK, ITEM_MACH_BIKE, ITEM_ACRO_BIKE, ITEM_INFINITE_REPEL,
+        ITEM_PACKAGE, ITEM_CAMERA
     };
     u32 i;
 

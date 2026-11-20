@@ -889,12 +889,75 @@ LittlerootTown_EventScript_SetReceivedRunningShoes::
 	removeobject LOCALID_LITTLEROOT_MOM
 	setflag FLAG_SYS_B_DASH
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	goto_if_unset FLAG_DEFEATED_RIVAL_LITTLEROOT, LittlerootTown_EventScript_RivalBattle
 	release
 	end
 
-@ V1: Mom's send-off (content sheet, Necessary Interactions K1-K6, N1, N3). Replaces the Running Shoes
-@ scene; running is on by default, so no shoes. Plays once: VAR_LITTLEROOT_TOWN_STATE goes 3 -> 4 after it.
-@ The only place the player gets these key items.
+@ Opening 09: the rival walks up from behind the player and battles. Losing doesn't white out
+@ (party healed after), and the battle never repeats. Win or lose, the rival gives 25 POKé BALLS (I1).
+LittlerootTown_EventScript_RivalBattle::
+	lockall
+	getplayerxy VAR_0x8004, VAR_0x8005
+	addvar VAR_0x8005, 3
+	setobjectxyperm LOCALID_LITTLEROOT_RIVAL, VAR_0x8004, VAR_0x8005
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
+	addobject LOCALID_LITTLEROOT_RIVAL
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, LittlerootTown_EventScript_PlayMayMusic
+	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_EventScript_PlayBrendanMusic
+	applymovement LOCALID_LITTLEROOT_RIVAL, LittlerootTown_Movement_RivalApproachFromBelow
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	checkplayergender
+	goto_if_eq VAR_RESULT, FEMALE, LittlerootTown_EventScript_BattleBrendan
+	msgbox LittlerootTown_Text_MayLetsBattle, MSGBOX_DEFAULT
+	trainerbattle_earlyrival TRAINER_RIVAL_LITTLEROOT, RIVAL_BATTLE_HEAL_AFTER, LittlerootTown_Text_MayDefeated, LittlerootTown_Text_MayWon
+	call LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls
+	goto LittlerootTown_EventScript_RivalLeaves
+	end
+
+LittlerootTown_EventScript_BattleBrendan::
+	msgbox LittlerootTown_Text_BrendanLetsBattle, MSGBOX_DEFAULT
+	trainerbattle_earlyrival TRAINER_RIVAL_LITTLEROOT_BRENDAN, RIVAL_BATTLE_HEAL_AFTER, LittlerootTown_Text_BrendanDefeated, LittlerootTown_Text_BrendanWon
+	call LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls
+	goto LittlerootTown_EventScript_RivalLeaves
+	end
+
+LittlerootTown_EventScript_RivalLeaves::
+	closemessage
+	setflag FLAG_DEFEATED_RIVAL_LITTLEROOT
+	setflag FLAG_DEFEATED_RIVAL_ROUTE103
+	applymovement LOCALID_LITTLEROOT_RIVAL, LittlerootTown_Movement_RivalLeaveDown
+	waitmovement 0
+	removeobject LOCALID_LITTLEROOT_RIVAL
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	releaseall
+	end
+
+LittlerootTown_EventScript_PlayMayMusic::
+	playbgm MUS_ENCOUNTER_MAY, TRUE
+	return
+
+LittlerootTown_EventScript_PlayBrendanMusic::
+	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+	return
+
+LittlerootTown_Movement_RivalApproachFromBelow:
+	walk_up
+	walk_up
+	step_end
+
+LittlerootTown_Movement_RivalLeaveDown:
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+@ Opening 08: Dad's send-off (content sheet, Necessary Interactions K1-K6, N1, N3). Replaces the Running
+@ Shoes scene; running is on by default, so no shoes. Plays once: VAR_LITTLEROOT_TOWN_STATE goes 3 -> 4 after it.
+@ The only place the player gets these key items. Dad heals the party before his closing line (K6).
 LittlerootTown_EventScript_GiveRunningShoes::
 	msgbox LittlerootTown_Text_MomTeleporter, MSGBOX_DEFAULT
 	giveitem ITEM_TELEPORT
@@ -910,56 +973,57 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	msgbox LittlerootTown_Text_MomLevelCap, MSGBOX_DEFAULT
 	special BufferNextGymGateSpecies
 	msgbox LittlerootTown_Text_MomGymGate, MSGBOX_DEFAULT
+	closemessage
+	call Common_EventScript_OutOfCenterPartyHeal
+	setflag FLAG_DAD_SENDOFF_DONE
 	msgbox LittlerootTown_Text_MomTakeCare, MSGBOX_DEFAULT
 	closemessage
 	delay 30
 	return
 
 LittlerootTown_Text_OurNewHomeLetsGoInside:
-	.string "MOM: {PLAYER}, we're here, honey!\p"
-	.string "It must be tiring riding with our things\n"
-	.string "in the moving truck.\p"
-	.string "Well, this is LITTLEROOT TOWN.\p"
-	.string "How do you like it?\n"
-	.string "This is our new home!\p"
-	.string "It has a quaint feel, but it seems to be\n"
-	.string "an easy place to live, don't you think?\p"
-	.string "And, you get your own room, {PLAYER}!\n"
-	.string "Let's go inside.$"
+	.string "DAD: Well, looks like we're almost set\n"
+	.string "up here.\p"
+	.string "I'm going to miss RUSTBORO, but your\n"
+	.string "mom felt passionate about getting us\l"
+	.string "out of the city.\p"
+	.string "Once she finishes up her work, she'll\n"
+	.string "come meet us here and we can get fully\l"
+	.string "settled.$"
 
 LittlerootTown_Text_WaitPlayer:
-	.string "MOM: Wait, {PLAYER}!\n"
+	.string "DAD: Wait, {PLAYER}!\n"
 	.string "Before you go, take these.\p"
 	.string "You'll need them out there.$"
 
 LittlerootTown_Text_MomTeleporter:
-	.string "MOM: This TELEPORTER takes you back\n"
+	.string "DAD: This TELEPORTER takes you back\n"
 	.string "to the last POKéMON CENTER\l"
 	.string "you visited.\p"
 	.string "It won't work in GYMS, or on a route\n"
 	.string "you haven't made it through.$"
 
 LittlerootTown_Text_MomBoxLink:
-	.string "MOM: With this BOX LINK you can reach\n"
+	.string "DAD: With this BOX LINK you can reach\n"
 	.string "your PC boxes anywhere and swap\l"
 	.string "POKéMON.\p"
 	.string "It can't heal them, though!$"
 
 LittlerootTown_Text_MomBikes:
-	.string "MOM: Your father wanted you to have\n"
+	.string "DAD: Your mother wanted you to have\n"
 	.string "both BIKES.\p"
-	.string "The MACH BIKE is fast;\n"
-	.string "the ACRO BIKE does tricks.\p"
+	.string "The MACH BIKE is fast; the ACRO BIKE\n"
+	.string "does tricks.\p"
 	.string "Swap them from your BAG.$"
 
 LittlerootTown_Text_MomInfiniteRepel:
-	.string "MOM: And this INFINITE REPEL keeps\n"
+	.string "DAD: And this INFINITE REPEL keeps\n"
 	.string "wild POKéMON away whenever you\l"
 	.string "switch it on.$"
 
 @ {STR_VAR_1} = current level cap (src/caps.c).
 LittlerootTown_Text_MomLevelCap:
-	.string "MOM: One more thing: your POKéMON\n"
+	.string "DAD: One more thing: your POKéMON\n"
 	.string "won't grow past Lv. {STR_VAR_1} until you\l"
 	.string "beat ROXANNE in RUSTBORO.\p"
 	.string "Wild POKéMON stronger than that won't\n"
@@ -967,14 +1031,14 @@ LittlerootTown_Text_MomLevelCap:
 
 @ {STR_VAR_2} = species needed for the next gym (src/gym_gate.c).
 LittlerootTown_Text_MomGymGate:
-	.string "MOM: And GYM LEADERS only accept\n"
+	.string "DAD: And GYM LEADERS only accept\n"
 	.string "trainers who've done their research.\p"
 	.string "Catch at least {STR_VAR_2} different kinds\n"
 	.string "of POKéMON before you visit\l"
 	.string "ROXANNE's GYM!$"
 
 LittlerootTown_Text_MomTakeCare:
-	.string "MOM: Take care of yourself, and come\n"
+	.string "DAD: Take care of yourself, and come\n"
 	.string "home sometimes!$"
 
 LittlerootTown_Text_CanUsePCToStoreItems:
@@ -1039,3 +1103,39 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
+
+LittlerootTown_Text_MayLetsBattle:
+	.string "MAY: Hey, {PLAYER}{KUN}! Before we head out\n"
+	.string "into the wide world of POKéMON, let's\l"
+	.string "have a quick battle to see who is\l"
+	.string "stronger!$"
+
+LittlerootTown_Text_MayDefeated:
+	.string "MAY: Nice work! I'll have to figure out\n"
+	.string "another strategy against you for\l"
+	.string "next time.$"
+
+LittlerootTown_Text_MayWon:
+	.string "MAY: Looks like I got the better of\n"
+	.string "you this time.\p"
+	.string "I'm sure you'll have some new tricks up\n"
+	.string "your sleeve when we see each other\l"
+	.string "again.$"
+
+LittlerootTown_Text_BrendanLetsBattle:
+	.string "BRENDAN: Hey, {PLAYER}{KUN}! Before we head\n"
+	.string "out into the wide world of POKéMON,\l"
+	.string "let's have a quick battle to see who is\l"
+	.string "stronger!$"
+
+LittlerootTown_Text_BrendanDefeated:
+	.string "BRENDAN: Nice work! I'll have to figure\n"
+	.string "out another strategy against you for\l"
+	.string "next time.$"
+
+LittlerootTown_Text_BrendanWon:
+	.string "BRENDAN: Looks like I got the better\n"
+	.string "of you this time.\p"
+	.string "I'm sure you'll have some new tricks up\n"
+	.string "your sleeve when we see each other\l"
+	.string "again.$"

@@ -53,13 +53,13 @@
 
 #define FLAG_INFINITE_REPEL  0x20 // BestRomHackEver: Infinite Repel key item is switched on
 #define FLAG_ROUTE_LOCK_NO_RUNNING 0x21 // BestRomHackEver L1: no running from wild battles on the locked route (WE_FLAG_NO_RUNNING)
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
+#define FLAG_SEEN_BILL_TV_SPECIAL    0x22 // Opening 02: watched the BILL TV special
+#define FLAG_OPENING_ERRAND_STARTED  0x23 // Opening 05: Birch asked the player to see STEVE in OLDALE
+#define FLAG_RECEIVED_PACKAGE_FROM_STEVE 0x24 // Opening 06: STEVE gave the PACKAGE
+#define FLAG_RECEIVED_CAMERA         0x25 // Opening 07: Birch gave the CAMERA
+#define FLAG_DAD_SENDOFF_DONE        0x26 // Opening 08: Dad's send-off at the Littleroot exit is done
+#define FLAG_DEFEATED_RIVAL_LITTLEROOT 0x27 // Opening 09: rival battle at the Littleroot exit done (win or lose)
+#define FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE 0x28 // Opening 10: photographed the red-eyed WURMPLE (also hides it)
 #define FLAG_UNUSED_0x029    0x29 // Unused Flag
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag

@@ -23,6 +23,7 @@
 #include "constants/moves.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "red_eyed.h"
 
 // iwram
 COMMON_DATA u32 gMonShrinkDuration = 0;
@@ -2159,6 +2160,7 @@ void TryShinyAnimation(enum BattlerId battler, struct Pokemon *mon)
 
     isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
     gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = TRUE;
+    RedEyed_StartEntryFlash(battler);
     illusionMon = GetIllusionMonPtr(battler);
     if (illusionMon != NULL)
         mon = illusionMon;

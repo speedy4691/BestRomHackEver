@@ -97,7 +97,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForJohtoStarters::
 
 LittlerootTown_ProfessorBirchsLab_OnFrame:
 	map_script_2 VAR_BIRCH_LAB_STATE, 2, LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent
-	map_script_2 VAR_BIRCH_LAB_STATE, 4, LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedexEvent
 	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex
 	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4, LittlerootTown_ProfessorBirchsLab_EventScript_ChooseJohtoStarter
 	.2byte 0
@@ -113,13 +112,22 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent::
 	waitfanfare
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter
-	goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
+	goto LittlerootTown_ProfessorBirchsLab_EventScript_StartErrand
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter::
 	setvar VAR_0x8004, 0
 	call Common_EventScript_NameReceivedPartyMon
-	goto LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
+	goto LittlerootTown_ProfessorBirchsLab_EventScript_StartErrand
+	end
+
+@ Opening 05: Birch gives 2 ULTRA BALLS and sends the player to STEVE in OLDALE TOWN.
+LittlerootTown_ProfessorBirchsLab_EventScript_StartErrand::
+	giveitem ITEM_ULTRA_BALL, 2
+	setflag FLAG_OPENING_ERRAND_STARTED
+	clearflag FLAG_HIDE_ROUTE_101_BOY
+	setvar VAR_BIRCH_LAB_STATE, 3
+	releaseall
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival::
@@ -463,11 +471,62 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter::
 LittlerootTown_ProfessorBirchsLab_EventScript_Birch::
 	lock
 	faceplayer
+	goto_if_set FLAG_RECEIVED_CAMERA, LittlerootTown_ProfessorBirchsLab_EventScript_BirchAfterOpening
+	goto_if_set FLAG_RECEIVED_PACKAGE_FROM_STEVE, LittlerootTown_ProfessorBirchsLab_EventScript_LabReturn
+LittlerootTown_ProfessorBirchsLab_EventScript_BirchAfterOpening::
 	goto_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5, LittlerootTown_ProfessorBirchsLab_EventScript_CanHaveAnyOneOfRarePokemon
 	goto_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_ProfessorBirchsLab_EventScript_GrassyPatchWaiting
 	goto_if_unset FLAG_HAS_MATCH_CALL, LittlerootTown_ProfessorBirchsLab_EventScript_TryRatePokedexOrRegister
 	goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL, EventScript_RegisterProfBirch
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_TryRatePokedexOrRegister
+	end
+
+@ Opening 07: the player hands over STEVE's PACKAGE; Birch gives the CAMERA, the POKéNAV
+@ (Birch registered in Match Call) and the POKéDEX (skipped if the player already has one).
+LittlerootTown_ProfessorBirchsLab_EventScript_LabReturn::
+	removeitem ITEM_PACKAGE
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_LabReturnCamera, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedCamera
+	waitmessage
+	waitfanfare
+	additem ITEM_CAMERA
+	setflag FLAG_RECEIVED_CAMERA
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_LabReturnStayInTouch, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokenav
+	waitmessage
+	waitfanfare
+	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_RECEIVED_POKENAV
+	setflag FLAG_HAS_MATCH_CALL
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_LabReturnExplainPokenav, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_LabReturnRegisteredBirch, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 30
+	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
+	setvar VAR_REGISTER_BIRCH_STATE, 2
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_LabReturnPokedex, MSGBOX_DEFAULT
+	goto_if_set FLAG_SYS_POKEDEX_GET, LittlerootTown_ProfessorBirchsLab_EventScript_LabReturnAlreadyHasPokedex
+	playfanfare MUS_OBTAIN_ITEM
+	message LittlerootTown_ProfessorBirchsLab_Text_LabReturnReceivedPokedex
+	waitmessage
+	waitfanfare
+	setflag FLAG_SYS_POKEDEX_GET
+	special SetUnlockedPokedexFlags
+LittlerootTown_ProfessorBirchsLab_EventScript_LabReturnAlreadyHasPokedex::
+	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_LabReturnCountingOnYou, MSGBOX_DEFAULT
+	setvar VAR_BIRCH_LAB_STATE, 5
+	setflag FLAG_ADVENTURE_STARTED
+	setvar VAR_LITTLEROOT_RIVAL_STATE, 4
+	setvar VAR_LITTLEROOT_TOWN_STATE, 3
+	release
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_CanHaveAnyOneOfRarePokemon::
@@ -485,6 +544,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_TryRatePokedexOrRegister::
 	goto_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3, ProfBirch_EventScript_RatePokedexOrRegister
 	goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, ProfBirch_EventScript_RatePokedexOrRegister
 	goto_if_eq VAR_BIRCH_LAB_STATE, 5, LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait
+	goto_if_set FLAG_OPENING_ERRAND_STARTED, LittlerootTown_ProfessorBirchsLab_EventScript_ErrandReminder
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome, MSGBOX_DEFAULT
 	release
 	end
@@ -525,7 +585,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
 
 LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese, MSGBOX_DEFAULT
-	giveitem ITEM_POKE_BALL, 5
+	giveitem ITEM_POKE_BALL, 25
 	call_if_eq VAR_RESULT, FALSE, LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 0
@@ -533,7 +593,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls::
 
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese, MSGBOX_DEFAULT
-	giveitem ITEM_POKE_BALL, 5
+	giveitem ITEM_POKE_BALL, 25
 	call_if_eq VAR_RESULT, FALSE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanNoRoomForPokeBalls
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_CatchCoolPokemonWithPokeBalls, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 1
@@ -548,6 +608,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex::
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	return
+
+LittlerootTown_ProfessorBirchsLab_EventScript_ErrandReminder::
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ErrandReminder, MSGBOX_DEFAULT
+	release
+	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait, MSGBOX_DEFAULT
@@ -682,18 +747,21 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 	.string "There's a lot of love there.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon:
-	.string "PROF. BIRCH: So, {PLAYER}{KUN}.\p"
-	.string "I've heard so much about you from\n"
-	.string "your father.\p"
-	.string "I've heard that you don't have your\n"
-	.string "own POKéMON yet.\p"
-	.string "But the way you battled earlier,\n"
-	.string "you pulled it off with aplomb!\p"
-	.string "I guess you have your father's blood\n"
-	.string "in your veins after all!\p"
-	.string "Oh, yes. As thanks for rescuing me,\n"
-	.string "I'd like you to have the POKéMON you\l"
-	.string "used earlier.\p"
+	.string "PROF. BIRCH: Thanks for the help,\n"
+	.string "{PLAYER}{KUN}.\p"
+	.string "I went out without POKéMON since the\n"
+	.string "ULTRA BALL never fails to catch\l"
+	.string "POKéMON on ROUTE 101.\p"
+	.string "But I've never seen a POKéMON acting\n"
+	.string "like this before…\p"
+	.string "It couldn't be caught!\p"
+	.string "I need to get to the bottom of this.\p"
+	.string "{PLAYER}{KUN}, can you do a favor for me?\p"
+	.string "I need you to run to OLDALE TOWN and\n"
+	.string "pick up something for me from SAFARI\l"
+	.string "GUIDE STEVE.\p"
+	.string "Please take the POKéMON you used in\n"
+	.string "battle along with 2 ULTRA BALLS.\p"
 	.string "{PLAYER} received the {STR_VAR_1}!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon:
@@ -718,6 +786,11 @@ LittlerootTown_ProfessorBirchsLab_Text_GetRivalToTeachYou:
 LittlerootTown_ProfessorBirchsLab_Text_DontBeThatWay:
 	.string "PROF. BIRCH: Oh, don't be that way.\n"
 	.string "You should go meet my kid.$"
+
+LittlerootTown_ProfessorBirchsLab_Text_ErrandReminder:
+	.string "PROF. BIRCH: I need you to run to\n"
+	.string "OLDALE TOWN and pick up something for\l"
+	.string "me from SAFARI GUIDE STEVE.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome:
 	.string "PROF. BIRCH: {RIVAL}?\n"
@@ -992,3 +1065,52 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "we meet. I'll be waiting!\p"
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_LabReturnCamera:
+	.string "PROF. BIRCH: Aha! I knew STEVE would\n"
+	.string "have one of these lying around for us\l"
+	.string "to use.\p"
+	.string "This is a CAMERA.\p"
+	.string "Way back in the day, people would use\n"
+	.string "these to study POKéMON before that\l"
+	.string "genius BILL invented the PC.\p"
+	.string "Since these POKéMON can't be caught,\n"
+	.string "I want you to take this and take a\l"
+	.string "picture of any of the red-glowing\l"
+	.string "POKéMON you find along your journey.$"
+
+LittlerootTown_ProfessorBirchsLab_Text_ReceivedCamera:
+	.string "{PLAYER} received the CAMERA!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_LabReturnStayInTouch:
+	.string "Also, take this so that we can stay in\n"
+	.string "touch along the way.$"
+
+LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokenav:
+	.string "{PLAYER} received the POKéNAV!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_LabReturnExplainPokenav:
+	.string "With the POKéNAV, you can call anyone\n"
+	.string "you've registered.\p"
+	.string "I've registered myself already, so call\n"
+	.string "me if you see anything strange out\l"
+	.string "there.$"
+
+LittlerootTown_ProfessorBirchsLab_Text_LabReturnRegisteredBirch:
+	.string "Registered PROF. BIRCH in the\n"
+	.string "POKéNAV.$"
+
+LittlerootTown_ProfessorBirchsLab_Text_LabReturnPokedex:
+	.string "Oh, and one more thing. I ordered this\n"
+	.string "for my research, but I think you\l"
+	.string "should have this POKéDEX.$"
+
+LittlerootTown_ProfessorBirchsLab_Text_LabReturnReceivedPokedex:
+	.string "{PLAYER} received the POKéDEX!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_LabReturnCountingOnYou:
+	.string "The POKéDEX is a high-tech tool that\n"
+	.string "automatically makes a record of any\l"
+	.string "POKéMON you meet or catch.\p"
+	.string "Now go on out there. I'm counting on\n"
+	.string "you, {PLAYER}{KUN}!$"
