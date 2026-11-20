@@ -348,16 +348,15 @@ PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor:
 	.string "PROF. BIRCH.$"
 
 PlayersHouse_1F_Text_SeeYouHoney:
-	.string "DAD: See you, honey!$"
+	.string "DAD: See you, {PLAYER}!$"
 
 PlayersHouse_1F_Text_DidYouMeetProfBirch:
 	.string "DAD: Did you introduce yourself to\n"
 	.string "PROF. BIRCH?$"
 
 PlayersHouse_1F_Text_YouShouldRestABit:
-	.string "DAD: How are you doing, {PLAYER}?\n"
-	.string "You look a little tired.\p"
-	.string "I think you should rest a bit.$"
+	.string "DAD: {PLAYER}, you look tired.\p"
+	.string "Take a quick rest.$"
 
 PlayersHouse_1F_Text_TakeCareHoney:
 	.string "DAD: Take care, {PLAYER}!$"
