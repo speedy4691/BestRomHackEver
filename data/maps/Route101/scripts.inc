@@ -297,3 +297,94 @@ Route101_Text_RouteSign:
 	.string "ROUTE 101\n"
 	.string "{UP_ARROW} OLDALE TOWN$"
 
+
+@ Opening 09: after Dad's send-off (VAR_ROUTE101_STATE 4), the rival meets the player as they step onto
+@ Route 101. Losing doesn't white out (party healed after) and the battle never repeats. Win or lose, the rival
+@ gives 25 POKé BALLS (I1), then walks off north toward OLDALE TOWN.
+Route101_EventScript_RivalBattle::
+	lockall
+	call Common_EventScript_SetupRivalGfxId
+	getplayerxy VAR_0x8004, VAR_0x8005
+	setobjectxyperm LOCALID_ROUTE101_RIVAL, VAR_0x8004, 14
+	clearflag FLAG_HIDE_ROUTE_101_RIVAL
+	addobject LOCALID_ROUTE101_RIVAL
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, LittlerootTown_EventScript_PlayMayMusic
+	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_EventScript_PlayBrendanMusic
+	applymovement LOCALID_ROUTE101_RIVAL, Route101_Movement_RivalApproach
+	waitmovement 0
+	checkplayergender
+	goto_if_eq VAR_RESULT, FEMALE, Route101_EventScript_BattleBrendan
+	msgbox LittlerootTown_Text_MayLetsBattle, MSGBOX_DEFAULT
+	trainerbattle_earlyrival TRAINER_RIVAL_LITTLEROOT, RIVAL_BATTLE_HEAL_AFTER, LittlerootTown_Text_MayDefeated, LittlerootTown_Text_MayWon
+	call LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls
+	goto Route101_EventScript_RivalLeaves
+	end
+
+Route101_EventScript_BattleBrendan::
+	msgbox LittlerootTown_Text_BrendanLetsBattle, MSGBOX_DEFAULT
+	trainerbattle_earlyrival TRAINER_RIVAL_LITTLEROOT_BRENDAN, RIVAL_BATTLE_HEAL_AFTER, LittlerootTown_Text_BrendanDefeated, LittlerootTown_Text_BrendanWon
+	call LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls
+	goto Route101_EventScript_RivalLeaves
+	end
+
+Route101_EventScript_RivalLeaves::
+	closemessage
+	setflag FLAG_DEFEATED_RIVAL_LITTLEROOT
+	setflag FLAG_DEFEATED_RIVAL_ROUTE103
+	setvar VAR_ROUTE101_STATE, 5
+	@ The path north bends west at row 13, so the walk-off depends on which entry tile the player used.
+	getplayerxy VAR_0x8004, VAR_0x8005
+	goto_if_eq VAR_0x8004, 11, Route101_EventScript_RivalLeavesFrom11
+	applymovement LOCALID_ROUTE101_RIVAL, Route101_Movement_RivalLeaveFrom10
+	goto Route101_EventScript_RivalGone
+	end
+
+Route101_EventScript_RivalLeavesFrom11::
+	applymovement LOCALID_ROUTE101_RIVAL, Route101_Movement_RivalLeaveFrom11
+Route101_EventScript_RivalGone::
+	waitmovement 0
+	removeobject LOCALID_ROUTE101_RIVAL
+	setflag FLAG_HIDE_ROUTE_101_RIVAL
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	releaseall
+	end
+
+Route101_Movement_RivalApproach:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Route101_Movement_RivalLeaveFrom10:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route101_Movement_RivalLeaveFrom11:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end

@@ -418,6 +418,7 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_PLAYERUSEDITEM]                       = COMPOUND_STRING("You used {B_LAST_ITEM}!"),
     [STRINGID_TRAINERBLOCKEDBALL]                   = COMPOUND_STRING("The Trainer blocked your Poké Ball!"),
     [STRINGID_REDEYEDBALLBOUNCED]                   = COMPOUND_STRING("The {B_LAST_ITEM} bounced off!\pIt can't be caught!"),
+    [STRINGID_FIRSTBATTLEAFTERBALLBOUNCE]           = COMPOUND_STRING("PROF. BIRCH: It can't be caught?!\p{B_PLAYER_NAME}, attack it instead!"),
     [STRINGID_DONTBEATHIEF]                         = COMPOUND_STRING("Don't be a thief!"),
     [STRINGID_ITDODGEDBALL]                         = COMPOUND_STRING("It dodged your thrown Poké Ball! This Pokémon can't be caught!"),
     [STRINGID_PKMNBROKEFREE]                        = COMPOUND_STRING("Oh no! The Pokémon broke free!"),

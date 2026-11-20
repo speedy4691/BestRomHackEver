@@ -1529,7 +1529,9 @@ void BattleSetup_StartTrainerBattle(void)
         }
     }
 
-    if (TRAINER_BATTLE_PARAM.earlyRival && GetRivalBattleFlags() & RIVAL_BATTLE_TUTORIAL)
+    // RIVAL_BATTLE_TUTORIAL (3) includes RIVAL_BATTLE_HEAL_AFTER (1), so test for all its bits: otherwise a
+    // heal-after rival battle also counts as the first battle (which spawns Birch's red-eyed POOCHYENA).
+    if (TRAINER_BATTLE_PARAM.earlyRival && (GetRivalBattleFlags() & RIVAL_BATTLE_TUTORIAL) == RIVAL_BATTLE_TUTORIAL)
         gBattleTypeFlags |= BATTLE_TYPE_FIRST_BATTLE;
 
     if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)

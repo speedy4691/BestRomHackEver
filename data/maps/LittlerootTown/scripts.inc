@@ -889,51 +889,9 @@ LittlerootTown_EventScript_SetReceivedRunningShoes::
 	removeobject LOCALID_LITTLEROOT_MOM
 	setflag FLAG_SYS_B_DASH
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
-	goto_if_unset FLAG_DEFEATED_RIVAL_LITTLEROOT, LittlerootTown_EventScript_RivalBattle
+	@ Opening 09: arms the rival battle at the Route 101 entry.
+	setvar VAR_ROUTE101_STATE, 4
 	release
-	end
-
-@ Opening 09: the rival walks up from behind the player and battles. Losing doesn't white out
-@ (party healed after), and the battle never repeats. Win or lose, the rival gives 25 POKé BALLS (I1).
-LittlerootTown_EventScript_RivalBattle::
-	lockall
-	getplayerxy VAR_0x8004, VAR_0x8005
-	addvar VAR_0x8005, 3
-	setobjectxyperm LOCALID_LITTLEROOT_RIVAL, VAR_0x8004, VAR_0x8005
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
-	addobject LOCALID_LITTLEROOT_RIVAL
-	checkplayergender
-	call_if_eq VAR_RESULT, MALE, LittlerootTown_EventScript_PlayMayMusic
-	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_EventScript_PlayBrendanMusic
-	applymovement LOCALID_LITTLEROOT_RIVAL, LittlerootTown_Movement_RivalApproachFromBelow
-	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	checkplayergender
-	goto_if_eq VAR_RESULT, FEMALE, LittlerootTown_EventScript_BattleBrendan
-	msgbox LittlerootTown_Text_MayLetsBattle, MSGBOX_DEFAULT
-	trainerbattle_earlyrival TRAINER_RIVAL_LITTLEROOT, RIVAL_BATTLE_HEAL_AFTER, LittlerootTown_Text_MayDefeated, LittlerootTown_Text_MayWon
-	call LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls
-	goto LittlerootTown_EventScript_RivalLeaves
-	end
-
-LittlerootTown_EventScript_BattleBrendan::
-	msgbox LittlerootTown_Text_BrendanLetsBattle, MSGBOX_DEFAULT
-	trainerbattle_earlyrival TRAINER_RIVAL_LITTLEROOT_BRENDAN, RIVAL_BATTLE_HEAL_AFTER, LittlerootTown_Text_BrendanDefeated, LittlerootTown_Text_BrendanWon
-	call LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls
-	goto LittlerootTown_EventScript_RivalLeaves
-	end
-
-LittlerootTown_EventScript_RivalLeaves::
-	closemessage
-	setflag FLAG_DEFEATED_RIVAL_LITTLEROOT
-	setflag FLAG_DEFEATED_RIVAL_ROUTE103
-	applymovement LOCALID_LITTLEROOT_RIVAL, LittlerootTown_Movement_RivalLeaveDown
-	waitmovement 0
-	removeobject LOCALID_LITTLEROOT_RIVAL
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
-	savebgm MUS_DUMMY
-	fadedefaultbgm
-	releaseall
 	end
 
 LittlerootTown_EventScript_PlayMayMusic::
@@ -943,17 +901,6 @@ LittlerootTown_EventScript_PlayMayMusic::
 LittlerootTown_EventScript_PlayBrendanMusic::
 	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
 	return
-
-LittlerootTown_Movement_RivalApproachFromBelow:
-	walk_up
-	walk_up
-	step_end
-
-LittlerootTown_Movement_RivalLeaveDown:
-	walk_down
-	walk_down
-	walk_down
-	step_end
 
 @ Opening 08: Dad's send-off (content sheet, Necessary Interactions K1-K6, N1, N3). Replaces the Running
 @ Shoes scene; running is on by default, so no shoes. Plays once: VAR_LITTLEROOT_TOWN_STATE goes 3 -> 4 after it.
@@ -973,6 +920,7 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	msgbox LittlerootTown_Text_MomLevelCap, MSGBOX_DEFAULT
 	special BufferNextGymGateSpecies
 	msgbox LittlerootTown_Text_MomGymGate, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_DadHealBeforeYouGo, MSGBOX_DEFAULT
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal
 	setflag FLAG_DAD_SENDOFF_DONE
@@ -1004,9 +952,12 @@ LittlerootTown_Text_MomTeleporter:
 	.string "you haven't made it through.$"
 
 LittlerootTown_Text_MomBoxLink:
-	.string "DAD: With this BOX LINK you can reach\n"
-	.string "your PC boxes anywhere and swap\l"
-	.string "POKéMON.\p"
+	.string "DAD: This BOX LINK is your mom's own\n"
+	.string "creation.\p"
+	.string "She built it as a prototype while she\n"
+	.string "was working on BILL's PC.\p"
+	.string "With it you can reach your PC boxes\n"
+	.string "anywhere and swap POKéMON.\p"
 	.string "It can't heal them, though!$"
 
 LittlerootTown_Text_MomBikes:
@@ -1036,6 +987,10 @@ LittlerootTown_Text_MomGymGate:
 	.string "Catch at least {STR_VAR_2} different kinds\n"
 	.string "of POKéMON before you visit\l"
 	.string "ROXANNE's GYM!$"
+
+LittlerootTown_Text_DadHealBeforeYouGo:
+	.string "DAD: Let me heal you before you set\n"
+	.string "out.$"
 
 LittlerootTown_Text_MomTakeCare:
 	.string "DAD: Take care of yourself, and come\n"

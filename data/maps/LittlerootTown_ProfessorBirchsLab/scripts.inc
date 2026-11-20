@@ -124,6 +124,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter::
 @ Opening 05: Birch gives 2 ULTRA BALLS and sends the player to STEVE in OLDALE TOWN.
 LittlerootTown_ProfessorBirchsLab_EventScript_StartErrand::
 	giveitem ITEM_ULTRA_BALL, 2
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_TryCatchingSome, MSGBOX_DEFAULT
 	setflag FLAG_OPENING_ERRAND_STARTED
 	clearflag FLAG_HIDE_ROUTE_101_BOY
 	setvar VAR_BIRCH_LAB_STATE, 3
@@ -1114,3 +1115,6 @@ LittlerootTown_ProfessorBirchsLab_Text_LabReturnCountingOnYou:
 	.string "POKéMON you meet or catch.\p"
 	.string "Now go on out there. I'm counting on\n"
 	.string "you, {PLAYER}{KUN}!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_TryCatchingSome:
+	.string "Try catching some POKéMON on the way!$"

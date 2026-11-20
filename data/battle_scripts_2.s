@@ -244,6 +244,10 @@ BattleScript_RedEyedBallBounce::
 	waitmessage B_WAIT_TIME_LONG
 	printstring STRINGID_REDEYEDBALLBOUNCED
 	waitmessage B_WAIT_TIME_LONG
+	jumpifnotbattletype BATTLE_TYPE_FIRST_BATTLE, BattleScript_RedEyedBallBounceEnd
+	printstring STRINGID_FIRSTBATTLEAFTERBALLBOUNCE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_RedEyedBallBounceEnd:
 	finishaction
 
 BattleScript_RunByUsingItem::

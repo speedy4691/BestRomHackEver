@@ -60,8 +60,8 @@
 #define FLAG_DAD_SENDOFF_DONE        0x26 // Opening 08: Dad's send-off at the Littleroot exit is done
 #define FLAG_DEFEATED_RIVAL_LITTLEROOT 0x27 // Opening 09: rival battle at the Littleroot exit done (win or lose)
 #define FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE 0x28 // Opening 10: photographed the red-eyed WURMPLE (also hides it)
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
+#define FLAG_HIDE_ROUTE_101_RIVAL 0x29 // Opening 09: the rival object on Route 101 (shown only during the battle scene)
+#define FLAG_PC_EXP_DRAIN    0x2A // Core #38: set when storage is opened from BILL's PC (deposits drain EXP), cleared by the BOX LINK
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag

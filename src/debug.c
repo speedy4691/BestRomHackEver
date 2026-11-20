@@ -2063,14 +2063,6 @@ static void DebugAction_Util_CheatStart(u8 taskId)
         Debug_DestroyMenu_Full_Script(taskId, Debug_CheatStart);
 }
 
-// Opening test starts: OPENING_09 has to run on the Littleroot map (it uses Littleroot's rival object).
-void Debug_IsPlayerInLittleroot(struct ScriptContext *ctx);
-void Debug_IsPlayerInLittleroot(struct ScriptContext *ctx)
-{
-    gSpecialVar_Result = (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_LITTLEROOT_TOWN)
-                       && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_LITTLEROOT_TOWN));
-}
-
 void BufferExpansionVersion(struct ScriptContext *ctx)
 {
     static const u8 sText_Released[] = _("\nRelease Build");
