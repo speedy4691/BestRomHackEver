@@ -14487,7 +14487,7 @@ const struct ItemInfo gItemsInfo[] =
 
     [ITEM_TELEPORT] =
     {
-        .name = ITEM_NAME("Teleport"),
+        .name = ITEM_NAME("Teleporter"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Warps you back to\n"
