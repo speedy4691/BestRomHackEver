@@ -4,7 +4,9 @@
 // BestRomHackEver Photography prototype: every tuning number for the viewfinder (src/photography.c).
 
 // --- Shots ---
-#define PHOTO_SHOTS_PER_BATTLE      3     // Photos per wild battle. The debug viewfinder has no limit.
+// Photos per wild battle. The debug viewfinder has no limit. Closing the camera after taking
+// at least one photo uses the player's turn.
+#define PHOTO_SHOTS_PER_BATTLE      3
 
 // --- Drift speed (the "old TV screensaver" movement) ---
 // Speed number per species = base Speed + rarity bonus. Rarer = lower catch rate = bigger bonus.
@@ -44,5 +46,6 @@
 // --- Front animation ---
 #define PHOTO_ANIM_REPEAT_FRAMES    90    // Pause between loops of the front animation (60 = 1 second).
 #define PHOTO_SHOT_COOLDOWN         20    // Frames before the next photo can be taken.
+#define PHOTO_AUTO_CLOSE_FRAMES     120   // After the last shot, the camera closes by itself after this long.
 
 #endif // GUARD_CONFIG_PHOTOGRAPHY_H

@@ -123,6 +123,8 @@ struct PhotoViewfinder
     bool8 poseAtPeak;
     u16 animTimer;
     u16 cooldown;
+    u16 closeTimer;      // Counts down after the last shot, then the camera closes.
+    u8 shotsThisVisit;
     u16 animPeak;      // Biggest movement in the current animation loop.
     u16 lastAnimPeak;  // ...and in the previous loop.
     s32 monX, monY;    // Centre, 1/256 px.
@@ -546,7 +548,10 @@ static void TakePhoto(void)
         if (sVf->inBattle)
             gBattleStruct->photoShotsUsed++;
     }
+    sVf->shotsThisVisit++;
     sVf->cooldown = PHOTO_SHOT_COOLDOWN;
+    if (sVf->shotsLeft == 0)
+        sVf->closeTimer = PHOTO_AUTO_CLOSE_FRAMES;
     PlaySE(SE_CLICK);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 12, 0, RGB_WHITE);
 
@@ -566,13 +571,28 @@ static void TakePhoto(void)
     PrintLines(line2, line3);
 }
 
+static void StartClosing(void)
+{
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+    sVf->state = VF_STATE_EXIT;
+}
+
 static void HandleInput(void)
 {
+    // Out of shots: the camera closes by itself after the result has been shown (A or B closes it sooner).
+    if (sVf->closeTimer)
+    {
+        if (--sVf->closeTimer == 0 || (sVf->cooldown == 0 && JOY_NEW(A_BUTTON | B_BUTTON)))
+        {
+            sVf->closeTimer = 0;
+            StartClosing();
+            return;
+        }
+    }
     if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-        sVf->state = VF_STATE_EXIT;
+        StartClosing();
         return;
     }
     if (JOY_HELD(DPAD_LEFT))
@@ -670,6 +690,7 @@ static void ExitViewfinder(void)
     struct Sprite *sprite = &gSprites[sVf->monSpriteId];
     MainCallback returnCallback = sVf->returnCallback;
     bool32 inBattle = sVf->inBattle;
+    bool32 tookPhotos = sVf->shotsThisVisit != 0;
 
     // An animation still running holds its own matrix.
     if (sVf->animRunning && (sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK))
@@ -687,9 +708,16 @@ static void ExitViewfinder(void)
     SetGpuReg(REG_OFFSET_BLDY, 0);
     SetGpuReg(REG_OFFSET_WININ, 0);
     SetGpuReg(REG_OFFSET_WINOUT, 0);
+    SetGpuReg(REG_OFFSET_WIN0H, 0);
+    SetGpuReg(REG_OFFSET_WIN0V, 0);
+    // The battle screen redraw keeps DISPCNT as it finds it: turn the frame window off (as the Bag does),
+    // or everything stays hidden and the battle shows black.
+    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
     FREE_AND_SET_NULL(sVf);
+    // Grades were saved shot by shot. In battle, taking photos uses the player's turn
+    // (HandleAction_UseItem runs BattleScript_UseCamera); backing out without a shot doesn't.
     if (inBattle)
-        gSpecialVar_ItemId = ITEM_NONE; // Back to the action menu; no turn used.
+        gSpecialVar_ItemId = tookPhotos ? ITEM_CAMERA : ITEM_NONE;
     SetMainCallback2(returnCallback);
 }
 
