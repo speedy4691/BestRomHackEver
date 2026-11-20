@@ -638,3 +638,20 @@ PlayersHouse_1F_Movement_PlayerApproachTVForLatiFemale:
 EventScript_RunningShoesManual::
 	msgbox PlayersHouse_1F_Text_RunningShoesManual, MSGBOX_SIGN
 	end
+
+@ Both Littleroot house maps hold the player's DAD and the rival's family (mom, sibling). Which ones show
+@ depends on the player's gender; vanilla only sets these hide flags once, in the truck. Re-applying them on
+@ every visit keeps each family in its own house even if the truck step was skipped (debug opening starts).
+PlayersHouse_EventScript_SetFamilyFlags::
+	checkplayergender
+	goto_if_eq VAR_RESULT, FEMALE, PlayersHouse_EventScript_SetFamilyFlagsFemale
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING
+	return
+
+PlayersHouse_EventScript_SetFamilyFlagsFemale::
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING
+	return

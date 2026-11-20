@@ -24,6 +24,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual::
 	return
 
 LittlerootTown_BrendansHouse_1F_OnTransition:
+	call PlayersHouse_EventScript_SetFamilyFlags
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToStairs
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToTV

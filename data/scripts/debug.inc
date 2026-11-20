@@ -857,6 +857,10 @@ DebugEventScript_PrintWeekday_Text_0:
 @ starter, then warps to where the scene starts. Each Debug_Opening_After* sets the state right
 @ after that scene and calls the one before it.
 Debug_Opening_AfterIntro:
+	call PlayersHouse_EventScript_SetFamilyFlags
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, Debug_Opening_SetRespawnMale
+	call_if_eq VAR_RESULT, FEMALE, Debug_Opening_SetRespawnFemale
 	setvar VAR_LITTLEROOT_INTRO_STATE, 7
 	setflag FLAG_SET_WALL_CLOCK
 	setflag FLAG_SEEN_BILL_TV_SPECIAL
@@ -987,3 +991,11 @@ Debug_EventScript_Opening10::
 	warp MAP_ROUTE103, 10, 4
 	waitstate
 	end
+
+Debug_Opening_SetRespawnMale:
+	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
+	return
+
+Debug_Opening_SetRespawnFemale:
+	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F
+	return
