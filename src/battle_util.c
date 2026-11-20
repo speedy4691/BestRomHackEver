@@ -640,7 +640,10 @@ void HandleAction_UseItem(void)
         && !ShouldSkipFriendshipChange())
         UpdateFriendshipFromXItem(gBattlerAttacker);
 
-    gBattlescriptCurrInstr = gBattlescriptsForUsingItem[GetItemBattleUsage(gLastUsedItem) - 1];
+    if (gLastUsedItem == ITEM_CAMERA) // BestRomHackEver Photography: photos taken, the turn is used.
+        gBattlescriptCurrInstr = BattleScript_UseCamera;
+    else
+        gBattlescriptCurrInstr = gBattlescriptsForUsingItem[GetItemBattleUsage(gLastUsedItem) - 1];
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
 

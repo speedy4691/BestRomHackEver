@@ -28,6 +28,7 @@ void ItemUseOutOfBattle_EscapeRope(u8 taskId);
 void ItemUseOutOfBattle_Teleport(u8 taskId);
 void ItemUseOutOfBattle_InfiniteRepel(u8 taskId);
 void ItemUseOutOfBattle_Camera(u8 taskId);
+void ItemUseInBattle_Camera(u8 taskId);
 void ItemUseOutOfBattle_BlackWhiteFlute(u8 taskId);
 void ItemUseOutOfBattle_EvolutionStone(u8 taskId);
 void ItemUseOutOfBattle_Berry(u8 taskId);

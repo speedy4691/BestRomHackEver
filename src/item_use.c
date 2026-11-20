@@ -1,4 +1,6 @@
 #include "global.h"
+#include "photography.h"
+#include "config/photography.h"
 #include "item_use.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -268,6 +270,29 @@ void ItemUseOutOfBattle_Camera(u8 taskId)
         DisplayItemMessageOnField(taskId, sText_CameraPlaceholder, Task_CloseCantUseKeyItemMessage);
     else
         DisplayItemMessage(taskId, FONT_NORMAL, sText_CameraPlaceholder, CloseItemMessage);
+}
+
+// BestRomHackEver Photography: CAMERA from the Bag in a wild battle opens the viewfinder.
+// Leaving it returns to the action menu without using a turn (src/photography.c).
+void ItemUseInBattle_Camera(u8 taskId)
+{
+    static const u8 sText_NoPhotosHere[] = _("You can only take photos\nin wild battles.{PAUSE_UNTIL_PRESS}");
+    static const u8 sText_NoShotsLeft[] = _("No photos left in this battle.{PAUSE_UNTIL_PRESS}");
+
+    if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_SAFARI))
+    {
+        DisplayItemMessage(taskId, FONT_NORMAL, sText_NoPhotosHere, CloseItemMessage);
+    }
+    else if (gBattleStruct->photoShotsUsed >= PHOTO_SHOTS_PER_BATTLE)
+    {
+        DisplayItemMessage(taskId, FONT_NORMAL, sText_NoShotsLeft, CloseItemMessage);
+    }
+    else
+    {
+        PlaySE(SE_SELECT);
+        gBagMenu->newScreenCallback = CB2_OpenPhotoViewfinderFromBattle;
+        Task_FadeAndCloseBagMenu(taskId);
+    }
 }
 
 void ItemUseOutOfBattle_InfiniteRepel(u8 taskId)

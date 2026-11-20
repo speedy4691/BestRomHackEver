@@ -1,4 +1,5 @@
 #include "global.h"
+#include "photography.h"
 #include "battle_main.h"
 #include "battle_util.h"
 #include "bg.h"
@@ -1776,6 +1777,13 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     }
     PrintInfoScreenText(category, 123, 31);
     PrintMonMeasurements(species,owned);
+    // BestRomHackEver Photography: best photo grade, top-left above the picture (the right side is full).
+    if (species)
+    {
+        u8 photoText[32];
+        GetPhotoGradeDexText(photoText, species);
+        PrintInfoScreenTextSmall(photoText, FONT_SMALL, 4, 17);
+    }
     if (owned)
         description = GetSpeciesPokedexDescription(species);
     else

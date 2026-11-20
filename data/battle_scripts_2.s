@@ -120,6 +120,11 @@ BattleScript_ItemIncreaseStat::
 	trybattlerstatchange BS_ATTACKER, STAT_CHANGE_NO_FLAGS
 	end
 
+@ BestRomHackEver Photography: the player took photos with the CAMERA; that was their turn.
+BattleScript_UseCamera::
+	call BattleScript_UseItemMessage
+	finishaction
+
 BattleScript_UsePokeFlute::
 	checkpokeflute
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 1, BattleScript_PokeFluteWakeUp

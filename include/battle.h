@@ -745,6 +745,7 @@ struct BattleStruct
     u8 intimidateActivated:1;
     u8 allowPartingShot:1;
     u8 adrenalineOrbActivated:1; // prevents looping after an adrenaline stat changed
+    u8 photoShotsUsed; // BestRomHackEver Photography: CAMERA shots taken this battle (struct is zeroed per battle).
 };
 
 struct AiBattleData

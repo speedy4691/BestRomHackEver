@@ -269,6 +269,8 @@ struct SaveBlock3
     u8 dexNavSearchLevels[NUM_SPECIES];
 #endif
     u8 dexNavChain;
+    // BestRomHackEver Photography: best photo grade per species ID, 2 bits each (enum PhotoGrade, src/photography.c).
+    u8 photoGrades[ROUND_BITS_TO_BYTES(NUM_SPECIES * 2)];
 #if APRICORN_TREE_COUNT > 0
     u8 apricornTrees[NUM_APRICORN_TREE_BYTES];
 #endif
