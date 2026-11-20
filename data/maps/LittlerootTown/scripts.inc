@@ -970,8 +970,7 @@ LittlerootTown_Text_MomBikes:
 	.string "DAD: Your mother wanted you to have\n"
 	.string "both BIKES.\p"
 	.string "The MACH BIKE is fast; the ACRO BIKE\n"
-	.string "does tricks.\p"
-	.string "Swap them from your BAG.$"
+	.string "does tricks.$"
 
 LittlerootTown_Text_MomInfiniteRepel:
 	.string "DAD: And this INFINITE REPEL keeps\n"
