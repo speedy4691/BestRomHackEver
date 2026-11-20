@@ -215,18 +215,14 @@ OldaleTown_EventScript_BlockedPath::
 	end
 
 @ ARTIST VINNY (Trainers row 1830): stops the player at the exit, or when talked to. Losing is a normal
-@ whiteout and he blocks again next time. Winning: he moves to his usual spot and the exit opens.
+@ whiteout and he blocks again next time. Winning opens the exit: he stays where he is (at the exit trigger he
+@ has already stepped back to 2,10, east of the player; when talked to he's at 1,11, beside the open row 10),
+@ so no step aside is needed. Next visit he's at his usual spot (8,9) from the map data.
 OldaleTown_EventScript_BattleVinny::
 	msgbox OldaleTown_Text_VinnyIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_OLDALE_FOOTPRINTS_MAN, OldaleTown_Text_VinnyDefeat
 	setflag FLAG_DEFEATED_OLDALE_FOOTPRINTS_MAN
 	setvar VAR_OLDALE_TOWN_STATE, 1
-	fadescreen FADE_TO_BLACK
-	setobjectxyperm LOCALID_FOOTPRINTS_MAN, 8, 9
-	setobjectmovementtype LOCALID_FOOTPRINTS_MAN, MOVEMENT_TYPE_FACE_RIGHT
-	setobjectxy LOCALID_FOOTPRINTS_MAN, 8, 9
-	turnobject LOCALID_FOOTPRINTS_MAN, DIR_EAST
-	fadescreen FADE_FROM_BLACK
 	releaseall
 	end
 
