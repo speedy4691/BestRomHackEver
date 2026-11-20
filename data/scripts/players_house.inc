@@ -639,19 +639,28 @@ EventScript_RunningShoesManual::
 	msgbox PlayersHouse_1F_Text_RunningShoesManual, MSGBOX_SIGN
 	end
 
-@ Both Littleroot house maps hold the player's DAD and the rival's family (mom, sibling). Which ones show
-@ depends on the player's gender; vanilla only sets these hide flags once, in the truck. Re-applying them on
-@ every visit keeps each family in its own house even if the truck step was skipped (debug opening starts).
+@ Both Littleroot house maps hold the player's DAD (the old Mom object) and the rival's family (mom,
+@ sibling). Player's house = BRENDANS_HOUSE for a male player, MAYS_HOUSE for a female one. Vanilla only
+@ ever SETS these hide flags (once, in the truck) and never clears them, so a save whose flags were set for
+@ the other gender (gender toggled in the debug menu, or debug opening starts that skipped the truck) kept
+@ the families in the wrong houses. Setting AND clearing all six on every visit makes them follow the
+@ current gender. Nothing else in the game changes these flags.
 PlayersHouse_EventScript_SetFamilyFlags::
 	checkplayergender
 	goto_if_eq VAR_RESULT, FEMALE, PlayersHouse_EventScript_SetFamilyFlagsFemale
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING
 	return
 
 PlayersHouse_EventScript_SetFamilyFlagsFemale::
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING
 	return
