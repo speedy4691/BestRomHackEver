@@ -387,7 +387,7 @@ static void CB2_InitViewfinder(void)
 
         sVf->monX = (40 + Random() % 160) << 8;
         sVf->monY = (40 + Random() % 40) << 8;
-        sVf->monSpriteId = CreateMonPicSprite_Affine(sVf->species, isShiny, personality, F_MON_PIC_NO_AFFINE,
+        sVf->monSpriteId = CreateMonPicSprite_Affine(sVf->species, isShiny, personality, F_MON_PIC_NO_AFFINE | MON_PIC_AFFINE_FRONT,
                                                      sVf->monX >> 8, sVf->monY >> 8, MON_PAL_SLOT, TAG_NONE);
         gSprites[sVf->monSpriteId].oam.priority = 1;
         gSprites[sVf->monSpriteId].callback = SpriteCallbackDummy;
