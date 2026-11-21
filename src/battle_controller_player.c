@@ -1,4 +1,5 @@
 #include "global.h"
+#include "photography.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_arena.h"
@@ -49,6 +50,10 @@
 #include "pokedex.h"
 #include "test/battle.h"
 
+// BestRomHackEver Photography: L on the action menu opens the camera.
+static EWRAM_DATA bool8 sCameraShortcutPending = FALSE; // L is down and nothing else was pressed yet.
+static EWRAM_DATA bool8 sOpenCameraInsteadOfBag = FALSE;
+static void HandleInputPhotoInfo(enum BattlerId battler);
 static void PlayerHandleLoadMonSprite(enum BattlerId battler);
 static void PlayerHandleDrawTrainerPic(enum BattlerId battler);
 static void PlayerHandleTrainerSlide(enum BattlerId battler);
@@ -302,6 +307,34 @@ static void HandleInputChooseAction(enum BattlerId battler)
         }
     }
 
+    // BestRomHackEver Photography: releasing L opens the camera in a wild battle (goes through the normal
+    // "use an item" action, like BAG -> CAMERA). Off with the L=A button mode, where L also presses A.
+    if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_L_EQUALS_A)
+    {
+        if (JOY_NEW(L_BUTTON))
+        {
+            sCameraShortcutPending = TRUE;
+        }
+        else if (JOY_NEW(A_BUTTON | B_BUTTON | SELECT_BUTTON | START_BUTTON | R_BUTTON | DPAD_ANY))
+        {
+            sCameraShortcutPending = FALSE;
+        }
+        else if (sCameraShortcutPending && !JOY_HELD(L_BUTTON))
+        {
+            sCameraShortcutPending = FALSE;
+            if (PhotoCamera_CanUseShortcut())
+            {
+                PlaySE(SE_SELECT);
+                sOpenCameraInsteadOfBag = TRUE;
+                BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_USE_ITEM, 0);
+                BtlController_Complete(battler);
+                return;
+            }
+            if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+                PlaySE(SE_FAILURE); // No CAMERA, or no shots left.
+        }
+    }
+
     if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
@@ -395,10 +428,16 @@ static void HandleInputChooseAction(enum BattlerId battler)
     {
         SwapHpBarsWithHpText();
     }
-    else if (DEBUG_BATTLE_MENU == TRUE && JOY_NEW(SELECT_BUTTON))
+    // BestRomHackEver: the battle debug menu moved to L + SELECT; SELECT alone opens the photo info panel.
+    else if (DEBUG_BATTLE_MENU == TRUE && JOY_NEW(SELECT_BUTTON) && JOY_HELD(L_BUTTON))
     {
         BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_DEBUG, 0);
         BtlController_Complete(battler);
+    }
+    else if (JOY_NEW(SELECT_BUTTON))
+    {
+        if (PhotoInfo_TryOpen())
+            gBattlerControllerFuncs[battler] = HandleInputPhotoInfo;
     }
     else if (B_LAST_USED_BALL == TRUE && B_LAST_USED_BALL_CYCLE == FALSE
              && JOY_NEW(B_LAST_USED_BALL_BUTTON) && CanThrowLastUsedBall())
@@ -408,6 +447,13 @@ static void HandleInputChooseAction(enum BattlerId battler)
         BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_THROW_BALL, 0);
         BtlController_Complete(battler);
     }
+}
+
+// BestRomHackEver Photography: photo info panel open over the action menu (src/photography.c).
+static void HandleInputPhotoInfo(enum BattlerId battler)
+{
+    if (PhotoInfo_HandleInput())
+        gBattlerControllerFuncs[battler] = HandleInputChooseAction;
 }
 
 void HandleInputChooseTarget(enum BattlerId battler)
@@ -1599,7 +1645,14 @@ static void OpenBagAndChooseItem(enum BattlerId battler)
         gBattlerControllerFuncs[battler] = CompleteWhenChoseItem;
         ReshowBattleScreenDummy();
         CloseMainBattleScreen();
-        if (gBattleStruct->victoryCatchState == VICTORY_CATCH_OPEN_BAG)
+        if (sOpenCameraInsteadOfBag)
+        {
+            // L shortcut: straight to the viewfinder, which returns where the Bag would.
+            sOpenCameraInsteadOfBag = FALSE;
+            gBagPosition.exitCallback = CB2_SetUpReshowBattleScreenAfterMenu2;
+            SetMainCallback2(CB2_OpenPhotoViewfinderFromBattle);
+        }
+        else if (gBattleStruct->victoryCatchState == VICTORY_CATCH_OPEN_BAG)
             CB2_ChooseBall();
         else
             CB2_BagMenuFromBattle();

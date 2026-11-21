@@ -31,7 +31,8 @@
 
 // --- Scoring (total out of 100) ---
 #define PHOTO_CENTRE_MAX            40    // Dead centre = 40, edge of frame = 0 (straight line between).
-#define PHOTO_SIZE_POINTS           { 10, 20, 30, 40 } // Per zoom step; 0 if any part is cut off by the frame.
+#define PHOTO_SIZE_POINTS           { 10, 20, 30, 40 } // Per zoom step; 0 if too much is cut off by the frame.
+#define PHOTO_SIZE_MIN_INSIDE_PERCENT 90                // Size points need this much of the POKéMON inside the frame.
 #define PHOTO_POSE_PEAK             20    // At the peak of the front animation, or on the second front frame.
 #define PHOTO_POSE_FACING_CENTRE    10    // Otherwise, if the POKéMON faces the frame's centre.
 // "Peak" = the animation's movement is at least this % of its biggest movement in the last loop.
@@ -47,5 +48,14 @@
 #define PHOTO_ANIM_REPEAT_FRAMES    90    // Pause between loops of the front animation (60 = 1 second).
 #define PHOTO_SHOT_COOLDOWN         20    // Frames before the next photo can be taken.
 #define PHOTO_AUTO_CLOSE_FRAMES     120   // After the last shot, the camera closes by itself after this long.
+
+// --- Rewards for a species' best grade (they stack: Amazing also gets the Good and Photographed rewards) ---
+// Any wild POKéMON: SELECT on the battle action menu shows its type(s).
+// Photographed: the SELECT panel also shows its nature and ability.
+// Good: the panel also shows its IVs, and a nature that lowers the species' best stat (highest base stat, not HP;
+// with a tie, lowering any of the tied stats counts) is re-rolled this many times.
+#define PHOTO_NATURE_REROLLS        1
+// Amazing: each IV is rolled this many times and the highest is kept (2 = average ~20.7 instead of 15.5).
+#define PHOTO_AMAZING_IV_ROLLS      2
 
 #endif // GUARD_CONFIG_PHOTOGRAPHY_H

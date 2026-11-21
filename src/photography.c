@@ -1,6 +1,7 @@
 #include "global.h"
 #include "photography.h"
 #include "battle.h"
+#include "battle_main.h"
 #include "battle_environment.h"
 #include "battle_setup.h"
 #include "bg.h"
@@ -11,6 +12,7 @@
 #include "main.h"
 #include "malloc.h"
 #include "menu.h"
+#include "battle_message.h"
 #include "palette.h"
 #include "pokemon.h"
 #include "pokemon_animation.h"
@@ -106,6 +108,251 @@ void GetPhotoGradeDexText(u8 *dest, enum Species species)
     dest = StringCopy(dest, COMPOUND_STRING("-"));
     dest = ConvertIntToDecimalStringN(dest, high, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringCopy(dest, COMPOUND_STRING(")"));
+}
+
+// ---------------------------------------------------------------------------
+// Rewards for a species' best grade
+
+static const u8 sBestStatOrder[] = { STAT_ATK, STAT_DEF, STAT_SPATK, STAT_SPDEF, STAT_SPEED };
+
+static u32 GetBaseStatForReward(enum Species species, u32 stat)
+{
+    const struct SpeciesInfo *info = &gSpeciesInfo[species];
+    switch (stat)
+    {
+    case STAT_ATK:   return info->baseAttack;
+    case STAT_DEF:   return info->baseDefense;
+    case STAT_SPATK: return info->baseSpAttack;
+    case STAT_SPDEF: return info->baseSpDefense;
+    default:         return info->baseSpeed;
+    }
+}
+
+// TRUE if the nature lowers the species' highest base stat (HP ignored; with a tie, any of the tied stats).
+static bool32 DoesNatureLowerBestStat(enum Species species, u32 nature)
+{
+    u32 i, best = 0, statDown = gNaturesInfo[nature].statDown;
+
+    if (gNaturesInfo[nature].statUp == statDown) // Neutral nature.
+        return FALSE;
+    for (i = 0; i < ARRAY_COUNT(sBestStatOrder); i++)
+        best = max(best, GetBaseStatForReward(species, sBestStatOrder[i]));
+    return GetBaseStatForReward(species, statDown) == best;
+}
+
+// Good or better: a nature that lowers the best stat is re-rolled (with the game's own nature picker,
+// so Synchronize still works).
+u32 PhotoReward_PickNature(enum Species species, u32 nature, u32 (*pickNature)(enum Species))
+{
+    u32 i;
+
+    if (GetPhotoGrade(species) < PHOTO_GRADE_GOOD)
+        return nature;
+    for (i = 0; i < PHOTO_NATURE_REROLLS && DoesNatureLowerBestStat(species, nature); i++)
+        nature = pickNature(species);
+    return nature;
+}
+
+// Amazing: each IV is the best of PHOTO_AMAZING_IV_ROLLS rolls (the one already rolled counts as the first).
+void PhotoReward_BoostIvs(struct Pokemon *mon)
+{
+    u32 i, roll;
+
+    if (GetPhotoGrade(GetMonData(mon, MON_DATA_SPECIES)) < PHOTO_GRADE_AMAZING)
+        return;
+    for (i = 0; i < NUM_STATS; i++)
+    {
+        u32 iv = GetMonData(mon, MON_DATA_HP_IV + i);
+        for (roll = 1; roll < PHOTO_AMAZING_IV_ROLLS; roll++)
+            iv = max(iv, Random() % (MAX_PER_STAT_IVS + 1));
+        SetMonData(mon, MON_DATA_HP_IV + i, &iv);
+    }
+    CalculateMonStats(mon);
+}
+
+static u8 *AppendIv(u8 *str, const u8 *label, struct Pokemon *mon, u32 data)
+{
+    str = StringCopy(str, label);
+    return ConvertIntToDecimalStringN(str, GetMonData(mon, data), STR_CONV_MODE_LEFT_ALIGN, 2);
+}
+
+// Info panel over the battle scene, opened with SELECT on the action menu of a wild battle.
+//   Any wild POKéMON: name and type(s).
+//   Photographed+:    also nature and ability.
+//   Good+:            also IVs.
+// It borrows the move description window (B_WIN_MOVE_DESCRIPTION, only used from the move menu),
+// moved up into view while open.
+#define PHOTO_INFO_WINDOW       B_WIN_MOVE_DESCRIPTION
+#define PHOTO_INFO_TILEMAP_TOP  27 // Action menu shows BG0 from row 20, so this is 56 px down the screen.
+#define PHOTO_INFO_FONT         FONT_SMALL_NARROW
+#define PHOTO_INFO_LINE(n)      (1 + (n) * 9) // The font is 8 px tall; 5 lines fit the 48 px window.
+// The font leaves blank rows above each glyph, and text can't start above y 0, so the drawn text is
+// moved up this many pixels afterwards to centre it vertically in the window.
+#define PHOTO_INFO_RAISE        2
+
+static EWRAM_DATA u8 sPhotoInfoBattlerIdx = 0;   // Which opponent is shown (0 = left, 1 = right).
+static EWRAM_DATA u8 sPhotoInfoSavedTop = 0;
+
+// The opponent's battler on the left (0) or right (1), or MAX_BATTLERS_COUNT if there's none to show.
+static enum BattlerId GetPhotoInfoBattler(u32 idx)
+{
+    enum BattlerId battler;
+
+    if (idx > 0 && !IsDoubleBattle())
+        return MAX_BATTLERS_COUNT;
+    battler = GetBattlerAtPosition(idx == 0 ? B_POSITION_OPPONENT_LEFT : B_POSITION_OPPONENT_RIGHT);
+    if (battler >= gBattlersCount || (gAbsentBattlerFlags & (1u << battler)) || gBattleMons[battler].hp == 0)
+        return MAX_BATTLERS_COUNT;
+    return battler;
+}
+
+static void PrintPhotoInfoLine(u32 lineNum, const u8 *text)
+{
+    // Transparent background: lines are closer together than the font's cell, so a painted background
+    // would cover the bottom of the line above.
+    static const u8 sColors[] = { TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_4, TEXT_DYNAMIC_COLOR_6 };
+    AddTextPrinterParameterized4(PHOTO_INFO_WINDOW, PHOTO_INFO_FONT, 2, PHOTO_INFO_LINE(lineNum), 0, 0, sColors, TEXT_SKIP_DRAW, text);
+}
+
+// Moves the window's pixels up by `rows` (4bpp tiles, 4 bytes per tile row); the bottom is refilled.
+static void RaisePhotoInfoText(u32 rows)
+{
+    u8 *buf = (u8 *)GetWindowAttribute(PHOTO_INFO_WINDOW, WINDOW_TILE_DATA);
+    u32 widthTiles = GetWindowAttribute(PHOTO_INFO_WINDOW, WINDOW_WIDTH);
+    u32 height = GetWindowAttribute(PHOTO_INFO_WINDOW, WINDOW_HEIGHT) * 8;
+    u32 x, y;
+
+    for (y = 0; y < height; y++)
+    {
+        for (x = 0; x < widthTiles; x++)
+        {
+            u32 *dst = (u32 *)(buf + ((y / 8) * widthTiles + x) * TILE_SIZE_4BPP + (y % 8) * 4);
+            u32 srcY = y + rows;
+            if (srcY < height)
+                *dst = *(u32 *)(buf + ((srcY / 8) * widthTiles + x) * TILE_SIZE_4BPP + (srcY % 8) * 4);
+            else
+                *dst = 0xEEEEEEEE; // PIXEL_FILL(0xE), the window background.
+        }
+    }
+}
+
+static void DrawPhotoInfo(enum BattlerId battler)
+{
+    struct Pokemon *mon = GetBattlerMon(battler);
+    enum Species species = GetMonData(mon, MON_DATA_SPECIES);
+    enum PhotoGrade grade = GetPhotoGrade(species);
+    u8 line[64];
+    u8 *str;
+
+    FillWindowPixelBuffer(PHOTO_INFO_WINDOW, PIXEL_FILL(0xE));
+
+    // Line 1: name and current type(s) (battle types, so form or type changes show).
+    str = StringCopy(line, GetSpeciesName(species));
+    str = StringCopy(str, COMPOUND_STRING("  "));
+    str = StringCopy(str, gTypesInfo[gBattleMons[battler].types[0]].name);
+    if (gBattleMons[battler].types[1] != gBattleMons[battler].types[0])
+    {
+        str = StringCopy(str, COMPOUND_STRING("/"));
+        StringCopy(str, gTypesInfo[gBattleMons[battler].types[1]].name);
+    }
+    PrintPhotoInfoLine(0, line);
+
+    if (grade == PHOTO_GRADE_NONE)
+    {
+        PrintPhotoInfoLine(1, COMPOUND_STRING("Photograph it to learn more."));
+    }
+    else
+    {
+        // Lines 2-3: nature and ability.
+        StringCopy(StringCopy(line, COMPOUND_STRING("Nature: ")), gNaturesInfo[GetNature(mon)].name);
+        PrintPhotoInfoLine(1, line);
+        StringCopy(StringCopy(line, COMPOUND_STRING("Ability: ")), gAbilitiesInfo[GetMonAbility(mon)].name);
+        PrintPhotoInfoLine(2, line);
+
+        // Lines 4-5: IVs.
+        if (grade >= PHOTO_GRADE_GOOD)
+        {
+            str = AppendIv(line, COMPOUND_STRING("IVs  HP "), mon, MON_DATA_HP_IV);
+            str = AppendIv(str, COMPOUND_STRING("  Atk "), mon, MON_DATA_ATK_IV);
+            AppendIv(str, COMPOUND_STRING("  Def "), mon, MON_DATA_DEF_IV);
+            PrintPhotoInfoLine(3, line);
+            str = AppendIv(line, COMPOUND_STRING("SpA "), mon, MON_DATA_SPATK_IV);
+            str = AppendIv(str, COMPOUND_STRING("  SpD "), mon, MON_DATA_SPDEF_IV);
+            AppendIv(str, COMPOUND_STRING("  Spe "), mon, MON_DATA_SPEED_IV);
+            PrintPhotoInfoLine(4, line);
+        }
+        else
+        {
+            PrintPhotoInfoLine(3, COMPOUND_STRING("IVs: take a Good photo."));
+        }
+    }
+    RaisePhotoInfoText(PHOTO_INFO_RAISE);
+    CopyWindowToVram(PHOTO_INFO_WINDOW, COPYWIN_FULL);
+}
+
+static bool32 IsPhotoInfoBattle(void)
+{
+    return !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK
+                               | BATTLE_TYPE_GHOST | BATTLE_TYPE_CATCH_TUTORIAL | BATTLE_TYPE_SAFARI));
+}
+
+// L shortcut: same rules as CAMERA from the Bag (ItemUseInBattle_Camera), and the CAMERA must be in the Bag.
+bool32 PhotoCamera_CanUseShortcut(void)
+{
+    return !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_SAFARI))
+        && gBattleStruct->photoShotsUsed < PHOTO_SHOTS_PER_BATTLE
+        && CheckBagHasItem(ITEM_CAMERA, 1);
+}
+
+// Opens the panel in a wild battle (left opponent first). FALSE = not a wild battle.
+bool32 PhotoInfo_TryOpen(void)
+{
+    u32 i;
+
+    if (!IsPhotoInfoBattle())
+        return FALSE;
+    for (i = 0; i < 2; i++)
+    {
+        enum BattlerId battler = GetPhotoInfoBattler(i);
+        if (battler != MAX_BATTLERS_COUNT)
+        {
+            sPhotoInfoBattlerIdx = i;
+            sPhotoInfoSavedTop = GetWindowAttribute(PHOTO_INFO_WINDOW, WINDOW_TILEMAP_TOP);
+            SetWindowAttribute(PHOTO_INFO_WINDOW, WINDOW_TILEMAP_TOP, PHOTO_INFO_TILEMAP_TOP);
+            LoadMessageBoxAndBorderGfx();
+            DrawStdWindowFrame(PHOTO_INFO_WINDOW, FALSE);
+            DrawPhotoInfo(battler);
+            PlaySE(SE_SELECT);
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+// SELECT shows the other opponent in a double battle; A or B (or SELECT with one opponent) closes.
+bool32 PhotoInfo_HandleInput(void)
+{
+    if (JOY_NEW(SELECT_BUTTON))
+    {
+        enum BattlerId other = GetPhotoInfoBattler(sPhotoInfoBattlerIdx ^ 1);
+        if (other != MAX_BATTLERS_COUNT)
+        {
+            sPhotoInfoBattlerIdx ^= 1;
+            PlaySE(SE_SELECT);
+            DrawPhotoInfo(other);
+            return FALSE;
+        }
+    }
+    if (JOY_NEW(A_BUTTON | B_BUTTON | SELECT_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        FillWindowPixelBuffer(PHOTO_INFO_WINDOW, PIXEL_FILL(0));
+        ClearStdWindowAndFrame(PHOTO_INFO_WINDOW, TRUE);
+        CopyWindowToVram(PHOTO_INFO_WINDOW, COPYWIN_GFX);
+        SetWindowAttribute(PHOTO_INFO_WINDOW, WINDOW_TILEMAP_TOP, sPhotoInfoSavedTop);
+        return TRUE;
+    }
+    return FALSE;
 }
 
 // ---------------------------------------------------------------------------
@@ -531,8 +778,15 @@ static void ScoreShot(struct PhotoScore *score)
         n = 256;
     score->centre = PHOTO_CENTRE_MAX * (256 - n) / 256;
 
-    if (left >= fl && right <= fr && top >= ft && bottom <= fb)
-        score->size = sSizePoints[sVf->zoomStep];
+    // Size: needs at least PHOTO_SIZE_MIN_INSIDE_PERCENT of the POKéMON's box inside the frame. Tall or wide
+    // POKéMON at full zoom fill most of the frame, and their animation (e.g. Hoothoot's slide) moves them
+    // a few pixels, so requiring every pixel made full-zoom size points nearly impossible.
+    {
+        s32 boxArea = (right - left) * (bottom - top);
+        s32 insideArea = (min(right, fr) - max(left, fl)) * (min(bottom, fb) - max(top, ft));
+        if (boxArea > 0 && insideArea * 100 >= boxArea * PHOTO_SIZE_MIN_INSIDE_PERCENT)
+            score->size = sSizePoints[sVf->zoomStep];
+    }
 
     if (sVf->poseAtPeak || IsOnSecondFrame(&gSprites[sVf->monSpriteId]))
         score->pose = PHOTO_POSE_PEAK;
