@@ -40,7 +40,7 @@ OldaleTown_EventScript_Girl::
 OldaleTown_EventScript_MartEmployee::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_ExplainPotion
+	goto_if_set FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_RareCandyBestSeller
 	goto_if_set FLAG_TEMP_1, OldaleTown_EventScript_ExplainPotion
 	setflag FLAG_TEMP_1
 	playbgm MUS_FOLLOW_ME, FALSE
@@ -80,6 +80,11 @@ OldaleTown_EventScript_ExplainPokemonMart::
 	msgbox OldaleTown_Text_PotionExplanation, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_POTION_OLDALE
 	fadedefaultbgm
+	release
+	end
+
+OldaleTown_EventScript_RareCandyBestSeller::
+	msgbox OldaleTown_Text_RareCandyBestSeller, MSGBOX_DEFAULT
 	release
 	end
 
@@ -565,8 +570,16 @@ OldaleTown_Movement_ReturnToOriginalPosition:
 	step_end
 
 OldaleTown_Text_SavingMyProgress:
-	.string "I want to take a rest, so I'm saving my\n"
-	.string "progress.$"
+	.string "DEVON CORP is hiring in RUSTBORO\n"
+	.string "again.\p"
+	.string "They pay really well, but nobody\n"
+	.string "ever says what they're working on.$"
+
+OldaleTown_Text_RareCandyBestSeller:
+	.string "RARE CANDIES are our best seller.\p"
+	.string "DEVON CORP makes them from the EXP\n"
+	.string "in BILL's PC, you know.\p"
+	.string "They're not cheap, though!$"
 
 OldaleTown_Text_IWorkAtPokemonMart:
 	.string "Hi!\n"

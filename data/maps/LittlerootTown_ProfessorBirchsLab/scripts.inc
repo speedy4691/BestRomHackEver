@@ -296,12 +296,12 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Aide::
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_AideAlreadyMet::
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchIsntOneForDeskWork, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_AideOldWay, MSGBOX_DEFAULT
 	release
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_AideReceivedStarter::
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_AideOldWay, MSGBOX_DEFAULT
 	release
 	end
 
@@ -1123,3 +1123,9 @@ LittlerootTown_ProfessorBirchsLab_Text_ErrandPokedexExplain:
 	.string "The POKéDEX is a high-tech tool that\n"
 	.string "automatically makes a record of any\l"
 	.string "POKéMON you meet or catch.$"
+
+LittlerootTown_ProfessorBirchsLab_Text_AideOldWay:
+	.string "Before the PC, researchers had to\n"
+	.string "study POKéMON out in the field.\p"
+	.string "PROF. BIRCH still likes doing it\n"
+	.string "the old way.$"

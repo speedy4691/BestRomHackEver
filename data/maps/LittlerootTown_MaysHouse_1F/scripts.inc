@@ -122,12 +122,14 @@ RivalsHouse_1F_EventScript_RivalMom::
 	end
 
 RivalsHouse_1F_EventScript_RivalTooBusy::
-	msgbox RivalsHouse_1F_Text_TooBusyToNoticeVisit, MSGBOX_DEFAULT
+	special GetRivalSonDaughterString
+	msgbox RivalsHouse_1F_Text_DevonInternship, MSGBOX_DEFAULT
 	release
 	end
 
 RivalsHouse_1F_EventScript_RivalIsOnRoute103::
-	msgbox RivalsHouse_1F_Text_WentOutToRoute103, MSGBOX_DEFAULT
+	special GetRivalSonDaughterString
+	msgbox RivalsHouse_1F_Text_DevonInternship, MSGBOX_DEFAULT
 	release
 	end
 
@@ -335,6 +337,12 @@ RivalsHouse_1F_Text_LikeChildLikeFather:
 	.string "as our child.\p"
 	.string "If he's not at his LAB, he's likely\n"
 	.string "scrabbling about in grassy places.$"
+
+RivalsHouse_1F_Text_DevonInternship:
+	.string "My {STR_VAR_1} won't stop talking\n"
+	.string "about the DEVON CORP internship.\p"
+	.string "Your mom must be busy over there\n"
+	.string "too, huh?$"
 
 RivalsHouse_1F_Text_TooBusyToNoticeVisit:
 	.string "That {RIVAL}!\p"
