@@ -1,4 +1,5 @@
 #include "global.h"
+#include "photography.h"
 #include "malloc.h"
 #include "battle.h"
 #include "pokemon.h"
@@ -597,6 +598,85 @@ static const union TextColor sHealthBoxTextColor =
 
 // This function is here to cover a specific case - one player's mon in a 2 vs 1 double battle. In this scenario - display singles layout.
 // The same goes for a 2 vs 1 where opponent has only one Pokémon.
+// BestRomHackEver Photography: camera icon on a wild POKéMON's health bar when its species has a photo grade,
+// in the 8 px gap between the caught-ball icon and the HP bar. Grey = photographed, green = good, blue = amazing.
+// It's its own small sprite that follows the healthbox (position, visibility, priority) every frame.
+#define TAG_PHOTO_GRADE_ICON 0x5A71
+
+static const u32 sPhotoGradeIconGfx[] =
+{
+    0x00000000, 0x00001100, 0x11111111, 0x14411441, 0x14122141, 0x14411441, 0x11111111, 0x00000000,
+    0x00000000, 0x00001100, 0x11111111, 0x1BB11BB1, 0x1B1221B1, 0x1BB11BB1, 0x11111111, 0x00000000,
+    0x00000000, 0x00001100, 0x11111111, 0x1BB11BB1, 0x1B1221B1, 0x1BB11BB1, 0x11111111, 0x00000000
+};
+
+static const struct SpriteSheet sSpriteSheet_PhotoGradeIcon = { sPhotoGradeIconGfx, sizeof(sPhotoGradeIconGfx), TAG_PHOTO_GRADE_ICON };
+
+static const struct OamData sOamData_PhotoGradeIcon =
+{
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(8x8),
+    .size = SPRITE_SIZE(8x8),
+    .priority = 1,
+};
+
+static void SpriteCB_PhotoGradeIcon(struct Sprite *sprite);
+
+static const struct SpriteTemplate sSpriteTemplate_PhotoGradeIcon =
+{
+    .tileTag = TAG_PHOTO_GRADE_ICON,
+    .paletteTag = TAG_HEALTHBAR_PAL,
+    .oam = &sOamData_PhotoGradeIcon,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_PhotoGradeIcon,
+};
+
+#define tPhotoIconBattler data[0]
+
+static void SpriteCB_PhotoGradeIcon(struct Sprite *sprite)
+{
+    enum BattlerId battler = sprite->tPhotoIconBattler;
+    struct Sprite *healthbox = &gSprites[gHealthboxSpriteIds[battler]];
+    enum PhotoGrade grade = GetPhotoGrade(GetMonData(GetBattlerMon(battler), MON_DATA_SPECIES));
+
+    // The caught ball is at the healthbox's x - 24 (left edge), on the HP bar row; the gap is the next 8 px.
+    sprite->x = healthbox->x - 12;
+    sprite->y = healthbox->y + 4;
+    sprite->x2 = healthbox->x2;
+    sprite->y2 = healthbox->y2;
+    sprite->oam.priority = healthbox->oam.priority;
+    // A status icon (PAR, SLP...) covers this spot and hides the caught ball too.
+    if (healthbox->invisible || grade == PHOTO_GRADE_NONE || (gBattleMons[battler].status1 & STATUS1_ANY))
+    {
+        sprite->invisible = TRUE;
+        return;
+    }
+    sprite->invisible = FALSE;
+    sprite->oam.tileNum = GetSpriteTileStartByTag(TAG_PHOTO_GRADE_ICON) + (grade - PHOTO_GRADE_PHOTOGRAPHED);
+    sprite->oam.paletteNum = IndexOfSpritePaletteTag(grade == PHOTO_GRADE_AMAZING ? TAG_HEALTHBOX_PAL : TAG_HEALTHBAR_PAL);
+}
+
+static void CreatePhotoGradeIcon(enum BattlerId battler)
+{
+    u8 spriteId;
+
+    if (!ShouldShowPhotoGradeIcon())
+        return;
+    if (GetSpriteTileStartByTag(TAG_PHOTO_GRADE_ICON) == 0xFFFF)
+        LoadSpriteSheet(&sSpriteSheet_PhotoGradeIcon);
+    spriteId = CreateSprite(&sSpriteTemplate_PhotoGradeIcon, 0, 0, 0);
+    if (spriteId == MAX_SPRITES)
+        return;
+    gSprites[spriteId].tPhotoIconBattler = battler;
+    gSprites[spriteId].invisible = TRUE;
+}
+
+#undef tPhotoIconBattler
+
 enum BattleCoordTypes GetBattlerCoordsIndex(enum BattlerId battler)
 {
     if (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT && gPartiesCount[B_TRAINER_PLAYER] == 1 && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
@@ -697,6 +777,8 @@ u8 CreateBattlerHealthboxSprites(enum BattlerId battler)
     healthBarSpritePtr->invisible = TRUE;
 
     CreateIndicatorSprite(battler);
+    if (!IsOnPlayerSide(battler))
+        CreatePhotoGradeIcon(battler);
 
     gBattleStruct->ballSpriteIds[0] = MAX_SPRITES;
     gBattleStruct->ballSpriteIds[1] = MAX_SPRITES;
@@ -2911,6 +2993,7 @@ static const struct SpriteTemplate sSpriteTemplate_LastUsedBallWindow =
 };
 
 #define MOVE_INFO_WINDOW_TAG 0xE722
+#define TAG_PHOTO_CAMERA_WINDOW 0x5A72 // BestRomHackEver Photography: "L" camera box.
 
 static const struct OamData sOamData_MoveInfoWindow =
 {
@@ -3050,7 +3133,7 @@ void TryAddLastUsedBallItemSprites(void)
 static void DestroyLastUsedBallWinGfx(struct Sprite *sprite)
 {
     FreeSpriteTilesByTag(TAG_LAST_BALL_WINDOW);
-    if (GetSpriteTileStartByTag(MOVE_INFO_WINDOW_TAG) == 0xFFFF)
+    if (GetSpriteTileStartByTag(MOVE_INFO_WINDOW_TAG) == 0xFFFF && GetSpriteTileStartByTag(TAG_PHOTO_CAMERA_WINDOW) == 0xFFFF)
         FreeSpritePaletteByTag(TAG_ABILITY_POP_UP);
     DestroySprite(sprite);
     gBattleStruct->ballSpriteIds[1] = MAX_SPRITES;
@@ -3091,7 +3174,7 @@ void TryToHideMoveInfoWindow(void)
 static void DestroyMoveInfoWinGfx(struct Sprite *sprite)
 {
     FreeSpriteTilesByTag(MOVE_INFO_WINDOW_TAG);
-    if (GetSpriteTileStartByTag(TAG_LAST_BALL_WINDOW) == 0xFFFF)
+    if (GetSpriteTileStartByTag(TAG_LAST_BALL_WINDOW) == 0xFFFF && GetSpriteTileStartByTag(TAG_PHOTO_CAMERA_WINDOW) == 0xFFFF)
         FreeSpritePaletteByTag(TAG_ABILITY_POP_UP);
     DestroySprite(sprite);
     gBattleStruct->moveInfoSpriteId = MAX_SPRITES;
@@ -3151,6 +3234,73 @@ static void SpriteCB_MoveInfoWin(struct Sprite *sprite)
     }
 }
 
+// BestRomHackEver Photography: "L" + camera box, under the last-used-ball box, while L would open the camera
+// (wild battle, CAMERA in the Bag, shots left). Slides in and out like the ball box.
+static const u8 ALIGNED(4) sPhotoCameraWindowGfx[] = INCGFX_U8("graphics/battle_interface/photo_camera_window_l.png", ".4bpp");
+static const struct SpriteSheet sSpriteSheet_PhotoCameraWindow = { sPhotoCameraWindowGfx, sizeof(sPhotoCameraWindowGfx), TAG_PHOTO_CAMERA_WINDOW };
+static void SpriteCB_PhotoCameraWin(struct Sprite *sprite);
+static const struct SpriteTemplate sSpriteTemplate_PhotoCameraWindow =
+{
+    .tileTag = TAG_PHOTO_CAMERA_WINDOW,
+    .paletteTag = TAG_ABILITY_POP_UP,
+    .oam = &sOamData_MoveInfoWindow, // 32x32
+    .anims = gDummySpriteAnimTable,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_PhotoCameraWin,
+};
+#define PHOTO_CAMERA_WIN_Y (LAST_USED_WIN_Y + 38) // Just below the ball box (it ends 19 px below LAST_USED_WIN_Y).
+
+static EWRAM_DATA u8 sPhotoCameraWinSpriteId = 0;
+
+static bool32 IsPhotoCameraWindowShown(void)
+{
+    struct Sprite *sprite = &gSprites[sPhotoCameraWinSpriteId];
+    return sprite->inUse && sprite->callback == SpriteCB_PhotoCameraWin;
+}
+
+static void SpriteCB_PhotoCameraWin(struct Sprite *sprite)
+{
+    if (sprite->sHide)
+    {
+        if (sprite->x != LAST_BALL_WIN_X_0)
+            sprite->x--;
+        if (sprite->x == LAST_BALL_WIN_X_0)
+        {
+            FreeSpriteTilesByTag(TAG_PHOTO_CAMERA_WINDOW);
+            if (GetSpriteTileStartByTag(TAG_LAST_BALL_WINDOW) == 0xFFFF && GetSpriteTileStartByTag(MOVE_INFO_WINDOW_TAG) == 0xFFFF)
+                FreeSpritePaletteByTag(TAG_ABILITY_POP_UP);
+            DestroySprite(sprite);
+        }
+    }
+    else if (sprite->x != LAST_BALL_WIN_X_F)
+    {
+        sprite->x++;
+    }
+}
+
+void TryShowPhotoCameraWindow(void)
+{
+    if (!PhotoCamera_CanUseShortcut() || gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
+        return;
+    if (IsPhotoCameraWindowShown())
+    {
+        gSprites[sPhotoCameraWinSpriteId].sHide = FALSE;
+        return;
+    }
+    LoadSpritePalette(&sSpritePalette_AbilityPopUp);
+    if (GetSpriteTileStartByTag(TAG_PHOTO_CAMERA_WINDOW) == 0xFFFF)
+        LoadSpriteSheet(&sSpriteSheet_PhotoCameraWindow);
+    sPhotoCameraWinSpriteId = CreateSprite(&sSpriteTemplate_PhotoCameraWindow, LAST_BALL_WIN_X_0, PHOTO_CAMERA_WIN_Y, 5);
+    if (sPhotoCameraWinSpriteId != MAX_SPRITES)
+        gSprites[sPhotoCameraWinSpriteId].sHide = FALSE;
+}
+
+void TryHidePhotoCameraWindow(void)
+{
+    if (IsPhotoCameraWindowShown())
+        gSprites[sPhotoCameraWinSpriteId].sHide = TRUE;
+}
+
 static void TryHideOrRestoreLastUsedBall(u8 caseId)
 {
     if (B_LAST_USED_BALL == FALSE)
@@ -3181,6 +3331,8 @@ static void TryHideOrRestoreLastUsedBall(u8 caseId)
 
 void TryHideLastUsedBall(void)
 {
+    TryHidePhotoCameraWindow(); // BestRomHackEver Photography: the camera box leaves with the ball box.
+
     if (B_LAST_USED_BALL_BUTTON == L_BUTTON && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
         return;
 

@@ -325,6 +325,7 @@ static void HandleInputChooseAction(enum BattlerId battler)
             if (PhotoCamera_CanUseShortcut())
             {
                 PlaySE(SE_SELECT);
+                TryHideLastUsedBall();
                 sOpenCameraInsteadOfBag = TRUE;
                 BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_USE_ITEM, 0);
                 BtlController_Complete(battler);
@@ -2066,6 +2067,7 @@ static void PlayerHandleChooseAction(enum BattlerId battler)
         ActionSelectionDestroyCursorAt(i);
 
     TryRestoreLastUsedBall();
+    TryShowPhotoCameraWindow(); // BestRomHackEver Photography: "L" camera box under the last-used-ball box.
     ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
     PREPARE_MON_NICK_BUFFER(gBattleTextBuff1, battler, gBattlerPartyIndexes[battler]);
     BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo);

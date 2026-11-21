@@ -1,4 +1,5 @@
 #include "global.h"
+#include "photography.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_anim_scripts.h"
@@ -7947,7 +7948,8 @@ s32 CalcCritChanceStage(struct DamageContext *ctx)
     }
     else if (gBattleMons[ctx->battlerAtk].volatiles.laserFocusTimer > 0
           || MoveAlwaysCrits(ctx->move)
-          || (ctx->abilities[ctx->battlerAtk] == ABILITY_MERCILESS && gBattleMons[ctx->battlerDef].status1 & STATUS1_PSN_ANY))
+          || (ctx->abilities[ctx->battlerAtk] == ABILITY_MERCILESS && gBattleMons[ctx->battlerDef].status1 & STATUS1_PSN_ANY)
+          || PhotoCrit_IsPending(ctx->battlerAtk)) // BestRomHackEver Photography: crit after a camera use.
     {
         critChance = CRITICAL_HIT_ALWAYS;
     }
@@ -8062,6 +8064,10 @@ static bool32 IsCriticalHit(struct DamageContext *ctx)
         isCrit = RandomChance(RNG_CRITICAL_HIT, GetCriticalHitOdds(critChance), 256);
     else
         isCrit = RandomChance(RNG_CRITICAL_HIT, 1, GetCriticalHitOdds(critChance));
+
+    // BestRomHackEver Photography: a damaging move by a wild POKéMON uses up one camera crit (even if blocked).
+    if (ctx->updateFlags && PhotoCrit_IsPending(ctx->battlerAtk))
+        PhotoCrit_Consume();
 
     // Counter for IF_CRITICAL_HITS_GE evolution condition.
     if (isCrit && IsOnPlayerSide(ctx->battlerAtk)

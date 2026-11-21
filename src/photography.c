@@ -2,6 +2,7 @@
 #include "photography.h"
 #include "battle.h"
 #include "battle_main.h"
+#include "battle_util.h"
 #include "battle_environment.h"
 #include "battle_setup.h"
 #include "bg.h"
@@ -13,6 +14,7 @@
 #include "malloc.h"
 #include "menu.h"
 #include "battle_message.h"
+#include "battle_bg.h"
 #include "palette.h"
 #include "pokemon.h"
 #include "pokemon_animation.h"
@@ -304,6 +306,37 @@ bool32 PhotoCamera_CanUseShortcut(void)
         && CheckBagHasItem(ITEM_CAMERA, 1);
 }
 
+u32 PhotoReward_CatchRatePercent(enum Species species)
+{
+    switch (GetPhotoGrade(species))
+    {
+    case PHOTO_GRADE_PHOTOGRAPHED: return PHOTO_CATCH_PERCENT_PHOTOGRAPHED;
+    case PHOTO_GRADE_GOOD:         return PHOTO_CATCH_PERCENT_GOOD;
+    case PHOTO_GRADE_AMAZING:      return PHOTO_CATCH_PERCENT_AMAZING;
+    default:                       return 100;
+    }
+}
+
+bool32 ShouldShowPhotoGradeIcon(void)
+{
+    return !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK
+                               | BATTLE_TYPE_CATCH_TUTORIAL | BATTLE_TYPE_GHOST));
+}
+
+// TRUE if this attacker is a wild POKéMON and a camera use hasn't been paid for with a crit yet.
+bool32 PhotoCrit_IsPending(enum BattlerId battlerAtk)
+{
+    return gBattleStruct->photoCritsPending != 0
+        && !IsOnPlayerSide(battlerAtk)
+        && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK));
+}
+
+void PhotoCrit_Consume(void)
+{
+    if (gBattleStruct->photoCritsPending != 0)
+        gBattleStruct->photoCritsPending--;
+}
+
 // Opens the panel in a wild battle (left opponent first). FALSE = not a wild battle.
 bool32 PhotoInfo_TryOpen(void)
 {
@@ -360,6 +393,7 @@ bool32 PhotoInfo_HandleInput(void)
 
 #define TAG_PHOTO_CORNER 0x5A10
 #define TAG_PHOTO_CROSS  0x5A11
+#define TAG_PHOTO_CENTRE 0x5A12
 #define TAG_PHOTO_PAL    0x5A10
 #define MON_PAL_SLOT     15   // OBJ palette slot for the POKéMON (the frame's palette takes a tag slot from 0).
 #define UNLIMITED_SHOTS  0xFF
@@ -379,10 +413,12 @@ struct PhotoViewfinder
     MainCallback returnCallback;
     u16 species;
     bool8 inBattle;
+    u16 savedGpuRegs[7]; // Window/blend registers on entry, put back on exit.
     u8 state;
     u8 monSpriteId;
     u8 cornerSpriteIds[4];
     u8 crossSpriteId;
+    u8 centreSpriteId; // Marker on the POKéMON's centre (PHOTO_SHOW_MON_CENTRE).
     u8 dispMatrixNum;
     u8 zoomStep;
     u8 shotsLeft;
@@ -418,10 +454,15 @@ static const u32 sCornerGfx[] = {
 static const u32 sCrossGfx[] = {
     0x00000000, 0x00011000, 0x00011000, 0x01111110, 0x01111110, 0x00011000, 0x00011000, 0x00000000,
 };
-static const u16 sFramePal[16] = { RGB(0, 0, 0), RGB_WHITE, RGB(5, 5, 6) };
+// Red "x" centred on pixel (4,4), the sprite's position (colour 3).
+static const u32 sCentreGfx[] = {
+    0x00000000, 0x00000000, 0x03000300, 0x00303000, 0x00030000, 0x00303000, 0x03000300, 0x00000000,
+};
+static const u16 sFramePal[16] = { RGB(0, 0, 0), RGB_WHITE, RGB(5, 5, 6), RGB(31, 3, 3) };
 
 static const struct SpriteSheet sCornerSheet = { sCornerGfx, sizeof(sCornerGfx), TAG_PHOTO_CORNER };
 static const struct SpriteSheet sCrossSheet = { sCrossGfx, sizeof(sCrossGfx), TAG_PHOTO_CROSS };
+static const struct SpriteSheet sCentreSheet = { sCentreGfx, sizeof(sCentreGfx), TAG_PHOTO_CENTRE };
 static const struct SpritePalette sFrameSpritePal = { sFramePal, TAG_PHOTO_PAL };
 
 static const struct OamData sOam_Corner = { .shape = SPRITE_SHAPE(16x16), .size = SPRITE_SIZE(16x16), .priority = 0 };
@@ -435,6 +476,11 @@ static const struct SpriteTemplate sCornerTemplate =
 static const struct SpriteTemplate sCrossTemplate =
 {
     .tileTag = TAG_PHOTO_CROSS, .paletteTag = TAG_PHOTO_PAL, .oam = &sOam_Cross,
+    .anims = gDummySpriteAnimTable, .images = NULL, .affineAnims = gDummySpriteAffineAnimTable, .callback = SpriteCallbackDummy,
+};
+static const struct SpriteTemplate sCentreTemplate =
+{
+    .tileTag = TAG_PHOTO_CENTRE, .paletteTag = TAG_PHOTO_PAL, .oam = &sOam_Cross,
     .anims = gDummySpriteAnimTable, .images = NULL, .affineAnims = gDummySpriteAffineAnimTable, .callback = SpriteCallbackDummy,
 };
 
@@ -451,12 +497,24 @@ static const struct WindowTemplate sWindowTemplates[] =
     DUMMY_WIN_TEMPLATE,
 };
 
+static void UpdateMonCentreMarker(void);
 static void CB2_InitViewfinder(void);
 static void CB2_Viewfinder(void);
+
+// The viewfinder uses WIN0 and blending. On exit these go back to what they were, not to 0: the battle keeps WIN0
+// on with these settings, and screens that re-enable WIN0 (e.g. the new-Pokédex-entry page after a catch) were
+// left black when WININ/WINOUT/WIN0H/WIN0V had been zeroed.
+static const u8 sSavedGpuRegOffsets[] =
+{
+    REG_OFFSET_WININ, REG_OFFSET_WINOUT, REG_OFFSET_WIN0H, REG_OFFSET_WIN0V,
+    REG_OFFSET_BLDCNT, REG_OFFSET_BLDALPHA, REG_OFFSET_BLDY,
+};
 
 static void StartViewfinder(enum Species species, bool32 isShiny, u32 personality, bool32 inBattle, u32 shotsLeft, MainCallback returnCallback)
 {
     sVf = AllocZeroed(sizeof(*sVf));
+    for (u32 i = 0; i < ARRAY_COUNT(sSavedGpuRegOffsets); i++)
+        sVf->savedGpuRegs[i] = GetGpuReg(sSavedGpuRegOffsets[i]);
     sVf->species = SanitizeSpeciesId(species);
     sVf->inBattle = inBattle;
     sVf->shotsLeft = shotsLeft;
@@ -477,6 +535,9 @@ void OpenPhotoViewfinder_Debug(enum Species species, MainCallback returnCallback
 void CB2_OpenPhotoViewfinderFromBattle(void)
 {
     struct Pokemon *mon = GetBattlerMon(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
+    // Each opening (however many shots) makes the wild POKéMON's next damaging move a critical hit.
+    if (gBattleStruct->photoCritsPending < 0xFF)
+        gBattleStruct->photoCritsPending++;
     StartViewfinder(GetMonData(mon, MON_DATA_SPECIES), IsMonShiny(mon), GetMonData(mon, MON_DATA_PERSONALITY),
                     TRUE, PHOTO_SHOTS_PER_BATTLE - gBattleStruct->photoShotsUsed, gBagPosition.exitCallback);
 }
@@ -654,6 +715,12 @@ static void CB2_InitViewfinder(void)
             corner->oam.matrixNum = (corner->hFlip ? ST_OAM_HFLIP : 0) | (corner->vFlip ? ST_OAM_VFLIP : 0);
         }
         sVf->crossSpriteId = CreateSprite(&sCrossTemplate, 0, 0, 0);
+        sVf->centreSpriteId = MAX_SPRITES;
+        if (PHOTO_SHOW_MON_CENTRE)
+        {
+            LoadSpriteSheet(&sCentreSheet);
+            sVf->centreSpriteId = CreateSprite(&sCentreTemplate, 0, 0, 0);
+        }
 
         sVf->monX = (40 + Random() % 160) << 8;
         sVf->monY = (40 + Random() % 40) << 8;
@@ -756,6 +823,19 @@ static bool32 IsFacingFrameCentre(void)
 {
     s32 x = sVf->monX >> 8;
     return (sVf->facingRight && x < sVf->frameX) || (!sVf->facingRight && x > sVf->frameX);
+}
+
+// Moves the red "x" to the point the Centre score measures from: the middle of the POKéMON's visible
+// pixels, zoomed, including its animation's movement (same box as ScoreShot).
+static void UpdateMonCentreMarker(void)
+{
+    s32 left, right, top, bottom;
+
+    if (sVf->centreSpriteId == MAX_SPRITES)
+        return;
+    GetMonScreenBox(&left, &right, &top, &bottom, TRUE);
+    gSprites[sVf->centreSpriteId].x = (left + right) / 2;
+    gSprites[sVf->centreSpriteId].y = (top + bottom) / 2;
 }
 
 static void ScoreShot(struct PhotoScore *score)
@@ -979,12 +1059,8 @@ static void ExitViewfinder(void)
     FreeAllSpritePalettes();
     FreeAllWindowBuffers();
     Free(sVf->tilemapBuf);
-    SetGpuReg(REG_OFFSET_BLDCNT, 0);
-    SetGpuReg(REG_OFFSET_BLDY, 0);
-    SetGpuReg(REG_OFFSET_WININ, 0);
-    SetGpuReg(REG_OFFSET_WINOUT, 0);
-    SetGpuReg(REG_OFFSET_WIN0H, 0);
-    SetGpuReg(REG_OFFSET_WIN0V, 0);
+    for (u32 i = 0; i < ARRAY_COUNT(sSavedGpuRegOffsets); i++)
+        SetGpuReg(sSavedGpuRegOffsets[i], sVf->savedGpuRegs[i]);
     // The battle screen redraw keeps DISPCNT as it finds it: turn the frame window off (as the Bag does),
     // or everything stays hidden and the battle shows black.
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
@@ -1017,6 +1093,7 @@ static void CB2_Viewfinder(void)
     }
     AnimateSprites();
     BuildViewfinderOam();
+    UpdateMonCentreMarker();
     DoScheduledBgTilemapCopiesToVram();
     UpdatePaletteFade();
 }

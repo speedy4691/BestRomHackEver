@@ -1,4 +1,5 @@
 #include "global.h"
+#include "photography.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
 #include "battle_message.h"
@@ -8079,6 +8080,8 @@ static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
 
     odds = odds * catchRate / (battleMon->maxHP * 3);
     odds = odds * ball.multiplier / ball.divider;
+    // BestRomHackEver Photography: species with a photo grade are easier to catch.
+    odds = odds * PhotoReward_CatchRatePercent(battleMon->species) / 100;
 
     u8 badgeCount = 0;
     for (u32 i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)

@@ -20,6 +20,7 @@
 // --- Viewfinder frame ---
 #define PHOTO_FRAME_WIDTH           112   // Pixels.
 #define PHOTO_FRAME_HEIGHT          88
+#define PHOTO_SHOW_MON_CENTRE       TRUE  // Red "x" on the POKéMON's centre (the point the Centre score uses).
 #define PHOTO_FRAME_MOVE_SPEED      2     // Pixels per frame while the D-pad is held.
 #define PHOTO_PLAY_AREA_BOTTOM      120   // The POKéMON and frame stay above the text box.
 #define PHOTO_OUTSIDE_DARKEN        7     // How dark it is outside the frame (0-16).
@@ -57,5 +58,14 @@
 #define PHOTO_NATURE_REROLLS        1
 // Amazing: each IV is rolled this many times and the highest is kept (2 = average ~20.7 instead of 15.5).
 #define PHOTO_AMAZING_IV_ROLLS      2
+
+// --- Battle effects ---
+// Catch rate multiplier by the species' best grade, in percent (100 = no change).
+#define PHOTO_CATCH_PERCENT_PHOTOGRAPHED 125
+#define PHOTO_CATCH_PERCENT_GOOD         150
+#define PHOTO_CATCH_PERCENT_AMAZING      200
+// Each time the viewfinder is opened in a battle, the wild POKéMON's next damaging move is a critical hit
+// (one per opening, however many shots; a status move doesn't use it up). Battle Armor, Shell Armor and
+// Lucky Chant still block it, as with Laser Focus.
 
 #endif // GUARD_CONFIG_PHOTOGRAPHY_H

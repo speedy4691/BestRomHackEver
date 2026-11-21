@@ -25,6 +25,12 @@ void PhotoReward_BoostIvs(struct Pokemon *mon);
 // L on the wild battle action menu opens the camera (src/battle_controller_player.c).
 bool32 PhotoCamera_CanUseShortcut(void);
 
+// Battle effects (see include/config/photography.h).
+u32 PhotoReward_CatchRatePercent(enum Species species);
+bool32 PhotoCrit_IsPending(enum BattlerId battlerAtk);
+void PhotoCrit_Consume(void);
+bool32 ShouldShowPhotoGradeIcon(void); // Wild battles only (health bar camera icon).
+
 // Info panel: SELECT on the wild battle action menu (src/battle_controller_player.c).
 bool32 PhotoInfo_TryOpen(void);
 bool32 PhotoInfo_HandleInput(void); // TRUE once the panel has closed.
