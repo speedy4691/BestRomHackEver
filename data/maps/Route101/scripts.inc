@@ -282,15 +282,14 @@ Route101_Text_YouSavedMe:
 	.string "by my POKéMON LAB later, okay?$"
 
 Route101_Text_TakeTiredPokemonToPokeCenter:
-	.string "I keep all my POKéMON in BILL's PC.\p"
-	.string "Sure, they lose a little EXP, but\n"
-	.string "it's free!$"
+	.string "My dad says there are way more\n"
+	.string "POKéMON species in this area than\l"
+	.string "when he was a kid.$"
 
 Route101_Text_WildPokemonInTallGrass:
-	.string "Wild POKéMON will jump out at you in\n"
-	.string "tall grass.\p"
-	.string "If you want to catch POKéMON, you have\n"
-	.string "to go into the tall grass and search.$"
+	.string "Did you know that different POKéMON\n"
+	.string "are around during the day and\l"
+	.string "night?$"
 
 Route101_Text_RouteSign:
 	.string "ROUTE 101\n"

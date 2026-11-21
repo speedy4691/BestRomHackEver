@@ -72,10 +72,10 @@ DewfordTown_EventScript_HallSign::
 DewfordTown_EventScript_OldRodFisherman::
 	lock
 	faceplayer
+	@ The OLD ROD now comes from the Route 103 Fisherman. Without it, he only mentions the fishing spot.
 	goto_if_set FLAG_RECEIVED_OLD_ROD, DewfordTown_EventScript_HowsFishing
-	msgbox DewfordTown_Text_GettingItchToFish, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, DewfordTown_EventScript_GiveOldRod
-	goto_if_eq VAR_RESULT, NO, DewfordTown_EventScript_NotGettingItchToFish
+	msgbox DewfordTown_Text_RenownedFishingSpot, MSGBOX_DEFAULT
+	release
 	end
 
 DewfordTown_EventScript_GiveOldRod::
@@ -690,6 +690,9 @@ DewfordTown_Text_SlateportWereSettingSail:
 DewfordTown_Text_JustTellMeWhenYouNeedToSetSail:
 	.string "MR. BRINEY: You just tell me whenever\n"
 	.string "you need to set sail again!$"
+
+DewfordTown_Text_RenownedFishingSpot:
+	.string "This is a renowned fishing spot.$"
 
 DewfordTown_Text_GettingItchToFish:
 	.string "This is a renowned fishing spot.\n"

@@ -49,6 +49,23 @@ Route103_EventScript_RedEyedWurmpleNotBeaten::
 	release
 	end
 
+@ OLD ROD Fisherman (moved here from DEWFORD TOWN): west shore, facing the water. Afterwards he asks how the
+@ fishing is, like the vanilla Dewford Fisherman did (his script is reused).
+Route103_EventScript_OldRodFisherman::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_OLD_ROD, DewfordTown_EventScript_HowsFishing
+	msgbox Route103_Text_OldRodFishermanGive, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	message Route103_Text_ReceivedOldRod
+	waitmessage
+	waitfanfare
+	additem ITEM_OLD_ROD
+	setflag FLAG_RECEIVED_OLD_ROD
+	msgbox Route103_Text_OldRodFishermanAdvice, MSGBOX_DEFAULT
+	release
+	end
+
 Route103_EventScript_RedEyedWurmpleNoCamera::
 	msgbox Route103_Text_RedEyedWurmpleNoCamera, MSGBOX_DEFAULT
 	release
@@ -257,6 +274,22 @@ Route103_Text_RouteSign:
 	.string "ROUTE 103\n"
 	.string "{DOWN_ARROW} OLDALE TOWN$"
 
+
+Route103_Text_OldRodFishermanGive:
+	.string "Oh, you're a TRAINER?\n"
+	.string "You ever try fishing?\p"
+	.string "I've never understood why it takes so\n"
+	.string "long for someone to give you\l"
+	.string "youngsters something to fish with.\p"
+	.string "Here, take this OLD ROD.\n"
+	.string "I've got plenty.$"
+
+Route103_Text_ReceivedOldRod:
+	.string "{PLAYER} received the OLD ROD!$"
+
+Route103_Text_OldRodFishermanAdvice:
+	.string "Just face the water and use it.\n"
+	.string "You never know what you'll pull out!$"
 
 Route103_Text_BirchFirstPhotoCall:
 	.string "… … … … … …\n"
