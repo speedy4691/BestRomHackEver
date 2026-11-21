@@ -19,6 +19,16 @@ void ClearAllPhotoGrades(void);
 const u8 *GetPhotoGradeName(enum PhotoGrade grade);
 void GetPhotoGradeDexText(u8 *dest, enum Species species);
 
+// Rewards (applied when a wild POKéMON is created, before anything is shown; see include/config/photography.h).
+u32 PhotoReward_PickNature(enum Species species, u32 nature, u32 (*pickNature)(enum Species));
+void PhotoReward_BoostIvs(struct Pokemon *mon);
+// L on the wild battle action menu opens the camera (src/battle_controller_player.c).
+bool32 PhotoCamera_CanUseShortcut(void);
+
+// Info panel: SELECT on the wild battle action menu (src/battle_controller_player.c).
+bool32 PhotoInfo_TryOpen(void);
+bool32 PhotoInfo_HandleInput(void); // TRUE once the panel has closed.
+
 // Viewfinder (prototype). Debug: any species, no shot limit. Battle: opened via the CAMERA in the Bag.
 void OpenPhotoViewfinder_Debug(enum Species species, MainCallback returnCallback);
 void CB2_OpenPhotoViewfinderFromBattle(void);

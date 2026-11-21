@@ -1,4 +1,5 @@
 #include "global.h"
+#include "photography.h"
 #include "battle_setup.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
@@ -511,11 +512,20 @@ static u8 PickWildMonNature(enum Species species)
     return GetSynchronizedNature(WILDMON_ORIGIN, species);
 }
 
+static u32 PickWildMonNatureForPhoto(enum Species species)
+{
+    return PickWildMonNature(species);
+}
+
 void CreateWildMon(enum Species species, u8 level)
 {
     ZeroEnemyPartyMons();
-    u32 personality = GetMonPersonality(species, GetSynchronizedGender(WILDMON_ORIGIN, species), PickWildMonNature(species), RANDOM_UNOWN_LETTER);
+    // BestRomHackEver Photography: the species' best photo grade can re-roll a bad nature (Good+)
+    // and boost IVs (Amazing), before anything is shown (src/photography.c).
+    u32 nature = PhotoReward_PickNature(species, PickWildMonNature(species), PickWildMonNatureForPhoto);
+    u32 personality = GetMonPersonality(species, GetSynchronizedGender(WILDMON_ORIGIN, species), nature, RANDOM_UNOWN_LETTER);
     CreateMonWithIVs(&gParties[B_TRAINER_OPPONENT_A][0], species, level, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
+    PhotoReward_BoostIvs(&gParties[B_TRAINER_OPPONENT_A][0]);
     GiveMonInitialMoveset(&gParties[B_TRAINER_OPPONENT_A][0]);
 }
 
