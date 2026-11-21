@@ -131,6 +131,8 @@ void CreateAbilityPopUp(enum BattlerId battlerId, enum Ability ability, bool32 i
 void DestroyAbilityPopUp(enum BattlerId battlerId);
 bool32 CanThrowLastUsedBall(void);
 void TryHideLastUsedBall(void);
+void TryShowPhotoCameraWindow(void);
+void TryHidePhotoCameraWindow(void);
 void TryRestoreLastUsedBall(void);
 void TryAddLastUsedBallItemSprites(void);
 void SwapBallToDisplay(bool32 sameBall);

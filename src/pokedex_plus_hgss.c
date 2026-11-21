@@ -740,7 +740,9 @@ static bool32 IsDexEntryUnlocked(u16 dexNum, bool32 owned)
     return owned || GetPhotoGrade(NationalPokedexNumToSpecies(dexNum)) != PHOTO_GRADE_NONE;
 }
 
-// Camera icon left of the caught ball in the list (grey = photographed, green = good, blue = amazing).
+// List icon for photographed species: a small camera stacked above the caught ball, in the ball's 8x16 spot
+// (left of it is under the list's scroll wheel). Grey = photographed, green = good, blue = amazing.
+// 8 px wide 4bpp, so each pixel row is one u32 (rows 0-7 in the first tile, 8-15 in the second).
 static const u32 sListPhotoIconGfx[3][16] =
 {
     { 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x0000FF00, 0xFFFFFFFF, 0xF55FF55F, 0xF5F11F5F, 0xF55FF55F, 0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
@@ -748,15 +750,22 @@ static const u32 sListPhotoIconGfx[3][16] =
     { 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x0000FF00, 0xFFFFFFFF, 0xFDDFFDDF, 0xFDF11FDF, 0xFDDFFDDF, 0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
 };
 
-#define LIST_PHOTO_ICON_X (MON_LIST_X * 6 - 8) // The caught ball is at MON_LIST_X * 6 px.
-
 static void DrawListPhotoIcon(u16 dexNum, u8 y)
 {
     enum PhotoGrade grade = dexNum == 0 ? PHOTO_GRADE_NONE : GetPhotoGrade(NationalPokedexNumToSpecies(dexNum));
+    u32 icon[16] = {0};
+    u32 i;
 
-    FillWindowPixelRect(0, PIXEL_FILL(0), LIST_PHOTO_ICON_X, y * 8, 8, 16);
-    if (grade != PHOTO_GRADE_NONE)
-        BlitBitmapToWindow(0, (const u8 *)sListPhotoIconGfx[grade - PHOTO_GRADE_PHOTOGRAPHED], LIST_PHOTO_ICON_X, y * 8, 8, 16);
+    if (grade == PHOTO_GRADE_NONE)
+        return; // CreateCaughtBall already drew (or cleared) the normal ball.
+    for (i = 0; i < 6; i++) // Camera: icon rows 5-10 -> rows 1-6.
+        icon[1 + i] = sListPhotoIconGfx[grade - PHOTO_GRADE_PHOTOGRAPHED][5 + i];
+    if (GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT))
+    {
+        for (i = 0; i < 7; i++) // Ball: its rows 5-11 -> rows 8-14.
+            memcpy(&icon[8 + i], &sCaughtBall_Gfx[(5 + i) * 4], 4);
+    }
+    BlitBitmapToWindow(0, (const u8 *)icon, MON_LIST_X * 6, y * 8, 8, 16);
 }
 
 bool32 TryCreateMonListEntry_HGSS(u8 position, u16 b, u16 ignored)

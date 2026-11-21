@@ -2993,6 +2993,7 @@ static const struct SpriteTemplate sSpriteTemplate_LastUsedBallWindow =
 };
 
 #define MOVE_INFO_WINDOW_TAG 0xE722
+#define TAG_PHOTO_CAMERA_WINDOW 0x5A72 // BestRomHackEver Photography: "L" camera box.
 
 static const struct OamData sOamData_MoveInfoWindow =
 {
@@ -3132,7 +3133,7 @@ void TryAddLastUsedBallItemSprites(void)
 static void DestroyLastUsedBallWinGfx(struct Sprite *sprite)
 {
     FreeSpriteTilesByTag(TAG_LAST_BALL_WINDOW);
-    if (GetSpriteTileStartByTag(MOVE_INFO_WINDOW_TAG) == 0xFFFF)
+    if (GetSpriteTileStartByTag(MOVE_INFO_WINDOW_TAG) == 0xFFFF && GetSpriteTileStartByTag(TAG_PHOTO_CAMERA_WINDOW) == 0xFFFF)
         FreeSpritePaletteByTag(TAG_ABILITY_POP_UP);
     DestroySprite(sprite);
     gBattleStruct->ballSpriteIds[1] = MAX_SPRITES;
@@ -3173,7 +3174,7 @@ void TryToHideMoveInfoWindow(void)
 static void DestroyMoveInfoWinGfx(struct Sprite *sprite)
 {
     FreeSpriteTilesByTag(MOVE_INFO_WINDOW_TAG);
-    if (GetSpriteTileStartByTag(TAG_LAST_BALL_WINDOW) == 0xFFFF)
+    if (GetSpriteTileStartByTag(TAG_LAST_BALL_WINDOW) == 0xFFFF && GetSpriteTileStartByTag(TAG_PHOTO_CAMERA_WINDOW) == 0xFFFF)
         FreeSpritePaletteByTag(TAG_ABILITY_POP_UP);
     DestroySprite(sprite);
     gBattleStruct->moveInfoSpriteId = MAX_SPRITES;
@@ -3233,6 +3234,73 @@ static void SpriteCB_MoveInfoWin(struct Sprite *sprite)
     }
 }
 
+// BestRomHackEver Photography: "L" + camera box, under the last-used-ball box, while L would open the camera
+// (wild battle, CAMERA in the Bag, shots left). Slides in and out like the ball box.
+static const u8 ALIGNED(4) sPhotoCameraWindowGfx[] = INCGFX_U8("graphics/battle_interface/photo_camera_window_l.png", ".4bpp");
+static const struct SpriteSheet sSpriteSheet_PhotoCameraWindow = { sPhotoCameraWindowGfx, sizeof(sPhotoCameraWindowGfx), TAG_PHOTO_CAMERA_WINDOW };
+static void SpriteCB_PhotoCameraWin(struct Sprite *sprite);
+static const struct SpriteTemplate sSpriteTemplate_PhotoCameraWindow =
+{
+    .tileTag = TAG_PHOTO_CAMERA_WINDOW,
+    .paletteTag = TAG_ABILITY_POP_UP,
+    .oam = &sOamData_MoveInfoWindow, // 32x32
+    .anims = gDummySpriteAnimTable,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_PhotoCameraWin,
+};
+#define PHOTO_CAMERA_WIN_Y (LAST_USED_WIN_Y + 38) // Just below the ball box (it ends 19 px below LAST_USED_WIN_Y).
+
+static EWRAM_DATA u8 sPhotoCameraWinSpriteId = 0;
+
+static bool32 IsPhotoCameraWindowShown(void)
+{
+    struct Sprite *sprite = &gSprites[sPhotoCameraWinSpriteId];
+    return sprite->inUse && sprite->callback == SpriteCB_PhotoCameraWin;
+}
+
+static void SpriteCB_PhotoCameraWin(struct Sprite *sprite)
+{
+    if (sprite->sHide)
+    {
+        if (sprite->x != LAST_BALL_WIN_X_0)
+            sprite->x--;
+        if (sprite->x == LAST_BALL_WIN_X_0)
+        {
+            FreeSpriteTilesByTag(TAG_PHOTO_CAMERA_WINDOW);
+            if (GetSpriteTileStartByTag(TAG_LAST_BALL_WINDOW) == 0xFFFF && GetSpriteTileStartByTag(MOVE_INFO_WINDOW_TAG) == 0xFFFF)
+                FreeSpritePaletteByTag(TAG_ABILITY_POP_UP);
+            DestroySprite(sprite);
+        }
+    }
+    else if (sprite->x != LAST_BALL_WIN_X_F)
+    {
+        sprite->x++;
+    }
+}
+
+void TryShowPhotoCameraWindow(void)
+{
+    if (!PhotoCamera_CanUseShortcut() || gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
+        return;
+    if (IsPhotoCameraWindowShown())
+    {
+        gSprites[sPhotoCameraWinSpriteId].sHide = FALSE;
+        return;
+    }
+    LoadSpritePalette(&sSpritePalette_AbilityPopUp);
+    if (GetSpriteTileStartByTag(TAG_PHOTO_CAMERA_WINDOW) == 0xFFFF)
+        LoadSpriteSheet(&sSpriteSheet_PhotoCameraWindow);
+    sPhotoCameraWinSpriteId = CreateSprite(&sSpriteTemplate_PhotoCameraWindow, LAST_BALL_WIN_X_0, PHOTO_CAMERA_WIN_Y, 5);
+    if (sPhotoCameraWinSpriteId != MAX_SPRITES)
+        gSprites[sPhotoCameraWinSpriteId].sHide = FALSE;
+}
+
+void TryHidePhotoCameraWindow(void)
+{
+    if (IsPhotoCameraWindowShown())
+        gSprites[sPhotoCameraWinSpriteId].sHide = TRUE;
+}
+
 static void TryHideOrRestoreLastUsedBall(u8 caseId)
 {
     if (B_LAST_USED_BALL == FALSE)
@@ -3263,6 +3331,8 @@ static void TryHideOrRestoreLastUsedBall(u8 caseId)
 
 void TryHideLastUsedBall(void)
 {
+    TryHidePhotoCameraWindow(); // BestRomHackEver Photography: the camera box leaves with the ball box.
+
     if (B_LAST_USED_BALL_BUTTON == L_BUTTON && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
         return;
 

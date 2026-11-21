@@ -24,7 +24,6 @@ u32 PhotoReward_PickNature(enum Species species, u32 nature, u32 (*pickNature)(e
 void PhotoReward_BoostIvs(struct Pokemon *mon);
 // L on the wild battle action menu opens the camera (src/battle_controller_player.c).
 bool32 PhotoCamera_CanUseShortcut(void);
-void PhotoCamera_PrintMenuHint(void); // "L: Camera" on the action prompt.
 
 // Battle effects (see include/config/photography.h).
 u32 PhotoReward_CatchRatePercent(enum Species species);

@@ -306,20 +306,6 @@ bool32 PhotoCamera_CanUseShortcut(void)
         && CheckBagHasItem(ITEM_CAMERA, 1);
 }
 
-// "L: Camera" on the right of the action prompt's first line ("What will"), while L would open the camera.
-void PhotoCamera_PrintMenuHint(void)
-{
-    static const u8 sColors[] = { TEXT_COLOR_TRANSPARENT, 1, 6 }; // The action prompt's own text colours.
-    const u8 *text = COMPOUND_STRING("L: Camera");
-    s32 x;
-
-    if (!PhotoCamera_CanUseShortcut() || gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
-        return;
-    x = WindowWidthPx(B_WIN_ACTION_PROMPT) - GetStringWidth(FONT_SMALL, text, 0) - 4;
-    AddTextPrinterParameterized4(B_WIN_ACTION_PROMPT, FONT_SMALL, x, 3, 0, 0, sColors, TEXT_SKIP_DRAW, text);
-    CopyWindowToVram(B_WIN_ACTION_PROMPT, COPYWIN_GFX);
-}
-
 u32 PhotoReward_CatchRatePercent(enum Species species)
 {
     switch (GetPhotoGrade(species))
@@ -426,6 +412,7 @@ struct PhotoViewfinder
     MainCallback returnCallback;
     u16 species;
     bool8 inBattle;
+    u16 savedGpuRegs[7]; // Window/blend registers on entry, put back on exit.
     u8 state;
     u8 monSpriteId;
     u8 cornerSpriteIds[4];
@@ -501,9 +488,20 @@ static const struct WindowTemplate sWindowTemplates[] =
 static void CB2_InitViewfinder(void);
 static void CB2_Viewfinder(void);
 
+// The viewfinder uses WIN0 and blending. On exit these go back to what they were, not to 0: the battle keeps WIN0
+// on with these settings, and screens that re-enable WIN0 (e.g. the new-Pokédex-entry page after a catch) were
+// left black when WININ/WINOUT/WIN0H/WIN0V had been zeroed.
+static const u8 sSavedGpuRegOffsets[] =
+{
+    REG_OFFSET_WININ, REG_OFFSET_WINOUT, REG_OFFSET_WIN0H, REG_OFFSET_WIN0V,
+    REG_OFFSET_BLDCNT, REG_OFFSET_BLDALPHA, REG_OFFSET_BLDY,
+};
+
 static void StartViewfinder(enum Species species, bool32 isShiny, u32 personality, bool32 inBattle, u32 shotsLeft, MainCallback returnCallback)
 {
     sVf = AllocZeroed(sizeof(*sVf));
+    for (u32 i = 0; i < ARRAY_COUNT(sSavedGpuRegOffsets); i++)
+        sVf->savedGpuRegs[i] = GetGpuReg(sSavedGpuRegOffsets[i]);
     sVf->species = SanitizeSpeciesId(species);
     sVf->inBattle = inBattle;
     sVf->shotsLeft = shotsLeft;
@@ -1029,12 +1027,8 @@ static void ExitViewfinder(void)
     FreeAllSpritePalettes();
     FreeAllWindowBuffers();
     Free(sVf->tilemapBuf);
-    SetGpuReg(REG_OFFSET_BLDCNT, 0);
-    SetGpuReg(REG_OFFSET_BLDY, 0);
-    SetGpuReg(REG_OFFSET_WININ, 0);
-    SetGpuReg(REG_OFFSET_WINOUT, 0);
-    SetGpuReg(REG_OFFSET_WIN0H, 0);
-    SetGpuReg(REG_OFFSET_WIN0V, 0);
+    for (u32 i = 0; i < ARRAY_COUNT(sSavedGpuRegOffsets); i++)
+        SetGpuReg(sSavedGpuRegOffsets[i], sVf->savedGpuRegs[i]);
     // The battle screen redraw keeps DISPCNT as it finds it: turn the frame window off (as the Bag does),
     // or everything stays hidden and the battle shows black.
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
