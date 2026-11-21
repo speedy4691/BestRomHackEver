@@ -20,6 +20,7 @@
 // --- Viewfinder frame ---
 #define PHOTO_FRAME_WIDTH           112   // Pixels.
 #define PHOTO_FRAME_HEIGHT          88
+#define PHOTO_SHOW_MON_CENTRE       TRUE  // Red "x" on the POKéMON's centre (the point the Centre score uses).
 #define PHOTO_FRAME_MOVE_SPEED      2     // Pixels per frame while the D-pad is held.
 #define PHOTO_PLAY_AREA_BOTTOM      120   // The POKéMON and frame stay above the text box.
 #define PHOTO_OUTSIDE_DARKEN        7     // How dark it is outside the frame (0-16).

@@ -393,6 +393,7 @@ bool32 PhotoInfo_HandleInput(void)
 
 #define TAG_PHOTO_CORNER 0x5A10
 #define TAG_PHOTO_CROSS  0x5A11
+#define TAG_PHOTO_CENTRE 0x5A12
 #define TAG_PHOTO_PAL    0x5A10
 #define MON_PAL_SLOT     15   // OBJ palette slot for the POKéMON (the frame's palette takes a tag slot from 0).
 #define UNLIMITED_SHOTS  0xFF
@@ -417,6 +418,7 @@ struct PhotoViewfinder
     u8 monSpriteId;
     u8 cornerSpriteIds[4];
     u8 crossSpriteId;
+    u8 centreSpriteId; // Marker on the POKéMON's centre (PHOTO_SHOW_MON_CENTRE).
     u8 dispMatrixNum;
     u8 zoomStep;
     u8 shotsLeft;
@@ -452,10 +454,15 @@ static const u32 sCornerGfx[] = {
 static const u32 sCrossGfx[] = {
     0x00000000, 0x00011000, 0x00011000, 0x01111110, 0x01111110, 0x00011000, 0x00011000, 0x00000000,
 };
-static const u16 sFramePal[16] = { RGB(0, 0, 0), RGB_WHITE, RGB(5, 5, 6) };
+// Red "x" centred on pixel (4,4), the sprite's position (colour 3).
+static const u32 sCentreGfx[] = {
+    0x00000000, 0x00000000, 0x03000300, 0x00303000, 0x00030000, 0x00303000, 0x03000300, 0x00000000,
+};
+static const u16 sFramePal[16] = { RGB(0, 0, 0), RGB_WHITE, RGB(5, 5, 6), RGB(31, 3, 3) };
 
 static const struct SpriteSheet sCornerSheet = { sCornerGfx, sizeof(sCornerGfx), TAG_PHOTO_CORNER };
 static const struct SpriteSheet sCrossSheet = { sCrossGfx, sizeof(sCrossGfx), TAG_PHOTO_CROSS };
+static const struct SpriteSheet sCentreSheet = { sCentreGfx, sizeof(sCentreGfx), TAG_PHOTO_CENTRE };
 static const struct SpritePalette sFrameSpritePal = { sFramePal, TAG_PHOTO_PAL };
 
 static const struct OamData sOam_Corner = { .shape = SPRITE_SHAPE(16x16), .size = SPRITE_SIZE(16x16), .priority = 0 };
@@ -469,6 +476,11 @@ static const struct SpriteTemplate sCornerTemplate =
 static const struct SpriteTemplate sCrossTemplate =
 {
     .tileTag = TAG_PHOTO_CROSS, .paletteTag = TAG_PHOTO_PAL, .oam = &sOam_Cross,
+    .anims = gDummySpriteAnimTable, .images = NULL, .affineAnims = gDummySpriteAffineAnimTable, .callback = SpriteCallbackDummy,
+};
+static const struct SpriteTemplate sCentreTemplate =
+{
+    .tileTag = TAG_PHOTO_CENTRE, .paletteTag = TAG_PHOTO_PAL, .oam = &sOam_Cross,
     .anims = gDummySpriteAnimTable, .images = NULL, .affineAnims = gDummySpriteAffineAnimTable, .callback = SpriteCallbackDummy,
 };
 
@@ -485,6 +497,7 @@ static const struct WindowTemplate sWindowTemplates[] =
     DUMMY_WIN_TEMPLATE,
 };
 
+static void UpdateMonCentreMarker(void);
 static void CB2_InitViewfinder(void);
 static void CB2_Viewfinder(void);
 
@@ -702,6 +715,12 @@ static void CB2_InitViewfinder(void)
             corner->oam.matrixNum = (corner->hFlip ? ST_OAM_HFLIP : 0) | (corner->vFlip ? ST_OAM_VFLIP : 0);
         }
         sVf->crossSpriteId = CreateSprite(&sCrossTemplate, 0, 0, 0);
+        sVf->centreSpriteId = MAX_SPRITES;
+        if (PHOTO_SHOW_MON_CENTRE)
+        {
+            LoadSpriteSheet(&sCentreSheet);
+            sVf->centreSpriteId = CreateSprite(&sCentreTemplate, 0, 0, 0);
+        }
 
         sVf->monX = (40 + Random() % 160) << 8;
         sVf->monY = (40 + Random() % 40) << 8;
@@ -804,6 +823,19 @@ static bool32 IsFacingFrameCentre(void)
 {
     s32 x = sVf->monX >> 8;
     return (sVf->facingRight && x < sVf->frameX) || (!sVf->facingRight && x > sVf->frameX);
+}
+
+// Moves the red "x" to the point the Centre score measures from: the middle of the POKéMON's visible
+// pixels, zoomed, including its animation's movement (same box as ScoreShot).
+static void UpdateMonCentreMarker(void)
+{
+    s32 left, right, top, bottom;
+
+    if (sVf->centreSpriteId == MAX_SPRITES)
+        return;
+    GetMonScreenBox(&left, &right, &top, &bottom, TRUE);
+    gSprites[sVf->centreSpriteId].x = (left + right) / 2;
+    gSprites[sVf->centreSpriteId].y = (top + bottom) / 2;
 }
 
 static void ScoreShot(struct PhotoScore *score)
@@ -1061,6 +1093,7 @@ static void CB2_Viewfinder(void)
     }
     AnimateSprites();
     BuildViewfinderOam();
+    UpdateMonCentreMarker();
     DoScheduledBgTilemapCopiesToVram();
     UpdatePaletteFade();
 }
