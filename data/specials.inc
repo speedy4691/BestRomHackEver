@@ -640,3 +640,4 @@ gSpecials::
 	def_special CheckAddCoins
 	def_special BufferCurrentLevelCap
 	def_special BufferNextGymGateSpecies
+	def_special GetRoute102SteveRunUpPath
