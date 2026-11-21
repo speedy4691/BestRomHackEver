@@ -2109,6 +2109,7 @@ static void PlayerHandleChooseAction(enum BattlerId battler)
     else
     {
         BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
+        PhotoCamera_PrintMenuHint(); // BestRomHackEver Photography: "L: Camera" in wild battles.
     }
 }
 

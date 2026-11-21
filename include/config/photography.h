@@ -58,4 +58,13 @@
 // Amazing: each IV is rolled this many times and the highest is kept (2 = average ~20.7 instead of 15.5).
 #define PHOTO_AMAZING_IV_ROLLS      2
 
+// --- Battle effects ---
+// Catch rate multiplier by the species' best grade, in percent (100 = no change).
+#define PHOTO_CATCH_PERCENT_PHOTOGRAPHED 125
+#define PHOTO_CATCH_PERCENT_GOOD         150
+#define PHOTO_CATCH_PERCENT_AMAZING      200
+// Each time the viewfinder is opened in a battle, the wild POKéMON's next damaging move is a critical hit
+// (one per opening, however many shots; a status move doesn't use it up). Battle Armor, Shell Armor and
+// Lucky Chant still block it, as with Laser Focus.
+
 #endif // GUARD_CONFIG_PHOTOGRAPHY_H

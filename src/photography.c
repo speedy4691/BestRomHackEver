@@ -2,6 +2,7 @@
 #include "photography.h"
 #include "battle.h"
 #include "battle_main.h"
+#include "battle_util.h"
 #include "battle_environment.h"
 #include "battle_setup.h"
 #include "bg.h"
@@ -13,6 +14,7 @@
 #include "malloc.h"
 #include "menu.h"
 #include "battle_message.h"
+#include "battle_bg.h"
 #include "palette.h"
 #include "pokemon.h"
 #include "pokemon_animation.h"
@@ -304,6 +306,51 @@ bool32 PhotoCamera_CanUseShortcut(void)
         && CheckBagHasItem(ITEM_CAMERA, 1);
 }
 
+// "L: Camera" on the right of the action prompt's first line ("What will"), while L would open the camera.
+void PhotoCamera_PrintMenuHint(void)
+{
+    static const u8 sColors[] = { TEXT_COLOR_TRANSPARENT, 1, 6 }; // The action prompt's own text colours.
+    const u8 *text = COMPOUND_STRING("L: Camera");
+    s32 x;
+
+    if (!PhotoCamera_CanUseShortcut() || gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
+        return;
+    x = WindowWidthPx(B_WIN_ACTION_PROMPT) - GetStringWidth(FONT_SMALL, text, 0) - 4;
+    AddTextPrinterParameterized4(B_WIN_ACTION_PROMPT, FONT_SMALL, x, 3, 0, 0, sColors, TEXT_SKIP_DRAW, text);
+    CopyWindowToVram(B_WIN_ACTION_PROMPT, COPYWIN_GFX);
+}
+
+u32 PhotoReward_CatchRatePercent(enum Species species)
+{
+    switch (GetPhotoGrade(species))
+    {
+    case PHOTO_GRADE_PHOTOGRAPHED: return PHOTO_CATCH_PERCENT_PHOTOGRAPHED;
+    case PHOTO_GRADE_GOOD:         return PHOTO_CATCH_PERCENT_GOOD;
+    case PHOTO_GRADE_AMAZING:      return PHOTO_CATCH_PERCENT_AMAZING;
+    default:                       return 100;
+    }
+}
+
+bool32 ShouldShowPhotoGradeIcon(void)
+{
+    return !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK
+                               | BATTLE_TYPE_CATCH_TUTORIAL | BATTLE_TYPE_GHOST));
+}
+
+// TRUE if this attacker is a wild POKéMON and a camera use hasn't been paid for with a crit yet.
+bool32 PhotoCrit_IsPending(enum BattlerId battlerAtk)
+{
+    return gBattleStruct->photoCritsPending != 0
+        && !IsOnPlayerSide(battlerAtk)
+        && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK));
+}
+
+void PhotoCrit_Consume(void)
+{
+    if (gBattleStruct->photoCritsPending != 0)
+        gBattleStruct->photoCritsPending--;
+}
+
 // Opens the panel in a wild battle (left opponent first). FALSE = not a wild battle.
 bool32 PhotoInfo_TryOpen(void)
 {
@@ -477,6 +524,9 @@ void OpenPhotoViewfinder_Debug(enum Species species, MainCallback returnCallback
 void CB2_OpenPhotoViewfinderFromBattle(void)
 {
     struct Pokemon *mon = GetBattlerMon(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
+    // Each opening (however many shots) makes the wild POKéMON's next damaging move a critical hit.
+    if (gBattleStruct->photoCritsPending < 0xFF)
+        gBattleStruct->photoCritsPending++;
     StartViewfinder(GetMonData(mon, MON_DATA_SPECIES), IsMonShiny(mon), GetMonData(mon, MON_DATA_PERSONALITY),
                     TRUE, PHOTO_SHOTS_PER_BATTLE - gBattleStruct->photoShotsUsed, gBagPosition.exitCallback);
 }

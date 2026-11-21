@@ -209,6 +209,7 @@ static bool8 LoadPokedexListPage(u8);
 static void CreateInterfaceSprites(u8);
 static void LoadScreenSelectBarMain(u16);
 static void PrintMonInfo(u32 num, u32, u32 owned, u32 newEntry);
+static bool32 IsDexEntryUnlocked(u16 dexNum, bool32 owned);
 static void SetSpriteInvisibility(u8 spriteArrayId, bool8 invisible);
 static void CreateTypeIconSprites(void);
 
@@ -731,6 +732,33 @@ static bool8 LoadPokedexListPage(u8 page)
 
 // u16 ignored is passed but never used
 #define MON_LIST_X 2
+
+// BestRomHackEver Photography: a photographed species shows its full entry, like a caught one. Only the
+// entry screens use this; the caught flag, caught total and gym gates are unchanged.
+static bool32 IsDexEntryUnlocked(u16 dexNum, bool32 owned)
+{
+    return owned || GetPhotoGrade(NationalPokedexNumToSpecies(dexNum)) != PHOTO_GRADE_NONE;
+}
+
+// Camera icon left of the caught ball in the list (grey = photographed, green = good, blue = amazing).
+static const u32 sListPhotoIconGfx[3][16] =
+{
+    { 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x0000FF00, 0xFFFFFFFF, 0xF55FF55F, 0xF5F11F5F, 0xF55FF55F, 0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+    { 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x0000FF00, 0xFFFFFFFF, 0xFCCFFCCF, 0xFCF11FCF, 0xFCCFFCCF, 0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+    { 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x0000FF00, 0xFFFFFFFF, 0xFDDFFDDF, 0xFDF11FDF, 0xFDDFFDDF, 0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 }
+};
+
+#define LIST_PHOTO_ICON_X (MON_LIST_X * 6 - 8) // The caught ball is at MON_LIST_X * 6 px.
+
+static void DrawListPhotoIcon(u16 dexNum, u8 y)
+{
+    enum PhotoGrade grade = dexNum == 0 ? PHOTO_GRADE_NONE : GetPhotoGrade(NationalPokedexNumToSpecies(dexNum));
+
+    FillWindowPixelRect(0, PIXEL_FILL(0), LIST_PHOTO_ICON_X, y * 8, 8, 16);
+    if (grade != PHOTO_GRADE_NONE)
+        BlitBitmapToWindow(0, (const u8 *)sListPhotoIconGfx[grade - PHOTO_GRADE_PHOTOGRAPHED], LIST_PHOTO_ICON_X, y * 8, 8, 16);
+}
+
 bool32 TryCreateMonListEntry_HGSS(u8 position, u16 b, u16 ignored)
 {
     if (!POKEDEX_PLUS_HGSS)
@@ -750,14 +778,17 @@ bool32 TryCreateMonListEntry_HGSS(u8 position, u16 b, u16 ignored)
             if (entryNum < 0 || entryNum >= NATIONAL_DEX_COUNT || sPokedexView->pokedexList[entryNum].dexNum == 0xFFFF)
             {
                 ClearMonListEntry(MON_LIST_X, i * 2, ignored);
+                DrawListPhotoIcon(0, i * 2);
             }
             else
             {
                 ClearMonListEntry(MON_LIST_X, i * 2, ignored);
+                DrawListPhotoIcon(0, i * 2);
                 if (sPokedexView->pokedexList[entryNum].seen)
                 {
                     CreateMonDexNum(entryNum, MON_LIST_X+1, i * 2, ignored);
                     CreateCaughtBall(sPokedexView->pokedexList[entryNum].owned, MON_LIST_X, i * 2, ignored);
+                    DrawListPhotoIcon(sPokedexView->pokedexList[entryNum].dexNum, i * 2);
                     CreateMonName(sPokedexView->pokedexList[entryNum].dexNum, MON_LIST_X + 5, i * 2);
                 }
                 else
@@ -775,14 +806,17 @@ bool32 TryCreateMonListEntry_HGSS(u8 position, u16 b, u16 ignored)
         if (entryNum < 0 || entryNum >= NATIONAL_DEX_COUNT || sPokedexView->pokedexList[entryNum].dexNum == 0xFFFF)
         {
             ClearMonListEntry(MON_LIST_X, sPokedexView->listVOffset * 2, ignored);
+            DrawListPhotoIcon(0, sPokedexView->listVOffset * 2);
         }
         else
         {
             ClearMonListEntry(MON_LIST_X, sPokedexView->listVOffset * 2, ignored);
+            DrawListPhotoIcon(0, sPokedexView->listVOffset * 2);
             if (sPokedexView->pokedexList[entryNum].seen)
             {
                 CreateMonDexNum(entryNum, MON_LIST_X+1, sPokedexView->listVOffset * 2, ignored);
                 CreateCaughtBall(sPokedexView->pokedexList[entryNum].owned, MON_LIST_X, sPokedexView->listVOffset * 2, ignored);
+                DrawListPhotoIcon(sPokedexView->pokedexList[entryNum].dexNum, sPokedexView->listVOffset * 2);
                 CreateMonName(sPokedexView->pokedexList[entryNum].dexNum, MON_LIST_X + 5, sPokedexView->listVOffset * 2);
             }
             else
@@ -799,14 +833,19 @@ bool32 TryCreateMonListEntry_HGSS(u8 position, u16 b, u16 ignored)
         if (vOffset >= LIST_SCROLL_STEP)
             vOffset -= LIST_SCROLL_STEP;
         if (entryNum < 0 || entryNum >= NATIONAL_DEX_COUNT || sPokedexView->pokedexList[entryNum].dexNum == 0xFFFF)
+        {
             ClearMonListEntry(MON_LIST_X, vOffset * 2, ignored);
+            DrawListPhotoIcon(0, vOffset * 2);
+        }
         else
         {
             ClearMonListEntry(MON_LIST_X, vOffset * 2, ignored);
+            DrawListPhotoIcon(0, vOffset * 2);
             if (sPokedexView->pokedexList[entryNum].seen)
             {
                 CreateMonDexNum(entryNum, MON_LIST_X+1, vOffset * 2, ignored);
                 CreateCaughtBall(sPokedexView->pokedexList[entryNum].owned, MON_LIST_X, vOffset * 2, ignored);
+                DrawListPhotoIcon(sPokedexView->pokedexList[entryNum].dexNum, vOffset * 2);
                 CreateMonName(sPokedexView->pokedexList[entryNum].dexNum, MON_LIST_X + 5, vOffset * 2);
             }
             else
@@ -1193,7 +1232,7 @@ static void CreateStatBars(struct PokedexListItem *dexMon)
 
     sPokedexView->justScrolled = FALSE;
 
-    if (dexMon->owned) // Show filed bars
+    if (IsDexEntryUnlocked(dexMon->dexNum, dexMon->owned)) // Show filed bars
     {
         u8 i;
         u32 width, statValue;
@@ -1339,8 +1378,8 @@ bool32 Task_TryLoadInfoScreen_HGSS(u8 taskId)
         gMain.state++;
         break;
     case 4:
-        PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
-        if (!sPokedexListItem->owned)
+        PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, IsDexEntryUnlocked(sPokedexListItem->dexNum, sPokedexListItem->owned), 0);
+        if (!IsDexEntryUnlocked(sPokedexListItem->dexNum, sPokedexListItem->owned))
             LoadPalette(gPlttBufferUnfaded + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(16 - 1));
         CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
         CopyBgTilemapBufferToVram(1);
@@ -1474,7 +1513,7 @@ bool32 TrySwitchScreensFromAreaScreen_HGSS(u8 taskId)
         gTasks[taskId].func = Task_LoadInfoScreen;
         break;
     case 2:
-        if (sPokedexListItem->owned)
+        if (IsDexEntryUnlocked(sPokedexListItem->dexNum, sPokedexListItem->owned))
             gTasks[taskId].func = Task_LoadStatsScreen;
         else
             PlaySE(SE_FAILURE);
@@ -2037,7 +2076,7 @@ static void Task_LoadStatsScreen(u8 taskId)
         PrintStatsScreen_Moves_Description(taskId);
         PrintStatsScreen_Moves_BottomText(taskId);
         PrintStatsScreen_Moves_Bottom(taskId);
-        if (!sPokedexListItem->owned)
+        if (!IsDexEntryUnlocked(sPokedexListItem->dexNum, sPokedexListItem->owned))
             LoadPalette(gPlttBufferUnfaded + 1, BG_PLTT_ID(3) + 1, 30);
         StatsPage_PrintNavigationButtons(); //sText_Stats_Buttons
         gMain.state++;
@@ -2157,7 +2196,7 @@ static void Task_HandleStatsScreenInput(u8 taskId)
     }
     if ((JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)))
     {
-        if (!sPokedexListItem->owned)
+        if (!IsDexEntryUnlocked(sPokedexListItem->dexNum, sPokedexListItem->owned))
             PlaySE(SE_FAILURE);
         else
         {
@@ -3297,7 +3336,7 @@ static void Task_HandleEvolutionScreenInput(u8 taskId)
     }
     if ((JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)))
     {
-        if (!sPokedexListItem->owned)
+        if (!IsDexEntryUnlocked(sPokedexListItem->dexNum, sPokedexListItem->owned))
             PlaySE(SE_FAILURE);
         else
         {
