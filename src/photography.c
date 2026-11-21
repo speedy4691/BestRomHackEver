@@ -28,6 +28,8 @@
 #include "window.h"
 #include "config/photography.h"
 #include "constants/items.h"
+#include "constants/maps.h"
+#include "constants/species.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
@@ -298,11 +300,28 @@ static bool32 IsPhotoInfoBattle(void)
                                | BATTLE_TYPE_GHOST | BATTLE_TYPE_CATCH_TUTORIAL | BATTLE_TYPE_SAFARI));
 }
 
+// Opening 10: the red-eyed WURMPLE battle on Route 103 (scripted from the overworld object). Normal Route 103
+// encounters are never red-eyed, so map + species + red-eyed identifies it.
+bool32 PhotoStory_IsRoute103WurmpleBattle(void)
+{
+    return !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_SAFARI))
+        && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE103)
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE103)
+        && GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_SPECIES) == SPECIES_WURMPLE
+        && GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_IS_RED_EYED);
+}
+
+// Until a shot of it is at least "photographed", only the CAMERA works and the shot limit doesn't apply.
+bool32 PhotoStory_IsPhotoRequired(void)
+{
+    return PhotoStory_IsRoute103WurmpleBattle() && !FlagGet(FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE);
+}
+
 // L shortcut: same rules as CAMERA from the Bag (ItemUseInBattle_Camera), and the CAMERA must be in the Bag.
 bool32 PhotoCamera_CanUseShortcut(void)
 {
     return !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_SAFARI))
-        && gBattleStruct->photoShotsUsed < PHOTO_SHOTS_PER_BATTLE
+        && (gBattleStruct->photoShotsUsed < PHOTO_SHOTS_PER_BATTLE || PhotoStory_IsPhotoRequired())
         && CheckBagHasItem(ITEM_CAMERA, 1);
 }
 
@@ -538,8 +557,11 @@ void CB2_OpenPhotoViewfinderFromBattle(void)
     // Each opening (however many shots) makes the wild POKéMON's next damaging move a critical hit.
     if (gBattleStruct->photoCritsPending < 0xFF)
         gBattleStruct->photoCritsPending++;
+    s32 shots = PHOTO_SHOTS_PER_BATTLE - gBattleStruct->photoShotsUsed;
+    if (shots < 1)
+        shots = PhotoStory_IsPhotoRequired() ? 1 : 0; // Opening 10: extra shots until one counts.
     StartViewfinder(GetMonData(mon, MON_DATA_SPECIES), IsMonShiny(mon), GetMonData(mon, MON_DATA_PERSONALITY),
-                    TRUE, PHOTO_SHOTS_PER_BATTLE - gBattleStruct->photoShotsUsed, gBagPosition.exitCallback);
+                    TRUE, shots, gBagPosition.exitCallback);
 }
 
 static void VBlankCB_Viewfinder(void)
@@ -897,11 +919,18 @@ static void TakePhoto(void)
 
     ScoreShot(&score);
     upgraded = TryUpgradePhotoGrade(sVf->species, score.grade);
+    if (sVf->inBattle && score.grade >= PHOTO_GRADE_PHOTOGRAPHED && PhotoStory_IsRoute103WurmpleBattle())
+        FlagSet(FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE);
     if (sVf->shotsLeft != UNLIMITED_SHOTS)
     {
         sVf->shotsLeft--;
         if (sVf->inBattle)
-            gBattleStruct->photoShotsUsed++;
+        {
+            if (gBattleStruct->photoShotsUsed < 0xFF)
+                gBattleStruct->photoShotsUsed++;
+            if (sVf->shotsLeft == 0 && PhotoStory_IsPhotoRequired())
+                sVf->shotsLeft = 1; // Opening 10: no shot has counted yet; keep going until one does.
+        }
     }
     sVf->shotsThisVisit++;
     sVf->cooldown = PHOTO_SHOT_COOLDOWN;

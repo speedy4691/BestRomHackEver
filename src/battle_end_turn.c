@@ -1,4 +1,5 @@
 #include "global.h"
+#include "red_eyed.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
 #include "battle_setup.h"
@@ -1349,6 +1350,25 @@ static bool32 HandleEndTurnThirdEventBlock(enum BattlerId battler)
         gBattleStruct->eventState.endTurnBlock++;
         break;
     }
+    case THIRD_EVENT_BLOCK_RED_EYED:
+        // Core #39: a red-eyed POKeMON gains +1 Attack and +1 Sp. Atk at the end of every turn (up to +6).
+        if (IsBattlerRedEyed(battler))
+        {
+            bool32 atk = CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN, ABILITY_NONE);
+            bool32 spAtk = CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN, ABILITY_NONE);
+            if (atk || spAtk)
+            {
+                if (atk)
+                    SetStatChange(battler, STAT_ATK, 1);
+                if (spAtk)
+                    SetStatChange(battler, STAT_SPATK, 1);
+                gBattleScripting.battler = gEffectBattler = battler;
+                BattleScriptCall(BattleScript_RedEyedStatRise);
+                effect = TRUE;
+            }
+        }
+        gBattleStruct->eventState.endTurnBlock++;
+        break;
     case THIRD_EVENT_BLOCK_ITEMS:
         if (ItemBattleEffects(battler, 0, GetBattlerHoldEffect(battler), IsOrbsWhiteHerbActivation))
             effect = TRUE;

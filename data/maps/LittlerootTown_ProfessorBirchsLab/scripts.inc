@@ -1079,7 +1079,9 @@ LittlerootTown_ProfessorBirchsLab_Text_LabReturnCamera:
 	.string "Since these POKéMON can't be caught,\n"
 	.string "I want you to take this and take a\l"
 	.string "picture of any of the red-glowing\l"
-	.string "POKéMON you find along your journey.$"
+	.string "POKéMON you find along your journey.\p"
+	.string "The pictures you take will be sent\n"
+	.string "back to my lab automatically.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedCamera:
 	.string "{PLAYER} received the CAMERA!$"

@@ -54,6 +54,12 @@
 static EWRAM_DATA bool8 sCameraShortcutPending = FALSE; // L is down and nothing else was pressed yet.
 static EWRAM_DATA bool8 sOpenCameraInsteadOfBag = FALSE;
 static void HandleInputPhotoInfo(enum BattlerId battler);
+
+// TRUE between L choosing the camera and the viewfinder opening (it reaches the engine as "use item").
+bool32 PhotoCamera_IsShortcutChosen(void)
+{
+    return sOpenCameraInsteadOfBag;
+}
 static void PlayerHandleLoadMonSprite(enum BattlerId battler);
 static void PlayerHandleDrawTrainerPic(enum BattlerId battler);
 static void PlayerHandleTrainerSlide(enum BattlerId battler);

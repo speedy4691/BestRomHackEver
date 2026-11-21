@@ -259,6 +259,10 @@ BattleScript_FirstBattleUseBallPrompt::
 	printselectionstring STRINGID_FIRSTBATTLEUSEBALLPROMPT
 	endselectionscript
 
+BattleScript_WurmplePhotoFirst::
+	printselectionstring STRINGID_WURMPLEPHOTOFIRST
+	endselectionscript
+
 BattleScript_RunByUsingItem::
 	playse SE_FLEE
 	setbyte gBattleOutcome, B_OUTCOME_RAN
