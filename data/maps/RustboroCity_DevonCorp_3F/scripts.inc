@@ -73,6 +73,7 @@ RustboroCity_DevonCorp_3F_EventScript_GivePokenav::
 	waitfanfare
 	setflag FLAG_SYS_POKENAV_GET
 	setflag FLAG_RECEIVED_POKENAV
+	setflag FLAG_ENABLE_MR_STONE_POKENAV
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp, MSGBOX_DEFAULT
 	return
 

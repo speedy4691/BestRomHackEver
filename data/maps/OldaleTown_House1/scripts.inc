@@ -5,6 +5,7 @@ OldaleTown_House1_MapScripts::
 OldaleTown_House1_EventScript_Steve::
 	lock
 	faceplayer
+	goto_if_set FLAG_STEVE_CAMERA_TALK_DONE, OldaleTown_House1_EventScript_SteveAfterRunUp
 	goto_if_set FLAG_RECEIVED_CAMERA, OldaleTown_House1_EventScript_SteveCameraTips
 	goto_if_set FLAG_RECEIVED_PACKAGE_FROM_STEVE, OldaleTown_House1_EventScript_SteveEnd
 	goto_if_unset FLAG_OPENING_ERRAND_STARTED, OldaleTown_House1_EventScript_SteveEnd
@@ -26,6 +27,12 @@ OldaleTown_House1_EventScript_SteveEnd::
 
 OldaleTown_House1_EventScript_SteveCameraTips::
 	msgbox OldaleTown_House1_Text_SteveCameraTips, MSGBOX_DEFAULT
+	release
+	end
+
+@ After his Route 102 run-up (Opening 12) he repeats that speech instead of the CAMERA controls.
+OldaleTown_House1_EventScript_SteveAfterRunUp::
+	msgbox OldaleTown_House1_Text_SteveAfterRunUp, MSGBOX_DEFAULT
 	release
 	end
 
@@ -62,6 +69,23 @@ OldaleTown_House1_Text_SteveNotYet:
 	.string "there.\p"
 	.string "Go put them to use on some wild\n"
 	.string "POKéMON first, then come see me.$"
+
+OldaleTown_House1_Text_SteveAfterRunUp:
+	.string "Hi there, {PLAYER}!\p"
+	.string "Remember, there's more to that CAMERA\n"
+	.string "than research.\p"
+	.string "Once you've taken a picture of a\n"
+	.string "POKéMON, you'll know more about every\l"
+	.string "one of that kind you meet after.\p"
+	.string "In battle, press SELECT to see its\n"
+	.string "nature and ability.\p"
+	.string "Take a good picture and you'll see\n"
+	.string "its IVs (how strong it could get)\l"
+	.string "too.\p"
+	.string "The better your picture, the better\n"
+	.string "the ones you find, and they'll be\l"
+	.string "easier to catch too!\p"
+	.string "Say hi to BIRCH BOI for me!$"
 
 OldaleTown_House1_Text_SteveCameraTips:
 	.string "Ah, I see BIRCH BOI gave you the\n"

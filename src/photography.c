@@ -210,12 +210,13 @@ static enum BattlerId GetPhotoInfoBattler(u32 idx)
     return battler;
 }
 
+// Transparent background: lines are closer together than the font's cell, so a painted background
+// would cover the bottom of the line above.
+static const u8 sPhotoInfoColors[] = { TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_4, TEXT_DYNAMIC_COLOR_6 };
+
 static void PrintPhotoInfoLine(u32 lineNum, const u8 *text)
 {
-    // Transparent background: lines are closer together than the font's cell, so a painted background
-    // would cover the bottom of the line above.
-    static const u8 sColors[] = { TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_4, TEXT_DYNAMIC_COLOR_6 };
-    AddTextPrinterParameterized4(PHOTO_INFO_WINDOW, PHOTO_INFO_FONT, 2, PHOTO_INFO_LINE(lineNum), 0, 0, sColors, TEXT_SKIP_DRAW, text);
+    AddTextPrinterParameterized4(PHOTO_INFO_WINDOW, PHOTO_INFO_FONT, 2, PHOTO_INFO_LINE(lineNum), 0, 0, sPhotoInfoColors, TEXT_SKIP_DRAW, text);
 }
 
 // Moves the window's pixels up by `rows` (4bpp tiles, 4 bytes per tile row); the bottom is refilled.
@@ -283,7 +284,13 @@ static void DrawPhotoInfo(enum BattlerId battler)
             str = AppendIv(line, COMPOUND_STRING("SpA "), mon, MON_DATA_SPATK_IV);
             str = AppendIv(str, COMPOUND_STRING("  SpD "), mon, MON_DATA_SPDEF_IV);
             AppendIv(str, COMPOUND_STRING("  Spe "), mon, MON_DATA_SPEED_IV);
-            PrintPhotoInfoLine(4, line);
+            // Printed at its final height after the raise below: printed before it, its bottom rows
+            // (the shadow) fell outside the window and were cut off.
+            RaisePhotoInfoText(PHOTO_INFO_RAISE);
+            AddTextPrinterParameterized4(PHOTO_INFO_WINDOW, PHOTO_INFO_FONT, 2, PHOTO_INFO_LINE(4) - PHOTO_INFO_RAISE, 0, 0,
+                                         sPhotoInfoColors, TEXT_SKIP_DRAW, line);
+            CopyWindowToVram(PHOTO_INFO_WINDOW, COPYWIN_FULL);
+            return;
         }
         else
         {

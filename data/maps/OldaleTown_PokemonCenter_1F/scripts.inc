@@ -43,8 +43,8 @@ OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC:
 	.string "BILL's the best!$"
 
 OldaleTown_PokemonCenter_1F_Text_PokemonCentersAreGreat:
-	.string "My dad says the red eyes are some\n"
-	.string "kind of sickness.\p"
+	.string "My dad says the red-glowing POKéMON\n"
+	.string "have some kind of sickness.\p"
 	.string "My mom thinks somebody is doing it\n"
 	.string "on purpose.$"
 

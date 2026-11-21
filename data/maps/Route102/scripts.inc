@@ -1,5 +1,86 @@
 Route102_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route102_OnTransition
 	.byte 0
+
+Route102_OnTransition:
+	@ Opening 12: STEVE is only on this map during his run-up.
+	setflag FLAG_HIDE_ROUTE102_STEVE
+	end
+
+@ Opening 12: on the first step onto ROUTE 102 after beating ARTIST VINNY (VAR_OLDALE_TOWN_STATE 1, trigger at
+@ 49,10 / 49,11), STEVE runs in from the OLDALE side, explains the CAMERA, and runs back. Plays once (state 2).
+@ He starts at 57,<player's row>, inside the OLDALE TOWN strip just off the right of the screen, and stops
+@ beside the player at 50.
+Route102_EventScript_SteveRunUp::
+	lockall
+	goto_if_set FLAG_STEVE_CAMERA_TALK_DONE, Route102_EventScript_SteveRunUpDone
+	getplayerxy VAR_0x8004, VAR_0x8005
+	msgbox Route102_Text_SteveWaitUp, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	call_if_eq VAR_0x8005, 11, Route102_EventScript_SteveStartRow11
+	clearflag FLAG_HIDE_ROUTE102_STEVE
+	addobject LOCALID_ROUTE102_STEVE
+	applymovement LOCALID_ROUTE102_STEVE, Route102_Movement_SteveRunIn
+	waitmovement 0
+	msgbox Route102_Text_SteveCameraTalk, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_ROUTE102_STEVE, Route102_Movement_SteveRunOut
+	waitmovement 0
+	removeobject LOCALID_ROUTE102_STEVE
+	setflag FLAG_STEVE_CAMERA_TALK_DONE
+Route102_EventScript_SteveRunUpDone::
+	setvar VAR_OLDALE_TOWN_STATE, 2
+	releaseall
+	end
+
+Route102_EventScript_SteveStartRow11::
+	setobjectxyperm LOCALID_ROUTE102_STEVE, 57, 11
+	return
+
+Route102_Movement_SteveRunIn:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+Route102_Movement_SteveRunOut:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+Route102_Text_SteveWaitUp:
+	.string "STEVE: {PLAYER}! Wait up!$"
+
+Route102_Text_SteveCameraTalk:
+	.string "STEVE: BIRCH BOI told me you got your\n"
+	.string "first picture. Nice work!\p"
+	.string "There's more to that CAMERA than\n"
+	.string "research, you know.\p"
+	.string "Once you've taken a picture of a\n"
+	.string "POKéMON, you'll know more about every\l"
+	.string "one of that kind you meet after.\p"
+	.string "In battle, press SELECT to see its\n"
+	.string "nature and ability.\p"
+	.string "Take a good picture and you'll see\n"
+	.string "its IVs (how strong it could get)\l"
+	.string "too.\p"
+	.string "The better your picture, the better\n"
+	.string "the ones you find, and they'll be\l"
+	.string "easier to catch too!\p"
+	.string "Well, that's all from me.\n"
+	.string "Say hi to BIRCH BOI for me!$"
+
 
 Route102_EventScript_LittleBoy::
 	msgbox Route102_Text_ImNotVeryTall, MSGBOX_NPC

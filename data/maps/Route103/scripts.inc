@@ -110,10 +110,6 @@ Route103_Movement_WatchRivalExitFacingEastOrWest:
 	walk_in_place_faster_down
 	step_end
 
-Route103_EventScript_Boy::
-	msgbox Route103_Text_ShouldHaveBroughtPotion, MSGBOX_NPC
-	end
-
 Route103_EventScript_Man::
 	msgbox Route103_Text_ShortcutToOldale, MSGBOX_NPC
 	end
@@ -261,10 +257,6 @@ Route103_Text_BrendanTimeToHeadBack:
 	.string "could befriend any POKéMON with ease.\p"
 	.string "We should head back to the LAB.$"
 
-Route103_Text_ShouldHaveBroughtPotion:
-	.string "My POKéMON is staggeringly tired…\n"
-	.string "I should have brought a POTION…$"
-
 Route103_Text_ShortcutToOldale:
 	.string "If you cross the sea from here,\n"
 	.string "it'll be a shortcut to OLDALE TOWN.\p"
@@ -296,8 +288,8 @@ Route103_Text_BirchFirstPhotoCall:
 	.string "… … … … … Beep!\p"
 	.string "PROF. BIRCH: {PLAYER}{KUN}! I just got\n"
 	.string "your picture of that WURMPLE!\p"
-	.string "Its eyes were glowing red, just like\n"
-	.string "the POOCHYENA that attacked me.\p"
+	.string "It was pulsing red, just like the\n"
+	.string "POOCHYENA that attacked me.\p"
 	.string "I have a few theories I want to test.\p"
 	.string "Can you get me pictures of 4 more\n"
 	.string "red-glowing POKéMON?\p"

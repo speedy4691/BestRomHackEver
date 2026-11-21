@@ -24,6 +24,7 @@
 #include "trainer_pokemon_sprites.h"
 #include "trig.h"
 #include "window.h"
+#include "move.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
 
@@ -467,6 +468,25 @@ void SwapRivalStarterLineForRegion(struct Pokemon *party, u32 monsCount)
     }
 }
 
+// Trainers row 1827: the first rival's starter gets no move of its own type this early, only its
+// Normal-type level-up moves (every starter has Tackle, Scratch or Pound by then).
+static void KeepOnlyNormalMoves(struct Pokemon *mon)
+{
+    u16 keep[MAX_MON_MOVES];
+    u32 i, count = 0;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        enum Move move = GetMonData(mon, MON_DATA_MOVE1 + i);
+        if (move != MOVE_NONE && GetMoveType(move) == TYPE_NORMAL)
+            keep[count++] = move;
+    }
+    if (count == 0)
+        return;
+    for (i = 0; i < MAX_MON_MOVES; i++)
+        SetMonMoveSlot(mon, i < count ? keep[i] : MOVE_NONE, i);
+}
+
 // Opening 09: the Littleroot rival's first Pokémon is the rival's starter (counter to the player's,
 // same region), whatever trainers.party lists in that slot.
 void SetMonToRivalStarter(struct Pokemon *mon)
@@ -476,6 +496,7 @@ void SetMonToRivalStarter(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_NICKNAME, GetSpeciesName(species));
     CalculateMonStats(mon);
     GiveMonInitialMoveset(mon);
+    KeepOnlyNormalMoves(mon);
 }
 
 // Debug: re-run the starter screen without the Route 101 scene or battle, then report the result
