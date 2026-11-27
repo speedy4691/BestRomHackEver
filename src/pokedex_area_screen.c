@@ -28,6 +28,7 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "config/pokedex_plus_hgss.h"
+#include "photography.h"
 
 // There are two types of indicators for the area screen to show where a Pokémon can occur:
 // - Area glows, which highlight any of the maps in MAP_GROUP_TOWNS_AND_ROUTES that have the species.
@@ -877,7 +878,10 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
         }
         else if (JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
         {
-            if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(sPokedexAreaScreen->species), FLAG_GET_CAUGHT))
+            // BestRomHackEver Photography: a photographed species unlocks the pages after AREA (stats, EVO,
+            // forms) like a caught one, same as its entry (IsDexEntryUnlocked in pokedex_plus_hgss.c).
+            u16 dexNum = SpeciesToNationalPokedexNum(sPokedexAreaScreen->species);
+            if (!GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT) && GetPhotoGrade(NationalPokedexNumToSpecies(dexNum)) == PHOTO_GRADE_NONE)
             {
                 PlaySE(SE_FAILURE);
                 return;

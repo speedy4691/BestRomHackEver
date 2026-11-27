@@ -12,9 +12,12 @@ OldaleTown_OnTransition:
 	call_if_set FLAG_DEFEATED_OLDALE_FOOTPRINTS_MAN, OldaleTown_EventScript_SetOldaleState
 	end
 
-@ VAR_OLDALE_TOWN_STATE 0 arms the blocked-path trigger at the west exit; 1 turns it off.
+@ VAR_OLDALE_TOWN_STATE 0 arms the blocked-path trigger at the west exit; 1 turns it off and arms STEVE's
+@ run-up on Route 102 (Opening 12); 2 = run-up done.
 OldaleTown_EventScript_SetOldaleState::
 	setvar VAR_OLDALE_TOWN_STATE, 1
+	goto_if_unset FLAG_STEVE_CAMERA_TALK_DONE, Common_EventScript_NopReturn
+	setvar VAR_OLDALE_TOWN_STATE, 2
 	return
 
 OldaleTown_EventScript_BlockWestEntrance::
@@ -38,7 +41,7 @@ OldaleTown_EventScript_Girl::
 OldaleTown_EventScript_MartEmployee::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_ExplainPotion
+	goto_if_set FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_RareCandyBestSeller
 	goto_if_set FLAG_TEMP_1, OldaleTown_EventScript_ExplainPotion
 	setflag FLAG_TEMP_1
 	playbgm MUS_FOLLOW_ME, FALSE
@@ -78,6 +81,11 @@ OldaleTown_EventScript_ExplainPokemonMart::
 	msgbox OldaleTown_Text_PotionExplanation, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_POTION_OLDALE
 	fadedefaultbgm
+	release
+	end
+
+OldaleTown_EventScript_RareCandyBestSeller::
+	msgbox OldaleTown_Text_RareCandyBestSeller, MSGBOX_DEFAULT
 	release
 	end
 
@@ -356,8 +364,16 @@ OldaleTown_Movement_ReturnToOriginalPosition:
 	step_end
 
 OldaleTown_Text_SavingMyProgress:
-	.string "I want to take a rest, so I'm saving my\n"
-	.string "progress.$"
+	.string "DEVON CORP is hiring in RUSTBORO\n"
+	.string "again.\p"
+	.string "They pay really well, but nobody\n"
+	.string "ever says what they're working on.$"
+
+OldaleTown_Text_RareCandyBestSeller:
+	.string "RARE CANDIES are our best seller.\p"
+	.string "DEVON CORP makes them from the EXP\n"
+	.string "in BILL's PC, you know.\p"
+	.string "They're not cheap, though!$"
 
 OldaleTown_Text_IWorkAtPokemonMart:
 	.string "Hi!\n"
@@ -409,7 +425,8 @@ OldaleTown_Text_BrendanLetsGoBack:
 
 OldaleTown_Text_TownSign:
 	.string "OLDALE TOWN\n"
-	.string "“Where things start off scarce.”$"
+	.string "“A town so small you kind of can't\l"
+	.string "believe it would self-sustain.”$"
 
 
 OldaleTown_Text_VinnyIntro:

@@ -19,19 +19,50 @@ Route103_EventScript_OpenAlteringCave::
 
 @ Opening 09: the vanilla Route 103 rival battle was removed; the rival battles at the Littleroot exit.
 
-@ Opening 10 (placeholder until the CAMERA is designed): with the CAMERA, interacting "photographs" the
-@ red-eyed WURMPLE, sets FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE (opens the Oldale gate) and hides it.
+@ Opening 10: with the CAMERA, the red-eyed WURMPLE starts a wild battle (lvl 3). In battle (src/photography.c,
+@ src/battle_main.c): no running; until a shot of it is at least "photographed", only the CAMERA (L) works,
+@ with extra shots after the usual 3. That shot sets FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE (opens the Oldale gate).
+@ Winning hides the WURMPLE and PROF. BIRCH calls (Opening 11). Losing is a normal whiteout; it battles again.
 Route103_EventScript_RedEyedWurmple::
 	lock
 	faceplayer
 	playmoncry SPECIES_WURMPLE, CRY_MODE_NORMAL
 	waitmoncry
 	goto_if_unset FLAG_RECEIVED_CAMERA, Route103_EventScript_RedEyedWurmpleNoCamera
-	msgbox Route103_Text_RedEyedWurmplePhoto, MSGBOX_DEFAULT
-	closemessage
-	setflag FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE
+	setwildbattle SPECIES_WURMPLE, 3
+	callnative RedEyed_SetWildLeadRedEyed
+	dowildbattle
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_WON, Route103_EventScript_RedEyedWurmpleNotBeaten
 	setflag FLAG_HIDE_ROUTE_103_RED_EYED_WURMPLE
 	removeobject LOCALID_ROUTE103_RED_EYED_MON
+	goto_if_set FLAG_BIRCH_PHOTO_QUEST_STARTED, Route103_EventScript_RedEyedWurmpleNotBeaten
+	delay 30
+	pokenavcall Route103_Text_BirchFirstPhotoCall
+	waitmessage
+	closemessage
+	setflag FLAG_BIRCH_PHOTO_QUEST_STARTED
+	release
+	end
+
+Route103_EventScript_RedEyedWurmpleNotBeaten::
+	release
+	end
+
+@ OLD ROD Fisherman (moved here from DEWFORD TOWN): west shore, facing the water. Afterwards he asks how the
+@ fishing is, like the vanilla Dewford Fisherman did (his script is reused).
+Route103_EventScript_OldRodFisherman::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_OLD_ROD, DewfordTown_EventScript_HowsFishing
+	msgbox Route103_Text_OldRodFishermanGive, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	message Route103_Text_ReceivedOldRod
+	waitmessage
+	waitfanfare
+	additem ITEM_OLD_ROD
+	setflag FLAG_RECEIVED_OLD_ROD
+	msgbox Route103_Text_OldRodFishermanAdvice, MSGBOX_DEFAULT
 	release
 	end
 
@@ -78,10 +109,6 @@ Route103_Movement_WatchRivalExitFacingEastOrWest:
 	delay_16
 	walk_in_place_faster_down
 	step_end
-
-Route103_EventScript_Boy::
-	msgbox Route103_Text_ShouldHaveBroughtPotion, MSGBOX_NPC
-	end
 
 Route103_EventScript_Man::
 	msgbox Route103_Text_ShortcutToOldale, MSGBOX_NPC
@@ -230,10 +257,6 @@ Route103_Text_BrendanTimeToHeadBack:
 	.string "could befriend any POKéMON with ease.\p"
 	.string "We should head back to the LAB.$"
 
-Route103_Text_ShouldHaveBroughtPotion:
-	.string "My POKéMON is staggeringly tired…\n"
-	.string "I should have brought a POTION…$"
-
 Route103_Text_ShortcutToOldale:
 	.string "If you cross the sea from here,\n"
 	.string "it'll be a shortcut to OLDALE TOWN.\p"
@@ -244,12 +267,35 @@ Route103_Text_RouteSign:
 	.string "{DOWN_ARROW} OLDALE TOWN$"
 
 
-Route103_Text_RedEyedWurmplePhoto:
-	.string "A red-glowing WURMPLE!\p"
-	.string "{PLAYER} took a picture with the\n"
-	.string "CAMERA!\p"
-	.string "(TBD: the CAMERA is still being\n"
-	.string "designed.)$"
+Route103_Text_OldRodFishermanGive:
+	.string "Oh, you're a TRAINER?\n"
+	.string "You ever try fishing?\p"
+	.string "I've never understood why it takes so\n"
+	.string "long for someone to give you\l"
+	.string "youngsters something to fish with.\p"
+	.string "Here, take this OLD ROD.\n"
+	.string "I've got plenty.$"
+
+Route103_Text_ReceivedOldRod:
+	.string "{PLAYER} received the OLD ROD!$"
+
+Route103_Text_OldRodFishermanAdvice:
+	.string "Just face the water and use it.\n"
+	.string "You never know what you'll pull out!$"
+
+Route103_Text_BirchFirstPhotoCall:
+	.string "… … … … … …\n"
+	.string "… … … … … Beep!\p"
+	.string "PROF. BIRCH: {PLAYER}{KUN}! I just got\n"
+	.string "your picture of that WURMPLE!\p"
+	.string "It was pulsing red, just like the\n"
+	.string "POOCHYENA that attacked me.\p"
+	.string "I have a few theories I want to test.\p"
+	.string "Can you get me pictures of 4 more\n"
+	.string "red-glowing POKéMON?\p"
+	.string "Call me if you find anything!\p"
+	.string "… … … … … …\n"
+	.string "… … … … … Click!$"
 
 Route103_Text_RedEyedWurmpleNoCamera:
 	.string "A red-glowing WURMPLE…\p"

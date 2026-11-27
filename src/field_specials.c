@@ -5771,3 +5771,39 @@ bool8 CheckAddCoins(void)
     else
         return TRUE;
 }
+
+static bool32 IsRoute102TileFree(s32 x, s32 y)
+{
+    return GetObjectEventIdByXY(x + MAP_OFFSET, y + MAP_OFFSET) == OBJECT_EVENTS_COUNT;
+}
+
+// Opening 12 (Route 102): STEVE runs in from 57,<row> to 50,<row>, then steps up or down to stand beside the
+// player at 49,<player row> (row 10 or 11). Objects left over from OLDALE TOWN are still on screen there (e.g.
+// ARTIST VINNY at OLDALE 2,10 or 1,11 = 52,10 or 51,11), so pick a row whose whole path is empty.
+// In: VAR_0x8005 = player's y. Out: VAR_0x8006 = row to run along, VAR_0x8007 = 0 same row / 1 step down /
+// 2 step up at the end (the way back is the reverse).
+void GetRoute102SteveRunUpPath(void)
+{
+    u32 playerY = gSpecialVar_0x8005;
+    u32 rows[2] = {playerY, playerY == 10 ? 11 : 10};
+    u32 i, x;
+
+    gSpecialVar_0x8006 = playerY;
+    gSpecialVar_0x8007 = 0;
+    for (i = 0; i < ARRAY_COUNT(rows); i++)
+    {
+        bool32 free = TRUE;
+        for (x = 50; x <= 57 && free; x++)
+            free = IsRoute102TileFree(x, rows[i]);
+        if (rows[i] != playerY)
+            free = free && IsRoute102TileFree(50, playerY);
+        if (free)
+        {
+            gSpecialVar_0x8006 = rows[i];
+            if (rows[i] != playerY)
+                gSpecialVar_0x8007 = rows[i] < playerY ? 1 : 2;
+            return;
+        }
+    }
+    // Both rows blocked (shouldn't happen): run along the player's row anyway.
+}

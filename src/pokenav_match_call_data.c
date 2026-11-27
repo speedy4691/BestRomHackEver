@@ -180,7 +180,7 @@ static const struct MatchCallStructNPC sMrStoneMatchCallHeader =
 {
     .type = MC_TYPE_NPC,
     .mapSec = MAPSEC_RUSTBORO_CITY,
-    .flag = 0xFFFF,
+    .flag = FLAG_ENABLE_MR_STONE_POKENAV, // Was always registered; the POKeNAV now comes from Birch, so he registers when met at DEVON CORP.
     .desc = COMPOUND_STRING("DEVON PRES"),
     .name = COMPOUND_STRING("MR. STONE"),
     .textData = (const match_call_text_data_t[]) {
@@ -245,9 +245,7 @@ static const struct MatchCallStructNPC sMomMatchCallHeader =
     .desc = COMPOUND_STRING("CALM & KIND"),
     .name = COMPOUND_STRING("DAD"), // Opening: Dad registers at home (Littleroot_Dad_PokenavRegister)
     .textData = (const match_call_text_data_t[]) {
-        { MatchCall_Text_Mom1, ALWAYS_AVAILABLE,            NO_FLAG_TO_SET },
-        { MatchCall_Text_Mom2, FLAG_DEFEATED_PETALBURG_GYM, NO_FLAG_TO_SET },
-        { MatchCall_Text_Mom3, FLAG_SYS_GAME_CLEAR,         NO_FLAG_TO_SET },
+        { MatchCall_Text_Dad, ALWAYS_AVAILABLE, NO_FLAG_TO_SET }, // Story dialogue MatchCall_Dad: same line at every story point
         MATCH_CALL_TEXT_END
     }
 };

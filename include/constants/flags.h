@@ -64,9 +64,9 @@
 #define FLAG_PC_EXP_DRAIN    0x2A // Core #38: set when storage is opened from BILL's PC (deposits drain EXP), cleared by the BOX LINK
 #define FLAG_HIDE_ROUTE_103_RED_EYED_WURMPLE 0x2B // Opening 10: hides the red-eyed WURMPLE until the CAMERA, and after its photo
 #define FLAG_DEFEATED_OLDALE_FOOTPRINTS_MAN 0x2C // Beat ARTIST VINNY; opens the Oldale west exit (Access gates row 2)
-#define FLAG_UNUSED_0x02D    0x2D // Unused Flag
-#define FLAG_UNUSED_0x02E    0x2E // Unused Flag
-#define FLAG_UNUSED_0x02F    0x2F // Unused Flag
+#define FLAG_BIRCH_PHOTO_QUEST_STARTED 0x2D // Opening 11: Birch's call after the WURMPLE battle (QUEST_BIRCH_PHOTOS)
+#define FLAG_STEVE_CAMERA_TALK_DONE 0x2E // Opening 12: STEVE's CAMERA talk after beating ARTIST VINNY
+#define FLAG_HIDE_ROUTE102_STEVE 0x2F // Opening 12: STEVE's Route 102 object, shown only during his run-up
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag
 #define FLAG_UNUSED_0x031    0x31 // Unused Flag
 #define FLAG_UNUSED_0x032    0x32 // Unused Flag
@@ -664,7 +664,7 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
 
-#define FLAG_UNUSED_0x264  0x264 // Unused Flag
+#define FLAG_HIDDEN_ITEM_ROUTE_101_SUPER_POTION              (FLAG_HIDDEN_ITEMS_START + 0x70) // 0x264, Items on maps row 364
 #define FLAG_UNUSED_0x265  0x265 // Unused Flag
 #define FLAG_UNUSED_0x266  0x266 // Unused Flag
 #define FLAG_UNUSED_0x267  0x267 // Unused Flag

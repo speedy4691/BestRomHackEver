@@ -191,6 +191,11 @@ BattleScript_MoveEffectStatChange::
 	trystatchanges BS_ATTACKER, STAT_CHANGE_SILENT_FAILURE | STAT_CHANGE_IGNORE_SELF
 	return
 
+@ BestRomHackEver Core #39: red-eyed POKeMON gain +1 Atk and +1 Sp. Atk at the end of every turn.
+BattleScript_RedEyedStatRise::
+	trybattlerstatchange BS_SCRIPTING, STAT_CHANGE_NO_FLAGS
+	return
+
 BattleScript_ItemStatChange::
 	call BattleScript_ItemPopUp_Scripting
 	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT

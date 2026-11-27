@@ -290,18 +290,18 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Aide::
 	faceplayer
 	goto_if_ge VAR_BIRCH_LAB_STATE, 3, LittlerootTown_ProfessorBirchsLab_EventScript_AideReceivedStarter
 	goto_if_set FLAG_BIRCH_AIDE_MET, LittlerootTown_ProfessorBirchsLab_EventScript_AideAlreadyMet
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchAwayOnFieldwork, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_AideOldWay, MSGBOX_DEFAULT
 	setflag FLAG_BIRCH_AIDE_MET
 	release
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_AideAlreadyMet::
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchIsntOneForDeskWork, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_AideOldWay, MSGBOX_DEFAULT
 	release
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_AideReceivedStarter::
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_AideOldWay, MSGBOX_DEFAULT
 	release
 	end
 
@@ -1079,7 +1079,9 @@ LittlerootTown_ProfessorBirchsLab_Text_LabReturnCamera:
 	.string "Since these POKéMON can't be caught,\n"
 	.string "I want you to take this and take a\l"
 	.string "picture of any of the red-glowing\l"
-	.string "POKéMON you find along your journey.$"
+	.string "POKéMON you find along your journey.\p"
+	.string "The pictures you take will be sent\n"
+	.string "back to my lab automatically.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedCamera:
 	.string "{PLAYER} received the CAMERA!$"
@@ -1121,3 +1123,9 @@ LittlerootTown_ProfessorBirchsLab_Text_ErrandPokedexExplain:
 	.string "The POKéDEX is a high-tech tool that\n"
 	.string "automatically makes a record of any\l"
 	.string "POKéMON you meet or catch.$"
+
+LittlerootTown_ProfessorBirchsLab_Text_AideOldWay:
+	.string "Before the PC, researchers had to\n"
+	.string "study POKéMON out in the field.\p"
+	.string "PROF. BIRCH still likes doing it\n"
+	.string "the old way.$"

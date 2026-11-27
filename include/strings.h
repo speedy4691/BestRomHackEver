@@ -1555,6 +1555,7 @@ extern const u8 MatchCall_Text_Norman_PreparingPostGame[];
 extern const u8 MatchCall_Text_Norman_RematchReady[];
 extern const u8 MatchCall_Text_Norman_PostRematch[];
 extern const u8 MatchCall_Text_Mom1[];
+extern const u8 MatchCall_Text_Dad[];
 extern const u8 MatchCall_Text_Mom2[];
 extern const u8 MatchCall_Text_Mom3[];
 extern const u8 MatchCall_Text_Steven1[];

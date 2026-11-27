@@ -1,4 +1,5 @@
 #include "global.h"
+#include "photography.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_ai_main.h"
@@ -3689,6 +3690,11 @@ u8 IsRunningFromBattleImpossible(enum BattlerId battler)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DONT_LEAVE_BIRCH;
         return BATTLE_RUN_FORBIDDEN;
     }
+    if (PhotoStory_IsRoute103WurmpleBattle()) // Opening 10: the red-eyed WURMPLE has to be beaten.
+    {
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CANT_ESCAPE;
+        return BATTLE_RUN_FORBIDDEN;
+    }
     if (GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT && WILD_DOUBLE_BATTLE
         && IsBattlerAlive(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT))) // The second Pokémon cannot run from a double wild battle, unless it's the only alive mon.
     {
@@ -3874,6 +3880,19 @@ static void HandleTurnActionSelectionState(void)
                 {
                     RecordedBattle_ClearBattlerAction(battler, 1);
                     gSelectionBattleScripts[battler] = BattleScript_FirstBattleUseBallPrompt;
+                    gBattleCommunication[battler] = STATE_SELECTION_SCRIPT;
+                    gBattleStruct->battlerState[battler].selectionScriptFinished = FALSE;
+                    gBattleStruct->stateIdAfterSelScript[battler] = STATE_BEFORE_ACTION_CHOSEN;
+                    return;
+                }
+
+                // Opening 10: until the red-eyed WURMPLE on Route 103 is photographed, only the CAMERA (L) works.
+                // FIGHT, BAG, POKeMON and RUN show Battle_WurmplePhotoFirst and go back to the action menu.
+                if (IsOnPlayerSide(battler) && PhotoStory_IsPhotoRequired()
+                 && !(gBattleResources->bufferB[battler][1] == B_ACTION_USE_ITEM && PhotoCamera_IsShortcutChosen()))
+                {
+                    RecordedBattle_ClearBattlerAction(battler, 1);
+                    gSelectionBattleScripts[battler] = BattleScript_WurmplePhotoFirst;
                     gBattleCommunication[battler] = STATE_SELECTION_SCRIPT;
                     gBattleStruct->battlerState[battler].selectionScriptFinished = FALSE;
                     gBattleStruct->stateIdAfterSelScript[battler] = STATE_BEFORE_ACTION_CHOSEN;

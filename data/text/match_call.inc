@@ -2014,6 +2014,14 @@ MatchCall_BattlePyramidText14::
 	.string "You're an inspiration!\n"
 	.string "See you again!$"
 
+MatchCall_Text_Dad::
+	.string "DAD: Hey, {PLAYER}! It's me.\p"
+	.string "Have you heard from mom recently?\p"
+	.string "She said she'd be busy at work for a\n"
+	.string "while, but I haven't heard much\l"
+	.string "from her.\p"
+	.string "Anyway, take care out there!$"
+
 MatchCall_Text_Mom1::
 	.string "MOM: Your father and you…\n"
 	.string "Everyone is captivated by POKéMON.\p"

@@ -231,6 +231,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route101_EventScript_RouteSign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 2,
+      "y": 8,
+      "elevation": 3,
+      "item": "ITEM_SUPER_POTION",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_101_SUPER_POTION"
     }
   ]
 }

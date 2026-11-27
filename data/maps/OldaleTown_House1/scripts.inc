@@ -5,6 +5,7 @@ OldaleTown_House1_MapScripts::
 OldaleTown_House1_EventScript_Steve::
 	lock
 	faceplayer
+	goto_if_set FLAG_STEVE_CAMERA_TALK_DONE, OldaleTown_House1_EventScript_SteveAfterRunUp
 	goto_if_set FLAG_RECEIVED_CAMERA, OldaleTown_House1_EventScript_SteveCameraTips
 	goto_if_set FLAG_RECEIVED_PACKAGE_FROM_STEVE, OldaleTown_House1_EventScript_SteveEnd
 	goto_if_unset FLAG_OPENING_ERRAND_STARTED, OldaleTown_House1_EventScript_SteveEnd
@@ -26,6 +27,12 @@ OldaleTown_House1_EventScript_SteveEnd::
 
 OldaleTown_House1_EventScript_SteveCameraTips::
 	msgbox OldaleTown_House1_Text_SteveCameraTips, MSGBOX_DEFAULT
+	release
+	end
+
+@ After his Route 102 run-up (Opening 12) he repeats that speech instead of the CAMERA controls.
+OldaleTown_House1_EventScript_SteveAfterRunUp::
+	msgbox OldaleTown_House1_Text_SteveAfterRunUp, MSGBOX_DEFAULT
 	release
 	end
 
@@ -63,9 +70,39 @@ OldaleTown_House1_Text_SteveNotYet:
 	.string "Go put them to use on some wild\n"
 	.string "POKéMON first, then come see me.$"
 
+OldaleTown_House1_Text_SteveAfterRunUp:
+	.string "Hi there, {PLAYER}!\p"
+	.string "Remember, there's more to that CAMERA\n"
+	.string "than research.\p"
+	.string "Once you've taken a picture of a\n"
+	.string "POKéMON, you'll know more about every\l"
+	.string "one of that kind you meet after.\p"
+	.string "In battle, press SELECT to see its\n"
+	.string "nature and ability.\p"
+	.string "Take a good picture and you'll see\n"
+	.string "its IVs (how strong it could get)\l"
+	.string "too.\p"
+	.string "The better your picture, the better\n"
+	.string "the ones you find, and they'll be\l"
+	.string "easier to catch too!\p"
+	.string "Say hi to BIRCH BOI for me!$"
+
 OldaleTown_House1_Text_SteveCameraTips:
 	.string "Ah, I see BIRCH BOI gave you the\n"
 	.string "CAMERA.\p"
-	.string "Let me know if you need any tips on\n"
-	.string "how to use it.\p"
-	.string "(CAMERA instructions TBC)$"
+	.string "Here's how it works.\p"
+	.string "In a wild battle, press L to bring up\n"
+	.string "the CAMERA.\p"
+	.string "Move the frame with the + Control\n"
+	.string "Pad, and zoom in with L and out\l"
+	.string "with R.\p"
+	.string "Press A to take the picture, or B to\n"
+	.string "put the CAMERA away.\p"
+	.string "You get 3 shots per battle, so make\n"
+	.string "them count!\p"
+	.string "For the best pictures, keep the\n"
+	.string "POKéMON in the middle, get it big in\l"
+	.string "the frame, and catch it mid-move.\p"
+	.string "One more thing: the flash startles\n"
+	.string "them, so expect a nasty hit right\l"
+	.string "after you take a picture.$"
