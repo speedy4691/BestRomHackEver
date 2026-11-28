@@ -913,18 +913,6 @@ static const struct SpriteTemplate sPhotoLabelSpriteTemplate =
     .callback = SpriteCB_PhotoCount,
 };
 
-static u32 GetPhotographedSpeciesCount(void)
-{
-    u32 dexNum, count = 0;
-
-    for (dexNum = 1; dexNum < NATIONAL_DEX_COUNT + 1; dexNum++)
-    {
-        if (GetPhotoGrade(NationalPokedexNumToSpecies(dexNum)) != PHOTO_GRADE_NONE)
-            count++;
-    }
-    return count;
-}
-
 // Label left-aligned with SEEN / OWN; digits right-aligned in the same columns as theirs (no leading zeros).
 static void CreatePhotoCountSprites(u8 y, u8 counterX1s, u8 counterXDist)
 {

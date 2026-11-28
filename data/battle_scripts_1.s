@@ -5004,6 +5004,11 @@ BattleScript_ProteanActivates::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+@ BestRomHackEver Core #41: pop-up only, for abilities that changed this hit's damage without a message.
+BattleScript_QuietAbilityPopUp::
+	call BattleScript_AbilityPopUp
+	return
+
 BattleScript_TeraShellDistortingTypeMatchups::
 	pause B_WAIT_TIME_SHORTEST
 	call BattleScript_AbilityPopUpScripting

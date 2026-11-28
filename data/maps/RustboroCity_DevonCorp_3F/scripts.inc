@@ -155,7 +155,7 @@ RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk:
 RustboroCity_DevonCorp_3F_EventScript_MrStone::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_EXP_SHARE, RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor
+	goto_if_set FLAG_MR_STONE_THANKED_LETTER, RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor
 	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, RustboroCity_DevonCorp_3F_EventScript_GiveExpShare
 	msgbox RustboroCity_DevonCorp_3F_Text_CountingOnYou, MSGBOX_DEFAULT
 	closemessage
@@ -164,12 +164,10 @@ RustboroCity_DevonCorp_3F_EventScript_MrStone::
 	release
 	end
 
+@ Core #44: the EXP. SHARE now comes from SCOTT in PETALBURG, so MR. STONE only thanks the player.
 RustboroCity_DevonCorp_3F_EventScript_GiveExpShare::
 	msgbox RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter, MSGBOX_DEFAULT
-	giveitem ITEM_EXP_SHARE
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_EXP_SHARE
-	msgbox RustboroCity_DevonCorp_3F_Text_ExplainExpShare, MSGBOX_DEFAULT
+	setflag FLAG_MR_STONE_THANKED_LETTER
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -251,8 +249,8 @@ RustboroCity_DevonCorp_3F_Text_CountingOnYou:
 RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter:
 	.string "MR. STONE: You delivered my LETTER?\n"
 	.string "Thank you kindly!\p"
-	.string "This is my way of thanking you.\n"
-	.string "It should help you, a TRAINER.$"
+	.string "STEVEN is lucky to have a friend\n"
+	.string "like you, {PLAYER}{KUN}.$"
 
 RustboroCity_DevonCorp_3F_Text_ExplainExpShare:
 	.string "MR. STONE: A POKéMON holding that\n"

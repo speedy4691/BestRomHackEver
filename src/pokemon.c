@@ -2455,6 +2455,9 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_SANITY_IS_BAD_EGG:
             retVal = boxMon->isBadEgg;
             break;
+        case MON_DATA_IS_TREASURE:
+            retVal = boxMon->isTreasure;
+            break;
         case MON_DATA_SANITY_HAS_SPECIES:
             retVal = boxMon->hasSpecies;
             break;
@@ -2893,6 +2896,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             break;
         case MON_DATA_SANITY_IS_BAD_EGG:
             SET8(boxMon->isBadEgg);
+            break;
+        case MON_DATA_IS_TREASURE:
+            SET8(boxMon->isTreasure);
             break;
         case MON_DATA_SANITY_HAS_SPECIES:
             SET8(boxMon->hasSpecies);

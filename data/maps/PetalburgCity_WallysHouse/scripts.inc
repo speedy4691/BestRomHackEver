@@ -52,13 +52,15 @@ PetalburgCity_WallysHouse_EventScript_PlayedWithWally::
 	release
 	end
 
+@ Story dialogue row 3695: WALLY is BILL's son here and never comes home in this part of the story.
 PetalburgCity_WallysHouse_EventScript_WallysMom::
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_HM_SURF, PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf
-	msgbox PetalburgCity_WallysHouse_Text_WallyWasReallyHappy, MSGBOX_DEFAULT
-	release
+	msgbox PetalburgCity_WallysHouse_Text_YouveMetWally, MSGBOX_NPC
 	end
+
+PetalburgCity_WallysHouse_Text_YouveMetWally:
+	.string "WALLY's MOM: Oh, you've met WALLY?\p"
+	.string "I'm sorry. His father is never home,\n"
+	.string "so he does whatever he wants.$"
 
 PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf::
 	msgbox PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling, MSGBOX_DEFAULT

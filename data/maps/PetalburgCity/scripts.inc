@@ -5,7 +5,6 @@ PetalburgCity_MapScripts::
 
 PetalburgCity_OnTransition:
 	setflag FLAG_VISITED_PETALBURG_CITY
-	call_if_eq VAR_PETALBURG_CITY_STATE, 0, PetalburgCity_EventScript_MoveGymBoyToWestEntrance
 	call_if_eq VAR_PETALBURG_CITY_STATE, 2, PetalburgCity_EventScript_DisableMapNameAndMusic
 	call_if_eq VAR_PETALBURG_CITY_STATE, 4, PetalburgCity_EventScript_DisableMapNameAndMusic
 	call_if_eq VAR_PETALBURG_GYM_STATE, 8, PetalburgCity_EventScript_SetGymDoorsUnlocked
@@ -225,8 +224,9 @@ PetalburgCity_EventScript_CitySign::
 	msgbox PetalburgCity_Text_CitySign, MSGBOX_SIGN
 	end
 
+@ "N4" on Chase's Petalburg map: talks about the weather (red herring for the red-eyed POKéMON).
 PetalburgCity_EventScript_Gentleman::
-	msgbox PetalburgCity_Text_FullPartyExplanation, MSGBOX_NPC
+	msgbox PetalburgCity_Text_StormingOnRoute104, MSGBOX_NPC
 	end
 
 PetalburgCity_EventScript_WallyHouseSign::
@@ -737,7 +737,8 @@ PetalburgCity_Text_GymSign:
 
 PetalburgCity_Text_CitySign:
 	.string "PETALBURG CITY\n"
-	.string "“Where people mingle with nature.”$"
+	.string "“A town you skip and then come back\l"
+	.string "to later.”$"
 
 PetalburgCity_Text_WallyHouseSign:
 	.string "WALLY'S HOUSE$"
@@ -758,3 +759,163 @@ PetalburgCity_Text_ImLookingForTalentedTrainers:
 	.string "I'm roaming the land in search of\n"
 	.string "talented TRAINERS.\p"
 	.string "I'm sorry to have taken your time.$"
+
+@ ---------------------------------------------------------------------------------------------------------------
+@ PETALBURG_05: west exit gate. Before WALLY is beaten, stepping onto the exit tiles brings the gate NPC's line and
+@ pushes the player back one step. Afterwards the triggers are off (VAR_PETALBURG_CITY_STATE 3) and he thanks you.
+PetalburgCity_EventScript_WestExitGate::
+	lockall
+	applymovement LOCALID_PETALBURG_WEST_GATE, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	msgbox PetalburgCity_Text_CantLetYouThrough, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, Common_Movement_WalkRight
+	waitmovement 0
+	releaseall
+	end
+
+PetalburgCity_EventScript_WestExitBlocker::
+	lock
+	faceplayer
+	goto_if_defeated TRAINER_WALLY_PETALBURG, PetalburgCity_EventScript_WestExitBlockerThanks
+	msgbox PetalburgCity_Text_CantLetYouThrough, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_EventScript_WestExitBlockerThanks::
+	msgbox PetalburgCity_Text_FinallyQuiet, MSGBOX_DEFAULT
+	release
+	end
+
+@ PETALBURG_02: the FISHERMAN tells the hidden path through the lake to the REVIVE.
+@ Path tiles (walkable water metatile, no encounters): 21,8 21,7 22,7 22,6 22,5; island 23,5.
+PetalburgCity_EventScript_LakeFisherman::
+	msgbox PetalburgCity_Text_LakeFisherman, MSGBOX_NPC
+	end
+
+@ PETALBURG_03: red-eyed RATTATA by the POKéMON CENTER. Normal red-eyed wild battle (can't be caught, CAMERA works).
+@ The first shot graded Photographed or better sets FLAG_PHOTOGRAPHED_PETALBURG_RATTATA (src/photography.c); after
+@ that battle it's gone.
+PetalburgCity_EventScript_RedEyedRattata::
+	lock
+	faceplayer
+	playmoncry SPECIES_RATTATA, CRY_MODE_NORMAL
+	waitmoncry
+	setwildbattle SPECIES_RATTATA, 6
+	callnative RedEyed_SetWildLeadRedEyed
+	dowildbattle
+	goto_if_unset FLAG_PHOTOGRAPHED_PETALBURG_RATTATA, PetalburgCity_EventScript_RedEyedRattataStays
+	removeobject LOCALID_PETALBURG_RED_EYED_RATTATA
+PetalburgCity_EventScript_RedEyedRattataStays::
+	release
+	end
+
+@ PETALBURG_04: SCOTT stays until he gives the EXP. SHARE (Core #44), for 5 different species photographed.
+PetalburgCity_EventScript_ScottTalk::
+	lock
+	faceplayer
+	specialvar VAR_RESULT, GetPhotographedSpeciesCountSpecial
+	goto_if_ge VAR_RESULT, 5, PetalburgCity_EventScript_ScottGiveExpShare
+	msgbox PetalburgCity_Text_ScottAskForPhotos, MSGBOX_DEFAULT
+	setvar VAR_SCOTT_PETALBURG_ENCOUNTER, 1
+	release
+	end
+
+PetalburgCity_EventScript_ScottGiveExpShare::
+	call_if_eq VAR_SCOTT_PETALBURG_ENCOUNTER, 0, PetalburgCity_EventScript_ScottIntro
+	msgbox PetalburgCity_Text_ScottFiveAlready, MSGBOX_DEFAULT
+	giveitem ITEM_EXP_SHARE
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_EXP_SHARE
+	setflag FLAG_EXP_SHARE_ON
+	msgbox PetalburgCity_Text_ScottExplainExpShare, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_SCOTT_PETALBURG_ENCOUNTER, 1
+	setvar VAR_SCOTT_STATE, 1
+	@ Leaves west like vanilla. If the player is on his left (facing east), he steps down first to go around.
+	call_if_eq VAR_FACING, DIR_EAST, PetalburgCity_EventScript_ScottStepAround
+	applymovement LOCALID_PETALBURG_SCOTT, PetalburgCity_Movement_ScottLeaveWest
+	waitmovement 0
+	removeobject LOCALID_PETALBURG_SCOTT
+	release
+	end
+
+PetalburgCity_EventScript_ScottIntro::
+	msgbox PetalburgCity_Text_ScottIntro, MSGBOX_DEFAULT
+	return
+
+PetalburgCity_EventScript_ScottStepAround::
+	applymovement LOCALID_PETALBURG_SCOTT, Common_Movement_WalkDown
+	waitmovement 0
+	return
+
+PetalburgCity_Movement_ScottLeaveWest:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+PetalburgCity_Text_CantLetYouThrough:
+	.string "Sorry, can't let you through\n"
+	.string "right now.\p"
+	.string "Some kid's been yelling at the poor\n"
+	.string "aide in the GYM all morning.\p"
+	.string "Could you go see what's going on?$"
+
+PetalburgCity_Text_FinallyQuiet:
+	.string "Thanks! It's finally quiet\n"
+	.string "around here.$"
+
+PetalburgCity_Text_LakeFisherman:
+	.string "See that REVIVE on the little island?\p"
+	.string "There's a path through the water,\n"
+	.string "if you know where to step.\p"
+	.string "Start 2 steps to my left. Go 2 up,\n"
+	.string "1 right, 2 up, then 1 right,\l"
+	.string "and you're there.$"
+
+PetalburgCity_Text_StormingOnRoute104:
+	.string "It's been storming like crazy on\n"
+	.string "ROUTE 104 lately.\p"
+	.string "Some folks think the weather is what's\n"
+	.string "making POKéMON glow red.\p"
+	.string "Me? I just think HOENN's gotten weird.$"
+
+PetalburgCity_Text_ScottIntro:
+	.string "SCOTT: Hi! I'm SCOTT.\n"
+	.string "I travel around looking for TRAINERS\l"
+	.string "with real talent.$"
+
+PetalburgCity_Text_ScottAskForPhotos:
+	.string "SCOTT: Hi! I'm SCOTT.\n"
+	.string "I travel around looking for TRAINERS\l"
+	.string "with real talent.\p"
+	.string "Is that a CAMERA? I've heard about\n"
+	.string "those.\p"
+	.string "Tell you what. Photograph 5 different\n"
+	.string "kinds of POKéMON and come show me.\p"
+	.string "I'll make it worth your while!$"
+
+PetalburgCity_Text_ScottFiveAlready:
+	.string "SCOTT: Wow, 5 different POKéMON\n"
+	.string "already!\p"
+	.string "You've got a real eye, {PLAYER}.\n"
+	.string "Here, take this.$"
+
+PetalburgCity_Text_ScottExplainExpShare:
+	.string "SCOTT: With it on, your whole team\n"
+	.string "gets EXP, not just the one that\l"
+	.string "battled.\p"
+	.string "You can switch it on and off\n"
+	.string "in your BAG.\p"
+	.string "Keep it up. I'll be watching!$"

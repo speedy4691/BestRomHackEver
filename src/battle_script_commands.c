@@ -1,5 +1,6 @@
 #include "global.h"
 #include "photography.h"
+#include "treasure_pickup.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
 #include "battle_message.h"
@@ -2307,6 +2308,9 @@ static void Cmd_getexp(void)
                         else if (gExperienceTables[growthRate][levelCap] < currentExp + gBattleStruct->battlerExpReward)
                             gBattleStruct->battlerExpReward = gExperienceTables[growthRate][levelCap] - currentExp;
                     }
+                    // BestRomHackEver Core #42: the treasure ZIGZAGOON never gains EXP.
+                    if (GetMonData(&gParties[B_TRAINER_PLAYER][*expMonId], MON_DATA_IS_TREASURE))
+                        gBattleStruct->battlerExpReward = 0;
 
                     if (IsTradedMon(&gParties[B_TRAINER_PLAYER][*expMonId]))
                     {
@@ -7556,6 +7560,13 @@ static void Cmd_pickup(void)
         {
             species = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES_OR_EGG);
             heldItem = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM);
+            // BestRomHackEver Core #42: the treasure ZIGZAGOON has its own Pickup (src/treasure_pickup.c).
+            if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_IS_TREASURE))
+            {
+                if (!isInPyramid)
+                    TreasurePickup_TryFindItem(&gParties[B_TRAINER_PLAYER][i]);
+                continue;
+            }
             lvlDivBy10 = (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_LEVEL)-1) / 10; //Moving this here makes it easier to add in abilities like Honey Gather.
             if (lvlDivBy10 > 9)
                 lvlDivBy10 = 9;

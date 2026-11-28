@@ -65,6 +65,25 @@ bool32 TryUpgradePhotoGrade(enum Species species, enum PhotoGrade grade)
     return TRUE;
 }
 
+// Species with any photo grade (National Pokédex), shown in the Pokédex and used by SCOTT's EXP. SHARE gate.
+u32 GetPhotographedSpeciesCount(void)
+{
+    u32 dexNum, count = 0;
+
+    for (dexNum = 1; dexNum < NATIONAL_DEX_COUNT + 1; dexNum++)
+    {
+        if (GetPhotoGrade(NationalPokedexNumToSpecies(dexNum)) != PHOTO_GRADE_NONE)
+            count++;
+    }
+    return count;
+}
+
+// specialvar: Petalburg 04 (SCOTT).
+u16 GetPhotographedSpeciesCountSpecial(void)
+{
+    return GetPhotographedSpeciesCount();
+}
+
 void ClearAllPhotoGrades(void)
 {
     memset(gSaveBlock3Ptr->photoGrades, 0, sizeof(gSaveBlock3Ptr->photoGrades));
@@ -315,6 +334,16 @@ bool32 PhotoStory_IsRoute103WurmpleBattle(void)
         && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE103)
         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE103)
         && GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_SPECIES) == SPECIES_WURMPLE
+        && GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_IS_RED_EYED);
+}
+
+// Petalburg 03: the red-eyed RATTATA by the POKéMON CENTER (scripted from the overworld object).
+bool32 PhotoStory_IsPetalburgRattataBattle(void)
+{
+    return !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_SAFARI))
+        && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_PETALBURG_CITY)
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_PETALBURG_CITY)
+        && GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_SPECIES) == SPECIES_RATTATA
         && GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_IS_RED_EYED);
 }
 
@@ -928,6 +957,8 @@ static void TakePhoto(void)
     upgraded = TryUpgradePhotoGrade(sVf->species, score.grade);
     if (sVf->inBattle && score.grade >= PHOTO_GRADE_PHOTOGRAPHED && PhotoStory_IsRoute103WurmpleBattle())
         FlagSet(FLAG_PHOTOGRAPHED_ROUTE103_WURMPLE);
+    if (sVf->inBattle && score.grade >= PHOTO_GRADE_PHOTOGRAPHED && PhotoStory_IsPetalburgRattataBattle())
+        FlagSet(FLAG_PHOTOGRAPHED_PETALBURG_RATTATA);
     if (sVf->shotsLeft != UNLIMITED_SHOTS)
     {
         sVf->shotsLeft--;

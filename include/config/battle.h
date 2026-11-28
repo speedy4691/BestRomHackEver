@@ -454,4 +454,8 @@
 #define B_POOL_RULE_MEGA_STONE_CLAUSE       FALSE    // Pick only 1 Pokémon with a Mega Stone.
 #define B_POOL_RULE_Z_CRYSTAL_CLAUSE        FALSE    // Pick only 1 Pokémon with a Z-Crystal.
 
+// BestRomHackEver (Core #41): show the ability pop-up when an ability silently changes a hit's damage
+// (e.g. Thick Fat, Filter, Technician, Huge Power), once per hit, just before the move's animation.
+#define B_QUIET_ABILITY_POP_UP              TRUE
+
 #endif // GUARD_CONFIG_BATTLE_H

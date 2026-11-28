@@ -2666,6 +2666,10 @@ static enum CancelerResult CancelerDamageCalc(struct BattleCalcValues *cv)
         ctx.holdEffects[battler] = cv->holdEffects[battler];
     }
 
+    // BestRomHackEver Core #41: drop flags left over from damage that never reached the pop-up step (e.g. confusion).
+    for (enum BattlerId battler = B_BATTLER_0; battler < MAX_BATTLERS_COUNT; battler++)
+        gSpecialStatuses[battler].quietAbilityPopUp = FALSE;
+
     for (enum BattlerId battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
     {
         if (ShouldSkipBattlerForDamage(cv->battlerAtk, battlerDef))
@@ -2754,6 +2758,18 @@ static enum CancelerResult CancelerPreAnimActivations(struct BattleCalcValues *c
 
             gBattleScripting.battler = battlerDef;
             BattleScriptCall(BattleScript_BerryReduceAnimation);
+            return CANCELER_RESULT_RUN_SCRIPT;
+        }
+        gBattleStruct->eventState.moveEndBlock++;
+    case PRE_ANIM_QUIET_ABILITY:
+        // BestRomHackEver Core #41: abilities flagged during this hit's damage calc (attacker or targets).
+        for (enum BattlerId battler = B_BATTLER_0; battler < gBattlersCount; battler++)
+        {
+            if (!gSpecialStatuses[battler].quietAbilityPopUp)
+                continue;
+            gSpecialStatuses[battler].quietAbilityPopUp = FALSE;
+            gBattlerAbility = battler;
+            BattleScriptCall(BattleScript_QuietAbilityPopUp);
             return CANCELER_RESULT_RUN_SCRIPT;
         }
         gBattleStruct->eventState.moveEndBlock++;

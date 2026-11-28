@@ -67,11 +67,11 @@
 #define FLAG_BIRCH_PHOTO_QUEST_STARTED 0x2D // Opening 11: Birch's call after the WURMPLE battle (QUEST_BIRCH_PHOTOS)
 #define FLAG_STEVE_CAMERA_TALK_DONE 0x2E // Opening 12: STEVE's CAMERA talk after beating ARTIST VINNY
 #define FLAG_HIDE_ROUTE102_STEVE 0x2F // Opening 12: STEVE's Route 102 object, shown only during his run-up
-#define FLAG_UNUSED_0x030    0x30 // Unused Flag
-#define FLAG_UNUSED_0x031    0x31 // Unused Flag
-#define FLAG_UNUSED_0x032    0x32 // Unused Flag
-#define FLAG_UNUSED_0x033    0x33 // Unused Flag
-#define FLAG_UNUSED_0x034    0x34 // Unused Flag
+#define FLAG_EXP_SHARE_ON    0x30 // Core #44: modern EXP. SHARE switched on (I_EXP_SHARE_FLAG; toggled from the BAG)
+#define FLAG_RECEIVED_TREASURE_ZIGZAGOON 0x31 // Petalburg 01: the gym aide gave the treasure ZIGZAGOON (Core #42)
+#define FLAG_PHOTOGRAPHED_PETALBURG_RATTATA 0x32 // Petalburg 03: photographed the red-eyed RATTATA (also hides it)
+#define FLAG_ITEM_PETALBURG_CITY_REVIVE 0x33 // Petalburg 02: REVIVE on the lake island
+#define FLAG_MR_STONE_THANKED_LETTER 0x34 // MR. STONE thanked the player for the LETTER (he no longer gives the EXP. SHARE)
 #define FLAG_UNUSED_0x035    0x35 // Unused Flag
 #define FLAG_UNUSED_0x036    0x36 // Unused Flag
 #define FLAG_UNUSED_0x037    0x37 // Unused Flag

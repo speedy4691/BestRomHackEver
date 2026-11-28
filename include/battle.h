@@ -137,7 +137,8 @@ struct SpecialStatus
     u8 multiHitOn:1;
     u8 teraShellAbilityDone:1;
     u8 backUpTarget:3;
-    u8 padding1:1;
+    u8 quietAbilityPopUp:1; // BestRomHackEver Core #41
+
     // End of byte
     enum QueuedSwitch queuedSwitch;
     struct StatStages statStageQueue[NUM_BATTLE_STATS];
