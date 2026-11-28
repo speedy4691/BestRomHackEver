@@ -6474,6 +6474,30 @@ static bool32 DmgCalc_IsAbilityOnField(enum Ability ability, enum Ability abilit
     return FALSE;
 }
 
+// BestRomHackEver Core #41: an ability changed this hit's damage without a message of its own, so queue its
+// pop-up (shown before the move animation, PRE_ANIM_QUIET_ABILITY). Only real hits (updateFlags), not AI
+// estimates. Abilities that already announce themselves when they activate are left out.
+static void QueueQuietAbilityPopUp(struct DamageContext *ctx, enum BattlerId battler, bool32 changed)
+{
+    if (!B_QUIET_ABILITY_POP_UP || !changed || !ctx->updateFlags || ctx->isSelfInflicted)
+        return;
+    switch (ctx->abilities[battler])
+    {
+    case ABILITY_NONE:
+    case ABILITY_FLASH_FIRE:
+    case ABILITY_SLOW_START:
+    case ABILITY_PROTOSYNTHESIS:
+    case ABILITY_QUARK_DRIVE:
+    case ABILITY_ORICHALCUM_PULSE:
+    case ABILITY_HADRON_ENGINE:
+    case ABILITY_SUPREME_OVERLORD:
+        return;
+    default:
+        break;
+    }
+    gSpecialStatuses[battler].quietAbilityPopUp = TRUE;
+}
+
 static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
 {
     u32 holdEffectParamAtk;
@@ -6557,6 +6581,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
         modifier = uq4_12_multiply(modifier, UQ_4_12(GetConfig(B_SPORT_DMG_REDUCTION) >= GEN_5 ? 0.33 : 0.5));
 
     // attacker's abilities
+    uq4_12_t quietMod0 = modifier;
     switch (ctx->abilities[battlerAtk])
     {
     case ABILITY_TECHNICIAN:
@@ -6670,6 +6695,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
     default:
         break;
     }
+    QueueQuietAbilityPopUp(ctx, battlerAtk, modifier != quietMod0);
 
     // field abilities
     enum BattlerId fieldAbilityBattler = MAX_BATTLERS_COUNT;
@@ -6711,6 +6737,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
     }
 
     // target's abilities
+    uq4_12_t quietMod2 = modifier;
     switch (ctx->abilities[ctx->battlerDef])
     {
     case ABILITY_HEATPROOF:
@@ -6729,6 +6756,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
     default:
         break;
     }
+    QueueQuietAbilityPopUp(ctx, ctx->battlerDef, modifier != quietMod2);
 
     holdEffectParamAtk = GetBattlerHoldEffectParam(battlerAtk);
     if (holdEffectParamAtk > 100)
@@ -6919,6 +6947,7 @@ static inline u32 CalcAttackStat(struct DamageContext *ctx)
         return uq4_12_multiply_by_int_half_down(ApplyOffensiveBadgeBoost(modifier, battlerAtk, move), atkStat);
 
     // attacker's abilities
+    uq4_12_t quietMod1 = modifier;
     switch (ctx->abilities[battlerAtk])
     {
     case ABILITY_HUGE_POWER:
@@ -7040,8 +7069,10 @@ static inline u32 CalcAttackStat(struct DamageContext *ctx)
     default:
         break;
     }
+    QueueQuietAbilityPopUp(ctx, battlerAtk, modifier != quietMod1);
 
     // target's abilities
+    uq4_12_t quietMod3 = modifier;
     switch (ctx->abilities[ctx->battlerDef])
     {
     case ABILITY_THICK_FAT:
@@ -7063,6 +7094,7 @@ static inline u32 CalcAttackStat(struct DamageContext *ctx)
     default:
         break;
     }
+    QueueQuietAbilityPopUp(ctx, ctx->battlerDef, modifier != quietMod3);
 
     // ally's abilities
     switch (ctx->abilities[GetPartnerBattler(battlerAtk)])
@@ -7196,6 +7228,7 @@ static inline u32 CalcDefenseStat(struct DamageContext *ctx)
         return uq4_12_multiply_by_int_half_down(ApplyDefensiveBadgeBoost(modifier, battlerDef, move), defStat);
 
     // target's abilities
+    uq4_12_t quietMod4 = modifier;
     switch (ctx->abilities[ctx->battlerDef])
     {
     case ABILITY_MARVEL_SCALE:
@@ -7237,6 +7270,7 @@ static inline u32 CalcDefenseStat(struct DamageContext *ctx)
     default:
         break;
     }
+    QueueQuietAbilityPopUp(ctx, ctx->battlerDef, modifier != quietMod4);
 
     // ally's abilities
     switch (ctx->abilities[GetPartnerBattler(battlerDef)])
@@ -7648,6 +7682,13 @@ static inline uq4_12_t GetDefenderItemsModifier(struct DamageContext *ctx)
 // https://bulbapedia.bulbagarden.net/wiki/Damage#Generation_V_onward
 // Please Note: Fixed Point Multiplication is not associative.
 // The order of operations is relevant.
+// BestRomHackEver Core #41: pass a final-damage ability modifier through, queuing the pop-up if it changes anything.
+static inline uq4_12_t QuietAbilityModifier(struct DamageContext *ctx, enum BattlerId battler, uq4_12_t modifier)
+{
+    QueueQuietAbilityPopUp(ctx, battler, modifier != UQ_4_12(1.0));
+    return modifier;
+}
+
 static inline uq4_12_t GetOtherModifiers(struct DamageContext *ctx)
 {
     uq4_12_t finalModifier = UQ_4_12(1.0);
@@ -7664,17 +7705,17 @@ static inline uq4_12_t GetOtherModifiers(struct DamageContext *ctx)
 
     if (unmodifiedAttackerSpeed >= unmodifiedDefenderSpeed)
     {
-        DAMAGE_MULTIPLY_MODIFIER(GetAttackerAbilitiesModifier(ctx->battlerAtk, ctx->typeEffectivenessModifier, ctx->isCrit, ctx->abilities[ctx->battlerAtk]));
-        DAMAGE_MULTIPLY_MODIFIER(GetDefenderAbilitiesModifier(ctx));
+        DAMAGE_MULTIPLY_MODIFIER(QuietAbilityModifier(ctx, ctx->battlerAtk, GetAttackerAbilitiesModifier(ctx->battlerAtk, ctx->typeEffectivenessModifier, ctx->isCrit, ctx->abilities[ctx->battlerAtk])));
+        DAMAGE_MULTIPLY_MODIFIER(QuietAbilityModifier(ctx, ctx->battlerDef, GetDefenderAbilitiesModifier(ctx)));
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderPartnerAbilitiesModifier(ctx));
         DAMAGE_MULTIPLY_MODIFIER(GetAttackerItemsModifier(ctx->battlerAtk, ctx->typeEffectivenessModifier, ctx->holdEffects[ctx->battlerAtk]));
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderItemsModifier(ctx));
     }
     else
     {
-        DAMAGE_MULTIPLY_MODIFIER(GetDefenderAbilitiesModifier(ctx));
+        DAMAGE_MULTIPLY_MODIFIER(QuietAbilityModifier(ctx, ctx->battlerDef, GetDefenderAbilitiesModifier(ctx)));
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderPartnerAbilitiesModifier(ctx));
-        DAMAGE_MULTIPLY_MODIFIER(GetAttackerAbilitiesModifier(ctx->battlerAtk, ctx->typeEffectivenessModifier, ctx->isCrit, ctx->abilities[ctx->battlerAtk]));
+        DAMAGE_MULTIPLY_MODIFIER(QuietAbilityModifier(ctx, ctx->battlerAtk, GetAttackerAbilitiesModifier(ctx->battlerAtk, ctx->typeEffectivenessModifier, ctx->isCrit, ctx->abilities[ctx->battlerAtk])));
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderItemsModifier(ctx));
         DAMAGE_MULTIPLY_MODIFIER(GetAttackerItemsModifier(ctx->battlerAtk, ctx->typeEffectivenessModifier, ctx->holdEffects[ctx->battlerAtk]));
     }

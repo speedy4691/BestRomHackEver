@@ -328,6 +328,13 @@ Route101_EventScript_BattleBrendan::
 
 Route101_EventScript_RivalLeaves::
 	closemessage
+	delay 30
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox Route101_Text_RegisteredRival, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 30
+	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	setflag FLAG_DEFEATED_RIVAL_LITTLEROOT
 	setflag FLAG_DEFEATED_RIVAL_ROUTE103
 	setvar VAR_ROUTE101_STATE, 5
@@ -386,3 +393,7 @@ Route101_Movement_RivalLeaveFrom11:
 	walk_up
 	walk_up
 	step_end
+
+Route101_Text_RegisteredRival:
+	.string "Registered {RIVAL}\n"
+	.string "in the POKéNAV.$"

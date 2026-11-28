@@ -35,6 +35,7 @@ enum PreAnimActivations
     PRE_ANIM_STRONG_WINDS,
     PRE_ANIM_TERA_SHELL,
     PRE_ANIM_RESIST_BERRY,
+    PRE_ANIM_QUIET_ABILITY, // BestRomHackEver Core #41
 };
 
 enum CancelerState

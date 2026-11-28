@@ -96,13 +96,7 @@ Route104_EventScript_MayEncounter::
 	setflag FLAG_REGISTER_RIVAL_POKENAV
 	msgbox Route104_Text_MayWeShouldRegister, MSGBOX_DEFAULT
 	closemessage
-	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox Route104_Text_RegisteredMay, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	call_if_unset FLAG_ENABLE_RIVAL_MATCH_CALL, Route104_EventScript_RegisterMay
 	applymovement LOCALID_PLAYER, Route104_Movement_PlayerFaceRival
 	applymovement LOCALID_ROUTE104_RIVAL, Route104_Movement_RivalWalkSlowLeft
 	msgbox Route104_Text_MayHowsYourPokedex, MSGBOX_DEFAULT
@@ -182,13 +176,7 @@ Route104_EventScript_BrendanEncounter::
 	setflag FLAG_REGISTER_RIVAL_POKENAV
 	msgbox Route104_Text_BrendanWeShouldRegister, MSGBOX_DEFAULT
 	closemessage
-	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox Route104_Text_RegisteredBrendan, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	call_if_unset FLAG_ENABLE_RIVAL_MATCH_CALL, Route104_EventScript_RegisterBrendan
 	applymovement LOCALID_PLAYER, Route104_Movement_PlayerFaceRival
 	applymovement LOCALID_ROUTE104_RIVAL, Route104_Movement_RivalWalkSlowLeft
 	msgbox Route104_Text_BrendanHowsYourPokedex, MSGBOX_DEFAULT
@@ -1157,3 +1145,25 @@ Route104_Text_BrendanPostBattle:
 	.string "making POKéMON battle.\p"
 	.string "Like MR. BRINEY, it's important to\n"
 	.string "become friends with your POKéMON.$"
+
+@ The rival registers on ROUTE 101 now (after the 25 POKé BALLS); this only runs for older saves.
+Route104_EventScript_RegisterMay::
+	delay 30
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox Route104_Text_RegisteredMay, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 30
+	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	return
+
+@ The rival registers on ROUTE 101 now (after the 25 POKé BALLS); this only runs for older saves.
+Route104_EventScript_RegisterBrendan::
+	delay 30
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox Route104_Text_RegisteredBrendan, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 30
+	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	return

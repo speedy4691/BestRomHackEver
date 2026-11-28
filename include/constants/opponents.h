@@ -862,12 +862,13 @@
 #define TRAINER_RIVAL_LITTLEROOT            855 // Opening 09, male player (MAY)
 #define TRAINER_RIVAL_LITTLEROOT_BRENDAN    856 // Opening 09, female player (same team)
 #define TRAINER_OLDALE_FOOTPRINTS_MAN       857 // ARTIST VINNY, Oldale west exit (Access gates row 2)
+#define TRAINER_WALLY_PETALBURG             858 // Petalburg 01: WALLY in the PETALBURG GYM (replaces the catching tutorial)
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT_EMERALD     858
+#define TRAINERS_COUNT_EMERALD     859
 #define MAX_TRAINERS_COUNT_EMERALD 864
 
 #if IS_FRLG

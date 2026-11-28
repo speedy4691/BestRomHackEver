@@ -16,13 +16,22 @@ PetalburgCity_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+@ PETALBURG_03: both talk about the red-eyed RATTATA outside.
 PetalburgCity_PokemonCenter_1F_EventScript_FatMan::
-	msgbox PetalburgCity_PokemonCenter_1F_Text_PCStorageSystem, MSGBOX_NPC
+	msgbox PetalburgCity_PokemonCenter_1F_Text_RattataGlowingRed, MSGBOX_NPC
 	end
 
 PetalburgCity_PokemonCenter_1F_EventScript_Youngster::
-	msgbox PetalburgCity_PokemonCenter_1F_Text_OranBerryRegainedHP, MSGBOX_NPC
+	msgbox PetalburgCity_PokemonCenter_1F_Text_NobodyCanCatchIt, MSGBOX_NPC
 	end
+
+PetalburgCity_PokemonCenter_1F_Text_RattataGlowingRed:
+	.string "Did you see that RATTATA outside?\n"
+	.string "It's been glowing red all day.$"
+
+PetalburgCity_PokemonCenter_1F_Text_NobodyCanCatchIt:
+	.string "Nobody can catch it. Someone threw\n"
+	.string "three POKé BALLS at it this morning!$"
 
 PetalburgCity_PokemonCenter_1F_EventScript_Woman::
 	lock

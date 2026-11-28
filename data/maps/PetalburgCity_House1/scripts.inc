@@ -26,3 +26,15 @@ PetalburgCity_House1_Text_GoOnAdventure:
 	.string "homesick…\p"
 	.string "It must be fabulous to travel!$"
 
+
+@ "W1" on Chase's Petalburg map: mother of a TEAM AQUA member (replaces the girl who wished for an adventure).
+PetalburgCity_House1_EventScript_AquaMom::
+	msgbox PetalburgCity_House1_Text_SonJoinedTeamAqua, MSGBOX_NPC
+	end
+
+PetalburgCity_House1_Text_SonJoinedTeamAqua:
+	.string "My son joined TEAM AQUA last year.\p"
+	.string "He says they're cleaning up\n"
+	.string "the oceans.\p"
+	.string "He doesn't call as much as he used to,\n"
+	.string "but he always sends a postcard.$"

@@ -476,6 +476,7 @@ extern const u8 BattleScript_AromaVeilProtectsRet[];
 extern const u8 BattleScript_Terastallization[];
 extern const u8 BattleScript_BoosterEnergy[];
 extern const u8 BattleScript_TeraShellDistortingTypeMatchups[];
+extern const u8 BattleScript_QuietAbilityPopUp[];
 extern const u8 BattleScript_TeraFormChange[];
 extern const u8 BattleScript_SleepClausePrevents[];
 extern const u8 BattleScript_PowerConstruct[];

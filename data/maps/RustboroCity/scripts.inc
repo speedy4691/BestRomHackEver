@@ -829,13 +829,7 @@ RustboroCity_EventScript_MayEncounter::
 	setflag FLAG_MET_RIVAL_RUSTBORO
 	msgbox RustboroCity_Text_MayHiLetsRegister, MSGBOX_DEFAULT
 	closemessage
-	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox RustboroCity_Text_RegisteredMay, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	call_if_unset FLAG_ENABLE_RIVAL_MATCH_CALL, RustboroCity_EventScript_RegisterMay
 	setvar VAR_RUSTBORO_CITY_STATE, 8
 	setvar VAR_ROUTE104_STATE, 2
 	setvar VAR_0x8008, 0
@@ -897,13 +891,7 @@ RustboroCity_EventScript_BrendanEncounter::
 	setflag FLAG_MET_RIVAL_RUSTBORO
 	msgbox RustboroCity_Text_BrendanHiLetsRegister, MSGBOX_DEFAULT
 	closemessage
-	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox RustboroCity_Text_RegisteredBrendan, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	call_if_unset FLAG_ENABLE_RIVAL_MATCH_CALL, RustboroCity_EventScript_RegisterBrendan
 	setvar VAR_RUSTBORO_CITY_STATE, 8
 	setvar VAR_ROUTE104_STATE, 2
 	msgbox RustboroCity_Text_BrendanPassedBrineyWantToBattle, MSGBOX_YESNO
@@ -1288,3 +1276,25 @@ RustboroCity_Text_YouCanHave2On2Battle:
 	.string "they'll both challenge you.\p"
 	.string "Don't you think it'd be cool if you\n"
 	.string "could beat two TRAINERS by yourself?$"
+
+@ The rival registers on ROUTE 101 now (after the 25 POKé BALLS); this only runs for older saves.
+RustboroCity_EventScript_RegisterMay::
+	delay 30
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox RustboroCity_Text_RegisteredMay, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 30
+	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	return
+
+@ The rival registers on ROUTE 101 now (after the 25 POKé BALLS); this only runs for older saves.
+RustboroCity_EventScript_RegisterBrendan::
+	delay 30
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox RustboroCity_Text_RegisteredBrendan, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 30
+	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	return

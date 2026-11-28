@@ -35,14 +35,30 @@ PetalburgCity_Gym_EventScript_UnlockAllDoors::
 	call PetalburgCity_Gym_EventScript_OpenOHKORoomDoors
 	return
 
+@ PETALBURG_01: NORMAN isn't in the GYM before his battle (state 6); the RESEARCH AIDE stands at the entrance.
+@ State 0 = WALLY not beaten yet: the scene plays on entering (OnFrame). Beating WALLY sets state 2, which is where
+@ vanilla left it after the catching tutorial, so the badge count (+1 per badge) still reaches NORMAN's battle at 6.
 PetalburgCity_Gym_OnTransition:
-	call_if_eq VAR_PETALBURG_GYM_STATE, 1, PetalburgCity_Gym_EventScript_MoveWallyToEntrance
-	call_if_lt VAR_PETALBURG_GYM_STATE, 6, PetalburgCity_Gym_EventScript_MoveNormanToEntrance
+	call_if_eq VAR_PETALBURG_GYM_STATE, 0, PetalburgCity_Gym_EventScript_HideWally
+	call_if_lt VAR_PETALBURG_GYM_STATE, 6, PetalburgCity_Gym_EventScript_HideNorman
+	call_if_ge VAR_PETALBURG_GYM_STATE, 6, PetalburgCity_Gym_EventScript_ShowNorman
 	call_if_set FLAG_SYS_GAME_CLEAR, PetalburgCity_Gym_EventScript_CheckNormanForRematch
 	end
 
 PetalburgCity_Gym_EventScript_MoveWallyToEntrance::
 	setobjectxyperm LOCALID_PETALBURG_GYM_WALLY, 5, 108
+	return
+
+PetalburgCity_Gym_EventScript_HideWally::
+	setflag FLAG_HIDE_PETALBURG_GYM_WALLY
+	return
+
+PetalburgCity_Gym_EventScript_HideNorman::
+	setflag FLAG_HIDE_PETALBURG_GYM_NORMAN
+	return
+
+PetalburgCity_Gym_EventScript_ShowNorman::
+	clearflag FLAG_HIDE_PETALBURG_GYM_NORMAN
 	return
 
 PetalburgCity_Gym_EventScript_MoveNormanToEntrance::
@@ -70,8 +86,150 @@ PetalburgCity_Gym_EventScript_TurnPlayerNorth::
 	end
 
 PetalburgCity_Gym_OnFrame:
+	map_script_2 VAR_PETALBURG_GYM_STATE, 0, PetalburgCity_Gym_EventScript_WallyScene
 	map_script_2 VAR_PETALBURG_GYM_STATE, 1, PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial
 	.2byte 0
+
+@ PETALBURG_01: the aide says the GYM LEADER isn't available, WALLY walks in behind the player and battles.
+@ Losing is a normal whiteout and the scene plays again on the next visit.
+PetalburgCity_Gym_EventScript_WallyScene::
+	lockall
+	applymovement LOCALID_PLAYER, PetalburgCity_Gym_Movement_PlayerWalkInTwo
+	waitmovement 0
+	msgbox PetalburgCity_Gym_Text_AideNotAvailable, MSGBOX_DEFAULT
+	closemessage
+	clearflag FLAG_HIDE_PETALBURG_GYM_WALLY
+	addobject LOCALID_PETALBURG_GYM_WALLY
+	playse SE_DOOR
+	applymovement LOCALID_PETALBURG_GYM_WALLY, Common_Movement_WalkUp
+	waitmovement 0
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	msgbox PetalburgCity_Gym_Text_WallyIntro, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_no_intro TRAINER_WALLY_PETALBURG, PetalburgCity_Gym_Text_WallyDefeat
+	msgbox PetalburgCity_Gym_Text_WallyPostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PETALBURG_GYM_WALLY, Common_Movement_WalkDown
+	waitmovement 0
+	playse SE_EXIT
+	removeobject LOCALID_PETALBURG_GYM_WALLY
+	setflag FLAG_HIDE_PETALBURG_GYM_WALLY
+	setvar VAR_PETALBURG_GYM_STATE, 2
+	setvar VAR_PETALBURG_CITY_STATE, 3
+	delay 30
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	goto PetalburgCity_Gym_EventScript_AideGivesZigzagoon
+	end
+
+PetalburgCity_Gym_Movement_PlayerWalkInTwo:
+	walk_up
+	walk_up
+	step_end
+
+@ The aide's line 1 is his only line, except right after WALLY (or if the ZIGZAGOON couldn't be given then).
+PetalburgCity_Gym_EventScript_Aide::
+	lock
+	faceplayer
+	goto_if_unset FLAG_RECEIVED_TREASURE_ZIGZAGOON, PetalburgCity_Gym_EventScript_AideCheckWally
+	msgbox PetalburgCity_Gym_Text_AideNotAvailable, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_Gym_EventScript_AideCheckWally::
+	goto_if_defeated TRAINER_WALLY_PETALBURG, PetalburgCity_Gym_EventScript_AideGivesZigzagoon
+	msgbox PetalburgCity_Gym_Text_AideNotAvailable, MSGBOX_DEFAULT
+	release
+	end
+
+@ Treasure ZIGZAGOON (Core #42): lvl 5, can't gain EXP, special Pickup. Party full: it goes to the PC.
+PetalburgCity_Gym_EventScript_AideGivesZigzagoon::
+	msgbox PetalburgCity_Gym_Text_AideThanks, MSGBOX_DEFAULT
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_ZIGZAGOON
+	special GiveTreasureZigzagoon
+	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, PetalburgCity_Gym_EventScript_ZigzagoonToParty
+	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, PetalburgCity_Gym_EventScript_ZigzagoonToPC
+	goto Common_EventScript_NoMoreRoomForPokemon
+	end
+
+PetalburgCity_Gym_EventScript_ZigzagoonToParty::
+	call PetalburgCity_Gym_EventScript_ZigzagoonFanfare
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, PetalburgCity_Gym_EventScript_AideExplainsZigzagoon
+	call Common_EventScript_GetGiftMonPartySlot
+	call Common_EventScript_NameReceivedPartyMon
+	goto PetalburgCity_Gym_EventScript_AideExplainsZigzagoon
+	end
+
+PetalburgCity_Gym_EventScript_ZigzagoonToPC::
+	call PetalburgCity_Gym_EventScript_ZigzagoonFanfare
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, PetalburgCity_Gym_EventScript_ZigzagoonTransferredToPC
+	call Common_EventScript_NameReceivedBoxMon
+	goto PetalburgCity_Gym_EventScript_ZigzagoonTransferredToPC
+	end
+
+PetalburgCity_Gym_EventScript_ZigzagoonTransferredToPC::
+	call Common_EventScript_TransferredToPC
+	goto PetalburgCity_Gym_EventScript_AideExplainsZigzagoon
+	end
+
+PetalburgCity_Gym_EventScript_ZigzagoonFanfare::
+	bufferspeciesname STR_VAR_2, SPECIES_ZIGZAGOON
+	playfanfare MUS_OBTAIN_ITEM
+	message PetalburgCity_Gym_Text_ReceivedZigzagoon
+	waitmessage
+	waitfanfare
+	return
+
+PetalburgCity_Gym_EventScript_AideExplainsZigzagoon::
+	setflag FLAG_RECEIVED_TREASURE_ZIGZAGOON
+	msgbox PetalburgCity_Gym_Text_AideExplainsZigzagoon, MSGBOX_DEFAULT
+	releaseall
+	end
+
+PetalburgCity_Gym_Text_AideNotAvailable:
+	.string "Sorry, the GYM LEADER isn't available\n"
+	.string "right now.$"
+
+PetalburgCity_Gym_Text_WallyIntro:
+	.string "WALLY: Out of my way!\n"
+	.string "Do you know who I am?\p"
+	.string "I'm WALLY, BILL's son!\n"
+	.string "As in BILL's PC!\p"
+	.string "My dad basically runs HOENN, so\n"
+	.string "you'd better let me win.$"
+
+PetalburgCity_Gym_Text_WallyDefeat:
+	.string "What?! That's not fair!\n"
+	.string "I'm telling my dad about this!$"
+
+PetalburgCity_Gym_Text_WallyPostBattle:
+	.string "WALLY: Whatever. My dad could buy\n"
+	.string "this whole town.$"
+
+PetalburgCity_Gym_Text_AideThanks:
+	.string "Thanks for kicking that entitled\n"
+	.string "kid's butt.\p"
+	.string "He's been in here every day\n"
+	.string "demanding a POKéMON.\p"
+	.string "Here, I think this ZIGZAGOON likes\n"
+	.string "you better anyway.$"
+
+PetalburgCity_Gym_Text_ReceivedZigzagoon:
+	.string "{PLAYER} received ZIGZAGOON!$"
+
+PetalburgCity_Gym_Text_AideExplainsZigzagoon:
+	.string "It won't get any stronger, but it has\n"
+	.string "a great nose.\p"
+	.string "After a battle, it sometimes digs up\n"
+	.string "items that power up a certain type\l"
+	.string "of move.\p"
+	.string "What it finds depends on where you\n"
+	.string "are, and sometimes on the weather.\p"
+	.string "Other aides out there can help train\n"
+	.string "its nose, for a price.$"
 
 PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial::
 	lockall

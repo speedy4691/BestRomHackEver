@@ -641,3 +641,5 @@ gSpecials::
 	def_special BufferCurrentLevelCap
 	def_special BufferNextGymGateSpecies
 	def_special GetRoute102SteveRunUpPath
+	def_special GiveTreasureZigzagoon
+	def_special GetPhotographedSpeciesCountSpecial

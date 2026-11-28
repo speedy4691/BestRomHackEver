@@ -16,6 +16,8 @@ enum PhotoGrade GetPhotoGrade(enum Species species);
 void SetPhotoGrade(enum Species species, enum PhotoGrade grade);
 bool32 TryUpgradePhotoGrade(enum Species species, enum PhotoGrade grade);
 void ClearAllPhotoGrades(void);
+u32 GetPhotographedSpeciesCount(void);
+u16 GetPhotographedSpeciesCountSpecial(void);
 const u8 *GetPhotoGradeName(enum PhotoGrade grade);
 void GetPhotoGradeDexText(u8 *dest, enum Species species);
 
@@ -25,6 +27,7 @@ void PhotoReward_BoostIvs(struct Pokemon *mon);
 // L on the wild battle action menu opens the camera (src/battle_controller_player.c).
 bool32 PhotoCamera_CanUseShortcut(void);
 bool32 PhotoStory_IsRoute103WurmpleBattle(void);
+bool32 PhotoStory_IsPetalburgRattataBattle(void);
 bool32 PhotoStory_IsPhotoRequired(void);
 bool32 PhotoCamera_IsShortcutChosen(void);
 

@@ -334,7 +334,7 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
 
     TryFormChange(&pokemon, FORM_CHANGE_WITHDRAW, B_TRAINER_PLAYER);
 
-    if (GetMonData(&pokemon, MON_DATA_LEVEL) < GetCurrentLevelCap())
+    if (GetMonData(&pokemon, MON_DATA_LEVEL) < GetCurrentLevelCap() && !GetMonData(&pokemon, MON_DATA_IS_TREASURE)) // Core #42
     {
         experience = GetMonData(&pokemon, MON_DATA_EXP) + daycareMon->steps;
         u32 maxExp = GetExpAtLevelCap(&pokemon);
@@ -388,6 +388,8 @@ static u8 GetNumLevelsGainedFromSteps(struct DaycareMon *daycareMon)
     levelAfter = GetLevelAfterDaycareSteps(&daycareMon->mon, daycareMon->steps);
     if (levelAfter > GetCurrentLevelCap())
         levelAfter = GetCurrentLevelCap();
+    if (GetBoxMonData(&daycareMon->mon, MON_DATA_IS_TREASURE)) // Core #42: no levels for the treasure ZIGZAGOON
+        levelAfter = levelBefore;
     return levelAfter - levelBefore;
 }
 
